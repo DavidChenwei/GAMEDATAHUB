@@ -1,0 +1,741 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+@Scripts.Render("~/bundles/anime-min")
+<div class="gdh-wrapper">
+    <div class="gdh-navigation">
+        <div class="gdh-site-nav gdh-navigation__main">
+            <nav>
+                <ul>
+                    <li class="item">
+                        <a class="item-content active" href="/Index.html">
+                            <div class="label">
+                                <div class="label-content">
+                                    <span class="name">Home</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a class="item-content" href="apps.html">
+                            <div class="label">
+                                <div class="label-content">
+                                    <span class="name">Apps</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a class="item-content" href="Support.html">
+                            <div class="label">
+                                <div class="label-content">
+                                    <span class="name">Support</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="gdh-container">
+        <div class="gdh-content">
+            <main>
+                <div class="landing">
+                    <div class="landing__sidebar">
+                        <h1 class="logo">
+                            <svg class="svg" id="home-svg" aria-labelledby="gdhTitle">
+                                <title id="gdhTitle">Tracker Network</title>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1"
+                                      d="M64.849,22.939c-0.3,0-0.55,0-0.8,0c-1.727,0-3.453-0.014-5.18,0.012c-0.383,0.006-0.541-0.125-0.657-0.494
+                                        c-0.394-1.258-0.842-2.494-1.226-3.754c-0.127-0.416-0.326-0.51-0.71-0.508c-2.479,0.018-4.959,0.018-7.438-0.001
+                                        c-0.374-0.004-0.544,0.104-0.659,0.483c-0.433,1.422-0.901,2.83-1.357,4.246c-2.163,0-4.292,0-6.505,0
+                                        c0.072-0.207,0.125-0.377,0.188-0.545c2.668-6.998,5.34-13.995,7.997-20.998c0.146-0.385,0.322-0.514,0.715-0.511
+                                        c2.278,0.021,4.556,0.015,6.833,0.004c0.307-0.001,0.486,0.062,0.613,0.398c2.676,7.078,5.365,14.149,8.05,21.226
+                                        C64.76,22.619,64.79,22.746,64.849,22.939z M55.414,13.796c-0.941-2.728-1.854-5.378-2.826-8.192
+                                        c-1.015,2.831-1.969,5.491-2.938,8.192C51.591,13.796,53.459,13.796,55.414,13.796z"></path>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1"
+                                      d="M37.427,14.74h0.106c2.347,0,4.25-1.9,4.25-4.245V5.074c0-2.345-1.902-4.245-4.25-4.245H26.495h-0.417H0
+                                        v5.617h7.04v16.479h5.999V6.446h7.04v16.479h5.999V6.446h0.417h9.519v2.976h-8.818v5.318h3.734l4.377,8.186h6.499L37.427,14.74z">
+                                </path>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1"
+                                      d="M90.416,10.431c1.092-1.299,1.881-2.315,2.856-3.479c1.638-1.956,3.225-3.871,4.872-5.818
+                                        c0.119-0.141,0.387-0.271,0.563-0.271c2.068-0.02,4.091-0.013,6.328-0.013c-3.05,3.524-5.974,6.91-8.982,10.386
+                                        c3.192,3.881,6.332,7.708,9.578,11.654c-0.267,0.014-0.54,0.031-0.721,0.031c-1.953,0.002-5.19,0.006-5.722,0.013
+                                        c-0.437,0.006-0.703-0.095-0.968-0.425c-2.531-3.146-7.551-9.42-7.551-9.42l-0.244-0.314c0,0-0.005,6.754-0.005,10.148
+                                        c-1.989,0-4.015,0-5.992,0c0-7.35,0-14.705,0-22.089c1.942,0,5.988,0,5.988,0S90.416,7.07,90.416,10.431z">
+                                </path>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1"
+                                      d="M122.201,0.829v22.096h5.998V6.446h0.417h9.519v2.976h-8.819v5.318h3.734l4.377,8.186h6.499l-4.377-8.186
+                                        h0.105c2.347,0,4.25-1.9,4.25-4.245V5.074c0-2.345-1.903-4.245-4.25-4.245h-11.039H122.201z">
+                                </path>
+                                <polygon fill="#E2263C" stroke="white" stroke-width="1"
+                                         points="166.24,0.841 166.24,14.035 157.434,0.841 156.52,0.841 150.939,0.841 150.525,0.841
+                                        150.525,22.919 156.52,22.919 156.52,9.2 165.677,22.919 166.24,22.919 172.169,22.919 172.232,22.919 172.232,0.841 ">
+                                </polygon>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1"
+                                      d="M105.192,0.832h15.452c0,1.483,0,3.857,0,5.377c-3.172,0-6.343,0-9.552,0c0,1.496,0,1.695,0,3.185
+                                        c3.05,0,4.715,0,7.792,0c0,1.318,0,4.001,0,5.343c-3.044,0-4.723,0-7.802,0c0,1.612,0,1.591,0,3.188c3.267,0,8.205,0,11.513,0
+                                        c0,1.537,0,3.498,0,4.998c-5.25,0-12.141,0-17.403,0C105.192,15.578,105.192,0.832,105.192,0.832z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M173.891,0.841h15.442c0,1.483,0,4.09,0,5.609c-3.17,0-6.34,0-9.547,0c0,1.495,0,1.46,0,2.948
+                                        c3.049,0,4.713,0,7.789,0c0,1.317,0,3.998,0,5.339c-3.043,0-4.72,0-7.798,0c0,1.612,0,1.591,0,3.188c3.265,0,7.398,0,10.705,0
+                                        c0,1.535,0,3.494,0,4.994c-5.246,0-11.334,0-16.592,0C173.893,15.582,173.891,0.841,173.891,0.841z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1" d="M215.33,0.839">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1" d="M213.637,0.853c1.311,4.744,2.346,8.172,3.655,12.921c0.037-0.003,0.076-0.006,0.115-0.009l3.856-12.382
+                                        c0.127-0.453,0.329-0.589,0.797-0.577c1.483,0.034,3.244,0.012,4.771,0.012c1.358,4.78,2.578,8.218,3.933,12.979
+                                        c0.032-0.002,0.065-0.006,0.1-0.008c1.322-4.756,2.371-8.188,3.693-12.953c1.885,0,4.01,0,5.938,0
+                                        c-2.219,7.359-4.43,14.69-6.664,22.097c-0.191,0-0.396,0-0.602,0c-1.353,0-3.16-0.02-4.511,0.011
+                                        c-0.477,0.013-0.696-0.112-0.84-0.603c-1.336-4.535-3.844-12.45-3.844-12.45s-2.763,9.04-3.779,12.567
+                                        c-0.104,0.365-0.246,0.487-0.623,0.482c-1.58-0.021-3.621-0.009-5.274-0.009c-1.67-5.491-3.344-10.991-5.022-16.506v0.028h-7.037
+                                        v16.469h-5.993V6.454h-7.037V0.849L213.637,0.853z"></path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M264.794,0.843v22.083h5.994V6.458h0.418h9.512v2.974h-8.812v5.313h3.732l4.375,8.182h6.493l-4.375-8.182
+                                        h0.104c2.347,0,4.248-1.897,4.248-4.242V5.085c0-2.344-1.901-4.242-4.248-4.242h-11.03H264.794z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M294.046,10.452c1.093-1.298,1.947-2.314,2.922-3.478c1.638-1.955,3.226-3.868,4.869-5.814
+                                        c0.119-0.141,0.39-0.271,0.562-0.271c2.068-0.02,4.091-0.013,6.326-0.013c-3.051,3.523-5.971,6.906-8.977,10.38
+                                        c3.189,3.878,6.328,7.705,9.57,11.65c-0.267,0.014-0.539,0.029-0.72,0.029c-1.952,0.002-5.188,0.007-5.721,0.014
+                                        c-0.438,0.006-0.701-0.096-0.967-0.425c-2.529-3.146-7.615-9.415-7.615-9.415l-0.241-0.314c0,0-0.007,6.752-0.007,10.145
+                                        c-1.989,0-4.014-0.001-5.987-0.001c0-7.347,0-14.695,0-22.076c1.94,0,5.983,0,5.983,0S294.046,7.091,294.046,10.452z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1" d="M247.048,12.05l0.002,0.146c0-0.021,0-0.042,0-0.062C247.05,9.326,247.046,11.44,247.048,12.05
+                                        L247.048,12.05z"></path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M256.88,12.471C256.884,12.621,256.882,11.967,256.88,12.471L256.88,12.471z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M262.8,13.897c0-0.662,0-1.069,0-1.315c-0.002-0.086-0.004-0.496-0.006-1.708
+                                        c-0.002-0.85-0.019-1.707-0.123-2.547c-0.405-3.243-2.03-5.666-5.019-7.061c-2.979-1.394-6.114-1.526-9.307-0.928
+                                        c-1.82,0.344-3.488,1.045-4.908,2.265c-2.146,1.847-3.018,4.287-3.053,7.02v3.069c0.002,0,0.002,0,0.004,0l0.004,0.139
+                                        c0,0,0.019,1.707,0.123,2.547c0.406,3.242,2.031,5.668,5.019,7.062c2.979,1.393,6.116,1.525,9.307,0.926
+                                        c1.82-0.344,3.488-1.044,4.908-2.264c2.146-1.848,3.019-4.287,3.053-7.021C262.805,14.009,262.8,13.962,262.8,13.897z
+                                        M246.721,12.009c0,0.021,0,0.041,0,0.062l-0.003-0.145C246.716,11.323,246.721,9.23,246.721,12.009z M256.451,12.342
+                                        c-0.002,0.148-0.002,0.414-0.002,0.818c-0.012,0.74-0.088,1.493-0.26,2.209c-0.537,2.229-2.211,3.561-4.406,3.59
+                                        c-2.434,0.031-4.117-1.146-4.73-3.406c-0.205-0.75-0.311-1.551-0.316-2.331l-0.016-1.145c0.002-0.001,0.006-0.354,0.014-1.405
+                                        c0.004-0.782,0.086-1.581,0.269-2.339c0.533-2.229,2.209-3.559,4.404-3.588c2.434-0.033,4.118,1.144,4.731,3.404
+                                        c0.203,0.75,0.291,1.553,0.295,2.331C256.443,11.809,256.447,12.246,256.451,12.342C256.451,11.844,256.453,12.49,256.451,12.342z">
+                                </path>
+                                <path fill="#E2263C" stroke="white" stroke-width="1"
+                                      d="M263.298,12.712C263.3,12.875,263.298,11.889,263.298,12.712L263.298,12.712z">
+                                </path>
+                                <path fill="#F1F1F1" stroke="red" stroke-width="1" d="M82.623,16.942c0,1.438,0.01,2.962-0.016,4.483c-0.004,0.174-0.177,0.432-0.337,0.502
+                                        c-2.488,1.105-5.083,1.605-7.813,1.373c-2.425-0.209-4.685-0.869-6.646-2.363c-2.438-1.855-3.696-4.379-4.087-7.367
+                                        c-0.344-2.631,0.01-5.154,1.36-7.472c1.676-2.879,4.281-4.47,7.462-5.168c3.222-0.707,6.395-0.355,9.513,0.627
+                                        c0.161,0.051,0.394,0.242,0.396,0.371c0.027,1.654,0.019,3.309,0.019,5.081c-0.293-0.123-0.479-0.197-0.662-0.277
+                                        c-1.67-0.734-3.384-1.285-5.241-1.185c-4.498,0.245-7.429,3.423-6.982,7.248c0.495,4.232,4.924,5.756,8.542,5.283
+                                        C79.634,17.88,81.092,17.339,82.623,16.942z"></path>
+                            </svg>
+                        </h1>
+                        <div class="headline">
+                            <span class="text-wrapper">
+                                <span class="letters">
+                                    Analysis your game date and make you a game
+                                    master.
+                                </span>
+                            </span>
+
+                        </div>
+
+                        <div class="counters">
+                            <div>
+                                <div class="value">300M+</div>
+                                <div class="label">PLAYERS TRACKED</div>
+                            </div>
+                            <div class="separator"></div>
+                            <div>
+                                <div class="value">25M+</div>
+                                <div class="label">MATCHES PAST 24 HRS</div>
+                            </div>
+                        </div>
+
+                        <div class="partners">
+                            <div class="tagline">OUR PARTNERS</div>
+                            <div class="partners-list">
+                                <div class="partner">
+                                    <a href="https://steelseries.com" rel="noopener" target="_blank">
+                                        <img alt="SteelSeries"
+                                             src="https://trackercdn.com/cdn/tracker.gg/img/partners/steelseries.png?v=2">
+                                    </a>
+                                </div>
+                                <div class="partner">
+                                    <a href="https://advanced.gg" rel="noopener" target="_blank">
+                                        <img alt="ADVANCED.gg"
+                                             src="https://trackercdn.com/cdn/tracker.gg/img/partners/advancedgg.png?v=2">
+                                    </a>
+                                </div>
+                                <div class="partner">
+                                    <a href="https://advanced.gg" rel="noopener" target="_blank">
+                                        <img alt="ADVANCED.gg"
+                                             src="https://trackercdn.com/cdn/tracker.gg/img/partners/advancedgg.png?v=2">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cutoff"></div>
+                        </div>
+
+                        <div class="social">
+                            <a class="gdh-button gdh-button--platform-twitter"
+                               href="https://twitter.com/trackernetwork" target="_blank" rel="noopener"
+                               aria-label="Tracker Network Twitter">
+                                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                                     class="gdh-button__icon">
+                                    <path fill="white"
+                                          d="M19.1 4.334a7.14 7.14 0 0 1-2.05.575 3.582 3.582 0 0 0 1.567-1.984 7.2 7.2 0 0 1-2.267.875 3.52 3.52 0 0 0-2.633-1.133 3.571 3.571 0 0 0-3.558 3.575 3.716 3.716 0 0 0 .092.817 10.162 10.162 0 0 1-7.367-3.734 3.561 3.561 0 0 0 1.108 4.759 3.536 3.536 0 0 1-1.625-.417v.025A3.578 3.578 0 0 0 5.234 11.2a3.505 3.505 0 0 1-1.608.058 3.567 3.567 0 0 0 3.333 2.483 7.1 7.1 0 0 1-4.442 1.534 7.268 7.268 0 0 1-.85-.05 10.12 10.12 0 0 0 5.483 1.608A10.113 10.113 0 0 0 17.327 6.659c0-.158 0-.308-.008-.467A7.143 7.143 0 0 0 19.1 4.334Z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a class="gdh-button gdh-button--platform-discord"
+                               href="https://link.tracker.gg/discord" target="_blank" rel="noopener"
+                               aria-label="Tracker Network Discord">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                     class="gdh-button__icon">
+                                    <path fill="white"
+                                          d="M23.021 5.677A21.227 21.227 0 0 0 17.658 4c-.252.462-.483.935-.687 1.418a19.931 19.931 0 0 0-5.943 0c-.209-.483-.439-.956-.691-1.413-1.856.32-3.659.88-5.37 1.677-3.4 5.097-4.317 10.072-3.856 14.97A21.504 21.504 0 0 0 7.691 24c.532-.726 1.004-1.5 1.407-2.309a13.582 13.582 0 0 1-2.221-1.078c.188-.137.37-.274.547-.428a15.232 15.232 0 0 0 13.152 0c.177.148.36.291.541.428-.707.424-1.453.787-2.22 1.078.408.808.875 1.578 1.405 2.303a21.5 21.5 0 0 0 6.58-3.347h.007c.541-5.674-.922-10.6-3.868-14.97ZM9.681 17.638c-1.283 0-2.34-1.193-2.34-2.644s1.03-2.644 2.34-2.644c1.308 0 2.359 1.193 2.338 2.644 0 1.451-1.036 2.644-2.339 2.644Zm8.635 0c-1.283 0-2.34-1.193-2.34-2.644s1.036-2.644 2.34-2.644c1.302 0 2.36 1.193 2.338 2.644 0 1.451-1.036 2.644-2.338 2.644Z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a class="gdh-button gdh-button--platform-instagram"
+                               href="https://www.instagram.com/trackernetwork" target="_blank"
+                               rel="noopener" aria-label="Tracker Network Instagram">
+                                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                                     class="gdh-button__icon">
+                                    <path fill="white"
+                                          d="M5.8 0h8.4A5.8 5.8 0 0 1 20 5.8v8.4a5.8 5.8 0 0 1-5.8 5.8H5.8A5.8 5.8 0 0 1 0 14.2V5.8A5.8 5.8 0 0 1 5.8 0m-.2 2A3.6 3.6 0 0 0 2 5.6v8.8A3.6 3.6 0 0 0 5.6 18h8.8a3.6 3.6 0 0 0 3.6-3.6V5.6A3.6 3.6 0 0 0 14.4 2H5.6m9.65 1.5A1.25 1.25 0 1 1 14 4.75a1.25 1.25 0 0 1 1.25-1.25M10 5a5 5 0 1 1-5 5 5 5 0 0 1 5-5m0 2a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="footer">
+                            <div class="row">
+                                <a href="https://tracker.gg/support/inquiry" target="_blank"
+                                   rel="noopener">Advertise</a>
+                                <a href="https://thetrackernetwork.com/home/privacypolicy" target="_blank"
+                                   rel="noopener">Privacy Policy</a>
+                                <a href="https://thetrackernetwork.com/home/tos" target="_blank"
+                                   rel="noopener">Terms of Service</a>
+                                <a href="https://trackercdn.com/cdn/tracker.gg/tracker-network-media-kit.zip"
+                                   download="">Press Kit</a>
+                            </div>
+                            <div>
+                                2023 © <a href="https://tracker.gg">Tracker Network</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="landing__content">
+                        <div class="checkpoint">
+                            <a href="https://tracker.gg/checkpoint" class="checkpoint__box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.851 24"
+                                     class="checkpoint__logo">
+                                    <defs>
+                                        <clipPath id="a">
+                                            <path fill="none" d="M0 0h163.851v24H0z"></path>
+                                        </clipPath>
+                                    </defs>
+                                    <path fill="#e2263c" d="M0 0h49.656v24H0z"></path>
+                                    <g fill="#fff" clip-path="url(#a)" data-name="Group 2436">
+                                        <path d="M54.655 15.986V8.014a2.324 2.324 0 0 1 2.657-2.657h4.4a2.324 2.324 0 0 1 2.657 2.657v2.164h-2.733V8.242c0-.285-.095-.38-.379-.38h-3.489c-.285 0-.38.1-.38.38v7.516c0 .285.095.379.38.379h3.492c.285 0 .379-.095.379-.379v-1.936h2.733v2.164a2.324 2.324 0 0 1-2.657 2.657h-4.4a2.324 2.324 0 0 1-2.657-2.657M66.328 5.358h2.733v5.238h4.707V5.358h2.733v13.285h-2.733v-5.542h-4.707v5.542h-2.733ZM79.026 5.358h8.94v2.5H81.76v2.752h5.03v2.467h-5.03v3.056h6.206v2.505h-8.94ZM89.428 15.986V8.014a2.324 2.324 0 0 1 2.657-2.657h4.4a2.324 2.324 0 0 1 2.657 2.657v2.164h-2.733V8.242c0-.285-.095-.38-.38-.38h-3.492c-.285 0-.38.1-.38.38v7.516c0 .285.095.379.38.379h3.492c.285 0 .38-.095.38-.379v-1.936h2.733v2.164a2.324 2.324 0 0 1-2.657 2.657h-4.4a2.324 2.324 0 0 1-2.657-2.657M108.863 18.643l-3.132-5.751-1.936 2.449v3.3h-2.7V5.359h2.7v6.226l4.726-6.226h3.208l-4.157 5.239 4.365 8.048ZM113.134 5.359h7.019a2.324 2.324 0 0 1 2.657 2.657v3.53a2.324 2.324 0 0 1-2.657 2.656h-4.289v4.441h-2.733Zm6.567 6.339c.285 0 .38-.1.38-.38V8.242c0-.285-.095-.38-.38-.38h-3.834v3.834ZM124.219 15.986V8.014a2.324 2.324 0 0 1 2.657-2.657h4.878a2.324 2.324 0 0 1 2.657 2.657v7.972a2.324 2.324 0 0 1-2.657 2.657h-4.878a2.324 2.324 0 0 1-2.657-2.657m7.08.152c.285 0 .38-.095.38-.379V8.242c0-.285-.095-.38-.38-.38h-3.967c-.285 0-.38.1-.38.38v7.516c0 .285.095.379.38.379ZM136.614 5.357h2.733v13.286h-2.733zM141.871 5.358h2.847l5.03 8.56v-8.56h2.657v13.285h-2.657l-5.219-8.864v8.864h-2.657ZM157.512 7.824h-3.606V5.358h9.946v2.467h-3.606v10.818h-2.733ZM13.186 18.65H9.625V8.672H5.347V5.345h22.835a2.376 2.376 0 0 1 2.377 2.377v3.647a2.376 2.376 0 0 1-2.377 2.377h-.347l2.727 4.905h-3.911l-2.864-5.045h-2.006v-3.021c1.753-.046 3.475.043 5.144-.046V8.7h-5.9v9.955h-3.561V8.668c-1.477.027-2.879-.031-4.278.039ZM34.806 18.651h-3.565V5.345h4.516l4.987 7.656V5.345h3.565v13.306h-3.892l-5.61-8.236Z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </a>
+                            <div class="checkpoint__border"></div>
+                            <div data-v-586f1eda="" class="checkpoint__container">
+                                <div data-v-586f1eda="" class="checkpoint__prev" onclick="scrollContent('left')">
+                                    <svg data-v-586f1eda="" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 5.558 9" class="checkpoint__icon">
+                                        <path d="M5.558 1.057 4.5 0 0 4.5 4.5 9l1.058-1.057L2.122 4.5Z"
+                                              data-name="Path 3828"></path>
+                                    </svg>
+                                </div>
+                                <div data-v-586f1eda="" class="checkpoint__content" id="content">
+                                    <a data-v-586f1eda=""
+                                       href="https://tracker.gg/checkpoint/articles/winterfest-2023-all-you-need-to-know"
+                                       class="checkpoint-article"
+                                       title="Fortnite Winterfest 2023 - Everything You Need To Know!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F16930_hq720.png/image.png"
+                                             alt="Fortnite Winterfest 2023 - Everything You Need To Know!"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Fortnite
+                                            Winterfest 2023 - Everything You Need To Know!
+                                        </div>
+                                    </a>
+                                    <a data-v-586f1eda=""
+                                       href="https://tracker.gg/checkpoint/articles/lego-fortnite-a-rundown"
+                                       class="checkpoint-article"
+                                       title="LEGO Fortnite: Everything You Need To Know">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F151155_resize_jpg_1600x900_crop_q85.png/image.png"
+                                             alt="LEGO Fortnite: Everything You Need To Know" width="72"
+                                             height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            LEGO
+                                            Fortnite: Everything You Need To Know
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/guide-warlords-ruin"
+                                           class="checkpoint-article" title="GUIDE: Warlord's Ruin">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F15243_2023_Warlord_s_Ruin_Dungeon_Press_Kit_Dungeon_COMPRESSED_005.jpg/image.jpg"
+                                             alt="GUIDE: Warlord's Ruin" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            GUIDE:
+                                            Warlord's Ruin
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/all-free-fortnite-cosmetics-december-2023"
+                                           class="checkpoint-article"
+                                           title="All Free Fortnite Cosmetics - December 2023!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F141011_fortnite-refer-a-friend-3-0-rewards-1920x1080-a32623d9e10b.jpg/image.jpg"
+                                             alt="All Free Fortnite Cosmetics - December 2023!" width="72"
+                                             height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            All Free
+                                            Fortnite Cosmetics - December 2023!
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/rocket-racing-in-fortnite-all-you-need-to-know"
+                                           class="checkpoint-article"
+                                           title="Rocket Racing in Fortnite: All You Need to Know!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F12115_rocket-racing.png/image.png"
+                                             alt="Rocket Racing in Fortnite: All You Need to Know!"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Rocket
+                                            Racing in Fortnite: All You Need to Know!
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/valorant-night-market-december-2023-start-and-end-date-skins"
+                                           class="checkpoint-article"
+                                           title="VALORANT Night Market December 2023: Start and End Date, Skins">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F81250_GAwej1-WQAE3oz_.jpg/image.jpg"
+                                             alt="VALORANT Night Market December 2023: Start and End Date, Skins"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            VALORANT
+                                            Night Market December 2023: Start and End Date, Skins
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/overdrive-skin-bundle-price-preview-release-date"
+                                           class="checkpoint-article"
+                                           title="Overdrive Skin Bundle: Preview, Price, Release Date and More">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F61620_GAmtNhxXYAARcxv.jpg/image.jpg"
+                                             alt="Overdrive Skin Bundle: Preview, Price, Release Date and More"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Overdrive
+                                            Skin Bundle: Preview, Price, Release Date and More
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/valorant-new-team-deathmatch-map-drift-release-date-preview"
+                                           class="checkpoint-article"
+                                           title="VALORANT Team Deathmatch Map &quot;Drift&quot;: Preview, Release Date and More">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F4144_Drift_Screenshot_12.jpg/image.jpg"
+                                             alt="VALORANT Team Deathmatch Map &quot;Drift&quot;: Preview, Release Date and More"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            VALORANT
+                                            Team Deathmatch Map "Drift": Preview, Release Date and More
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/trn-weekly-december-3-2023"
+                                           class="checkpoint-article" title="TRN WEEKLY: December 3, 2023">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F31324_weeklydecember3.jpg/image.jpg"
+                                             alt="TRN WEEKLY: December 3, 2023" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            TRN
+                                            WEEKLY: December 3, 2023
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/valorant-7-12-patch-notes-pbe-early"
+                                           class="checkpoint-article"
+                                           title="VALORANT 7.12 Early Patch Notes: Agent Changes, Performance Updates">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F12%2F21212_valorant-patch-notes-6.04-update-gekko-oni-2.0-skins.jpg/image.jpg"
+                                             alt="VALORANT 7.12 Early Patch Notes: Agent Changes, Performance Updates"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            VALORANT
+                                            7.12 Early Patch Notes: Agent Changes, Performance Updates
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/claim-your-limited-edition-winter-2023-avatar-frame"
+                                           class="checkpoint-article"
+                                           title="Claim Your Limited Edition Winter 2023 Avatar Frame">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F301424_premium-frame-winter-2023_1200x675.png/image.png"
+                                             alt="Claim Your Limited Edition Winter 2023 Avatar Frame"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Claim Your
+                                            Limited Edition Winter 2023 Avatar Frame
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/fortnites-bot-dilemma-couragejds-call-to-action"
+                                           class="checkpoint-article"
+                                           title="Fortnite's Bot Dilemma: CourageJD's Call to Action!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F271544_CourageJD-and-DrLupo.jpg/image.jpg"
+                                             alt="Fortnite's Bot Dilemma: CourageJD's Call to Action!"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Fortnite's
+                                            Bot Dilemma: CourageJD's Call to Action!
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/holiday-giveaway-2023"
+                                           class="checkpoint-article"
+                                           title="HUGE Winter Giveaway, Exclusive Rewards, and up to 50% off TRN Premium!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F271534_giveaway_premium-holiday-2023_1200x675.jpg/image.jpg"
+                                             alt="HUGE Winter Giveaway, Exclusive Rewards, and up to 50% off TRN Premium!"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            HUGE
+                                            Winter Giveaway, Exclusive Rewards, and up to 50% off TRN
+                                            Premium!
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/important-reminder-before-operation-deep-freeze-begins"
+                                           class="checkpoint-article"
+                                           title="Important Reminder Before Operation Deep Freeze Begins">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F271134_Y8S4_GADGET_KEYART_1080.png/image.png"
+                                             alt="Important Reminder Before Operation Deep Freeze Begins"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Important
+                                            Reminder Before Operation Deep Freeze Begins
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/trn-weekly-november-26-2023"
+                                           class="checkpoint-article"
+                                           title="TRN WEEKLY: November 26, 2023">
+                                        <img data-v-586f1eda=""
+                                             class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F261313_weeklynovember26.jpg/image.jpg"
+                                             alt="TRN WEEKLY: November 26, 2023" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            TRN
+                                            WEEKLY: November 26, 2023
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/cs2-site-update-24-11-2023"
+                                           class="checkpoint-article"
+                                           title="CS2 Site Update - 24th Nov 2023">
+                                        <img data-v-586f1eda=""
+                                             class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F24226_article_title-update_1280x720%2520nov%252024.png/image.png"
+                                             alt="CS2 Site Update - 24th Nov 2023" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            CS2 Site
+                                            Update - 24th Nov 2023
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/fortnite-chapter-5-leaks-eminem-lego-and-rocket-racing-await"
+                                           class="checkpoint-article"
+                                           title="Fortnite Chapter 5 Leaks! Eminem, LEGO, and Rocket Racing Await!">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F221054_Fortnite-Eminem-Leak-2.jpg/image.jpg"
+                                             alt="Fortnite Chapter 5 Leaks! Eminem, LEGO, and Rocket Racing Await!"
+                                             width="72" height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Fortnite
+                                            Chapter 5 Leaks! Eminem, LEGO, and Rocket Racing Await!
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/cs2-stats-tracker-now-live"
+                                           class="checkpoint-article" title="CS2 Stats Tracker Now Live">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F201912_cs2-website-live_1280x720.jpg/image.jpg"
+                                             alt="CS2 Stats Tracker Now Live" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            CS2 Stats
+                                            Tracker Now Live
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/lightning-mcqueen-comes-to-rocket-league"
+                                           class="checkpoint-article"
+                                           title="Lightning McQueen Comes to Rocket League">
+                                        <img data-v-586f1eda="" class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F151940_Screenshot_29.png/image.png"
+                                             alt="Lightning McQueen Comes to Rocket League" width="72"
+                                             height="40" loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            Lightning
+                                            McQueen Comes to Rocket League
+                                        </div>
+                                    </a><a data-v-586f1eda=""
+                                           href="https://tracker.gg/checkpoint/articles/trn-weekly-november-12-2023"
+                                           class="checkpoint-article"
+                                           title="TRN WEEKLY: November 12, 2023">
+                                        <img data-v-586f1eda=""
+                                             class="checkpoint-article__image"
+                                             src="https://imgsvc.trackercdn.com/url/max-width(108),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fghost%2Fimages%2F2023%2F11%2F121448_weeklynovember12.jpg/image.jpg"
+                                             alt="TRN WEEKLY: November 12, 2023" width="72" height="40"
+                                             loading="lazy">
+                                        <div data-v-586f1eda="" class="checkpoint-article__title">
+                                            TRN
+                                            WEEKLY: November 12, 2023
+                                        </div>
+                                    </a>
+                                </div>
+                                <div data-v-586f1eda="" class="checkpoint__next" onclick="scrollContent('right')">
+                                    <svg data-v-586f1eda=""
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.557 9"
+                                         class="checkpoint__icon">
+                                        <path d="M-.001 7.943 1.057 9l4.5-4.5-4.5-4.5-1.058 1.057L3.435 4.5Z"
+                                              data-name="Path 3830"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="landing__content-sections">
+                            <div>
+                                <div class="headline">
+                                    <span style="color: #E2263C;">ALL GAMES</span>
+                                </div>
+                                <div class="list">
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/valorant">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/valorant.jpg" alt="Valorant">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/valorant">
+                                                <div class="game-info-name">Valorant</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/lol">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/league-of-legends.jpg" alt="League of Legends">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/lol">
+                                                <div class="game-info-name">League of Legends</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/bf2042">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/bf2042.jpg" alt="Battlefield 2042">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/bf2042">
+                                                <div class="game-info-name">Battlefield 2042</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/bf5">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/bfv.jpg" alt="Battlefield V">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/bf5">
+                                                <div class="game-info-name">Battlefield V</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/bf1">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/bf1.jpg" alt="Battlefield 1">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/bf1">
+                                                <div class="game-info-name">Battlefield 1</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/PUBG">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/pubg.jpg" alt="PUBG: BATTLEGROUNDS">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/PUBG">
+                                                <div class="game-info-name">PUBG: BATTLEGROUNDS</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/COD">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/modern-warfare-2.jpg" alt="Modern Warfare 2">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/COD">
+                                                <div class="game-info-name">Modern Warfare 2</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/apex">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/apex.jpg" alt="Apex Legends">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/apex">
+                                                <div class="game-info-name">Apex Legends</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/cs2">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/cs2.jpg" alt="Counter-Strike 2">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/cs2">
+                                                <div class="game-info-name">Counter-Strike 2</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="game">
+                                        <div class="game-image">
+                                            <a href="/rb6">
+                                                <img src="https://trackercdn.com/cdn/tracker.gg/boxart/r6siege.jpg" alt="Rainbow Six Siege">
+                                            </a>
+                                        </div>
+                                        <div class="game-info">
+                                            <a href="/rb6">
+                                                <div class="game-info-name">Rainbow Six Siege</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="promo">
+                            <div class="mobile-promo__container">
+                                <div class="mobile-promo__content--desktop">
+                                    <img class="preview" src="https://trackercdn.com/cdn/tracker.gg/mobile-app/promos/iphone-fortnite.png" alt="Preview of our mobile app available on Android and iOS" loading="lazy">
+                                    <div class="text">
+                                        <span class="title">Get the Mobile App</span>
+                                        <p>We've rebuilt our mobile app from the ground up with your favorite features and games.</p>
+                                    </div>
+                                    <div class="button-area">
+                                        <a data-v-4f9b4ade="" href="/fortnite/mobile" class="gdh-button trn-button--primary trn-button--large">Get Info</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+<script>
+
+    const itemContents = document.querySelectorAll('.item-content');
+
+    itemContents.forEach(itemContent => {
+        itemContent.addEventListener('click', function () {
+            itemContents.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    anime({
+        targets: '#home-svg path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutQuad',
+        duration: 1500,
+        direction: 'alternate',
+        loop: true
+    });
+
+    var textWrapper = document.querySelector('.headline .letters');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letters'>$&</span>");
+
+    anime.timeline({ loop: true })
+        .add({
+            targets: '.landing__sidebar .headline .letters',
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 750,
+            delay: (el, i) => 50 * i
+        }).add({
+            targets: '.landing__sidebar .headline',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+        });
+
+    function scrollContent(direction) {
+        const content = document.getElementById('content');
+        let scrollLeft = content.scrollLeft;
+
+        const scrollAmount = 100;
+
+        if (direction === 'left') {
+            scrollLeft -= scrollAmount;
+        } else if (direction === 'right') {
+            scrollLeft += scrollAmount;
+        }
+        content.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+</script>
