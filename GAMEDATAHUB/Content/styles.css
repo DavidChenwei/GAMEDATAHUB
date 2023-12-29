@@ -1298,7 +1298,7 @@ li {
     background-color: #121414;
     border-radius: 0.5rem;
     box-shadow: 0 6px 6px #00000029;
-    margin: 0.75rem;
+    margin: 0rem;
     overflow: hidden;
 }
 
@@ -1384,7 +1384,16 @@ header {
     flex: 1;
 }
 
-.top-items__actions[data-v-ab2cb76a] {
+.top-items__actions {
     padding: 1rem;
     background: #272B2B;
+}
+.trn-button--block {
+    display: flex;
+}
+
+a[href] {
+    cursor: pointer;
+    color: inherit;
+    text-underline-position: under;
 }
