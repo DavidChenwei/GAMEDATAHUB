@@ -23,7 +23,6 @@ namespace GAMEDATAHUB
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/anime-min").Include(
           "~/Scripts/anime.min.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(                   
                       "~/Content/styles.css"));
         }
