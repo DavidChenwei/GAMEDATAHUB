@@ -15,7 +15,7 @@ namespace GAMEDATAHUB.Controllers
         {
             //string name = "MarineChen";
             //string platform = "PC";
-
+            Resp.dbtest();
             //await Resp.HeroInfoGet(name, platform);
             return View();
         }

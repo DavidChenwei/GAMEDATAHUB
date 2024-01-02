@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ed723e7192834f0daf56a96837be9abe" Name="Diagram1">
+        <EntityTypeShape EntityType="GameDataHubModel.Gadget" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.GadgetItem" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.GameMode" Width="1.5" PointX="3.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.GameModeItem" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.GObject" Width="1.5" PointX="6.75" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.GObjectItem" Width="1.5" PointX="9" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Hero" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Map" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.MapItem" Width="1.5" PointX="6" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Ribbon" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.RibbonItem" Width="1.5" PointX="3" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Specialist" Width="1.5" PointX="6.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.SpecialistItem" Width="1.5" PointX="9" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Vehicle" Width="1.5" PointX="6.75" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.VehicleGroup" Width="1.5" PointX="3" PointY="58.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.VehicleItem" Width="1.5" PointX="9" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.Weapon" Width="1.5" PointX="3.75" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.WeaponGroup" Width="1.5" PointX="3" PointY="64.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.WeaponItem" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataHubModel.XP" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <AssociationConnector Association="GameDataHubModel.fk_GadgetItem_GadgetId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_GadgetItem_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_GamemodeID" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_GObjectItem_GObjectID" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_GObjectItem_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__MapItem__HeroId__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__VehicleIt__HeroI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__WeaponIte__HeroI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_RibbonItem_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_SpecialistItem_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK_VehicleGroup_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_WeaponGroup_HeroId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__MapItem__MapId__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_RibbonItem_RibbonID" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.fk_SpecialistItem_GamemodeID" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__VehicleIt__Vehic__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK__WeaponIte__Weapo__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataHubModel.FK_XP_HeroId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

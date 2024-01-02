@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
-using GAMEDATAHUB.Models;
+using GAMEDATAHUB.Models.BF2042Model;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -45,6 +45,14 @@ namespace GAMEDATAHUB.Repository
                 {
                     Console.WriteLine($"Error Message: {ex.Message}");
                 }
+            }
+        }
+
+        public void dbtest() {
+            GDHEntityDbContext dbContext = new GDHEntityDbContext();
+            var weapon = dbContext.Weapon.FirstOrDefault(w => w.WeaponID == 1);
+            if (weapon == null) {
+                Console.WriteLine("Successful");
             }
         }
     }   
