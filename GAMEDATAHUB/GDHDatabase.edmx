@@ -98,6 +98,52 @@
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="HeroOverView">
+          <Key>
+            <PropertyRef Name="HeroOverViewId" />
+          </Key>
+          <Property Name="HeroOverViewId" Type="int" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="BestClass" Type="varchar" MaxLength="20" />
+          <Property Name="HumanPercentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Deaths" Type="int" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Losses" Type="int" />
+          <Property Name="KillsPerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMatch" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMatch" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShots" Type="int" />
+          <Property Name="WinPercent" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShotrate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KillDeath" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="InfantryKillDeath" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="TimePlayed" Type="varchar" MaxLength="30" />
+          <Property Name="Accuracy" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Revives" Type="int" />
+          <Property Name="Heals" Type="int" />
+          <Property Name="Resupplies" Type="int" />
+          <Property Name="Repairs" Type="int" />
+          <Property Name="SquadmateRevive" Type="int" />
+          <Property Name="SquadmateRespawn" Type="int" />
+          <Property Name="ThrownThrowables" Type="int" />
+          <Property Name="GadgetsDestoyed" Type="int" />
+          <Property Name="CallIns" Type="int" />
+          <Property Name="PlayerTakeDowns" Type="int" />
+          <Property Name="MatchesPlayed" Type="int" />
+          <Property Name="SecondsPlayed" Type="int" />
+          <Property Name="BestSquad" Type="int" />
+          <Property Name="TeammatesSupported" Type="int" />
+          <Property Name="SaviorKills" Type="int" />
+          <Property Name="ShotsFired" Type="int" />
+          <Property Name="ShotsHit" Type="int" />
+          <Property Name="KillAssists" Type="int" />
+          <Property Name="VehiclesDestroyed" Type="int" />
+          <Property Name="EnemiesSpotted" Type="int" />
+          <Property Name="Mvp" Type="int" />
+        </EntityType>
         <EntityType Name="Map">
           <Key>
             <PropertyRef Name="MapID" />
@@ -435,6 +481,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_HeroOverView_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="HeroOverView" Type="Self.HeroOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="HeroOverView">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_RibbonItem_HeroId">
           <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
           <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
@@ -527,6 +585,7 @@
           <EntitySet Name="GObject" EntityType="Self.GObject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GObjectItem" EntityType="Self.GObjectItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeroOverView" EntityType="Self.HeroOverView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Map" EntityType="Self.Map" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MapItem" EntityType="Self.MapItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ribbon" EntityType="Self.Ribbon" Schema="dbo" store:Type="Tables" />
@@ -587,6 +646,10 @@
           <AssociationSet Name="fk_GObjectItem_HeroId" Association="Self.fk_GObjectItem_HeroId">
             <End Role="Hero" EntitySet="Hero" />
             <End Role="GObjectItem" EntitySet="GObjectItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HeroOverView_HeroId" Association="Self.fk_HeroOverView_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="HeroOverView" EntitySet="HeroOverView" />
           </AssociationSet>
           <AssociationSet Name="fk_RibbonItem_HeroId" Association="Self.fk_RibbonItem_HeroId">
             <End Role="Hero" EntitySet="Hero" />
@@ -733,6 +796,7 @@
           <NavigationProperty Name="VehicleGroup" Relationship="Self.FK_VehicleGroup_HeroId" FromRole="Hero" ToRole="VehicleGroup" />
           <NavigationProperty Name="WeaponGroup" Relationship="Self.fk_WeaponGroup_HeroId" FromRole="Hero" ToRole="WeaponGroup" />
           <NavigationProperty Name="XP" Relationship="GameDataHubModel.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
+          <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -1258,6 +1322,11 @@
             <End Role="Hero" EntitySet="Hero" />
             <End Role="XP" EntitySet="XP" />
           </AssociationSet>
+          <EntitySet Name="HeroOverView" EntityType="GameDataHubModel.HeroOverView" />
+          <AssociationSet Name="fk_HeroOverView_HeroId" Association="GameDataHubModel.fk_HeroOverView_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="HeroOverView" EntitySet="HeroOverView" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_XP_HeroId">
           <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
@@ -1267,6 +1336,65 @@
               <PropertyRef Name="HeroID" />
             </Principal>
             <Dependent Role="XP">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HeroOverView">
+          <Key>
+            <PropertyRef Name="HeroOverViewId" />
+          </Key>
+          <Property Name="HeroOverViewId" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="BestClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HumanPercentage" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Deaths" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="KillsPerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMatch" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMatch" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShots" Type="Int32" />
+          <Property Name="WinPercent" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShotrate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KillDeath" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="InfantryKillDeath" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="TimePlayed" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Accuracy" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Revives" Type="Int32" />
+          <Property Name="Heals" Type="Int32" />
+          <Property Name="Resupplies" Type="Int32" />
+          <Property Name="Repairs" Type="Int32" />
+          <Property Name="SquadmateRevive" Type="Int32" />
+          <Property Name="SquadmateRespawn" Type="Int32" />
+          <Property Name="ThrownThrowables" Type="Int32" />
+          <Property Name="GadgetsDestoyed" Type="Int32" />
+          <Property Name="CallIns" Type="Int32" />
+          <Property Name="PlayerTakeDowns" Type="Int32" />
+          <Property Name="MatchesPlayed" Type="Int32" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <Property Name="BestSquad" Type="Int32" />
+          <Property Name="TeammatesSupported" Type="Int32" />
+          <Property Name="SaviorKills" Type="Int32" />
+          <Property Name="ShotsFired" Type="Int32" />
+          <Property Name="ShotsHit" Type="Int32" />
+          <Property Name="KillAssists" Type="Int32" />
+          <Property Name="VehiclesDestroyed" Type="Int32" />
+          <Property Name="EnemiesSpotted" Type="Int32" />
+          <Property Name="Mvp" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="HeroOverView" ToRole="Hero" />
+        </EntityType>
+        <Association Name="fk_HeroOverView_HeroId">
+          <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.HeroOverView" Role="HeroOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="HeroOverView">
               <PropertyRef Name="HeroId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1580,6 +1708,53 @@
                 <ScalarProperty Name="HeroId" ColumnName="HeroId" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Performance" ColumnName="Performance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeroOverView">
+            <EntityTypeMapping TypeName="GameDataHubModel.HeroOverView">
+              <MappingFragment StoreEntitySet="HeroOverView">
+                <ScalarProperty Name="Mvp" ColumnName="Mvp" />
+                <ScalarProperty Name="EnemiesSpotted" ColumnName="EnemiesSpotted" />
+                <ScalarProperty Name="VehiclesDestroyed" ColumnName="VehiclesDestroyed" />
+                <ScalarProperty Name="KillAssists" ColumnName="KillAssists" />
+                <ScalarProperty Name="ShotsHit" ColumnName="ShotsHit" />
+                <ScalarProperty Name="ShotsFired" ColumnName="ShotsFired" />
+                <ScalarProperty Name="SaviorKills" ColumnName="SaviorKills" />
+                <ScalarProperty Name="TeammatesSupported" ColumnName="TeammatesSupported" />
+                <ScalarProperty Name="BestSquad" ColumnName="BestSquad" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+                <ScalarProperty Name="MatchesPlayed" ColumnName="MatchesPlayed" />
+                <ScalarProperty Name="PlayerTakeDowns" ColumnName="PlayerTakeDowns" />
+                <ScalarProperty Name="CallIns" ColumnName="CallIns" />
+                <ScalarProperty Name="GadgetsDestoyed" ColumnName="GadgetsDestoyed" />
+                <ScalarProperty Name="ThrownThrowables" ColumnName="ThrownThrowables" />
+                <ScalarProperty Name="SquadmateRespawn" ColumnName="SquadmateRespawn" />
+                <ScalarProperty Name="SquadmateRevive" ColumnName="SquadmateRevive" />
+                <ScalarProperty Name="Repairs" ColumnName="Repairs" />
+                <ScalarProperty Name="Resupplies" ColumnName="Resupplies" />
+                <ScalarProperty Name="Heals" ColumnName="Heals" />
+                <ScalarProperty Name="Revives" ColumnName="Revives" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="TimePlayed" ColumnName="TimePlayed" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="InfantryKillDeath" ColumnName="InfantryKillDeath" />
+                <ScalarProperty Name="KillDeath" ColumnName="KillDeath" />
+                <ScalarProperty Name="HeadShotrate" ColumnName="HeadShotrate" />
+                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
+                <ScalarProperty Name="HeadShots" ColumnName="HeadShots" />
+                <ScalarProperty Name="DamagePerMatch" ColumnName="DamagePerMatch" />
+                <ScalarProperty Name="KillsPerMatch" ColumnName="KillsPerMatch" />
+                <ScalarProperty Name="DamagePerMinute" ColumnName="DamagePerMinute" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Deaths" ColumnName="Deaths" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="HumanPercentage" ColumnName="HumanPercentage" />
+                <ScalarProperty Name="BestClass" ColumnName="BestClass" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="HeroOverViewId" ColumnName="HeroOverViewId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

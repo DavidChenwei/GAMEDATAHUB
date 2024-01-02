@@ -16,6 +16,7 @@ namespace GAMEDATAHUB
         public DbSet<GObject> GObject { get; set; }
         public DbSet<GObjectItem> GObjectItem { get; set; }
         public DbSet<Hero> Hero { get; set; }
+        public DbSet<HeroOverView> HeroOverView { get; set; }
         public DbSet<Map> Map { get; set; }
         public DbSet<MapItem> MapItem { get; set; }
         public DbSet<Ribbon> Ribbon { get; set; }

@@ -156,6 +156,9 @@
     <Compile Include="Hero.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="HeroOverView.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Map.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

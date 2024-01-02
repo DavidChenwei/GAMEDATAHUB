@@ -44,6 +44,8 @@
         <AssociationConnector Association="GameDataHubModel.FK__VehicleIt__Vehic__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.FK__WeaponIte__Weapo__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.FK_XP_HeroId" />
+        <EntityTypeShape EntityType="GameDataHubModel.HeroOverView" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="GameDataHubModel.fk_HeroOverView_HeroId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,6 +28,7 @@ namespace GAMEDATAHUB
             this.VehicleGroup = new HashSet<VehicleGroup>();
             this.WeaponGroup = new HashSet<WeaponGroup>();
             this.XP = new HashSet<XP>();
+            this.HeroOverView = new HashSet<HeroOverView>();
         }
     
         public int HeroID { get; set; }
@@ -58,5 +59,7 @@ namespace GAMEDATAHUB
         public virtual ICollection<WeaponGroup> WeaponGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<XP> XP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeroOverView> HeroOverView { get; set; }
     }
 }
