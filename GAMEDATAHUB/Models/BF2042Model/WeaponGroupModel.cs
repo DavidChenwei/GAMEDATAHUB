@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GAMEDATAHUB.Models
+namespace GAMEDATAHUB.Models.BF2042Model
 {
     public class WeaponGroupModel
     {

@@ -126,15 +126,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BF2042Model\VehicleGroupModel.cs" />
-    <Compile Include="Models\ClassModel.cs" />
-    <Compile Include="Models\GadgetModel.cs" />
-    <Compile Include="Models\GamemodeModel.cs" />
-    <Compile Include="Models\HeroInfoModel.cs" />
-    <Compile Include="Models\MapModel.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
-    <Compile Include="Models\WeaponGroupModel.cs" />
-    <Compile Include="Models\WeaponModel.cs" />
-    <Compile Include="Models\XpModel.cs" />
+    <Compile Include="Models\BF2042Model\ClassModel.cs" />
+    <Compile Include="Models\BF2042Model\GadgetModel.cs" />
+    <Compile Include="Models\BF2042Model\GamemodeModel.cs" />
+    <Compile Include="Models\BF2042Model\HeroInfoModel.cs" />
+    <Compile Include="Models\BF2042Model\MapModel.cs" />
+    <Compile Include="Models\BF2042Model\VehicleModel.cs" />
+    <Compile Include="Models\BF2042Model\WeaponGroupModel.cs" />
+    <Compile Include="Models\BF2042Model\WeaponModel.cs" />
+    <Compile Include="Models\BF2042Model\XpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
