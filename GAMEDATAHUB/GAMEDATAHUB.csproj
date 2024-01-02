@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BF2042Model\VehicleGroupModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\GadgetModel.cs" />
     <Compile Include="Models\GamemodeModel.cs" />
@@ -175,8 +176,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\BF2042\Overview.cshtml" />
-    <Content Include="Views\BF2042\Bf2042.cshtml" />
+    <Content Include="Views\Bf2042\Overview.cshtml" />
+    <Content Include="Views\Bf2042\Bf2042.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

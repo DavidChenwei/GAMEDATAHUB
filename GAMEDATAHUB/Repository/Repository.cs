@@ -31,7 +31,10 @@ namespace GAMEDATAHUB.Repository
                         HeroInfoModel heroInfoModel = new HeroInfoModel();
                         heroInfoModel = JsonConvert.DeserializeObject<HeroInfoModel>(responseBody);
 
-                        Console.WriteLine(responseBody);
+                        foreach (var weapon in heroInfoModel.Weapons)
+                        {
+
+                        }
                     }
                     else
                     {
