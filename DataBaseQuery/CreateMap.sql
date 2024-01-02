@@ -1,0 +1,6 @@
+CREATE TABLE Map (
+    MapID INT PRIMARY KEY,
+    MapName VARCHAR(50),
+    Images VARCHAR(100),
+    Id VARCHAR(50)
+);

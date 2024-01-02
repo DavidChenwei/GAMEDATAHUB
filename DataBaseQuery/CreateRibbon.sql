@@ -1,0 +1,4 @@
+CREATE TABLE Ribbon (
+    RibbonID INT PRIMARY KEY,
+    Name VARCHAR(20)
+);
