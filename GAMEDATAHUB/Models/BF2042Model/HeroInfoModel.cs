@@ -78,6 +78,8 @@ namespace GAMEDATAHUB.Models.BF2042Model
 
         public List<GadgetModel> Gadgets;
 
+        public List<ObjectModel> Onject;
+
         public List<XpModel> XP;
 
     }

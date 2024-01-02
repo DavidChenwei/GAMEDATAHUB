@@ -1,0 +1,20 @@
+CREATE TABLE WeaponItem (
+  WeaponItemId INT PRIMARY KEY,
+  WeaponID INT FOREIGN KEY REFERENCES Weapon(WeaponID),
+  HeroID INT FOREIGN KEY REFERENCES Hero(HeroID),
+  Kills INT,
+  Damage INT,
+  BodyKills INT,
+  HeadshotKills INT,
+  HipfireKills INT,
+  MultiKills INT,
+  Accuracy DECIMAL(8,2),
+  KillsPerMinute DECIMAL(8,2),
+  DamagePerMinute DECIMAL(8,2),
+  Headshots DECIMAL(8,2),
+  Hitvalls DECIMAL(8,2),
+  ShotsHit INT,
+  ShotsFired INT,
+  Spawns INT,
+  TimeEquipped INT
+);
