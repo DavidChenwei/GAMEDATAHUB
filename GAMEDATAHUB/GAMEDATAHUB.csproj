@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BF2042Model\ObjectModel.cs" />
     <Compile Include="Models\BF2042Model\VehicleGroupModel.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
     <Compile Include="Models\BF2042Model\GadgetModel.cs" />

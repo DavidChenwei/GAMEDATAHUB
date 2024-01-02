@@ -45,12 +45,30 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string Repairs { get; set; }
         public string SquadmateRevive { get; set; }
         public string SquadmateRespawn { get; set; }
+        public string ThrownThrowables { get; set; }
+
+        public string GadgetsDestoyed { get; set; }
+        public string CallIns { get; set; }
+        public string PlayerTakeDowns { get; set; }
+        public string MatchesPlayed { get; set; }
+        public string SecondsPlayed { get; set; }
+        public string BestSquad { get; set; }
+        public string TeammatesSupported { get; set; }
+        public string SaviorKills { get; set; }
+        public string ShotsFired { get; set; }
+        public string ShotsHit { get; set; }
+        public string KillAssists { get; set; }
+        public string VehiclesDestroyed { get; set; }
+        public string EnemiesSpotted { get; set; }
+        public string Mvp { get; set; }
 
         public List<WeaponModel> Weapons;
 
         public List<VehicleModel> Vehicles;
 
         public List<WeaponGroupModel> WeaponGroups;
+
+        public List<VehicleGroupModel> VehicleGroups;
 
         public List<ClassModel> Classes;
 
