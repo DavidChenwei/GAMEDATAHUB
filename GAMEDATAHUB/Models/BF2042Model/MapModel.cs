@@ -10,11 +10,11 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string MapName { get; set; }
         public string Image { get; set; }
         public string Id { get; set; }
-        public string Wins { get; set; }
-        public string Losses { get; set; }
-        public string Matches { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+        public int Matches { get; set; }
         public string WinPercent { get; set; }
-        public string SecondsPlayed { get; set; }
+        public int SecondsPlayed { get; set; }
 
     }
 }

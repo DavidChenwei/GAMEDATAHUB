@@ -13,10 +13,10 @@ namespace GAMEDATAHUB.Controllers
         Repository.Repository Resp = new Repository.Repository();
         public async Task<ActionResult> Index()
         {
-            //string name = "MarineChen";
-            //string platform = "PC";
-            Resp.dbtest();
-            //await Resp.HeroInfoGet(name, platform);
+            string name = "MarineChen";
+            string platform = "PC";
+            //Resp.dbtest();
+            await Resp.HeroInfoGet(name, platform);
             return View();
         }
 

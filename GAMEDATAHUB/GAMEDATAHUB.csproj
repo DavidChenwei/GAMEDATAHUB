@@ -132,55 +132,56 @@
     <Compile Include="Controllers\Bf2042Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Gadget.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="GadgetItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="GameMode.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="GameModeItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="GDHEntityDbContext.cs" />
+    <Compile Include="GDHDataBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GDHDataBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GDHDataBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GDHDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GDHDataBase.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GObject.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="GObjectItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Hero.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="HeroOverView.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Map.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="MapItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GDHDatabase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GDHDatabase.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\BF2042Model\DividedKillsModel.cs" />
     <Compile Include="Models\BF2042Model\ObjectModel.cs" />
+    <Compile Include="Models\BF2042Model\OverviewModel.cs" />
     <Compile Include="Models\BF2042Model\VehicleGroupModel.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
     <Compile Include="Models\BF2042Model\GadgetModel.cs" />
@@ -191,40 +192,41 @@
     <Compile Include="Models\BF2042Model\WeaponGroupModel.cs" />
     <Compile Include="Models\BF2042Model\WeaponModel.cs" />
     <Compile Include="Models\BF2042Model\XpModel.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Ribbon.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="RibbonItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Specialist.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="SpecialistItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Vehicle.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="VehicleGroup.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="VehicleItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Weapon.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="WeaponGroup.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="WeaponItem.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="XP.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -235,27 +237,27 @@
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GDHDataBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GDHDataBase.edmx</DependentUpon>
+      <LastGenOutput>GDHDataBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="GDHDataBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GDHDataBase.edmx</DependentUpon>
+      <LastGenOutput>GDHDataBase.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GDHDatabase.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GDHDatabase.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\anime.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="GDHDatabase.edmx">
+    <EntityDeploy Include="GDHDataBase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GDHDatabase.Designer.cs</LastGenOutput>
+      <LastGenOutput>GDHDataBase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="GDHDatabase.edmx.diagram">
-      <DependentUpon>GDHDatabase.edmx</DependentUpon>
+    <Content Include="GDHDataBase.edmx.diagram">
+      <DependentUpon>GDHDataBase.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

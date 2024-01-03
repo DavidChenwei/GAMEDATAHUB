@@ -795,7 +795,7 @@
           <NavigationProperty Name="SpecialistItem" Relationship="Self.fk_SpecialistItem_HeroId" FromRole="Hero" ToRole="SpecialistItem" />
           <NavigationProperty Name="VehicleGroup" Relationship="Self.FK_VehicleGroup_HeroId" FromRole="Hero" ToRole="VehicleGroup" />
           <NavigationProperty Name="WeaponGroup" Relationship="Self.fk_WeaponGroup_HeroId" FromRole="Hero" ToRole="WeaponGroup" />
-          <NavigationProperty Name="XP" Relationship="GameDataHubModel.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
+          <NavigationProperty Name="XP" Relationship="Self.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
           <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
         </EntityType>
         <EntityType Name="Map">
@@ -1007,7 +1007,7 @@
           <Property Name="HeroId" Type="Int32" />
           <Property Name="Total" Type="Int32" />
           <Property Name="Performance" Type="Int32" />
-          <NavigationProperty Name="Hero" Relationship="GameDataHubModel.FK_XP_HeroId" FromRole="XP" ToRole="Hero" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK_XP_HeroId" FromRole="XP" ToRole="Hero" />
         </EntityType>
         <Association Name="fk_GadgetItem_GadgetId">
           <End Role="Gadget" Type="Self.Gadget" Multiplicity="0..1" />
@@ -1165,6 +1165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_XP_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="XP" Type="Self.XP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="XP">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__MapItem__MapId__31EC6D26">
           <End Role="Map" Type="Self.Map" Multiplicity="1" />
           <End Role="MapItem" Type="Self.MapItem" Multiplicity="*" />
@@ -1225,7 +1237,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GameDataHubEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GameDataHubEntitiy" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Gadget" EntityType="Self.Gadget" />
           <EntitySet Name="GadgetItem" EntityType="Self.GadgetItem" />
           <EntitySet Name="GameMode" EntityType="Self.GameMode" />
@@ -1298,6 +1310,10 @@
             <End Role="Hero" EntitySet="Hero" />
             <End Role="WeaponGroup" EntitySet="WeaponGroup" />
           </AssociationSet>
+          <AssociationSet Name="FK_XP_HeroId" Association="Self.FK_XP_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="XP" EntitySet="XP" />
+          </AssociationSet>
           <AssociationSet Name="FK__MapItem__MapId__31EC6D26" Association="Self.FK__MapItem__MapId__31EC6D26">
             <End Role="Map" EntitySet="Map" />
             <End Role="MapItem" EntitySet="MapItem" />
@@ -1318,28 +1334,12 @@
             <End Role="Weapon" EntitySet="Weapon" />
             <End Role="WeaponItem" EntitySet="WeaponItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_XP_HeroId" Association="GameDataHubModel.FK_XP_HeroId">
-            <End Role="Hero" EntitySet="Hero" />
-            <End Role="XP" EntitySet="XP" />
-          </AssociationSet>
           <EntitySet Name="HeroOverView" EntityType="GameDataHubModel.HeroOverView" />
           <AssociationSet Name="fk_HeroOverView_HeroId" Association="GameDataHubModel.fk_HeroOverView_HeroId">
             <End Role="Hero" EntitySet="Hero" />
             <End Role="HeroOverView" EntitySet="HeroOverView" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_XP_HeroId">
-          <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
-          <End Type="GameDataHubModel.XP" Role="XP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hero">
-              <PropertyRef Name="HeroID" />
-            </Principal>
-            <Dependent Role="XP">
-              <PropertyRef Name="HeroId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="HeroOverView">
           <Key>
             <PropertyRef Name="HeroOverViewId" />
@@ -1404,7 +1404,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GameDataHubModelStoreContainer" CdmEntityContainer="GameDataHubEntities">
+        <EntityContainerMapping StorageEntityContainer="GameDataHubModelStoreContainer" CdmEntityContainer="GameDataHubEntitiy">
           <EntitySetMapping Name="Gadget">
             <EntityTypeMapping TypeName="GameDataHubModel.Gadget">
               <MappingFragment StoreEntitySet="Gadget">

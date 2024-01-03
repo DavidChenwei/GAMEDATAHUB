@@ -13,10 +13,10 @@ namespace GAMEDATAHUB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GameDataHubEntities : DbContext
+    public partial class GameDataHubEntitiy : DbContext
     {
-        public GameDataHubEntities()
-            : base("name=GameDataHubEntities")
+        public GameDataHubEntitiy()
+            : base("name=GameDataHubEntitiy")
         {
         }
     

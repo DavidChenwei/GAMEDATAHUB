@@ -7,17 +7,17 @@ namespace GAMEDATAHUB.Models.BF2042Model
 {
     public class XpModel
     {
-        public string Total { get; set; }
-        public string Performance { get; set; }
+        public int Total { get; set; }
+        public int Performance { get; set; }
         public Ribbon Ribbons;
     }
 
     public class Ribbon {
-        public string Total { get; set; }
-        public string Squad { get; set; }
-        public string Combat { get; set; }
-        public string Intel { get; set; }
-        public string Objective { get; set; }
-        public string Support { get; set; }
+        public int Total { get; set; }
+        public int Squad { get; set; }
+        public int Combat { get; set; }
+        public int Intel { get; set; }
+        public int Objective { get; set; }
+        public int Support { get; set; }
     }
 }

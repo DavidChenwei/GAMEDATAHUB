@@ -14,15 +14,15 @@ namespace GAMEDATAHUB.Models.BF2042Model
 
         public AvatarImage AvatarImages;
         public string Id { get; set; }
-        public string Kills { get; set; }
-        public string Deaths { get; set; }
-        public string KPM { get; set; }
-        public string KillDeath { get; set; }
-        public string Spawns { get; set; }
-        public string Revives { get; set; }
-        public string Assists { get; set; }
-        public string HazardZoneStreaks { get; set; }
-        public string SecondsPlayed { get; set; }
+        public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public decimal KPM { get; set; }
+        public decimal KillDeath { get; set; }
+        public int Spawns { get; set; }
+        public int Revives { get; set; }
+        public int Assists { get; set; }
+        public int HazardZoneStreaks { get; set; }
+        public int SecondsPlayed { get; set; }
 
     }
 

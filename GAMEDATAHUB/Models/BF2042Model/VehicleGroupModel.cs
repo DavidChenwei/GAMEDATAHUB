@@ -9,20 +9,20 @@ namespace GAMEDATAHUB.Models.BF2042Model
     {
         public string GroupName { get; set; }
         public string Id { get; set; }
-        public string Kills { get; set; }
-        public string KillsPerMinute { get; set; }
-        public string Damage { get; set; }
-        public string Spawns { get; set; }
-        public string RoadKills { get; set; }
-        public string PassengerAssists { get; set; }
-        public string MultiKills { get; set; }
-        public string DistanceTraveled { get; set; }
-        public string DriverAssists { get; set; }
-        public string VehiclesDestroyedWith { get; set; }
-        public string Assists { get; set; }
-        public string CallIns { get; set; }
-        public string DamageTo { get; set; }
-        public string Destroyed { get; set; }
-        public string TimeIn { get; set; }
+        public int Kills { get; set; }
+        public decimal KillsPerMinute { get; set; }
+        public int Damage { get; set; }
+        public int Spawns { get; set; }
+        public int RoadKills { get; set; }
+        public int PassengerAssists { get; set; }
+        public int MultiKills { get; set; }
+        public int DistanceTraveled { get; set; }
+        public int DriverAssists { get; set; }
+        public int VehiclesDestroyedWith { get; set; }
+        public int Assists { get; set; }
+        public int CallIns { get; set; }
+        public int DamageTo { get; set; }
+        public int Destroyed { get; set; }
+        public int TimeIn { get; set; }
     }
 }

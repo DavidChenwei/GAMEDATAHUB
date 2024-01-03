@@ -23,44 +23,44 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string Id { get; set; }
         public string BestClass { get; set; }
         public string HumanPrecentage { get; set; }
-        public string Kills { get; set; }
-        public string Deaths { get; set; }
-        public string Wins { get; set; }
-        public string Loses { get; set; }
-        public string KillsPerMinute { get; set; }
-        public string DamagePerMinute { get; set; }
-        public string KillsPerMatch { get; set; }
-        public string DamagePerMatch { get; set; }
+        public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+        public decimal KillsPerMinute { get; set; }
+        public decimal DamagePerMinute { get; set; }
+        public decimal KillsPerMatch { get; set; }
+        public decimal DamagePerMatch { get; set; }
         public string HeadShots { get; set; }
         public string WinPercent { get; set; }
         public string Headshots { get; set; }
-        public string KillDeath { get; set; }
-        public string InfantryKillDeath { get; set; }
-        public string Damage { get; set; }
+        public decimal KillDeath { get; set; }
+        public decimal InfantryKillDeath { get; set; }
+        public int Damage { get; set; }
         public string TimePlayed { get; set; }
         public string Accuracy { get; set; }
-        public string Revives { get; set; }
-        public string Heals { get; set; }
-        public string Resupplies { get; set; }
-        public string Repairs { get; set; }
-        public string SquadmateRevive { get; set; }
-        public string SquadmateRespawn { get; set; }
-        public string ThrownThrowables { get; set; }
+        public int Revives { get; set; }
+        public int Heals { get; set; }
+        public int Resupplies { get; set; }
+        public int Repairs { get; set; }
+        public int SquadmateRevive { get; set; }
+        public int SquadmateRespawn { get; set; }
+        public int ThrownThrowables { get; set; }
 
-        public string GadgetsDestoyed { get; set; }
-        public string CallIns { get; set; }
-        public string PlayerTakeDowns { get; set; }
-        public string MatchesPlayed { get; set; }
-        public string SecondsPlayed { get; set; }
-        public string BestSquad { get; set; }
-        public string TeammatesSupported { get; set; }
-        public string SaviorKills { get; set; }
-        public string ShotsFired { get; set; }
-        public string ShotsHit { get; set; }
-        public string KillAssists { get; set; }
-        public string VehiclesDestroyed { get; set; }
-        public string EnemiesSpotted { get; set; }
-        public string Mvp { get; set; }
+        public int GadgetsDestoyed { get; set; }
+        public int CallIns { get; set; }
+        public int PlayerTakeDowns { get; set; }
+        public int MatchesPlayed { get; set; }
+        public int SecondsPlayed { get; set; }
+        public int BestSquad { get; set; }
+        public int TeammatesSupported { get; set; }
+        public int SaviorKills { get; set; }
+        public int ShotsFired { get; set; }
+        public int ShotsHit { get; set; }
+        public int KillAssists { get; set; }
+        public int VehiclesDestroyed { get; set; }
+        public int EnemiesSpotted { get; set; }
+        public int Mvp { get; set; }
 
         public List<WeaponModel> Weapons;
 
@@ -78,7 +78,9 @@ namespace GAMEDATAHUB.Models.BF2042Model
 
         public List<GadgetModel> Gadgets;
 
-        public List<ObjectModel> Onject;
+        public List<DividedKillsModel> DividedKills;
+
+        public List<ObjectModel> Object;
 
         public List<XpModel> XP;
 

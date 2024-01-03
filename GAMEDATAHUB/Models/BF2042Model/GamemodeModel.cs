@@ -10,23 +10,23 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string GamemodeName { get; set; }
         public string Image { get; set; }
         public string Id { get; set; }
-        public string Kills { get; set; }
-        public string Assists { get; set; }
-        public string Revives { get; set; }
-        public string BestSquad { get; set; }
-        public string Wins { get; set; }
-        public string Losses { get; set; }
-        public string Mvp { get; set; }
-        public string Matches { get; set; }
-        public string SectorDefend { get; set; }
-        public string ObjectivesArmed { get; set; }
-        public string ObjectivesDisarmed { get; set; }
-        public string ObjectivesDefended { get; set; }
-        public string ObjectivesDestroyed { get; set; }
-        public string ObjetiveTime { get; set; }
-        public string KPM { get; set; }
+        public int Kills { get; set; }
+        public int Assists { get; set; }
+        public int Revives { get; set; }
+        public int BestSquad { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
+        public int Mvp { get; set; }
+        public int Matches { get; set; }
+        public int SectorDefend { get; set; }
+        public int ObjectivesArmed { get; set; }
+        public int ObjectivesDisarmed { get; set; }
+        public int ObjectivesDefended { get; set; }
+        public int ObjectivesDestroyed { get; set; }
+        public int ObjetiveTime { get; set; }
+        public decimal KPM { get; set; }
         public string WinPercent { get; set; }
-        public string SecondsPlayed { get; set; }
+        public int SecondsPlayed { get; set; }
 
 
     }

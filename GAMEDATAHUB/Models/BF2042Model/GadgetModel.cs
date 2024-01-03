@@ -11,14 +11,14 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string GadgetName { get; set; }
         public string Image { get; set; }
         public string Id { get; set; }
-        public string Kills { get; set; }
-        public string Spawns { get; set; }
-        public string Damage { get; set; }
-        public string Uses { get; set; }
-        public string MultiKills { get; set; }
-        public string VehiclesDestroyedWith { get; set; }
-        public string KPM { get; set; }
-        public string DPM { get; set; }
-        public string SecondsPlayed { get; set; }
+        public int Kills { get; set; }
+        public int Spawns { get; set; }
+        public int Damage { get; set; }
+        public int Uses { get; set; }
+        public int MultiKills { get; set; }
+        public int VehiclesDestroyedWith { get; set; }
+        public decimal KPM { get; set; }
+        public decimal DPM { get; set; }
+        public int SecondsPlayed { get; set; }
     }
 }
