@@ -5,13 +5,14 @@ using System.Web;
 
 namespace GAMEDATAHUB.Models.BF2042Model
 {
-    public class ObjectModel
+    public class ObjectivetModel
     {
         public int Armed { get; set; }
         public int Captured { get; set; }
         public int Neutralized { get; set; }
         public int Destroyed { get; set; }
-        public Time Times { get; set; }
+        public int Defused { get; set; }
+        public Time Time { get; set; }
 
     }
 

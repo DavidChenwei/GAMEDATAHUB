@@ -1,4 +1,6 @@
-﻿<body>
+﻿@model GAMEDATAHUB.Models.BF2042Model.OverviewModel
+
+<body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
             <div class="gdh-content">
@@ -14,7 +16,7 @@
                                 <div class="user-avatar user-avatar--large ph-avatar">
                                     <div class="trn-tooltip-wrapper">
                                     </div>
-                                    <img class="user-avatar__image" src="https://imgsvc.trackercdn.com/url/size(128),fit(cover)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-avatar.jpg/image.jpg" alt=""><!---->
+                                    <img class="user-avatar__image" src=@Model.Avatar alt=""><!---->
                                 </div>
                                 <div class="ph-details">
                                     <div class="ph-details__subtitle">
@@ -36,7 +38,7 @@
                                         </div>
                                         <span class="trn-ign ph-details__name">
                                             <span data-v-0b2ed7a2="" class="fit-text-parent">
-                                                <span data-v-0b2ed7a2="" class="trn-ign__username">MarineChen</span>
+                                                <span data-v-0b2ed7a2="" class="trn-ign__username">@Model.UserName</span>
                                             </span>
                                         </span>
                                     </div>
@@ -48,7 +50,7 @@
                                         <a href="/bf2042/profile/origin/MarineChen/overview" class="trn-tabs__item active">Overview</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Index", "Home")"  class="trn-tabs__item">Maps</a>
+                                        <a href="@Url.Action("Index", "Home")" class="trn-tabs__item">Maps</a>
                                     </li>
                                     <li>
                                         <a href="@Url.Action("About", "Home")" class="trn-tabs__item">Models</a>
@@ -95,61 +97,27 @@
                                                 </div>
                                             </header>
                                             <div class="top-items__list">
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Assault Rifles</div>
-                                                        <div class="stat__value">RM68</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">1,492</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">HS%</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">18.0%</div>
+                                                @foreach (var weapon in Model.WeapoinOverViews)
+                                                {
+                                                    <div class="item">
+                                                        <div class="flex-1">
+                                                            <div class="stat__name">@weapon.Type</div>
+                                                            <div class="stat__value">@weapon.Name</div>
+                                                        </div>
+                                                        <div class="item__info flex flex-1 flex-col gap-1">
+                                                            <div class="item__info-stats">
+                                                                <div class="stat">
+                                                                    <div class="stat__name">Kills</div>
+                                                                    <div data-v-ab2cb76a="" class="stat__value">@weapon.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="stat">
+                                                                    <div class="stat__name">HS%</div>
+                                                                    <div data-v-ab2cb76a="" class="stat__value">@weapon.HeadShotRate</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Assault Rifles</div>
-                                                        <div class="stat__value">VHX-D3</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">1,355</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">HS%</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">25.6%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Assault Rifles</div>
-                                                        <div class="stat__value">AK24</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">1,340</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">HS%</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">18.9%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                                }
                                             </div>
                                             <div class="top-items__actions">
                                                 <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Weapons</a>
@@ -169,61 +137,27 @@
                                                 </div>
                                             </header>
                                             <div class="top-items__list">
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Land</div>
-                                                        <div class="stat__value">M1A5</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">683</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">Dmg/Min</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">184</div>
+                                                @foreach (var vehcile in Model.VehiclesOverViews)
+                                                {
+                                                    <div class="item">
+                                                        <div class="flex-1">
+                                                            <div class="stat__name">Land</div>
+                                                            <div class="stat__value">@vehcile.Name</div>
+                                                        </div>
+                                                        <div class="item__info flex flex-1 flex-col gap-1">
+                                                            <div class="item__info-stats">
+                                                                <div class="stat">
+                                                                    <div class="stat__name">Kills</div>
+                                                                    <div data-v-ab2cb76a="" class="stat__value">@vehcile.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="stat">
+                                                                    <div class="stat__name">Dmg/Min</div>
+                                                                    <div data-v-ab2cb76a="" class="stat__value">@vehcile.DPM.ToString()</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Land</div>
-                                                        <div class="stat__value">T28</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">606</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">Dmg/Min</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">198</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="flex-1">
-                                                        <div class="stat__name">Land</div>
-                                                        <div class="stat__value">EBAA Wildcat</div>
-                                                    </div>
-                                                    <div class="item__info flex flex-1 flex-col gap-1">
-                                                        <div class="item__info-stats">
-                                                            <div class="stat">
-                                                                <div class="stat__name">Kills</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">460</div>
-                                                            </div>
-                                                            <div class="stat">
-                                                                <div class="stat__name">Dmg/Min</div>
-                                                                <div data-v-ab2cb76a="" class="stat__value">136</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                                }
                                             </div>
                                             <div class="top-items__actions">
                                                 <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Vehicles</a>
@@ -245,11 +179,11 @@
                                                                 <h2>Lifetime Overview</h2>
                                                                 <div class="title-stats">
                                                                     <span class="playtime">
-                                                                        <svg data-v-19bbe048="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.949 19.97">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.949 19.97">
                                                                             <path d="M10.95 0v2.02a8 8 0 0 1 0 15.88v2a10 10 0 0 0 0-19.9m-2 .03a9.827 9.827 0 0 0-5.33 2.2l1.43 1.48a8 8 0 0 1 3.9-1.68v-2M2.21 3.64A9.885 9.885 0 0 0 0 8.97h2a8.017 8.017 0 0 1 1.64-3.9L2.21 3.64m-2.2 7.33a10.039 10.039 0 0 0 2.21 5.33l1.42-1.43a8 8 0 0 1-1.63-3.9h-2m5.04 5.37-1.43 1.37a9.994 9.994 0 0 0 5.33 2.26v-2a8 8 0 0 1-3.9-1.63m5.4-11.37v5.25l4.5 2.67-.75 1.23-5.25-3.15v-6Z"></path>
                                                                         </svg>446h Playtime
                                                                     </span>
-                                                                    <span data-v-19bbe048="" class="matches">1,210 Matches </span>
+                                                                    <span class="matches">@Model.MatchesPlayed.ToString("N0")Matches </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -260,7 +194,7 @@
                                                         <div class="wrapper">
                                                             <div class="numbers">
                                                                 <span class="name" title="Dmg/Min">Dmg/Min</span>
-                                                                <span class="value">60</span>
+                                                                <span class="value">@Model.DamagePerMatch.ToString()</span>
                                                                 <div class="bottom"></div>
                                                             </div>
                                                             <div class="more">
@@ -277,7 +211,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="K/D">K/D</span>
-                                                                <span class="value">1.89</span>
+                                                                <span class="value">@Model.KillDeath.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 26%</span>
                                                                 </div>
@@ -296,7 +230,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="HS%">HS %</span>
-                                                                <span class="value">19.73%</span>
+                                                                <span class="value">@Model.HeadShotRate</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Bottom 13%</span>
                                                                 </div>
@@ -315,7 +249,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Win %">Win %</span>
-                                                                <span class="value">64.5</span>
+                                                                <span class="value">@Model.WinPercent</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 9%</span>
                                                                 </div>
@@ -337,7 +271,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Human K/D">Human K/D</span>
-                                                                <span class="value">1.34</span>
+                                                                <span class="value">@Model.HumanKD</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 40%</span>
                                                                 </div>
@@ -347,28 +281,28 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                            <div class="fill" style="transform: translateY(60%);"></div>
-                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Kills">Kills</span>
-                                                                <span class="value">12,352</span>
+                                                                <span class="value">@Model.Kills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                <span  class="rank">Top 40%</span>
-                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                            <div class="fill" style="transform: translateY(60%);"></div>
-                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Assists">Assists</span>
-                                                                <span class="value">7,677</span>
+                                                                <span class="value">@Model.KillAssists.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                <span  class="rank">Top 40%</span>
-                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -379,7 +313,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Deaths">Deaths</span>
-                                                                <span class="value">6,547</span>
+                                                                <span class="value">@Model.Deaths.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 15%</span>
                                                                 </div>
@@ -393,7 +327,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Kills/Min">Kills/Min</span>
-                                                                <span class="value">0.46</span>
+                                                                <span class="value">@Model.KillsPerMinute.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Bottom 19%</span>
                                                                 </div>
@@ -407,7 +341,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Kills/Match">Kills/Match</span>
-                                                                <span class="value">10.21</span>
+                                                                <span class="value">@Model.KillsPerMatch.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Bottom 30%</span>
                                                                 </div>
@@ -421,7 +355,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Matches Won">Matches Won</span>
-                                                                <span class="value">780</span>
+                                                                <span class="value">@Model.Wins.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 4.6%</span>
                                                                 </div>
@@ -435,7 +369,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Matches Lost">Matches Lost</span>
-                                                                <span class="value">429</span>
+                                                                <span class="value">@Model.Loses.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 10%</span>
                                                                 </div>
@@ -449,7 +383,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Damage Dealt">Damage Dealt</span>
-                                                                <span class="value">1,598,086</span>
+                                                                <span class="value">@Model.Damage.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 15%</span>
                                                                 </div>
@@ -463,7 +397,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Dmg/Match">Dmg/Match</span>
-                                                                <span class="value">1,320.73</span>
+                                                                <span class="value">@Model.DamagePerMatch.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Bottom 25%</span>
                                                                 </div>
@@ -477,7 +411,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Vehicles Destroyed">Vehicles Destroyed</span>
-                                                                <span class="value">484</span>
+                                                                <span class="value">@Model.VehiclesDestroyed.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 8%</span>
                                                                 </div>
@@ -505,14 +439,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                            <div class="fill" style="transform: translateY(60%);"></div>
-                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Multi Kills">Multi Kills</span>
-                                                                <span class="value">1,041</span>
+                                                                <span class="value">@Model.MultiKills.ToString()</span>
                                                                 @*<div class="bottom">
-                                <span  class="rank">Top 40%</span>
-                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -523,7 +457,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Headshot Kills">Headshot Kills</span>
-                                                                <span class="value">1,765</span>
+                                                                <span class="value">@Model.HeadShotAmount.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 19%</span>
                                                                 </div>
@@ -537,7 +471,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Road Kills">Road Kills</span>
-                                                                <span class="value">46</span>
+                                                                <span class="value">@Model.RoadKills.ToString()</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 23%</span>
                                                                 </div>
@@ -551,7 +485,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Melee Kills">Melee Kills</span>
-                                                                <span class="value">204</span>
+                                                                <span class="value">@Model.MeleeKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 6%</span>
                                                                 </div>
@@ -565,7 +499,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Vehicle Kills">Vehicle Kills</span>
-                                                                <span class="value">2897</span>
+                                                                <span class="value">@Model.VechileKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 8%</span>
                                                                 </div>
@@ -575,14 +509,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                            <div class="fill" style="transform: translateY(70%);"></div>
-                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
-                                                                <span class="name" title="Gadget Kills">Gadget Kills</span>
-                                                                <span class="value">0</span>
+                                                                <span class="name" title="Gadget Kills">Grenades Kills</span>
+                                                                <span class="value">@Model.GrenadesKills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                <span class="rank">Bottom 30%</span>
-                            </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -593,7 +527,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Scoped Kills">Scoped Kills</span>
-                                                                <span class="value">7,267</span>
+                                                                <span class="value">@Model.ScopedKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 15%</span>
                                                                 </div>
@@ -607,7 +541,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Hipfire Kills">Hipfire Kills</span>
-                                                                <span class="value">1710</span>
+                                                                <span class="value">@Model.HipfireKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 15%</span>
                                                                 </div>
@@ -621,7 +555,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Human Kills">Human Kills</span>
-                                                                <span class="value">8,770</span>
+                                                                <span class="value">@Model.HumanKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 17%</span>
                                                                 </div>
@@ -635,7 +569,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="AI Kills">AI Kills</span>
-                                                                <span class="value">3,582</span>
+                                                                <span class="value">@Model.AIKills.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 4.6%</span>
                                                                 </div>
@@ -667,7 +601,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Objective Time">Objective Time</span>
-                                                                <span class="value">142h</span>
+                                                                <span class="value">@Model.ObjectTotal.ToString("N0")H</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 1%</span>
                                                                 </div>
@@ -677,14 +611,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                    <div class="fill" style="transform: translateY(70%);"></div>
-                </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Armed Objectives">Armed Objectives</span>
-                                                                <span class="value">0</span>
+                                                                <span class="value">@Model.ArmedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                        <span class="rank">Bottom 30%</span>
-                    </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -695,7 +629,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Disarmed Objectives">Disarmed Objectives</span>
-                                                                <span class="value">2</span>
+                                                                <span class="value">@Model.DefusedObject.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Bottom 26%</span>
                                                                 </div>
@@ -705,14 +639,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                    <div class="fill" style="transform: translateY(70%);"></div>
-                </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Destroyed Objectives">Destroyed Objectives</span>
-                                                                <span class="value">0</span>
+                                                                <span class="value">@Model.DestroyedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                        <span class="rank">Bottom 30%</span>
-                    </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -723,7 +657,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Captured Objectives">Captured Objectives</span>
-                                                                <span class="value">54,504</span>
+                                                                <span class="value">@Model.CapturedObject.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 0.1%</span>
                                                                 </div>
@@ -736,8 +670,8 @@
                                                                 <div class="fill" style="transform: translateY(12%);"></div>
                                                             </div>
                                                             <div class="numbers">
-                                                                <span class="name" title="Objectives Defended">Objectives Defended</span>
-                                                                <span class="value">2,247</span>
+                                                                <span class="name" title="Objectives Deutralized">Objectives Deutralized</span>
+                                                                <span class="value">@Model.NeutralizedObject.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 12%</span>
                                                                 </div>
@@ -752,7 +686,7 @@
                                                             </div>
                                                             <div class="numbers">
                                                                 <span class="name" title="Sectors Defended">Sectors Defended</span>
-                                                                <span class="value">3,917</span>
+                                                                <span class="value">@Model.DefendedSector.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 8%</span>
                                                                 </div>
@@ -765,8 +699,8 @@
                                                                 <div class="fill" style="transform: translateY(10%);"></div>
                                                             </div>
                                                             <div class="numbers">
-                                                                <span class="name" title="Intel Picked Up">Intel Picked Up</span>
-                                                                <span class="value">1710</span>
+                                                                <span class="name" title="Sectors Captured">Sectors Captured</span>
+                                                                <span class="value">@Model.AttackedSector.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 15%</span>
                                                                 </div>
@@ -779,8 +713,8 @@
                                                                 <div class="fill" style="transform: translateY(17%);"></div>
                                                             </div>
                                                             <div class="numbers">
-                                                                <span class="name" title="Intel Extracted">Intel Extracted</span>
-                                                                <span class="value">8,770</span>
+                                                                <span class="name" title="Intel Extracted">Attacked Object Time</span>
+                                                                <span class="value">@Model.AttackedTotal.ToString("N0")</span>
                                                                 <div class="bottom">
                                                                     <span class="rank">Top 17%</span>
                                                                 </div>
@@ -824,70 +758,42 @@
                                                 </div>
                                                 <div class="st-content">
                                                     <div class="st-content__category">
+                                                        @foreach (var specialist in Model.SpecialistsOverViews) { 
                                                         <div class="st-content__item">
                                                             <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
                                                                 <div class="image">
-                                                                    <img class="" src="https://imgsvc.trackercdn.com/url/max-width(60),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Favatars%2Fchar_eng_juliet.jpg/image.jpg" width="40" height="40" loading="lazy">
+                                                                    <img class="" src=@specialist.AvatarImage width="40" height="40" loading="lazy">
                                                                 </div>
                                                                 <div class="info">
-                                                                    <div class="value">Boris </div>
+                                                                    <div class="value">@specialist.Name</div>
                                                                 </div>
                                                             </div>
                                                             <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
                                                                 <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">75h</div>
+                                                                    <div data-v-e78d047f="" class="value">@specialist.Playtime.ToString()H</div>
                                                                 </div>
                                                             </div>
                                                             <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
                                                                 <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">1,296</div>
+                                                                    <div data-v-e78d047f="" class="value">@specialist.Kills.ToString("N0")</div>
                                                                 </div>
                                                             </div>
                                                             <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
                                                                 <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">1.49</div>
+                                                                    <div data-v-e78d047f="" class="value">@specialist.KD.ToString("N0")</div>
                                                                 </div>
                                                             </div>
                                                             <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
                                                                 <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">0.29</div>
+                                                                    <div data-v-e78d047f="" class="value">@specialist.KPM.ToString()</div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="st-content__item">
-                                                            <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
-                                                                <div class="image">
-                                                                    <img class="" src="https://imgsvc.trackercdn.com/url/max-width(60),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Favatars%2Fchar_eng_hotel.jpg/image.jpg" width="40" height="40" loading="lazy">
-                                                                </div>
-                                                                <div class="info">
-                                                                    <div class="value">Lis</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">66H</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">1,832</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">2.10</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">0.46</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>

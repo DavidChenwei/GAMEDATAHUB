@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,14 +27,16 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Wins { get; set; }
-        public int Losses { get; set; }
+        public int Loses { get; set; }
         public decimal KillsPerMinute { get; set; }
         public decimal DamagePerMinute { get; set; }
         public decimal KillsPerMatch { get; set; }
         public decimal DamagePerMatch { get; set; }
-        public string HeadShots { get; set; }
+        [JsonProperty("headShots")]
+        public int HeadShotAmount { get; set; }
         public string WinPercent { get; set; }
-        public string Headshots { get; set; }
+        [JsonProperty("headshots")]
+        public string HeadShotRate { get; set; }
         public decimal KillDeath { get; set; }
         public decimal InfantryKillDeath { get; set; }
         public int Damage { get; set; }
@@ -62,6 +65,14 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int EnemiesSpotted { get; set; }
         public int Mvp { get; set; }
 
+        public DividedKillsModel DividedKills;
+
+        public ObjectivetModel Objective;
+
+        public List<XpModel> XP;
+
+        public SectorModel Sector;
+
         public List<WeaponModel> Weapons;
 
         public List<VehicleModel> Vehicles;
@@ -77,12 +88,6 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public List<MapModel> Maps;
 
         public List<GadgetModel> Gadgets;
-
-        public List<DividedKillsModel> DividedKills;
-
-        public List<ObjectModel> Object;
-
-        public List<XpModel> XP;
 
     }
 }

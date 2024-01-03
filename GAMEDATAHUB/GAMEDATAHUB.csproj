@@ -180,8 +180,9 @@
       <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BF2042Model\DividedKillsModel.cs" />
-    <Compile Include="Models\BF2042Model\ObjectModel.cs" />
+    <Compile Include="Models\BF2042Model\ObjectivetModel.cs" />
     <Compile Include="Models\BF2042Model\OverviewModel.cs" />
+    <Compile Include="Models\BF2042Model\SectorModel.cs" />
     <Compile Include="Models\BF2042Model\VehicleGroupModel.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
     <Compile Include="Models\BF2042Model\GadgetModel.cs" />

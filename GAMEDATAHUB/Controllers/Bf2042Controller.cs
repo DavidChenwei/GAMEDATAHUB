@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GAMEDATAHUB.Repository;
+using GAMEDATAHUB.Models.BF2042Model;
+using System.Threading.Tasks;
 
 namespace GAMEDATAHUB.Controllers
 {
@@ -19,7 +21,7 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Overview(string HeroName, string Platform)
+        public async Task<ActionResult> Overview(string HeroName, string Platform)
         {
             if (!string.IsNullOrEmpty(Platform))
             {
@@ -33,15 +35,14 @@ namespace GAMEDATAHUB.Controllers
                 }
                 else if (Platform.Contains("Origin"))
                 {
-                    Platform = "origin";
+                    Platform = "pc";
                 }
             }
             else {
-                Platform = "origin";
+                Platform = "pc";
             }
-            string temp = HeroName;
-            _ = Resp.HeroInfoGet(HeroName, Platform);
-            return View();
+            OverviewModel Overview = await Resp.HeroInfoGet(HeroName, Platform);
+            return View(Overview);
         }
         [HttpGet]
         public ActionResult Bf2042()
