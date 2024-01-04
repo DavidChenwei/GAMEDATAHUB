@@ -91,4 +91,10 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public decimal KD { get; set; }
         public decimal KPM { get; set; }
     }
+
+    public class Animation {
+        public string HeroName { get; set; } ="";
+        public string Platform { get; set; } = ""; 
+        public string TargetPage { get; set; } = "";
+    }
 }

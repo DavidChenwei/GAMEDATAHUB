@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using GAMEDATAHUB.Models.BF2042Model;
 using GAMEDATAHUB.Models;
+using System.Runtime.Caching;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -126,7 +127,8 @@ namespace GAMEDATAHUB.Repository
                             overView.SpecialistsOverViews.Add(specialistsOverView);
                         }
                         #endregion
-
+                        MemoryCache cache = MemoryCache.Default;
+                        #region Database Operaion
                         //GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
 
                         //#region Hero
@@ -239,6 +241,7 @@ namespace GAMEDATAHUB.Repository
                         //{
 
                         //}
+                        #endregion
                     }
                     else
                     {

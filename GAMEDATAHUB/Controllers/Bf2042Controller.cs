@@ -23,6 +23,8 @@ namespace GAMEDATAHUB.Controllers
         [HttpPost]
         public async Task<ActionResult> Overview(string HeroName, string Platform)
         {
+            ViewBag.ShowLoading = true; 
+
             if (!string.IsNullOrEmpty(Platform))
             {
                 if (Platform.Contains("PlayStation"))
@@ -42,12 +44,31 @@ namespace GAMEDATAHUB.Controllers
                 Platform = "pc";
             }
             OverviewModel Overview = await Resp.HeroInfoGet(HeroName, Platform);
+
+            ViewBag.ShowLoading = false;
             return View(Overview);
         }
         [HttpGet]
         public ActionResult Bf2042()
         {
+            ViewBag.ShowLoading = false;
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult AnimationPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AnimationPage(string HeroName, string Platform, string Target)
+        {
+            Animation animation = new Animation();
+            animation.HeroName = HeroName;
+            animation.Platform = Platform;
+            animation.TargetPage = Target;
+            return View(animation);
         }
     }
 }

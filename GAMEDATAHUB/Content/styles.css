@@ -323,6 +323,11 @@ body {
     stroke-dashoffset: 0%;
 }
 
+#AnimationPage-svg path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0%;
+}
+
 @media only screen and (max-width: 1600px) {
     .landing__sidebar .headline {
         font-size: 4rem;

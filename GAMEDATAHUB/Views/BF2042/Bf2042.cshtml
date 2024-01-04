@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -15,15 +16,15 @@
                                 <div class="search">
                                     <div class="intro">
                                         <div class="intro__logo">
-                                            <svg data-v-72b14383="" xmlns="http://www.w3.org/2000/svg"
+                                            <svg xmlns="http://www.w3.org/2000/svg"
                                                  viewBox="0 0 31.2 31.2" class="title-icon">
                                                 <path d="M13.8 1.1h9.5v3.6h-5.7v8.9h5.7v3.5h-5.7V30h-3.8V1.1zM9.7 15.4c1.3-.7 1.8-1.8 1.8-3.5V5.7c0-3-.9-4.5-4.9-4.5H0V30h6.8c4 0 4.9-1.9 4.9-4.9V19c0-1.8-.6-3-2-3.6zM3.8 4.8h2.6c1.2 0 1.3.6 1.3 1.9v4.9c0 1.3-.2 2.1-1.4 2.1H3.8V4.8zm4 20.2c0 .9-.3 1.4-1.3 1.4H3.8v-9.2h2.6c1.1 0 1.4.6 1.4 1.5V25zm23.4 5h-1.1l-2.7-2.7c-.2-.2-.2-.2-.4-.2h-.2c-.2 0-.3.1-.3.3v1.4c0 .2.1.3.3.3h.7v.9h-.7c-.9 0-1.3-.4-1.3-1.3v-1.4c0-.9.4-1.3 1.3-1.3h.2c.4 0 .7 0 .9.3l2.3 2.2V26h1.1v2.7h-.6c-.1 0-.1.1 0 .1l.7.7-.2.5zm-4.4-8.3c-.9 0-1.3-.4-1.3-1.3v-1.3c0-.9.4-1.3 1.3-1.3h3.1c.9 0 1.3.4 1.3 1.3v1.3c0 .9-.5 1.3-1.3 1.3h-3.1zm3-1.1c.2 0 .3-.1.3-.3V19c0-.2-.1-.3-.3-.3h-3.1c-.2 0-.3.1-.3.3v1.3c0 .2.1.3.3.3h3.1zm.5-7.2h-1.1l-3.8-2.8v-1h3.8v.6c0 .1.1.1.1 0l.7-.6h1v1h-.8v2.8h.1zm-1-1.3v-1.5h-2.1l2.1 1.5zm1.9-7h-1.1l-2.7-2.7c-.2-.2-.2-.2-.4-.2h-.2c-.2 0-.3.1-.3.3v1.4c0 .2.1.3.3.3h.7v1.1h-.7c-.9 0-1.3-.4-1.3-1.3V2.5c0-.9.4-1.3 1.3-1.3h.2c.4 0 .7 0 .9.3l2.3 2.2V1.1h1.1v2.7h-.6c-.1 0-.1.1 0 .1l.7.7-.2.5z">
                                                 </path>
                                             </svg>
                                         </div>
                                         <div class="intro__text">
-                                            <h1 data-v-72b14383="">Battlefield 2042 Stats</h1>
-                                            <span data-v-72b14383="" class="lead">
+                                            <h1 >Battlefield 2042 Stats</h1>
+                                            <span class="lead">
                                                 Check Detailed Battlefield
                                                 2042 Stats and Leaderboards
                                             </span>
@@ -31,7 +32,6 @@
                                     </div>
                                     <div class="search-box">
                                         <div class="search-box__bar">
-
                                             <div class="title-selector">
                                                 <div class="dropdown dropdown--trigger titles-dropdown" tabindex="0">
                                                     <div class="dropdown__selected">
@@ -110,9 +110,10 @@
                                                 </div>
                                             </div>
 
-                                            <form method="post" action="@Url.Action("Overview", "Bf2042")" id="searchForm">
+                                            <form method="post" action="@Url.Action("AnimationPage", "Bf2042")" id="searchForm">
                                                 <input name="HeroName" placeholder="Enter Origin Username" type="search">
-                                                <input name="Platform"  hidden>
+                                                <input name="Platform" hidden>
+                                                <input name="Target" value="Overview" hidden >
                                             </form>
                                         </div>
                                     </div>
@@ -133,7 +134,7 @@
 
                 if (heroName.trim() === '') {
                     alert('Please enter your hero name.');
-                    return false; 
+                    return false;
                 }
                 document.getElementById("searchForm").submit();
             }
@@ -196,7 +197,7 @@
                 li.classList.remove('active');
             });
         }
-        /*asdasd*/
+
         document.addEventListener('DOMContentLoaded', function () {
             var dropdownItems = document.querySelectorAll('.platforms-dropdown .dropdown__items .dropdown__item');
 
@@ -210,8 +211,6 @@
                 });
             });
         });
-
-
     </script>
 </body>
 </html>
