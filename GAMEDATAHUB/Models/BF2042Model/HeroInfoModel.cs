@@ -18,6 +18,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
             Gadgets = new List<GadgetModel>();
             XP = new List<XpModel>();
         }
+        public string PlatForm { get; set; }
         public string UserId { get; set; }
         public string Avatar { get; set; }
         public string UserName { get; set; }

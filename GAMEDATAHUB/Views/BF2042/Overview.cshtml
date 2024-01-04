@@ -7,6 +7,8 @@
                 <div class="container">
                     <div class="content">
                         <div class="ph">
+                            <input name="HeroName" value=@Model.UserName hidden />
+                            <input name="Platform" value=@Model. hidden />
                             <div class="ph__cover ph__cover--default">
                                 <img class="absolute object-cover w-full h-full" src="https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg" srcset="https://imgsvc.trackercdn.com/url/max-width(960),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 640w, https://imgsvc.trackercdn.com/url/max-width(1380),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 920w, https://imgsvc.trackercdn.com/url/max-width(1800),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1200w, https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1920w" alt="Hero image" sizes="100vw">
                                 <div class="ph__cover-overlay">
@@ -50,7 +52,7 @@
                                         <a href="/bf2042/profile/origin/MarineChen/overview" class="trn-tabs__item active">Overview</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Index", "Home")" class="trn-tabs__item">Maps</a>
+                                        <a href="@Url.Action("Maps", "Bf2042")" class="trn-tabs__item">Maps</a>
                                     </li>
                                     <li>
                                         <a href="@Url.Action("About", "Home")" class="trn-tabs__item">Models</a>
@@ -281,28 +283,28 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(60%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Kills">Kills</span>
                                                                 <span class="value">@Model.Kills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
+                                                <span  class="rank">Top 40%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(60%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Assists">Assists</span>
                                                                 <span class="value">@Model.KillAssists.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
+                                                <span  class="rank">Top 40%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -439,14 +441,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(60%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Multi Kills">Multi Kills</span>
                                                                 <span class="value">@Model.MultiKills.ToString()</span>
                                                                 @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
+                                                <span  class="rank">Top 40%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -509,14 +511,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(70%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Gadget Kills">Grenades Kills</span>
                                                                 <span class="value">@Model.GrenadesKills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
+                                                <span class="rank">Bottom 30%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -611,14 +613,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(70%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Armed Objectives">Armed Objectives</span>
                                                                 <span class="value">@Model.ArmedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
+                                                <span class="rank">Bottom 30%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -639,14 +641,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
+                                            <div class="fill" style="transform: translateY(70%);"></div>
+                                        </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Destroyed Objectives">Destroyed Objectives</span>
                                                                 <span class="value">@Model.DestroyedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
+                                                <span class="rank">Bottom 30%</span>
+                                            </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -758,37 +760,38 @@
                                                 </div>
                                                 <div class="st-content">
                                                     <div class="st-content__category">
-                                                        @foreach (var specialist in Model.SpecialistsOverViews) { 
-                                                        <div class="st-content__item">
-                                                            <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
-                                                                <div class="image">
-                                                                    <img class="" src=@specialist.AvatarImage width="40" height="40" loading="lazy">
+                                                        @foreach (var specialist in Model.SpecialistsOverViews)
+                                                        {
+                                                            <div class="st-content__item">
+                                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
+                                                                    <div class="image">
+                                                                        <img class="" src=@specialist.AvatarImage width="40" height="40" loading="lazy">
+                                                                    </div>
+                                                                    <div class="info">
+                                                                        <div class="value">@specialist.Name</div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="info">
-                                                                    <div class="value">@specialist.Name</div>
+                                                                <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
+                                                                    <div class="info">
+                                                                        <div data-v-e78d047f="" class="value">@specialist.Playtime.ToString()H</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                                    <div class="info">
+                                                                        <div data-v-e78d047f="" class="value">@specialist.Kills.ToString("N0")</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
+                                                                    <div class="info">
+                                                                        <div data-v-e78d047f="" class="value">@specialist.KD.ToString()</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                                    <div class="info">
+                                                                        <div data-v-e78d047f="" class="value">@specialist.KPM.ToString()</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">@specialist.Playtime.ToString()H</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">@specialist.Kills.ToString("N0")</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">@specialist.KD.ToString()</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                <div class="info">
-                                                                    <div data-v-e78d047f="" class="value">@specialist.KPM.ToString()</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         }
                                                     </div>
                                                 </div>

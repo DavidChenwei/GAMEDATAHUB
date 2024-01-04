@@ -70,5 +70,12 @@ namespace GAMEDATAHUB.Controllers
             animation.TargetPage = Target;
             return View(animation);
         }
+
+        [HttpGet]
+        public ActionResult Maps()
+        {
+
+            return View();
+        }
     }
 }
