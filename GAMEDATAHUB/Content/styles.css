@@ -2126,3 +2126,10 @@ st__item--sticky {
     flex-direction: column;
     gap: var(--st-gap);
 }
+
+.st-content__category {
+    display: flex;
+    flex-direction: column;
+    gap: var(--st-row-gap);
+    overflow-y: clip;
+}
