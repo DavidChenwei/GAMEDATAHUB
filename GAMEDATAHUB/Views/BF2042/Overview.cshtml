@@ -8,7 +8,7 @@
                     <div class="content">
                         <div class="ph">
                             <input name="HeroName" value=@Model.UserName hidden />
-                            <input name="Platform" value=@Model. hidden />
+                            <input name="Platform" value=@Model.PlatForm hidden />
                             <div class="ph__cover ph__cover--default">
                                 <img class="absolute object-cover w-full h-full" src="https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg" srcset="https://imgsvc.trackercdn.com/url/max-width(960),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 640w, https://imgsvc.trackercdn.com/url/max-width(1380),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 920w, https://imgsvc.trackercdn.com/url/max-width(1800),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1200w, https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1920w" alt="Hero image" sizes="100vw">
                                 <div class="ph__cover-overlay">
@@ -813,7 +813,6 @@
         itemContents.forEach(itemContent => {
             itemContent.addEventListener('click', function () {
                 itemContents.forEach(item => item.classList.remove('.active'));
-                console.log("sss")
                 this.classList.add('.active');
             });
         });

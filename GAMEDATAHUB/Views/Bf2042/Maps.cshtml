@@ -1,6 +1,11 @@
 ﻿@model GAMEDATAHUB.Models.BF2042Model.HeroInfoModel
-
-
+@{
+    int maxWins = Model.Maps.Max(m => m.Wins);
+    int maxLosses = Model.Maps.Max(m => m.Losses);
+    int maxMatches = Model.Maps.Max(m => m.Matches);
+    int maxTime = Model.Maps.Max(m => m.SecondsPlayed)/3600;
+    decimal maxWinpercent = Model.Maps.Max(m => m.WinPercentD);
+}
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -17,7 +22,7 @@
                                 <div class="user-avatar user-avatar--large ph-avatar">
                                     <div class="trn-tooltip-wrapper">
                                     </div>
-                                    <img class="user-avatar__image" src="https://imgsvc.trackercdn.com/url/size(128),fit(cover)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-avatar.jpg/image.jpg" alt=""><!---->
+                                    <img class="user-avatar__image" src=@Model.Avatar alt=""><!---->
                                 </div>
                                 <div class="ph-details">
                                     <div class="ph-details__subtitle">
@@ -39,7 +44,7 @@
                                         </div>
                                         <span class="trn-ign ph-details__name">
                                             <span data-v-0b2ed7a2="" class="fit-text-parent">
-                                                <span data-v-0b2ed7a2="" class="trn-ign__username">MarineChen</span>
+                                                <span data-v-0b2ed7a2="" class="trn-ign__username">@Model.UserName</span>
                                             </span>
                                         </span>
                                     </div>
@@ -98,7 +103,134 @@
                                             <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                         </div>
                                         <div class="st-content">
+                                            <div class="st-content__category">
+                                                @foreach (var map in Model.Maps)
+                                                {
+                                                    <div class="st-content__item">
+                                                        <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--background-image-url: url(@map.Image); --st-base-width: 12rem;">
+                                                            <div data-v-f7cfeda3="" class="info">
+                                                                <div data-v-f7cfeda3="" class="value">@map.MapName</div>
+                                                            </div>
+                                                        </div>
+                                                        @if (maxWins == map.Wins)
+                                                        {
+                                                            <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Wins.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 5.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Wins.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        @if (maxWinpercent == map.WinPercentD)
+                                                        {
+                                                            <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.WinPercent</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.WinPercent</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        @if (maxLosses == map.Losses)
+                                                        {
+                                                            <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Losses.ToString()</div>
+                                                                </div>
+                                                            </div>
 
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="st__item st-content__item-value " style="--st-base-width: 5.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Losses.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        @if (maxMatches == map.Matches)
+                                                        {
+                                                            <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 6.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Matches.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 6.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@map.Matches.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        @if (maxTime == map.SecondsPlayed / 3600)
+                                                        {
+                                                            <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 9rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                                <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
+                                                            </svg>          
+                                                        </div>
+                                                    </div>
+                                                    <div class="st-content__drawer" style="display: none;">
+                                                        <div class="stat-dump">
+                                                            <div class="category">
+                                                                <div class="category__header">Game</div>
+                                                                <div class="category__stats">
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Matches Lost</div>
+                                                                        <div class="value">@map.Losses.ToString()</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Matches Played</div>
+                                                                        <div class="value">@map.Matches.ToString()</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Matches Won</div>
+                                                                        <div class="value">@map.Wins.ToString()</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Time Played</div>
+                                                                        <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Win %</div>
+                                                                        <div class="value">@map.WinPercent</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -122,10 +254,9 @@
 
         /*Control active attribute and the svg position*/
         document.addEventListener('DOMContentLoaded', function () {
-            var stItems = document.querySelectorAll('.st__item');
-
+            var stItems = document.querySelectorAll('.st-header .st-header__item');
             stItems.forEach(function (item) {
-                item.addEventListener('click', function () {                 
+                item.addEventListener('click', function () {
                     stItems.forEach(function (innerItem) {
                         innerItem.classList.remove('st-header__item--active');
                     });
@@ -144,7 +275,7 @@
                                 svg.appendChild(path);
                                 var span = innerItem.querySelector('.st__item span');
                                 innerItem.insertBefore(svg, span);
-                            } 
+                            }
                         }
                         else {
                             var svg = innerItem.querySelector('.st__item svg');
@@ -157,25 +288,29 @@
                 });
             });
         });
+
         /*Control svg image direction*/
         document.addEventListener('DOMContentLoaded', function () {
             var stHeader = document.querySelector('.st-header');
             var d1 = "m7 10 5 5 5-5z";
             var d2 = "m7 14 5-5 5 5z";
-            stHeader.addEventListener('click', function () {
-                var activeDiv = stHeader.querySelector('.st-header__item--active');
-                var path = activeDiv.querySelector('path');
-                console.log(activeDiv);
-                console.log('run');
-                if (path.getAttribute('d') === d1) {
-                    path.setAttribute('d', d2);
-                } else {
-                    path.setAttribute('d', d1);
+            stHeader.addEventListener('click', function (event) {
+                var clickedDiv = event.target;
+                if (!clickedDiv.classList.contains('st__item--expand')) {
+                    var activeDiv = stHeader.querySelector('.st-header__item--active');
+                    var path = activeDiv.querySelector('path');
+                    if (path.getAttribute('d') === d1) {
+                        path.setAttribute('d', d2);
+                    } else {
+                        path.setAttribute('d', d1);
+                    }
                 }
-                console.log(path);
             });
+        });
+
+        /*Control the first map highlight: If win active, Losses, Matches, playtime highlight*/
+        document.addEventListener("DOMContentLoaded", function () {
 
         });
     </script>
 </body>
-

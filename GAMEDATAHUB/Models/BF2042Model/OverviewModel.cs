@@ -15,6 +15,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
 
         #region Lifetime Overview
         public string UserName { get; set; }
+        public string PlatForm { get; set; }
         public string Avatar { get; set; }
         public int MatchesPlayed { get; set; }
         public decimal DamagePerMinute { get; set; }

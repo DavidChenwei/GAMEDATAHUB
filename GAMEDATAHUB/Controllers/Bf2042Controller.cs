@@ -72,10 +72,10 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Maps()
+        public ActionResult Maps(string HeroName, string PlatForm)
         {
-
-            return View();
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet();
+            return View(heroInfoModel);
         }
     }
 }

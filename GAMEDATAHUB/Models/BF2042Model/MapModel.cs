@@ -14,6 +14,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int Losses { get; set; }
         public int Matches { get; set; }
         public string WinPercent { get; set; }
+        public decimal WinPercentD { get; set; }
         public int SecondsPlayed { get; set; }
 
     }

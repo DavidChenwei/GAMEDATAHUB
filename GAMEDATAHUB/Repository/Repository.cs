@@ -20,9 +20,10 @@ namespace GAMEDATAHUB.Repository
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             heroInfoModel.PlatForm = platform;
             OverviewModel overView = new OverviewModel();
+            overView.PlatForm = platform;
             if (cache.Contains(name))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("HeroInfoKey");
+                heroInfoModel = (HeroInfoModel)cache.Get("name");
             }
             else
             {
@@ -38,7 +39,7 @@ namespace GAMEDATAHUB.Repository
                         {
                             string responseBody = await response.Content.ReadAsStringAsync();
                             heroInfoModel = JsonConvert.DeserializeObject<HeroInfoModel>(responseBody);
-                            cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(20));
+                            cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(360));
                         }
                         else
                         {
@@ -278,17 +279,30 @@ namespace GAMEDATAHUB.Repository
             }
         }
 
-        public MapModel MapsInfoGet() {
+        public HeroInfoModel MapsInfoGet() {
             MapModel mapModel = new MapModel();
+            ErrorModel error = new ErrorModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            if (cache.Contains("HeroInfoKey"))
+            if (cache.Contains("MarineChen"))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("HeroInfoKey");
+                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+                for (int i = 0; i < heroInfoModel.Maps.Count; i++) {
+                    if (decimal.TryParse(heroInfoModel.Maps[i].WinPercent.Replace("%", ""), out decimal WinPercent))
+                    {
+                        heroInfoModel.Maps[i].WinPercentD = WinPercent;
+                    }
+                    else
+                    {
+                        error.AddError("Failed to convert string to decimal: HumanPercentage");
+                    }
+                }
+                heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Wins).ToList();
+
             }
             else { 
                 //To do: read from database
             }
-            return mapModel;
+            return heroInfoModel;
         }
     }
 
