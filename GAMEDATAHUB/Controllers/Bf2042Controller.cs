@@ -74,7 +74,16 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Maps(string HeroName, string PlatForm)
         {
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet();
+            string SortMethod = "DESC";
+            string HeaderIndex = "header1";
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            return View(heroInfoModel);
+        }
+
+        [HttpPost]
+        public ActionResult Maps(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
+        {
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
             return View(heroInfoModel);
         }
     }

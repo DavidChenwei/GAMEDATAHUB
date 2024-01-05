@@ -23,7 +23,7 @@ namespace GAMEDATAHUB.Repository
             overView.PlatForm = platform;
             if (cache.Contains(name))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("name");
+                heroInfoModel = (HeroInfoModel)cache.Get(name);
             }
             else
             {
@@ -279,13 +279,15 @@ namespace GAMEDATAHUB.Repository
             }
         }
 
-        public HeroInfoModel MapsInfoGet() {
+        public HeroInfoModel MapsInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderIndex) {
             MapModel mapModel = new MapModel();
             ErrorModel error = new ErrorModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             if (cache.Contains("MarineChen"))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+                heroInfoModel.SortMethod = SortMethod;
+                heroInfoModel.HeaderIndex = HeaderIndex;
                 for (int i = 0; i < heroInfoModel.Maps.Count; i++) {
                     if (decimal.TryParse(heroInfoModel.Maps[i].WinPercent.Replace("%", ""), out decimal WinPercent))
                     {
@@ -296,8 +298,64 @@ namespace GAMEDATAHUB.Repository
                         error.AddError("Failed to convert string to decimal: HumanPercentage");
                     }
                 }
-                heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Wins).ToList();
+                if (HeaderIndex == "header1") {
+                    if (SortMethod == "Asce")
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Wins).ToList();
+                    }
+                    else
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Wins).ToList();
+                    }
+                }
 
+                if (HeaderIndex == "header2")
+                {
+                    if (SortMethod == "Asce")
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.WinPercentD).ToList();
+                    }
+                    else
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.WinPercentD).ToList();
+                    }
+                }
+
+                if (HeaderIndex == "header3")
+                {
+                    if (SortMethod == "Asce")
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Losses).ToList();
+                    }
+                    else
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Losses).ToList();
+                    }
+                }
+
+                if (HeaderIndex == "header4")
+                {
+                    if (SortMethod == "Asce")
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Matches).ToList();
+                    }
+                    else
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Matches).ToList();
+                    }
+                }
+
+                if (HeaderIndex == "header5")
+                {
+                    if (SortMethod == "Asce")
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.SecondsPlayed).ToList();
+                    }
+                    else
+                    {
+                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.SecondsPlayed).ToList();
+                    }
+                }
             }
             else { 
                 //To do: read from database

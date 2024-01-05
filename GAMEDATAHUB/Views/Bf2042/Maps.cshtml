@@ -3,7 +3,7 @@
     int maxWins = Model.Maps.Max(m => m.Wins);
     int maxLosses = Model.Maps.Max(m => m.Losses);
     int maxMatches = Model.Maps.Max(m => m.Matches);
-    int maxTime = Model.Maps.Max(m => m.SecondsPlayed)/3600;
+    int maxTime = Model.Maps.Max(m => m.SecondsPlayed) / 3600;
     decimal maxWinpercent = Model.Maps.Max(m => m.WinPercentD);
 }
 <body>
@@ -82,24 +82,122 @@
                                             <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide" style="--st-base-width: 12rem;">
                                                 <span class="label">Map</span>
                                             </div>
-                                            <div class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    <path d="m7 10 5 5 5-5z"></path>
-                                                </svg>
-                                                <span class="label">Wins</span>
-                                            </div>
-                                            <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7rem;">
-                                                <span class="label">Win %</span>
-                                            </div>
-                                            <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <span class="label">Losses</span>
-                                            </div>
-                                            <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 6.5rem;">
-                                                <span class="label">Matches</span>
-                                            </div>
-                                            <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 9rem;">
-                                                <span class="label">Playtime</span>
-                                            </div>
+                                            @if (Model.HeaderIndex == "header1")
+                                            {
+                                                <div id="header1" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                        @if (Model.SortMethod == "Desc")
+                                                        {
+                                                            <path d="m7 10 5 5 5-5z"></path>
+                                                        }
+                                                        else
+                                                        {
+                                                            <path d="m7 14 5-5 5 5z"></path>
+                                                        }
+                                                    </svg>
+                                                    <span id="header1" class="label">Wins</span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div id="header1" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                                    <span id="header1" class="label">Wins</span>
+                                                </div>
+                                            }
+
+                                            @if (Model.HeaderIndex == "header2")
+                                            {
+                                                <div id="header2" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 7rem;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                        @if (Model.SortMethod == "Desc")
+                                                        {
+                                                            <path d="m7 10 5 5 5-5z"></path>
+                                                        }
+                                                        else
+                                                        {
+                                                            <path d="m7 14 5-5 5 5z"></path>
+                                                        }
+                                                        <span id="header2" class="label">Win %</span>
+                                                    </svg>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div id="header2" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7rem;">
+                                                    <span id="header2" class="label">Win %</span>
+                                                </div>
+                                            }
+
+                                            @if (Model.HeaderIndex == "header3")
+                                            {
+                                                <div id="header3" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                        @if (Model.SortMethod == "Desc")
+                                                        {
+                                                            <path d="m7 10 5 5 5-5z"></path>
+                                                        }
+                                                        else
+                                                        {
+                                                            <path d="m7 14 5-5 5 5z"></path>
+                                                        }
+                                                        <span id="header3" class="label">Losses</span>
+                                                    </svg>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div id="header3" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                                    <span id="header3" class="label">Losses</span>
+                                                </div>
+                                            }
+
+                                            @if (Model.HeaderIndex == "header4")
+                                            {
+                                                <div id="header4" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 6.5rem;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                        @if (Model.SortMethod == "Desc")
+                                                        {
+                                                            <path d="m7 10 5 5 5-5z"></path>
+                                                        }
+                                                        else
+                                                        {
+                                                            <path d="m7 14 5-5 5 5z"></path>
+                                                        }
+                                                        <span id="header4" class="label">Matches</span>
+                                                    </svg>
+
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div id="header4" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 6.5rem;">
+                                                    <span id="header4" class="label">Matches</span>
+                                                </div>
+                                            }
+
+                                            @if (Model.HeaderIndex == "header5")
+                                            {
+                                                <div id="header5" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 9rem;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                        @if (Model.SortMethod == "Desc")
+                                                        {
+                                                            <path d="m7 10 5 5 5-5z"></path>
+                                                        }
+                                                        else
+                                                        {
+                                                            <path d="m7 14 5-5 5 5z"></path>
+                                                        }
+                                                    <span id="header5" class="label">Playtime</span>
+                                                    </svg>                                                  
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div id="header5" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 9rem;">
+                                                    <span id="header5" class="label">Playtime</span>
+                                                </div>
+                                            }
+
                                             <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                         </div>
                                         <div class="st-content">
@@ -197,7 +295,7 @@
                                                         <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
                                                                 <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
-                                                            </svg>          
+                                                            </svg>
                                                         </div>
                                                     </div>
                                                     <div class="st-content__drawer" style="display: none;">
@@ -235,6 +333,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <form method="post" action="@Url.Action("Maps", "Bf2042")" id="sortform">
+                                <input name="HeroName" value="@Model.UserName" hidden>
+                                <input name="Platform" value="@Model.PlatForm" hidden>
+                                <input name="Sortmethod" value="@Model.SortMethod" hidden>
+                                <input name="HeaderIndex" value="@Model.SortMethod" hidden>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -247,7 +351,6 @@
         itemContents.forEach(itemContent => {
             itemContent.addEventListener('click', function () {
                 itemContents.forEach(item => item.classList.remove('.active'));
-                console.log("sss")
                 this.classList.add('.active');
             });
         });
@@ -291,18 +394,28 @@
         /*Control svg image direction*/
         document.addEventListener('DOMContentLoaded', function () {
             var stHeader = document.querySelector('.st-header');
-            var d1 = "m7 10 5 5 5-5z";
-            var d2 = "m7 14 5-5 5 5z";
+            var d2 = "m7 10 5 5 5-5z";
+            var d1 = "m7 14 5-5 5 5z";
             stHeader.addEventListener('click', function (event) {
                 var clickedDiv = event.target;
                 if (!clickedDiv.classList.contains('st__item--expand')) {
+                    var id = clickedDiv.id;
+                    console.log(id);
                     var activeDiv = stHeader.querySelector('.st-header__item--active');
                     var path = activeDiv.querySelector('path');
+                    var sortMethod = document.querySelector('input[name="Sortmethod"]');
+                    var headerIndex = document.querySelector('input[name="HeaderIndex"]');
                     if (path.getAttribute('d') === d1) {
                         path.setAttribute('d', d2);
+                        sortMethod.value = "Desc";
                     } else {
                         path.setAttribute('d', d1);
+                        sortMethod.value = "Asce";
                     }
+                    headerIndex.value = id;
+                    console.log(headerIndex);
+                    var form = document.querySelector('#sortform');
+                    form.submit();
                 }
             });
         });

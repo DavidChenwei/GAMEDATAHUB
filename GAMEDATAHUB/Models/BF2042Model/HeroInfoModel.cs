@@ -65,6 +65,8 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int VehiclesDestroyed { get; set; }
         public int EnemiesSpotted { get; set; }
         public int Mvp { get; set; }
+        public string SortMethod { get; set; } = "DESC";
+        public string HeaderIndex { get; set; } = "header1";
 
         public DividedKillsModel DividedKills;
 
