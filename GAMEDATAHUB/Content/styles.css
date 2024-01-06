@@ -2241,3 +2241,8 @@ st-content__item-value.st__item--sticky {
 .st-content__item-expand--active {
     background-color: var(--color-action);
 }
+
+/*Game mode part*/
+.gamemodes {
+    overflow-x: auto;
+}

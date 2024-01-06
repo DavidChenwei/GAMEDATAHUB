@@ -290,6 +290,7 @@
     <Content Include="Views\Bf2042\Bf2042.cshtml" />
     <Content Include="Views\Bf2042\AnimationPage.cshtml" />
     <Content Include="Views\Bf2042\Maps.cshtml" />
+    <Content Include="Views\Bf2042\Modes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
