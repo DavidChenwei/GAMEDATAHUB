@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using GAMEDATAHUB.Models.BF2042Model;
 using GAMEDATAHUB.Models;
 using System.Runtime.Caching;
+using static GAMEDATAHUB.Repository.Utils;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -16,7 +17,7 @@ namespace GAMEDATAHUB.Repository
         MemoryCache cache = MemoryCache.Default;
         public async Task<OverviewModel> HeroInfoGet(string name, string platform)
         {
-            
+
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             heroInfoModel.PlatForm = platform;
             OverviewModel overView = new OverviewModel();
@@ -279,7 +280,8 @@ namespace GAMEDATAHUB.Repository
             }
         }
 
-        public HeroInfoModel MapsInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderIndex) {
+        public HeroInfoModel MapsInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
+        {
             MapModel mapModel = new MapModel();
             ErrorModel error = new ErrorModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
@@ -288,7 +290,8 @@ namespace GAMEDATAHUB.Repository
                 heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
                 heroInfoModel.SortMethod = SortMethod;
                 heroInfoModel.HeaderIndex = HeaderIndex;
-                for (int i = 0; i < heroInfoModel.Maps.Count; i++) {
+                for (int i = 0; i < heroInfoModel.Maps.Count; i++)
+                {
                     if (decimal.TryParse(heroInfoModel.Maps[i].WinPercent.Replace("%", ""), out decimal WinPercent))
                     {
                         heroInfoModel.Maps[i].WinPercentD = WinPercent;
@@ -298,7 +301,8 @@ namespace GAMEDATAHUB.Repository
                         error.AddError("Failed to convert string to decimal: HumanPercentage");
                     }
                 }
-                if (HeaderIndex == "header1") {
+                if (HeaderIndex == "header1")
+                {
                     if (SortMethod == "Asce")
                     {
                         heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Wins).ToList();
@@ -357,11 +361,100 @@ namespace GAMEDATAHUB.Repository
                     }
                 }
             }
-            else { 
+            else
+            {
                 //To do: read from database
             }
             return heroInfoModel;
         }
-    }
 
+        public List<GamemodeModel> GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains("MarineChen"))
+            {
+                 heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+            }
+            else { 
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
+            {
+                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
+                {
+                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
+                }
+                else
+                {
+                    error.AddError("Failed to convert string to decimal: HumanPercentage");
+                }
+            }
+
+            if (HeaderName == Utils.HeaderWin)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Wins).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Wins).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderWinPercent)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.WinPercentD).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.WinPercentD).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderGameMode)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.GamemodeName).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.GamemodeName).ToList();
+                }
+            }
+
+            return heroInfoModel.Gamemodes;
+        }
+
+    }
 }

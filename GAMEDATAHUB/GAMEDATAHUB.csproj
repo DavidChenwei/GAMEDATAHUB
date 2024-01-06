@@ -197,6 +197,7 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\Utils.cs" />
     <Compile Include="Ribbon.cs">
       <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>

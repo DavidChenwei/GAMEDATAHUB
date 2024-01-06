@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using GAMEDATAHUB.Repository;
 using GAMEDATAHUB.Models.BF2042Model;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace GAMEDATAHUB.Controllers
 {
@@ -94,6 +95,16 @@ namespace GAMEDATAHUB.Controllers
             string HeaderIndex = "header1";
             HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
             return View(heroInfoModel);
+        }
+
+        [HttpPost]
+        public JsonResult ModesUpdate(ModeJson modeJson) {
+
+
+            List<GamemodeModel> GameModes = Resp.GameModeInfoGet(modeJson.SortMethod,modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(GameModes);
+
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
     }
 }

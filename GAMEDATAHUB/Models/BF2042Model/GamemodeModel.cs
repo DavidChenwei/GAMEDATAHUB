@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace GAMEDATAHUB.Models.BF2042Model
 {
@@ -23,11 +20,19 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int ObjectivesDisarmed { get; set; }
         public int ObjectivesDefended { get; set; }
         public int ObjectivesDestroyed { get; set; }
+        public int objectivesCaptured { get; set; }
         public int ObjetiveTime { get; set; }
         public decimal KPM { get; set; }
         public string WinPercent { get; set; }
+        public decimal WinPercentD { get; set; }
         public int SecondsPlayed { get; set; }
-
-
     }
+
+    public class ModeJson {
+        public string HeaderName { get; set; }
+        public string SortMethod { get; set; }
+        public string HeroName { get; set; }
+        public string PlatForm { get; set; }
+    }
+
 }
