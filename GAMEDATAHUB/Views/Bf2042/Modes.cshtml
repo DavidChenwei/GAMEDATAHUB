@@ -1,11 +1,5 @@
-﻿@model GAMEDATAHUB.Models.BF2042Model.HeroInfoModel
-@{
-    int maxWins = Model.Gamemodes.Max(m => m.Wins);
-    int maxKills = Model.Gamemodes.Max(m => m.Kills);
-    decimal maxKPM = Model.Gamemodes.Max(m => m.KPM);
-    int maxTime = Model.Gamemodes.Max(m => m.HoursPlayed);
-    decimal maxWinpercent = Model.Gamemodes.Max(m => m.WinPercentD);
-}
+﻿@model GAMEDATAHUB.Models.BF2042Model.GameModeView
+
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -44,7 +38,7 @@
                                         </div>
                                         <span class="trn-ign ph-details__name">
                                             <span data-v-0b2ed7a2="" class="fit-text-parent">
-                                                <span data-v-0b2ed7a2="" class="trn-ign__username">MarineChen</span>
+                                                <span data-v-0b2ed7a2="" class="trn-ign__username">@Model.UserName</span>
                                             </span>
                                         </span>
                                     </div>
@@ -106,7 +100,7 @@
                                         </div>
                                         <div class="st-content">
                                             <div class="st-content__category">
-                                                @foreach (var mode in Model.Gamemodes)
+                                                @foreach (var mode in Model.GameModeViews)
                                                 {
                                                 <div class="st-content__item">
 
@@ -115,7 +109,7 @@
                                                             <div class="value">@mode.GamemodeName</div>
                                                         </div>
                                                     </div>
-                                                    @if (maxWins == mode.Wins)
+                                                    @if (Model.MaxWins == mode.Wins)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
                                                             <div class="info">
@@ -131,7 +125,7 @@
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxWinpercent == mode.WinPercentD)
+                                                    @if (Model.MaxWinPercent == mode.WinPercentD)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
                                                             <div class="info">
@@ -147,7 +141,7 @@
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxKills == mode.Kills)
+                                                    @if (Model.MaxKills == mode.Kills)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
                                                             <div class="info">
@@ -163,7 +157,7 @@
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxKPM == mode.KPM)
+                                                    @if (Model.MaxKPM == mode.KPM)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
                                                             <div class="info">
@@ -179,7 +173,7 @@
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxTime == mode.HoursPlayed)
+                                                    @if (Model.MaxTime == mode.HoursPlayed)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
                                                             <div class="info">
@@ -370,34 +364,57 @@
                         success: function (response){
                             var parsedData = JSON.parse(response);
                             //console.log(parsedData);
+                            let gameModeViews = parsedData.GameModeViews;
                             //Update the content item infomation
                             var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
                             var JsonIndex = 0;
-                            console.log(contentItems);
                             contentItems.forEach(function (item) {
                                 var HeaderIndex = 0;
-                                var childItems = item.querySelectorAll('.st__item .info .value');
-                                childItems.forEach(function (child) {                                    
+                                var st__items = item.querySelectorAll('.st__item');
+                                st__items.forEach(function (st__item) {
+                                    var child = st__item.querySelector('.info .value');
                                     if (HeaderIndex == 0) {
-                                        child.innerText = parsedData[JsonIndex]['GamemodeName'];
+                                        child.innerText = gameModeViews[JsonIndex]['GamemodeName'];
                                     }
                                     if (HeaderIndex == 1) {
-                                        child.innerText = parsedData[JsonIndex]['Wins'].toLocaleString('en-US');
-                                        if (maxWins == parsedData[JsonIndex]['Wins']) {
-                                        
+                                        child.innerText = gameModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
+                                        if (parsedData['MaxWins'] == gameModeViews[JsonIndex]['Wins']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {                                           
+                                            st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 2) {
-                                        child.innerText = parsedData[JsonIndex]['WinPercent'].toLocaleString('en-US');
+                                        child.innerText = gameModeViews[JsonIndex]['WinPercent'].toLocaleString('en-US');
+                                        if (parsedData['MaxWinPercent'] == gameModeViews[JsonIndex]['WinPercentD']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
                                     }
                                     if (HeaderIndex == 3) {
-                                        child.innerText = parsedData[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        child.innerText = gameModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        if (parsedData['MaxKills'] == gameModeViews[JsonIndex]['Kills']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
                                     }
                                     if (HeaderIndex == 4) {
-                                        child.innerText = parsedData[JsonIndex]['KPM'].toLocaleString('en-US');
+                                        child.innerText = gameModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                        if (parsedData['MaxKPM'] == gameModeViews[JsonIndex]['KPM']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
                                     }
                                     if (HeaderIndex == 5) {
-                                        child.innerText = parsedData[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                        child.innerText = gameModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
+                                        if (parsedData['MaxTime'] == gameModeViews[JsonIndex]['HoursPlayed']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
                                     }
                                     HeaderIndex += 1;
                                 });
@@ -418,16 +435,16 @@
                                         var id = category.querySelector('.category__header').innerText;
                                         stats.forEach(function (state) {
                                             if (statIndex == 0) {
-                                                state.innerText = parsedData[JsonIndex]['Assists'].toLocaleString('en-US');
+                                                state.innerText = gameModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 1) {
-                                                state.innerText = parsedData[JsonIndex]['Kills'].toLocaleString('en-US');
+                                                state.innerText = gameModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 2) {
-                                                state.innerText = parsedData[JsonIndex]['KPM'].toLocaleString('en-US');
+                                                state.innerText = gameModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 3) {
-                                                state.innerText = parsedData[JsonIndex]['Revives'].toLocaleString('en-US');
+                                                state.innerText = gameModeViews[JsonIndex]['Revives'].toLocaleString('en-US');
                                             }
                                             statIndex += 1;
                                         });
@@ -437,25 +454,25 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = parsedData[JsonIndex]['BestSquad'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['BestSquad'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = parsedData[JsonIndex]['Losses'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['Losses'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 2) {
-                                                    state.innerText = parsedData[JsonIndex]['Matches'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['Matches'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 3) {
-                                                    state.innerText = parsedData[JsonIndex]['Wins'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 4) {
-                                                    state.innerText = parsedData[JsonIndex]['Mvp'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['Mvp'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 5) {
-                                                    state.innerText = parsedData[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                                    state.innerText = gameModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
                                                 }
                                                 if (statIndex == 6) {
-                                                    state.innerText = parsedData[JsonIndex]['WinPercent'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['WinPercent'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });
@@ -465,25 +482,25 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDefended'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['ObjectivesDefended'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = parsedData[JsonIndex]['SectorDefend'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['SectorDefend'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 2) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjetiveHours'].toLocaleString('en-US') + "H";
+                                                    state.innerText = gameModeViews[JsonIndex]['ObjetiveHours'].toLocaleString('en-US') + "H";
                                                 }
                                                 if (statIndex == 3) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesArmed'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['ObjectivesArmed'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 4) {
-                                                    state.innerText = parsedData[JsonIndex]['objectivesCaptured'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['objectivesCaptured'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 5) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDestroyed'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['ObjectivesDestroyed'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 6) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDisarmed'].toLocaleString('en-US');
+                                                    state.innerText = gameModeViews[JsonIndex]['ObjectivesDisarmed'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });

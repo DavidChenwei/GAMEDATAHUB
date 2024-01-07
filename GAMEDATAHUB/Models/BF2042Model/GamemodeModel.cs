@@ -28,18 +28,27 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public decimal WinPercentD { get; set; }
         public int SecondsPlayed { get; set; }
         public int HoursPlayed { get; set; }
-        public int MaxWins { get; set; }
-        public int MaxKills { get; set; }
-        public int MaxKPM { get; set; }
-        public int MaxTime { get; set; }
-        public decimal MaxWinPercent { get; set; }
-
     }
 
     public class ModeJson {
         public string HeaderName { get; set; }
         public string SortMethod { get; set; }
         public string HeroName { get; set; }
+        public string PlatForm { get; set; }
+    }
+
+    public class GameModeView {
+        public GameModeView(){
+            GameModeViews = new List<GamemodeModel>();
+        }
+        public List<GamemodeModel> GameModeViews { get; set; }
+        public int MaxWins { get; set; }
+        public int MaxKills { get; set; }
+        public decimal MaxKPM { get; set; }
+        public int MaxTime { get; set; }
+        public decimal MaxWinPercent { get; set; }
+        public string UserName { get; set; }
+        public string Avatar { get; set; }
         public string PlatForm { get; set; }
     }
 

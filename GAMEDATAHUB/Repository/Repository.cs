@@ -1,23 +1,21 @@
-﻿using System;
+﻿using GAMEDATAHUB.Models;
+using GAMEDATAHUB.Models.BF2042Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web;
-using Newtonsoft.Json;
-using GAMEDATAHUB.Models.BF2042Model;
-using GAMEDATAHUB.Models;
 using System.Runtime.Caching;
-using static GAMEDATAHUB.Repository.Utils;
+using System.Threading.Tasks;
 
 namespace GAMEDATAHUB.Repository
 {
     public class Repository
     {
-        MemoryCache cache = MemoryCache.Default;
+        private MemoryCache cache = MemoryCache.Default;
+
         public async Task<OverviewModel> HeroInfoGet(string name, string platform)
         {
-
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             heroInfoModel.PlatForm = platform;
             OverviewModel overView = new OverviewModel();
@@ -55,7 +53,9 @@ namespace GAMEDATAHUB.Repository
             }
 
             ErrorModel error = new ErrorModel();
+
             #region show OverView Date First
+
             overView.UserName = heroInfoModel.UserName;
             overView.Avatar = heroInfoModel.Avatar;
             overView.MatchesPlayed = heroInfoModel.MatchesPlayed;
@@ -148,9 +148,11 @@ namespace GAMEDATAHUB.Repository
                 specialistsOverView.KPM = specialist.KPM;
                 overView.SpecialistsOverViews.Add(specialistsOverView);
             }
-            #endregion
+
+            #endregion show OverView Date First
 
             #region Database Operaion
+
             //GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
 
             //#region Hero
@@ -256,14 +258,14 @@ namespace GAMEDATAHUB.Repository
             ////        error.AddError("Failed to convert string to decimal: DamagePerMinute");
             ////    }
 
-
             ////}
             //#endregion
             //foreach (var weapon in heroInfoModel.Weapons)
             //{
-
             //}
-            #endregion
+
+            #endregion Database Operaion
+
             return overView;
         }
 
@@ -368,113 +370,10 @@ namespace GAMEDATAHUB.Repository
             return heroInfoModel;
         }
 
-        public List<GamemodeModel> GameModeInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        public GameModeView GameModeInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
-            
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
-            if (cache.Contains("MarineChen"))
-            {
-                 heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
-            }
-            else { 
-                //To do: Read from Database
-            }
-
-            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
-            {
-                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
-                {
-                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: HumanPercentage");
-                }
-                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
-                heroInfoModel.Gamemodes[i].ObjetiveHours = heroInfoModel.Gamemodes[i].ObjetiveTime / 3600;
-
-            }
-
-            if (HeaderName == Utils.HeaderWin)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Wins).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Wins).ToList();
-                }
-            }
-
-            if (HeaderName == Utils.HeaderKill)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Kills).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Kills).ToList();
-                }
-            }
-
-            if (HeaderName == Utils.HeaderWinPercent)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.WinPercentD).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.WinPercentD).ToList();
-                }
-            }
-
-            if (HeaderName == Utils.HeaderPlayTime)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.SecondsPlayed).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.SecondsPlayed).ToList();
-                }
-            }
-
-            if (HeaderName == Utils.HeaderKPM)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.KPM).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.KPM).ToList();
-                }
-            }
-
-            if (HeaderName == Utils.HeaderGameMode)
-            {
-                if (SortMethod == Utils.AsceMethod)
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.GamemodeName).ToList();
-                }
-                else
-                {
-                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.GamemodeName).ToList();
-                }
-            }
-
-            return heroInfoModel.Gamemodes;
-        }
-
-        public HeroInfoModel GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
-        {
-
-            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            GameModeView gameModeView = new GameModeView();
             ErrorModel error = new ErrorModel();
             if (cache.Contains("MarineChen"))
             {
@@ -496,14 +395,14 @@ namespace GAMEDATAHUB.Repository
                     error.AddError("Failed to convert string to decimal: HumanPercentage");
                 }
                 heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
-
+                heroInfoModel.Gamemodes[i].ObjetiveHours = heroInfoModel.Gamemodes[i].ObjetiveTime / 3600;
             }
 
-            heroInfoModel.Gamemodes.ma = Model.Gamemodes.Max(m => m.Wins);
-                int maxKills = Model.Gamemodes.Max(m => m.Kills);
-                decimal maxKPM = Model.Gamemodes.Max(m => m.KPM);
-                int maxTime = Model.Gamemodes.Max(m => m.HoursPlayed);
-                decimal maxWinpercent = Model.Gamemodes.Max(m => m.WinPercentD);
+            gameModeView.MaxWins = heroInfoModel.Gamemodes.Max(m => m.Wins);
+            gameModeView.MaxKills = heroInfoModel.Gamemodes.Max(m => m.Kills);
+            gameModeView.MaxKPM = heroInfoModel.Gamemodes.Max(m => m.KPM);
+            gameModeView.MaxTime = heroInfoModel.Gamemodes.Max(m => m.HoursPlayed);
+            gameModeView.MaxWinPercent = heroInfoModel.Gamemodes.Max(m => m.WinPercentD);
 
             if (HeaderName == Utils.HeaderWin)
             {
@@ -576,8 +475,119 @@ namespace GAMEDATAHUB.Repository
                     heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.GamemodeName).ToList();
                 }
             }
+            gameModeView.GameModeViews = heroInfoModel.Gamemodes;
+            return gameModeView;
+        }
 
-            return heroInfoModel;
+        public GameModeView GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            HeroInfoModel heroInfoModel = new HeroInfoModel();            
+            ErrorModel error = new ErrorModel();
+            GameModeView gameModeView = new GameModeView();
+            if (cache.Contains("MarineChen"))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
+            {
+                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
+                {
+                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
+                }
+                else
+                {
+                    error.AddError("Failed to convert string to decimal: HumanPercentage");
+                }
+                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
+            }
+
+            gameModeView.MaxWins = heroInfoModel.Gamemodes.Max(m => m.Wins);
+            gameModeView.MaxKills = heroInfoModel.Gamemodes.Max(m => m.Kills);
+            gameModeView.MaxKPM = heroInfoModel.Gamemodes.Max(m => m.KPM);
+            gameModeView.MaxTime = heroInfoModel.Gamemodes.Max(m => m.HoursPlayed);
+            gameModeView.MaxWinPercent = heroInfoModel.Gamemodes.Max(m => m.WinPercentD);
+            gameModeView.UserName = heroInfoModel.UserName;
+            gameModeView.Avatar = heroInfoModel.Avatar;
+            gameModeView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderWin)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Wins).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Wins).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderWinPercent)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.WinPercentD).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.WinPercentD).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderGameMode)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.GamemodeName).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.GamemodeName).ToList();
+                }
+            }
+            gameModeView.GameModeViews = heroInfoModel.Gamemodes;
+            return gameModeView;
         }
     }
 }

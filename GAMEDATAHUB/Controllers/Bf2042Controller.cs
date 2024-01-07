@@ -92,15 +92,15 @@ namespace GAMEDATAHUB.Controllers
         public ActionResult Modes(string HeroName, string PlatForm)
         {
 
-            HeroInfoModel heroInfoModel = Resp.GameModeInfoGet(Utils.DescMethods, Utils.HeaderWin, HeroName, PlatForm);
-            return View(heroInfoModel);
+            GameModeView GameModes = Resp.GameModeInfoGet(Utils.DescMethods, Utils.HeaderWin, HeroName, PlatForm);
+            return View(GameModes);
         }
 
         [HttpPost]
         public JsonResult ModesUpdate(ModeJson modeJson) {
 
 
-            List<GamemodeModel> GameModes = Resp.GameModeInfoUpdate(modeJson.SortMethod,modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            GameModeView GameModes = Resp.GameModeInfoUpdate(modeJson.SortMethod,modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
             var JsonPayLoad = JsonConvert.SerializeObject(GameModes);
 
             return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
