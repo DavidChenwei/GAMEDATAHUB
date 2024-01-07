@@ -91,9 +91,8 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Modes(string HeroName, string PlatForm)
         {
-            string SortMethod = "DESC";
-            string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+
+            HeroInfoModel heroInfoModel = Resp.GameModeInfoGet(Utils.DescMethods, Utils.HeaderWin, HeroName, PlatForm);
             return View(heroInfoModel);
         }
 
@@ -101,7 +100,7 @@ namespace GAMEDATAHUB.Controllers
         public JsonResult ModesUpdate(ModeJson modeJson) {
 
 
-            List<GamemodeModel> GameModes = Resp.GameModeInfoGet(modeJson.SortMethod,modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            List<GamemodeModel> GameModes = Resp.GameModeInfoUpdate(modeJson.SortMethod,modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
             var JsonPayLoad = JsonConvert.SerializeObject(GameModes);
 
             return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);

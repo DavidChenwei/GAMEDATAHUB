@@ -368,7 +368,7 @@ namespace GAMEDATAHUB.Repository
             return heroInfoModel;
         }
 
-        public List<GamemodeModel> GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        public List<GamemodeModel> GameModeInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
             
             HeroInfoModel heroInfoModel = new HeroInfoModel();
@@ -391,6 +391,9 @@ namespace GAMEDATAHUB.Repository
                 {
                     error.AddError("Failed to convert string to decimal: HumanPercentage");
                 }
+                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
+                heroInfoModel.Gamemodes[i].ObjetiveHours = heroInfoModel.Gamemodes[i].ObjetiveTime / 3600;
+
             }
 
             if (HeaderName == Utils.HeaderWin)
@@ -402,6 +405,18 @@ namespace GAMEDATAHUB.Repository
                 else
                 {
                     heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Wins).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Kills).ToList();
                 }
             }
 
@@ -456,5 +471,113 @@ namespace GAMEDATAHUB.Repository
             return heroInfoModel.Gamemodes;
         }
 
+        public HeroInfoModel GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains("MarineChen"))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
+            {
+                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
+                {
+                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
+                }
+                else
+                {
+                    error.AddError("Failed to convert string to decimal: HumanPercentage");
+                }
+                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
+
+            }
+
+            heroInfoModel.Gamemodes.ma = Model.Gamemodes.Max(m => m.Wins);
+                int maxKills = Model.Gamemodes.Max(m => m.Kills);
+                decimal maxKPM = Model.Gamemodes.Max(m => m.KPM);
+                int maxTime = Model.Gamemodes.Max(m => m.HoursPlayed);
+                decimal maxWinpercent = Model.Gamemodes.Max(m => m.WinPercentD);
+
+            if (HeaderName == Utils.HeaderWin)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Wins).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Wins).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderWinPercent)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.WinPercentD).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.WinPercentD).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderGameMode)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderBy(w => w.GamemodeName).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gamemodes = heroInfoModel.Gamemodes.OrderByDescending(w => w.GamemodeName).ToList();
+                }
+            }
+
+            return heroInfoModel;
+        }
     }
 }

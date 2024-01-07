@@ -22,10 +22,18 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int ObjectivesDestroyed { get; set; }
         public int objectivesCaptured { get; set; }
         public int ObjetiveTime { get; set; }
+        public int ObjetiveHours { get; set; }
         public decimal KPM { get; set; }
         public string WinPercent { get; set; }
         public decimal WinPercentD { get; set; }
         public int SecondsPlayed { get; set; }
+        public int HoursPlayed { get; set; }
+        public int MaxWins { get; set; }
+        public int MaxKills { get; set; }
+        public int MaxKPM { get; set; }
+        public int MaxTime { get; set; }
+        public decimal MaxWinPercent { get; set; }
+
     }
 
     public class ModeJson {

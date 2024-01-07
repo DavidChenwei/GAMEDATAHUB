@@ -1,5 +1,11 @@
 ﻿@model GAMEDATAHUB.Models.BF2042Model.HeroInfoModel
-
+@{
+    int maxWins = Model.Gamemodes.Max(m => m.Wins);
+    int maxKills = Model.Gamemodes.Max(m => m.Kills);
+    decimal maxKPM = Model.Gamemodes.Max(m => m.KPM);
+    int maxTime = Model.Gamemodes.Max(m => m.HoursPlayed);
+    decimal maxWinpercent = Model.Gamemodes.Max(m => m.WinPercentD);
+}
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -16,7 +22,7 @@
                                 <div class="user-avatar user-avatar--large ph-avatar">
                                     <div class="trn-tooltip-wrapper">
                                     </div>
-                                    <img class="user-avatar__image" src="" alt=""><!---->
+                                    <img class="user-avatar__image" src=@Model.Avatar alt=""><!---->
                                 </div>
                                 <div class="ph-details">
                                     <div class="ph-details__subtitle">
@@ -100,134 +106,194 @@
                                         </div>
                                         <div class="st-content">
                                             <div class="st-content__category">
-                                                <div id="GameModel1" class="st-content__item">
+                                                @foreach (var mode in Model.Gamemodes)
+                                                {
+                                                <div class="st-content__item">
+
                                                     <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 14rem;">
                                                         <div class="info">
-                                                            <div class="value">Modbuilder Custom</div>
+                                                            <div class="value">@mode.GamemodeName</div>
                                                         </div>
                                                     </div>
-                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">367</div>
+                                                    @if (maxWins == mode.Wins)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.Wins.ToString()</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 8rem;">
-                                                        <div class="info">
-                                                            <div class="value">57.5%</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--active" style="--st-base-width: 5.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.Wins.ToString()</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">144</div>
+                                                    }
+                                                    @if (maxWinpercent == mode.WinPercentD)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.WinPercent</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">0.01</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 8rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.WinPercent</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
-                                                        <div class="info">
-                                                            <div class="value">170h</div>
+                                                    }
+                                                    @if (maxKills == mode.Kills)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.Kills.ToString("N0")</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.Kills.ToString("N0")</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    @if (maxKPM == mode.KPM)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.KPM.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@mode.KPM.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    @if (maxTime == mode.HoursPlayed)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
+                                                            <div class="info">
+                                                                <div class="value">@(mode.HoursPlayed)H</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 8rem;">
+                                                            <div class="info">
+                                                                <div class="value">@(mode.HoursPlayed)H</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
                                                     <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
                                                             <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
                                                         </svg>
                                                     </div>
                                                 </div>
-                                                <div class="st-content__drawer" style="">
-                                                    <div class="stat-dump">
-                                                        <div id="combat" class="category">
-                                                            <div class="category__header">Combat</div>
-                                                            <div class="category__stats">
-                                                                <div id="combat1" class="category__stats-stat">
-                                                                    <div class="label">Assists</div>
-                                                                    <div class="value">123</div>
-                                                                </div>
-                                                                <div id="combat2" class="category__stats-stat">
-                                                                    <div class="label">Kills</div>
-                                                                    <div class="value">144</div>
-                                                                </div>
-                                                                <div id="combat3" class="category__stats-stat">
-                                                                    <div class="label">Kills/Min</div>
-                                                                    <div class="value">0.01</div>
-                                                                </div>
-                                                                <div id="combat4" class="category__stats-stat">
-                                                                    <div class="label">Revives</div>
-                                                                    <div class="value">11</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="game" class="category">
-                                                            <div class="category__header">Game</div>
-                                                            <div class="category__stats">
-                                                                <div id="game1" class="category__stats-stat">
-                                                                    <div class="label">Best Squad</div>
-                                                                    <div class="value">21</div>
-                                                                </div>
-                                                                <div id="game2" class="category__stats-stat">
-                                                                    <div class="label">Matches Lost</div>
-                                                                    <div class="value">270</div>
-                                                                </div>
-                                                                <div id="game3" class="category__stats-stat">
-                                                                    <div class="label">Matches Played</div>
-                                                                    <div class="value">638</div>
-                                                                </div>
-                                                                <div id="game4" class="category__stats-stat">
-                                                                    <div class="label">Matches Won</div>
-                                                                    <div class="value">367</div>
-                                                                </div>
-                                                                <div id="game5" class="category__stats-stat">
-                                                                    <div class="label">MVPs</div>
-                                                                    <div class="value">58</div>
-                                                                </div>
-                                                                <div id="game6" class="category__stats-stat">
-                                                                    <div class="label">Time Played</div>
-                                                                    <div class="value">170h</div>
-                                                                </div>
-                                                                <div id="game7" class="category__stats-stat">
-                                                                    <div class="label">Win %</div>
-                                                                    <div class="value">57.5%</div>
+                                                    <div class="st-content__drawer" style="display: none;">
+                                                        <div class="stat-dump">
+                                                            <div class="category">
+                                                                <div class="category__header">Combat</div>
+                                                                <div class="category__stats">
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Assists</div>
+                                                                        <div class="value">@mode.Assists.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Kills</div>
+                                                                        <div class="value">@mode.Kills.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Kills/Min</div>
+                                                                        <div class="value">@mode.KPM.ToString()</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Revives</div>
+                                                                        <div class="value">@mode.Revives.ToString("N0")</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div id="objective" class="category">
-                                                            <div class="category__header">Objective</div>
-                                                            <div class="category__stats">
-                                                                <div id="objective1" class="category__stats-stat">
-                                                                    <div class="label">Defended Objectives</div>
-                                                                    <div class="value">45</div>
+                                                            <div class="category">
+                                                                <div class="category__header">Game</div>
+                                                                <div class="category__stats">
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Best Squad</div>
+                                                                        <div class="value">@mode.BestSquad.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Matches Lost</div>
+                                                                        <div class="value">@mode.Losses.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class=" category__stats-stat">
+                                                                        <div class="label">Matches Played</div>
+                                                                        <div class="value">@mode.Matches.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Matches Won</div>
+                                                                        <div class="value">@mode.Wins.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">MVPs</div>
+                                                                        <div class="value">@mode.Mvp.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Time Played</div>
+                                                                        <div class="value">@(mode.HoursPlayed)H</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Win %</div>
+                                                                        <div class="value">@mode.WinPercent</div>
+                                                                    </div>
                                                                 </div>
-                                                                <div id="objective2" class="category__stats-stat">
-                                                                    <div class="label">Defended Sectors</div>
-                                                                    <div class="value">0</div>
-                                                                </div>
-                                                                <div id="objective3" class="category__stats-stat">
-                                                                    <div class="label">Objective Time</div>
-                                                                    <div class="value">102h</div>
-                                                                </div>
-                                                                <div id="objective4" class="category__stats-stat">
-                                                                    <div class="label">Objectives Armed</div>
-                                                                    <div class="value">0</div>
-                                                                </div>
-                                                                <div id="objective5" class="category__stats-stat">
-                                                                    <div class="label">Objectives Captured</div>
-                                                                    <div class="value">52,950</div>
-                                                                </div>
-                                                                <div id="objective6" class="category__stats-stat">
-                                                                    <div class="label">Objectives Destroyed</div>
-                                                                    <div class="value">0</div>
-                                                                </div>
-                                                                <div id="objective7" class="category__stats-stat">
-                                                                    <div class="label">Objectives Disarmed</div>
-                                                                    <div class="value">0</div>
+                                                            </div>
+                                                            <div class="category">
+                                                                <div class="category__header">Objective</div>
+                                                                <div class="category__stats">
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Defended Objectives</div>
+                                                                        <div class="value">@mode.ObjectivesDefended.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Defended Sectors</div>
+                                                                        <div class="value">@mode.SectorDefend.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Objective Time</div>
+                                                                        <div class="value">@(mode.ObjetiveTime/3600)H</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Objectives Armed</div>
+                                                                        <div class="value">@mode.ObjectivesArmed.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Objectives Captured</div>
+                                                                        <div class="value">@mode.objectivesCaptured.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Objectives Destroyed</div>
+                                                                        <div class="value">@mode.ObjectivesDestroyed.ToString("N0")</div>
+                                                                    </div>
+                                                                    <div class="category__stats-stat">
+                                                                        <div class="label">Objectives Disarmed</div>
+                                                                        <div class="value">@mode.ObjectivesDisarmed.ToString("N0")</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -303,36 +369,39 @@
                         },
                         success: function (response){
                             var parsedData = JSON.parse(response);
-                            console.log(parsedData);
+                            //console.log(parsedData);
                             //Update the content item infomation
                             var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
                             var JsonIndex = 0;
+                            console.log(contentItems);
                             contentItems.forEach(function (item) {
                                 var HeaderIndex = 0;
                                 var childItems = item.querySelectorAll('.st__item .info .value');
-                                console.log(childItems);
-                                childItems.forEach(function (child) {
+                                childItems.forEach(function (child) {                                    
                                     if (HeaderIndex == 0) {
                                         child.innerText = parsedData[JsonIndex]['GamemodeName'];
                                     }
                                     if (HeaderIndex == 1) {
-                                        child.innerText = parsedData[JsonIndex]['Wins'];
+                                        child.innerText = parsedData[JsonIndex]['Wins'].toLocaleString('en-US');
+                                        if (maxWins == parsedData[JsonIndex]['Wins']) {
+                                        
+                                        }
                                     }
                                     if (HeaderIndex == 2) {
-                                        child.innerText = parsedData[JsonIndex]['WinPercent'];
+                                        child.innerText = parsedData[JsonIndex]['WinPercent'].toLocaleString('en-US');
                                     }
                                     if (HeaderIndex == 3) {
-                                        child.innerText = parsedData[JsonIndex]['Kills'];
+                                        child.innerText = parsedData[JsonIndex]['Kills'].toLocaleString('en-US');
                                     }
                                     if (HeaderIndex == 4) {
-                                        child.innerText = parsedData[JsonIndex]['KPM'];
+                                        child.innerText = parsedData[JsonIndex]['KPM'].toLocaleString('en-US');
                                     }
                                     if (HeaderIndex == 5) {
-                                        child.innerText = parsedData[JsonIndex]['SecondsPlayed'];
+                                        child.innerText = parsedData[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
                                     }
                                     HeaderIndex += 1;
                                 });
-                                JsonIndex = + 1;
+                                JsonIndex += 1;
                             });
                             JsonIndex = 0;
 
@@ -349,16 +418,16 @@
                                         var id = category.querySelector('.category__header').innerText;
                                         stats.forEach(function (state) {
                                             if (statIndex == 0) {
-                                                state.innerText = parsedData[JsonIndex]['Assists'];
+                                                state.innerText = parsedData[JsonIndex]['Assists'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 1) {
-                                                state.innerText = parsedData[JsonIndex]['Kills'];
+                                                state.innerText = parsedData[JsonIndex]['Kills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 2) {
-                                                state.innerText = parsedData[JsonIndex]['KPM'];
+                                                state.innerText = parsedData[JsonIndex]['KPM'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 3) {
-                                                state.innerText = parsedData[JsonIndex]['Revives'];
+                                                state.innerText = parsedData[JsonIndex]['Revives'].toLocaleString('en-US');
                                             }
                                             statIndex += 1;
                                         });
@@ -368,25 +437,25 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = parsedData[JsonIndex]['BestSquad'];
+                                                    state.innerText = parsedData[JsonIndex]['BestSquad'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = parsedData[JsonIndex]['Losses'];
+                                                    state.innerText = parsedData[JsonIndex]['Losses'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 2) {
-                                                    state.innerText = parsedData[JsonIndex]['Matches'];
+                                                    state.innerText = parsedData[JsonIndex]['Matches'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 3) {
-                                                    state.innerText = parsedData[JsonIndex]['Wins'];
+                                                    state.innerText = parsedData[JsonIndex]['Wins'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 4) {
-                                                    state.innerText = parsedData[JsonIndex]['Mvp'];
+                                                    state.innerText = parsedData[JsonIndex]['Mvp'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 5) {
-                                                    state.innerText = parsedData[JsonIndex]['SecondsPlayed'];
+                                                    state.innerText = parsedData[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
                                                 }
                                                 if (statIndex == 6) {
-                                                    state.innerText = parsedData[JsonIndex]['WinPercent'];
+                                                    state.innerText = parsedData[JsonIndex]['WinPercent'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });
@@ -396,25 +465,25 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDefended'];
+                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDefended'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = parsedData[JsonIndex]['SectorDefend'];
+                                                    state.innerText = parsedData[JsonIndex]['SectorDefend'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 2) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjetiveTime'];
+                                                    state.innerText = parsedData[JsonIndex]['ObjetiveHours'].toLocaleString('en-US') + "H";
                                                 }
                                                 if (statIndex == 3) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesArmed'];
+                                                    state.innerText = parsedData[JsonIndex]['ObjectivesArmed'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 4) {
-                                                    state.innerText = parsedData[JsonIndex]['objectivesCaptured'];
+                                                    state.innerText = parsedData[JsonIndex]['objectivesCaptured'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 5) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDestroyed'];
+                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDestroyed'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 6) {
-                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDisarmed'];
+                                                    state.innerText = parsedData[JsonIndex]['ObjectivesDisarmed'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });

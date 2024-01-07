@@ -1,4 +1,10 @@
 ﻿@model GAMEDATAHUB.Models.BF2042Model.OverviewModel
+@{
+    var sharedRouteValues = new System.Web.Routing.RouteValueDictionary {
+        { "HeroName", Model.UserName },
+        { "PlatForm", Model.PlatForm },
+    };
+}
 
 <body>
     <div class="gdh-wrapper">
@@ -52,10 +58,10 @@
                                         <a href="/bf2042/profile/origin/MarineChen/overview" class="trn-tabs__item active">Overview</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Maps", "Bf2042")" class="trn-tabs__item">Maps</a>
+                                        <a href="@Url.Action("Maps", "Bf2042", sharedRouteValues)" class="trn-tabs__item">Maps</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Modes", "Bf2042")" class="trn-tabs__item">Modes</a>
+                                        <a href="@Url.Action("Modes", "Bf2042", sharedRouteValues)" class="trn-tabs__item">Modes</a>
                                     </li>
                                     <li>
                                         <a href="/bf2042/profile/origin/MarineChen/maps" class="trn-tabs__item">Specialists</a>
@@ -283,28 +289,28 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(60%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Kills">Kills</span>
                                                                 <span class="value">@Model.Kills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                <span  class="rank">Top 40%</span>
-                                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(60%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Assists">Assists</span>
                                                                 <span class="value">@Model.KillAssists.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                <span  class="rank">Top 40%</span>
-                                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -441,14 +447,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(60%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Multi Kills">Multi Kills</span>
                                                                 <span class="value">@Model.MultiKills.ToString()</span>
                                                                 @*<div class="bottom">
-                                                <span  class="rank">Top 40%</span>
-                                            </div>*@
+                                                                        <span  class="rank">Top 40%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -511,14 +517,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(70%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Gadget Kills">Grenades Kills</span>
                                                                 <span class="value">@Model.GrenadesKills.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                <span class="rank">Bottom 30%</span>
-                                            </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -613,14 +619,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(70%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Armed Objectives">Armed Objectives</span>
                                                                 <span class="value">@Model.ArmedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                <span class="rank">Bottom 30%</span>
-                                            </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -641,14 +647,14 @@
                                                     <div class="stat align-left expandable">
                                                         <div class="wrapper">
                                                             @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="fill" style="transform: translateY(70%);"></div>
-                                        </div>*@
+                                                                    <div class="fill" style="transform: translateY(70%);"></div>
+                                                                </div>*@
                                                             <div class="numbers">
                                                                 <span class="name" title="Destroyed Objectives">Destroyed Objectives</span>
                                                                 <span class="value">@Model.DestroyedObject.ToString("N0")</span>
                                                                 @*<div class="bottom">
-                                                <span class="rank">Bottom 30%</span>
-                                            </div>*@
+                                                                        <span class="rank">Bottom 30%</span>
+                                                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -749,13 +755,13 @@
                                                         <span class="label">Playtime</span>
                                                     </div>
                                                     <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
-                                                        <span  class="label">Kills</span>
+                                                        <span class="label">Kills</span>
                                                     </div>
-                                                    <div  class="st__item st-header__item" style="--st-base-width: 7rem;">
-                                                        <span  class="label">K/D</span>
+                                                    <div class="st__item st-header__item" style="--st-base-width: 7rem;">
+                                                        <span class="label">K/D</span>
                                                     </div>
-                                                    <div  class="st__item st-header__item" style="--st-base-width: 7.5rem;">
-                                                        <span  class="label">Kills/min</span>
+                                                    <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
+                                                        <span class="label">Kills/min</span>
                                                     </div>
                                                 </div>
                                                 <div class="st-content">
@@ -773,22 +779,22 @@
                                                                 </div>
                                                                 <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
                                                                     <div class="info">
-                                                                        <div  class="value">@specialist.Playtime.ToString()H</div>
+                                                                        <div class="value">@specialist.Playtime.ToString()H</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
                                                                     <div class="info">
-                                                                        <div  class="value">@specialist.Kills.ToString("N0")</div>
+                                                                        <div class="value">@specialist.Kills.ToString("N0")</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
                                                                     <div class="info">
-                                                                        <div  class="value">@specialist.KD.ToString()</div>
+                                                                        <div class="value">@specialist.KD.ToString()</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
                                                                     <div class="info">
-                                                                        <div  class="value">@specialist.KPM.ToString()</div>
+                                                                        <div class="value">@specialist.KPM.ToString()</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
