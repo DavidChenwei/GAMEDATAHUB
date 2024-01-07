@@ -1,10 +1,4 @@
 ﻿@model GAMEDATAHUB.Models.BF2042Model.OverviewModel
-@{
-    var sharedRouteValues = new System.Web.Routing.RouteValueDictionary {
-        { "HeroName", Model.UserName },
-        { "PlatForm", Model.PlatForm },
-    };
-}
 
 <body>
     <div class="gdh-wrapper">
@@ -12,797 +6,731 @@
             <div class="gdh-content">
                 <div class="container">
                     <div class="content">
-                        <div class="ph">
-                            <input name="HeroName" value=@Model.UserName hidden />
-                            <input name="Platform" value=@Model.PlatForm hidden />
-                            <div class="ph__cover ph__cover--default">
-                                <img class="absolute object-cover w-full h-full" src="https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg" srcset="https://imgsvc.trackercdn.com/url/max-width(960),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 640w, https://imgsvc.trackercdn.com/url/max-width(1380),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 920w, https://imgsvc.trackercdn.com/url/max-width(1800),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1200w, https://imgsvc.trackercdn.com/url/max-width(2880),quality(66)/https%3A%2F%2Ftrackercdn.com%2Fcdn%2Ftracker.gg%2Fbf2042%2Fprofile-hero.jpg/image.jpg 1920w" alt="Hero image" sizes="100vw">
-                                <div class="ph__cover-overlay">
+                        @Html.Partial("_Bf2042LayOut")
+                        <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
+                            <div class="trn-grid container">
+                                <div class="area-sidebar">
+                                    <div class="level-progression level-progression--background area-progression">
+                                        <div class="level-progression__text">Level 480 <span data-v-9b12ba24="" class="muted"> (S381)</span></div>
+                                        <div class="level-progression__progression">
+                                            <div class="progress horizontal normal" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="fill" style="transform: translateX(-44.43%); background-color: #26FFDF;">
+                                                </div>
+                                            </div>
+                                            <span data-v-9b12ba24="">55.6%</span>
+                                        </div>
+                                        <div data-v-9b12ba24="" class="level-progression__subtext">66,807,632 XP</div>
+                                    </div>
+                                    <div class="card bordered header-bordered responsive top-items area-weapons">
+                                        <header class="header__flex">
+                                            <div class="left">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 26.115" class="icon">
+                                                        <path d="m9.38 26.115.957-7.461h6.617v-5.6h9.095l1.865-3.731H32V1.865h-1.865V0h-1.866v1.865H15.088v1.866h-2.412L10.81 1.865H4.442L2.963 3.344 1.757 2.139.438 3.457l1.206 1.206L.165 6.142v6.369l1.77 1.77L0 26.115Zm1.977-9.327a1.865 1.865 0 1 1 0-3.731v1.865h1.865v-1.865h1.865v3.731Zm13.538-5.6H11.357a3.728 3.728 0 0 0-2.746 6.252l-.872 6.8H2.2l1.73-10.602-1.9-1.9V9.327h23.8ZM5.215 3.731h4.823L11.9 5.6h5.05V3.731h13.185v3.73H2.03v-.546Zm0 0"></path>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div data-v-ab2cb76a="" class="title">Weapons</div>
+                                                </div>
+                                            </div>
+                                        </header>
+                                        <div class="top-items__list">
+                                            @foreach (var weapon in Model.WeapoinOverViews)
+                                            {
+                                                <div class="item">
+                                                    <div class="flex-1">
+                                                        <div class="stat__name">@weapon.Type</div>
+                                                        <div class="stat__value">@weapon.Name</div>
+                                                    </div>
+                                                    <div class="item__info flex flex-1 flex-col gap-1">
+                                                        <div class="item__info-stats">
+                                                            <div class="stat">
+                                                                <div class="stat__name">Kills</div>
+                                                                <div data-v-ab2cb76a="" class="stat__value">@weapon.Kills.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="stat">
+                                                                <div class="stat__name">HS%</div>
+                                                                <div data-v-ab2cb76a="" class="stat__value">@weapon.HeadShotRate</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="top-items__actions">
+                                            <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Weapons</a>
+                                        </div>
+                                    </div>
+                                    <div class="card bordered header-bordered responsive top-items area-vehicle">
+                                        <header class="header__flex">
+                                            <div class="left">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 26.115" class="icon">
+                                                        <path d="M20.5 12.3h-4.2V11h1.2c.4 0 .7-.3.7-.7v-.2h4c.1.2.3.3.6.3h.4c.4 0 .7-.3.7-.7V9c0-.4-.3-.7-.7-.7h-.4c-.3 0-.5.1-.6.3h-4v-.2c0-.4-.3-.7-.7-.7H15c-.7-.6-1.7-1-2.7-1h-1.4v-.2c0-1-.8-1.8-1.8-1.8H7.7c-.9 0-1.7.8-1.7 1.8v.2H4.4c-.4 0-.7.2-.7.5l-1.2 5.2C1 12.9 0 14.2 0 15.8c0 1.9 1.6 3.5 3.5 3.5h17c1.9 0 3.5-1.6 3.5-3.5s-1.6-3.5-3.5-3.5zm-3.7-3.2v.4h-.6c0-.2-.1-.3-.2-.4h.8zM7.4 6.5c0-.2.2-.4.4-.4h1.4c.2 0 .4.2.4.4v.4H7.4v-.4zM4.9 8.1h7.3c1.5 0 2.6 1.2 2.6 2.6v1.6H4l.9-4.2zm15.6 9.8h-17c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1h17c1.2 0 2.1.9 2.1 2.1s-.9 2.1-2.1 2.1zM4.1 14c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.1 14 4.1 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zM8 14c-1 0-1.8.8-1.8 1.8S7 17.6 8 17.6s1.8-.8 1.8-1.8S9 14 8 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm4-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S13 14 12 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm4-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S17 14 16 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm3.9-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8-.8-1.8-1.8-1.8zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.1.4-.4.4zm-7.2-7h-1.3c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h1.3c.4 0 .7-.3.7-.7 0-.3-.3-.7-.7-.7z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div data-v-ab2cb76a="" class="title">Vehicles</div>
+                                                </div>
+                                            </div>
+                                        </header>
+                                        <div class="top-items__list">
+                                            @foreach (var vehcile in Model.VehiclesOverViews)
+                                            {
+                                                <div class="item">
+                                                    <div class="flex-1">
+                                                        <div class="stat__name">Land</div>
+                                                        <div class="stat__value">@vehcile.Name</div>
+                                                    </div>
+                                                    <div class="item__info flex flex-1 flex-col gap-1">
+                                                        <div class="item__info-stats">
+                                                            <div class="stat">
+                                                                <div class="stat__name">Kills</div>
+                                                                <div data-v-ab2cb76a="" class="stat__value">@vehcile.Kills.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="stat">
+                                                                <div class="stat__name">Dmg/Min</div>
+                                                                <div data-v-ab2cb76a="" class="stat__value">@vehcile.DPM.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="top-items__actions">
+                                            <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Vehicles</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="ph__container">
-                                <div class="user-avatar user-avatar--large ph-avatar">
-                                    <div class="trn-tooltip-wrapper">
-                                    </div>
-                                    <img class="user-avatar__image" src=@Model.Avatar alt=""><!---->
-                                </div>
-                                <div class="ph-details">
-                                    <div class="ph-details__subtitle">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="ph-details__views">
-                                                <path d="M9 3.375A8.87 8.87 0 0 0 .75 9a8.862 8.862 0 0 0 16.5 0A8.87 8.87 0 0 0 9 3.375Zm0 9.375A3.75 3.75 0 1 1 12.75 9 3.751 3.751 0 0 1 9 12.75Zm0-6A2.25 2.25 0 1 0 11.25 9 2.247 2.247 0 0 0 9 6.75Z"></path>
-                                            </svg>
-                                            <span data-v-08c969aa="">71 views</span>
-                                        </span>
-                                    </div>
-                                    <div class="ph-details__identifier">
-                                        <div class="platform-status">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 32" class="background">
-                                                <circle cx="16" cy="16" r="16" style="opacity: 0.15;"></circle>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190.377 255.763" class="platform-icon platform-origin icon">
-                                                <path d="M89.961 91.054a37.345 37.345 0 0 0-25.682 16.123 36.564 36.564 0 0 0-6.25 20.158 36.6 36.6 0 0 0 10.145 26.078 37.169 37.169 0 0 0 62.566-14.685c4.721-14.55-.938-31.594-13.265-40.584a37.072 37.072 0 0 0-27.514-7.09m.976-90.71a2.781 2.781 0 0 1 3.966 1.421c.521 1.34-.38 2.566-1.118 3.6a63.112 63.112 0 0 0-10.329 24.913 1.9 1.9 0 0 0-.971 2.447c.488.179.982.337 1.481.488a102.673 102.673 0 0 1 30.407 1.427 94.74 94.74 0 0 1 48.188 25.985 95.214 95.214 0 0 1 25.829 47.881 95.626 95.626 0 0 1-6.385 58.475 197.822 197.822 0 0 1-82.486 88.426c-1.156.538-2.821.559-3.612-.591a3.264 3.264 0 0 1 .374-4.015 62.558 62.558 0 0 0 10.041-22.579 17.706 17.706 0 0 0 .689-5.1c-.592-.77-1.568-.537-2.4-.509a95.261 95.261 0 0 1-51.005-9.049 95.371 95.371 0 0 1-40.56-37.486A94.19 94.19 0 0 1 .016 126.76a95.517 95.517 0 0 1 11.966-45.325A197.216 197.216 0 0 1 90.937.344"></path>
-                                            </svg>
-                                        </div>
-                                        <span class="trn-ign ph-details__name">
-                                            <span data-v-0b2ed7a2="" class="fit-text-parent">
-                                                <span data-v-0b2ed7a2="" class="trn-ign__username">@Model.UserName</span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ph-nav">
-                                <ul class="trn-tabs">
-                                    <li class="liAdjuest">
-                                        <a href="/bf2042/profile/origin/MarineChen/overview" class="trn-tabs__item active">Overview</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Maps", "Bf2042", sharedRouteValues)" class="trn-tabs__item">Maps</a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Modes", "Bf2042", sharedRouteValues)" class="trn-tabs__item">Modes</a>
-                                    </li>
-                                    <li>
-                                        <a href="/bf2042/profile/origin/MarineChen/maps" class="trn-tabs__item">Specialists</a>
-                                    </li>
-                                    <li>
-                                        <a href="/bf2042/profile/origin/MarineChen/maps" class="trn-tabs__item">Weapons</a>
-                                    </li>
-                                    <li>
-                                        <a href="/bf2042/profile/origin/MarineChen/maps" class="trn-tabs__item">Gadgets</a>
-                                    </li>
-                                    <li>
-                                        <a href="/bf2042/profile/origin/MarineChen/maps" class="trn-tabs__item">Vehicles</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
-                                <div class="trn-grid container">
-                                    <div class="area-sidebar">
-                                        <div class="level-progression level-progression--background area-progression">
-                                            <div class="level-progression__text">Level 480 <span data-v-9b12ba24="" class="muted"> (S381)</span></div>
-                                            <div class="level-progression__progression">
-                                                <div class="progress horizontal normal" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="fill" style="transform: translateX(-44.43%); background-color: #26FFDF;">
-                                                    </div>
-                                                </div>
-                                                <span data-v-9b12ba24="">55.6%</span>
-                                            </div>
-                                            <div data-v-9b12ba24="" class="level-progression__subtext">66,807,632 XP</div>
-                                        </div>
-                                        <div class="card bordered header-bordered responsive top-items area-weapons">
-                                            <header class="header__flex">
-                                                <div class="left">
-                                                    <div>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 26.115" class="icon">
-                                                            <path d="m9.38 26.115.957-7.461h6.617v-5.6h9.095l1.865-3.731H32V1.865h-1.865V0h-1.866v1.865H15.088v1.866h-2.412L10.81 1.865H4.442L2.963 3.344 1.757 2.139.438 3.457l1.206 1.206L.165 6.142v6.369l1.77 1.77L0 26.115Zm1.977-9.327a1.865 1.865 0 1 1 0-3.731v1.865h1.865v-1.865h1.865v3.731Zm13.538-5.6H11.357a3.728 3.728 0 0 0-2.746 6.252l-.872 6.8H2.2l1.73-10.602-1.9-1.9V9.327h23.8ZM5.215 3.731h4.823L11.9 5.6h5.05V3.731h13.185v3.73H2.03v-.546Zm0 0"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div>
-                                                        <div data-v-ab2cb76a="" class="title">Weapons</div>
-                                                    </div>
-                                                </div>
-                                            </header>
-                                            <div class="top-items__list">
-                                                @foreach (var weapon in Model.WeapoinOverViews)
-                                                {
-                                                    <div class="item">
-                                                        <div class="flex-1">
-                                                            <div class="stat__name">@weapon.Type</div>
-                                                            <div class="stat__value">@weapon.Name</div>
-                                                        </div>
-                                                        <div class="item__info flex flex-1 flex-col gap-1">
-                                                            <div class="item__info-stats">
-                                                                <div class="stat">
-                                                                    <div class="stat__name">Kills</div>
-                                                                    <div data-v-ab2cb76a="" class="stat__value">@weapon.Kills.ToString("N0")</div>
-                                                                </div>
-                                                                <div class="stat">
-                                                                    <div class="stat__name">HS%</div>
-                                                                    <div data-v-ab2cb76a="" class="stat__value">@weapon.HeadShotRate</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            </div>
-                                            <div class="top-items__actions">
-                                                <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Weapons</a>
-                                            </div>
-                                        </div>
-                                        <div class="card bordered header-bordered responsive top-items area-vehicle">
-                                            <header class="header__flex">
-                                                <div class="left">
-                                                    <div>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 26.115" class="icon">
-                                                            <path d="M20.5 12.3h-4.2V11h1.2c.4 0 .7-.3.7-.7v-.2h4c.1.2.3.3.6.3h.4c.4 0 .7-.3.7-.7V9c0-.4-.3-.7-.7-.7h-.4c-.3 0-.5.1-.6.3h-4v-.2c0-.4-.3-.7-.7-.7H15c-.7-.6-1.7-1-2.7-1h-1.4v-.2c0-1-.8-1.8-1.8-1.8H7.7c-.9 0-1.7.8-1.7 1.8v.2H4.4c-.4 0-.7.2-.7.5l-1.2 5.2C1 12.9 0 14.2 0 15.8c0 1.9 1.6 3.5 3.5 3.5h17c1.9 0 3.5-1.6 3.5-3.5s-1.6-3.5-3.5-3.5zm-3.7-3.2v.4h-.6c0-.2-.1-.3-.2-.4h.8zM7.4 6.5c0-.2.2-.4.4-.4h1.4c.2 0 .4.2.4.4v.4H7.4v-.4zM4.9 8.1h7.3c1.5 0 2.6 1.2 2.6 2.6v1.6H4l.9-4.2zm15.6 9.8h-17c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1h17c1.2 0 2.1.9 2.1 2.1s-.9 2.1-2.1 2.1zM4.1 14c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S5.1 14 4.1 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zM8 14c-1 0-1.8.8-1.8 1.8S7 17.6 8 17.6s1.8-.8 1.8-1.8S9 14 8 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm4-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S13 14 12 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm4-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8S17 14 16 14zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.2.4-.4.4zm3.9-2.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8 1.8-.8 1.8-1.8-.8-1.8-1.8-1.8zm0 2.2c-.2 0-.4-.2-.4-.4s.2-.4.4-.4.4.2.4.4-.1.4-.4.4zm-7.2-7h-1.3c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h1.3c.4 0 .7-.3.7-.7 0-.3-.3-.7-.7-.7z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div>
-                                                        <div data-v-ab2cb76a="" class="title">Vehicles</div>
-                                                    </div>
-                                                </div>
-                                            </header>
-                                            <div class="top-items__list">
-                                                @foreach (var vehcile in Model.VehiclesOverViews)
-                                                {
-                                                    <div class="item">
-                                                        <div class="flex-1">
-                                                            <div class="stat__name">Land</div>
-                                                            <div class="stat__value">@vehcile.Name</div>
-                                                        </div>
-                                                        <div class="item__info flex flex-1 flex-col gap-1">
-                                                            <div class="item__info-stats">
-                                                                <div class="stat">
-                                                                    <div class="stat__name">Kills</div>
-                                                                    <div data-v-ab2cb76a="" class="stat__value">@vehcile.Kills.ToString("N0")</div>
-                                                                </div>
-                                                                <div class="stat">
-                                                                    <div class="stat__name">Dmg/Min</div>
-                                                                    <div data-v-ab2cb76a="" class="stat__value">@vehcile.DPM.ToString()</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            </div>
-                                            <div class="top-items__actions">
-                                                <a href="/bf2042/profile/origin/MarineChen/weapons" class="gdh-button trn-button--block">View All Vehicles</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="area-main">
-                                        <div class="area-overview trn-grid trn-grid--small">
-                                            @* Lifetime Overview *@
-                                            <div class="card bordered header-bordered responsive segment-stats">
-                                                <div class="flex">
-                                                    <div class="title">
-                                                        <div class="flex flex-col">
-                                                            <div class="details hasControls hasIcon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
-                                                                    <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
-                                                                    <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
-                                                                </svg>
-                                                                <h2>Lifetime Overview</h2>
-                                                                <div class="title-stats">
-                                                                    <span class="playtime">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.949 19.97">
-                                                                            <path d="M10.95 0v2.02a8 8 0 0 1 0 15.88v2a10 10 0 0 0 0-19.9m-2 .03a9.827 9.827 0 0 0-5.33 2.2l1.43 1.48a8 8 0 0 1 3.9-1.68v-2M2.21 3.64A9.885 9.885 0 0 0 0 8.97h2a8.017 8.017 0 0 1 1.64-3.9L2.21 3.64m-2.2 7.33a10.039 10.039 0 0 0 2.21 5.33l1.42-1.43a8 8 0 0 1-1.63-3.9h-2m5.04 5.37-1.43 1.37a9.994 9.994 0 0 0 5.33 2.26v-2a8 8 0 0 1-3.9-1.63m5.4-11.37v5.25l4.5 2.67-.75 1.23-5.25-3.15v-6Z"></path>
-                                                                        </svg>446h Playtime
-                                                                    </span>
-                                                                    <span class="matches">@Model.MatchesPlayed.ToString("N0")Matches </span>
-                                                                </div>
+                                <div class="area-main">
+                                    <div class="area-overview trn-grid trn-grid--small">
+                                        @* Lifetime Overview *@
+                                        <div class="card bordered header-bordered responsive segment-stats">
+                                            <div class="flex">
+                                                <div class="title">
+                                                    <div class="flex flex-col">
+                                                        <div class="details hasControls hasIcon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
+                                                                <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
+                                                                <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
+                                                            </svg>
+                                                            <h2>Lifetime Overview</h2>
+                                                            <div class="title-stats">
+                                                                <span class="playtime">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.949 19.97">
+                                                                        <path d="M10.95 0v2.02a8 8 0 0 1 0 15.88v2a10 10 0 0 0 0-19.9m-2 .03a9.827 9.827 0 0 0-5.33 2.2l1.43 1.48a8 8 0 0 1 3.9-1.68v-2M2.21 3.64A9.885 9.885 0 0 0 0 8.97h2a8.017 8.017 0 0 1 1.64-3.9L2.21 3.64m-2.2 7.33a10.039 10.039 0 0 0 2.21 5.33l1.42-1.43a8 8 0 0 1-1.63-3.9h-2m5.04 5.37-1.43 1.37a9.994 9.994 0 0 0 5.33 2.26v-2a8 8 0 0 1-3.9-1.63m5.4-11.37v5.25l4.5 2.67-.75 1.23-5.25-3.15v-6Z"></path>
+                                                                    </svg>446h Playtime
+                                                                </span>
+                                                                <span class="matches">@Model.MatchesPlayed.ToString("N0")Matches </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="giant-stats">
-                                                    <div class="stat align-left giant expandable">
-                                                        <div class="wrapper">
-                                                            <div class="numbers">
-                                                                <span class="name" title="Dmg/Min">Dmg/Min</span>
-                                                                <span class="value">@Model.DamagePerMatch.ToString()</span>
-                                                                <div class="bottom"></div>
-                                                            </div>
-                                                            <div class="more">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
-                                                                    <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
-                                                                </svg>
-                                                            </div>
+                                            </div>
+                                            <div class="giant-stats">
+                                                <div class="stat align-left giant expandable">
+                                                    <div class="wrapper">
+                                                        <div class="numbers">
+                                                            <span class="name" title="Dmg/Min">Dmg/Min</span>
+                                                            <span class="value">@Model.DamagePerMatch.ToString()</span>
+                                                            <div class="bottom"></div>
+                                                        </div>
+                                                        <div class="more">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
+                                                                <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
+                                                            </svg>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left giant expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(26%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="K/D">K/D</span>
-                                                                <span class="value">@Model.KillDeath.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 26%</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="more">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
-                                                                    <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
-                                                                </svg>
+                                                </div>
+                                                <div class="stat align-left giant expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(26%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="K/D">K/D</span>
+                                                            <span class="value">@Model.KillDeath.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 26%</span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="stat align-left giant expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(87%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="HS%">HS %</span>
-                                                                <span class="value">@Model.HeadShotRate</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Bottom 13%</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="more">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
-                                                                    <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
-                                                                </svg>
-                                                            </div>
+                                                        <div class="more">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
+                                                                <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
+                                                            </svg>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left giant expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(9%);"></div>
+                                                </div>
+                                                <div class="stat align-left giant expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(87%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="HS%">HS %</span>
+                                                            <span class="value">@Model.HeadShotRate</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Bottom 13%</span>
                                                             </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Win %">Win %</span>
-                                                                <span class="value">@Model.WinPercent</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 9%</span>
-                                                                </div>
+                                                        </div>
+                                                        <div class="more">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
+                                                                <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left giant expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(9%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Win %">Win %</span>
+                                                            <span class="value">@Model.WinPercent</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 9%</span>
                                                             </div>
-                                                            <div class="more">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
-                                                                    <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
-                                                                </svg>
+                                                        </div>
+                                                        <div class="more">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16">
+                                                                <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-v-19bbe048="" class="featured empty"></div>
+                                            <div class="main">
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(60%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Human K/D">Human K/D</span>
+                                                            <span class="value">@Model.HumanKD</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 40%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div data-v-19bbe048="" class="featured empty"></div>
-                                                <div class="main">
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                                                 <div class="fill" style="transform: translateY(60%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Human K/D">Human K/D</span>
-                                                                <span class="value">@Model.HumanKD</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 40%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Kills">Kills</span>
+                                                            <span class="value">@Model.Kills.ToString("N0")</span>
+                                                            @*<div class="bottom">
+                                                                    <span  class="rank">Top 40%</span>
                                                                 </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Kills">Kills</span>
-                                                                <span class="value">@Model.Kills.ToString("N0")</span>
-                                                                @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="fill" style="transform: translateY(60%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Assists">Assists</span>
+                                                            <span class="value">@Model.KillAssists.ToString("N0")</span>
+                                                            @*<div class="bottom">
+                                                                    <span  class="rank">Top 40%</span>
                                                                 </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Assists">Assists</span>
-                                                                <span class="value">@Model.KillAssists.ToString("N0")</span>
-                                                                @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(15%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Deaths">Deaths</span>
-                                                                <span class="value">@Model.Deaths.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 15%</span>
-                                                                </div>
-                                                            </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(15%);"></div>
                                                         </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(81%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Kills/Min">Kills/Min</span>
-                                                                <span class="value">@Model.KillsPerMinute.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Bottom 19%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(70%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Kills/Match">Kills/Match</span>
-                                                                <span class="value">@Model.KillsPerMatch.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Bottom 30%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(5%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Matches Won">Matches Won</span>
-                                                                <span class="value">@Model.Wins.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 4.6%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(10%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Matches Lost">Matches Lost</span>
-                                                                <span class="value">@Model.Loses.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 10%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(15%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Damage Dealt">Damage Dealt</span>
-                                                                <span class="value">@Model.Damage.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 15%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(75%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Dmg/Match">Dmg/Match</span>
-                                                                <span class="value">@Model.DamagePerMatch.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Bottom 25%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(8%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Vehicles Destroyed">Vehicles Destroyed</span>
-                                                                <span class="value">@Model.VehiclesDestroyed.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 8%</span>
-                                                                </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Deaths">Deaths</span>
+                                                            <span class="value">@Model.Deaths.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 15%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @* Kills *@
-                                            <div class="card bordered header-bordered responsive segment-stats">
-                                                <div class="flex">
-                                                    <div class="title">
-                                                        <div class="flex flex-col">
-                                                            <div class="details hasControls hasIcon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
-                                                                    <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
-                                                                    <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
-                                                                </svg>
-                                                                <h2>Kills</h2>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(81%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Kills/Min">Kills/Min</span>
+                                                            <span class="value">@Model.KillsPerMinute.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Bottom 19%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="main">
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(60%);"></div>
-                                                                </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Multi Kills">Multi Kills</span>
-                                                                <span class="value">@Model.MultiKills.ToString()</span>
-                                                                @*<div class="bottom">
-                                                                        <span  class="rank">Top 40%</span>
-                                                                    </div>*@
-                                                            </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(70%);"></div>
                                                         </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(19%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Headshot Kills">Headshot Kills</span>
-                                                                <span class="value">@Model.HeadShotAmount.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 19%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(23%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Road Kills">Road Kills</span>
-                                                                <span class="value">@Model.RoadKills.ToString()</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 23%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(6%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Melee Kills">Melee Kills</span>
-                                                                <span class="value">@Model.MeleeKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 6%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(8%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Vehicle Kills">Vehicle Kills</span>
-                                                                <span class="value">@Model.VechileKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 8%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Gadget Kills">Grenades Kills</span>
-                                                                <span class="value">@Model.GrenadesKills.ToString("N0")</span>
-                                                                @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(15%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Scoped Kills">Scoped Kills</span>
-                                                                <span class="value">@Model.ScopedKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 15%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(10%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Hipfire Kills">Hipfire Kills</span>
-                                                                <span class="value">@Model.HipfireKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 15%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(17%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Human Kills">Human Kills</span>
-                                                                <span class="value">@Model.HumanKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 17%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(5%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="AI Kills">AI Kills</span>
-                                                                <span class="value">@Model.AIKills.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 4.6%</span>
-                                                                </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Kills/Match">Kills/Match</span>
+                                                            <span class="value">@Model.KillsPerMatch.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Bottom 30%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @* Objective *@
-                                            <div class="card bordered header-bordered responsive segment-stats">
-                                                <div class="flex">
-                                                    <div class="title">
-                                                        <div class="flex flex-col">
-                                                            <div class="details hasControls hasIcon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
-                                                                    <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
-                                                                    <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
-                                                                </svg>
-                                                                <h2>Object</h2>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(5%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Matches Won">Matches Won</span>
+                                                            <span class="value">@Model.Wins.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 4.6%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="main">
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(1%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Objective Time">Objective Time</span>
-                                                                <span class="value">@Model.ObjectTotal.ToString("N0")H</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 1%</span>
-                                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(10%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Matches Lost">Matches Lost</span>
+                                                            <span class="value">@Model.Loses.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 10%</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Armed Objectives">Armed Objectives</span>
-                                                                <span class="value">@Model.ArmedObject.ToString("N0")</span>
-                                                                @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(15%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Damage Dealt">Damage Dealt</span>
+                                                            <span class="value">@Model.Damage.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 15%</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(74%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Disarmed Objectives">Disarmed Objectives</span>
-                                                                <span class="value">@Model.DefusedObject.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Bottom 26%</span>
-                                                                </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(75%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Dmg/Match">Dmg/Match</span>
+                                                            <span class="value">@Model.DamagePerMatch.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Bottom 25%</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                                                    <div class="fill" style="transform: translateY(70%);"></div>
-                                                                </div>*@
-                                                            <div class="numbers">
-                                                                <span class="name" title="Destroyed Objectives">Destroyed Objectives</span>
-                                                                <span class="value">@Model.DestroyedObject.ToString("N0")</span>
-                                                                @*<div class="bottom">
-                                                                        <span class="rank">Bottom 30%</span>
-                                                                    </div>*@
-                                                            </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(8%);"></div>
                                                         </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="99.9" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(0.1%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Captured Objectives">Captured Objectives</span>
-                                                                <span class="value">@Model.CapturedObject.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 0.1%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(12%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Objectives Deutralized">Objectives Deutralized</span>
-                                                                <span class="value">@Model.NeutralizedObject.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 12%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(8%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Sectors Defended">Sectors Defended</span>
-                                                                <span class="value">@Model.DefendedSector.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 8%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(10%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Sectors Captured">Sectors Captured</span>
-                                                                <span class="value">@Model.AttackedSector.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 15%</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="stat align-left expandable">
-                                                        <div class="wrapper">
-                                                            <div class="progress vertical small progress" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="fill" style="transform: translateY(17%);"></div>
-                                                            </div>
-                                                            <div class="numbers">
-                                                                <span class="name" title="Intel Extracted">Attacked Object Time</span>
-                                                                <span class="value">@Model.AttackedTotal.ToString("N0")</span>
-                                                                <div class="bottom">
-                                                                    <span class="rank">Top 17%</span>
-                                                                </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Vehicles Destroyed">Vehicles Destroyed</span>
+                                                            <span class="value">@Model.VehiclesDestroyed.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 8%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="top-characters trn-card trn-card--bordered area-specialists">
-                                            <header class="trn-card__header trn-card__header--compact">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.977 32" class="trn-card__icon">
-                                                    <path d="m19.877 19.593 1.975-.311a11.017 11.017 0 0 0-.557-2.126l-1.874.7a8.986 8.986 0 0 1 .456 1.737ZM19.978 21.389a9.068 9.068 0 0 1-.254 1.778l1.941.479a11.081 11.081 0 0 0 .311-2.173Z"></path>
-                                                    <path d="M10.987 30a9 9 0 1 1 7.639-13.757l1.7-1.058a11.167 11.167 0 0 0-1.339-1.709V0h-16v13.474a10.993 10.993 0 1 0 17.942 12.24l-1.806-.858A9.049 9.049 0 0 1 10.987 30Zm4-28h2v9.8a10.869 10.869 0 0 0-2-1.044Zm-6 0h4v8.2a10.328 10.328 0 0 0-4-.009Zm-4 0h2v8.764a10.975 10.975 0 0 0-2 1.028Z"></path>
-                                                    <path d="m13.195 18.461-2.209-4.475-2.209 4.475-4.94.718 3.574 3.484-.843 4.92 4.418-2.322 4.418 2.322-.843-4.92 3.574-3.484Zm-.447 5.466L10.986 23l-1.762.926.337-1.961-1.426-1.391 1.97-.286.881-1.783.881 1.784 1.97.286-1.426 1.391Z"></path>
-                                                </svg>
-                                                <div class="trn-card__title--wide">
-                                                    <h2 data-v-9e5feea2="" class="trn-card__title">Top Specialists</h2>
-                                                </div>
-                                                <div class="right">
-                                                    <a data-v-842027f5="" href="/bf2042/profile/origin/MarineChen/specialists" class="gdh-button view-all">View All Specialists</a>
-                                                </div>
-                                            </header>
-                                            <div class="st">
-                                                <div class="st-header">
-                                                    <div class="st__item st-header__item st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
-                                                        <span class="label">Specialist</span>
-                                                    </div>
-                                                    <div class="st__item st-header__item" style="--st-base-width: 9rem;">
-                                                        <span class="label">Playtime</span>
-                                                    </div>
-                                                    <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
-                                                        <span class="label">Kills</span>
-                                                    </div>
-                                                    <div class="st__item st-header__item" style="--st-base-width: 7rem;">
-                                                        <span class="label">K/D</span>
-                                                    </div>
-                                                    <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
-                                                        <span class="label">Kills/min</span>
-                                                    </div>
-                                                </div>
-                                                <div class="st-content">
-                                                    <div class="st-content__category">
-                                                        @foreach (var specialist in Model.SpecialistsOverViews)
-                                                        {
-                                                            <div class="st-content__item">
-                                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
-                                                                    <div class="image">
-                                                                        <img class="" src=@specialist.AvatarImage width="40" height="40" loading="lazy">
-                                                                    </div>
-                                                                    <div class="info">
-                                                                        <div class="value">@specialist.Name</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
-                                                                    <div class="info">
-                                                                        <div class="value">@specialist.Playtime.ToString()H</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                    <div class="info">
-                                                                        <div class="value">@specialist.Kills.ToString("N0")</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
-                                                                    <div class="info">
-                                                                        <div class="value">@specialist.KD.ToString()</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                                    <div class="info">
-                                                                        <div class="value">@specialist.KPM.ToString()</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        }
+                                        @* Kills *@
+                                        <div class="card bordered header-bordered responsive segment-stats">
+                                            <div class="flex">
+                                                <div class="title">
+                                                    <div class="flex flex-col">
+                                                        <div class="details hasControls hasIcon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
+                                                                <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
+                                                                <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
+                                                            </svg>
+                                                            <h2>Kills</h2>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="main">
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="fill" style="transform: translateY(60%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Multi Kills">Multi Kills</span>
+                                                            <span class="value">@Model.MultiKills.ToString()</span>
+                                                            @*<div class="bottom">
+                                                                    <span  class="rank">Top 40%</span>
+                                                                </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(19%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Headshot Kills">Headshot Kills</span>
+                                                            <span class="value">@Model.HeadShotAmount.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 19%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(23%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Road Kills">Road Kills</span>
+                                                            <span class="value">@Model.RoadKills.ToString()</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 23%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(6%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Melee Kills">Melee Kills</span>
+                                                            <span class="value">@Model.MeleeKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 6%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(8%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Vehicle Kills">Vehicle Kills</span>
+                                                            <span class="value">@Model.VechileKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 8%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="fill" style="transform: translateY(70%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Gadget Kills">Grenades Kills</span>
+                                                            <span class="value">@Model.GrenadesKills.ToString("N0")</span>
+                                                            @*<div class="bottom">
+                                                                    <span class="rank">Bottom 30%</span>
+                                                                </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(15%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Scoped Kills">Scoped Kills</span>
+                                                            <span class="value">@Model.ScopedKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 15%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(10%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Hipfire Kills">Hipfire Kills</span>
+                                                            <span class="value">@Model.HipfireKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 15%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(17%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Human Kills">Human Kills</span>
+                                                            <span class="value">@Model.HumanKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 17%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(5%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="AI Kills">AI Kills</span>
+                                                            <span class="value">@Model.AIKills.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 4.6%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* Objective *@
+                                        <div class="card bordered header-bordered responsive segment-stats">
+                                            <div class="flex">
+                                                <div class="title">
+                                                    <div class="flex flex-col">
+                                                        <div class="details hasControls hasIcon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.814 32" class="icon">
+                                                                <path d="m22.272 29.355-.764-1.99 1.99-.763.763 1.99z"></path>
+                                                                <path d="M15.407 0-.004 26.075 15.407 32l4.875-1.874-.766-1.99-3.044 1.172v-6.24l8.224-3.162 3 5.084-2.217.852.766 1.989 4.566-1.757Zm-1.065 29.308L3.115 24.99l3-5.084 8.222 3.162Zm0-8.523-7.123-2.74 2.49-4.213 4.633 1.779Zm0-7.457-3.534-1.358 3.534-5.979Zm2.13-7.338 3.534 5.98-3.534 1.358Zm0 14.793v-5.172l4.633-1.779 2.49 4.213Z"></path>
+                                                            </svg>
+                                                            <h2>Object</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main">
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(1%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Objective Time">Objective Time</span>
+                                                            <span class="value">@Model.ObjectTotal.ToString("N0")H</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 1%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="fill" style="transform: translateY(70%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Armed Objectives">Armed Objectives</span>
+                                                            <span class="value">@Model.ArmedObject.ToString("N0")</span>
+                                                            @*<div class="bottom">
+                                                                    <span class="rank">Bottom 30%</span>
+                                                                </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(74%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Disarmed Objectives">Disarmed Objectives</span>
+                                                            <span class="value">@Model.DefusedObject.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Bottom 26%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        @*<div class="progress vertical small progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="fill" style="transform: translateY(70%);"></div>
+                                                            </div>*@
+                                                        <div class="numbers">
+                                                            <span class="name" title="Destroyed Objectives">Destroyed Objectives</span>
+                                                            <span class="value">@Model.DestroyedObject.ToString("N0")</span>
+                                                            @*<div class="bottom">
+                                                                    <span class="rank">Bottom 30%</span>
+                                                                </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="99.9" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(0.1%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Captured Objectives">Captured Objectives</span>
+                                                            <span class="value">@Model.CapturedObject.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 0.1%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(12%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Objectives Deutralized">Objectives Deutralized</span>
+                                                            <span class="value">@Model.NeutralizedObject.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 12%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(8%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Sectors Defended">Sectors Defended</span>
+                                                            <span class="value">@Model.DefendedSector.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 8%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(10%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Sectors Captured">Sectors Captured</span>
+                                                            <span class="value">@Model.AttackedSector.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 15%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stat align-left expandable">
+                                                    <div class="wrapper">
+                                                        <div class="progress vertical small progress" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="fill" style="transform: translateY(17%);"></div>
+                                                        </div>
+                                                        <div class="numbers">
+                                                            <span class="name" title="Intel Extracted">Attacked Object Time</span>
+                                                            <span class="value">@Model.AttackedTotal.ToString("N0")</span>
+                                                            <div class="bottom">
+                                                                <span class="rank">Top 17%</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="top-characters trn-card trn-card--bordered area-specialists">
+                                        <header class="trn-card__header trn-card__header--compact">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.977 32" class="trn-card__icon">
+                                                <path d="m19.877 19.593 1.975-.311a11.017 11.017 0 0 0-.557-2.126l-1.874.7a8.986 8.986 0 0 1 .456 1.737ZM19.978 21.389a9.068 9.068 0 0 1-.254 1.778l1.941.479a11.081 11.081 0 0 0 .311-2.173Z"></path>
+                                                <path d="M10.987 30a9 9 0 1 1 7.639-13.757l1.7-1.058a11.167 11.167 0 0 0-1.339-1.709V0h-16v13.474a10.993 10.993 0 1 0 17.942 12.24l-1.806-.858A9.049 9.049 0 0 1 10.987 30Zm4-28h2v9.8a10.869 10.869 0 0 0-2-1.044Zm-6 0h4v8.2a10.328 10.328 0 0 0-4-.009Zm-4 0h2v8.764a10.975 10.975 0 0 0-2 1.028Z"></path>
+                                                <path d="m13.195 18.461-2.209-4.475-2.209 4.475-4.94.718 3.574 3.484-.843 4.92 4.418-2.322 4.418 2.322-.843-4.92 3.574-3.484Zm-.447 5.466L10.986 23l-1.762.926.337-1.961-1.426-1.391 1.97-.286.881-1.783.881 1.784 1.97.286-1.426 1.391Z"></path>
+                                            </svg>
+                                            <div class="trn-card__title--wide">
+                                                <h2 data-v-9e5feea2="" class="trn-card__title">Top Specialists</h2>
+                                            </div>
+                                            <div class="right">
+                                                <a data-v-842027f5="" href="/bf2042/profile/origin/MarineChen/specialists" class="gdh-button view-all">View All Specialists</a>
+                                            </div>
+                                        </header>
+                                        <div class="st">
+                                            <div class="st-header">
+                                                <div class="st__item st-header__item st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
+                                                    <span class="label">Specialist</span>
+                                                </div>
+                                                <div class="st__item st-header__item" style="--st-base-width: 9rem;">
+                                                    <span class="label">Playtime</span>
+                                                </div>
+                                                <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
+                                                    <span class="label">Kills</span>
+                                                </div>
+                                                <div class="st__item st-header__item" style="--st-base-width: 7rem;">
+                                                    <span class="label">K/D</span>
+                                                </div>
+                                                <div class="st__item st-header__item" style="--st-base-width: 7.5rem;">
+                                                    <span class="label">Kills/min</span>
+                                                </div>
+                                            </div>
+                                            <div class="st-content">
+                                                <div class="st-content__category">
+                                                    @foreach (var specialist in Model.SpecialistsOverViews)
+                                                    {
+                                                        <div class="st-content__item">
+                                                            <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
+                                                                <div class="image">
+                                                                    <img class="" src=@specialist.AvatarImage width="40" height="40" loading="lazy">
+                                                                </div>
+                                                                <div class="info">
+                                                                    <div class="value">@specialist.Name</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@specialist.Playtime.ToString()H</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@specialist.Kills.ToString("N0")</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@specialist.KD.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                                <div class="info">
+                                                                    <div class="value">@specialist.KPM.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

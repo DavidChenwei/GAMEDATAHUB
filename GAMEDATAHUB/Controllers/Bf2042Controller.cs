@@ -15,16 +15,20 @@ namespace GAMEDATAHUB.Controllers
         Repository.Repository Resp = new Repository.Repository();
 
         [HttpGet]
-        public ActionResult Overview()
+        public ActionResult Overview(string HeroName, string Platform)
         {
 
-            return View("~/Views/Bf2042/Overview.cshtml");
+            OverviewModel overviewModel = Resp.OverviewInfoGet(HeroName, Platform);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = Platform;
+            ViewData["Avatar"] = overviewModel.Avatar;
+            ViewData["Page"] = "Overview";
+            return View(overviewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Overview(string HeroName, string Platform)
+        public async Task<ActionResult> Overview(string HeroName, string Platform, string login)
         {
-            ViewBag.ShowLoading = true; 
 
             if (!string.IsNullOrEmpty(Platform))
             {
@@ -45,8 +49,11 @@ namespace GAMEDATAHUB.Controllers
                 Platform = "pc";
             }
             OverviewModel Overview = await Resp.HeroInfoGet(HeroName, Platform);
-
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = Platform;
+            ViewData["Avatar"] = Overview.Avatar;
             ViewBag.ShowLoading = false;
+            ViewData["Page"] = "Overview";
             return View(Overview);
         }
         [HttpGet]
@@ -78,6 +85,10 @@ namespace GAMEDATAHUB.Controllers
             string SortMethod = "DESC";
             string HeaderIndex = "header1";
             HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Maps";
             return View(heroInfoModel);
         }
 
@@ -85,6 +96,10 @@ namespace GAMEDATAHUB.Controllers
         public ActionResult Maps(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
         {
             HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Maps";
             return View(heroInfoModel);
         }
 
@@ -93,6 +108,10 @@ namespace GAMEDATAHUB.Controllers
         {
 
             GameModeView GameModes = Resp.GameModeInfoGet(Utils.DescMethods, Utils.HeaderWin, HeroName, PlatForm);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = GameModes.Avatar;
+            ViewData["Page"] = "Modes";
             return View(GameModes);
         }
 
@@ -104,6 +123,62 @@ namespace GAMEDATAHUB.Controllers
             var JsonPayLoad = JsonConvert.SerializeObject(GameModes);
 
             return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Specialists(string HeroName, string PlatForm)
+        {
+
+            string SortMethod = "DESC";
+            string HeaderIndex = "header1";
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Specialists";
+            return View(heroInfoModel);
+        }
+
+        [HttpGet]
+        public ActionResult Vehicles(string HeroName, string PlatForm)
+        {
+
+            string SortMethod = "DESC";
+            string HeaderIndex = "header1";
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Vehicles";
+            return View(heroInfoModel);
+        }
+
+        [HttpGet]
+        public ActionResult Weapons(string HeroName, string PlatForm)
+        {
+
+            string SortMethod = "DESC";
+            string HeaderIndex = "header1";
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Weapons";
+            return View(heroInfoModel);
+        }
+
+        [HttpGet]
+        public ActionResult Gadgets(string HeroName, string PlatForm)
+        {
+
+            string SortMethod = "DESC";
+            string HeaderIndex = "header1";
+            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            ViewData["HeroName"] = HeroName;
+            ViewData["PlatForm"] = PlatForm;
+            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Page"] = "Gadgets";
+            return View(heroInfoModel);
         }
     }
 }

@@ -51,105 +51,105 @@ namespace GAMEDATAHUB.Repository
                     }
                 }
             }
+            overView = OverviewDataGenerate(heroInfoModel, overView);
+            //ErrorModel error = new ErrorModel();
 
-            ErrorModel error = new ErrorModel();
+            //#region show OverView Date First
 
-            #region show OverView Date First
+            //overView.UserName = heroInfoModel.UserName;
+            //overView.Avatar = heroInfoModel.Avatar;
+            //overView.MatchesPlayed = heroInfoModel.MatchesPlayed;
+            //overView.DamagePerMinute = heroInfoModel.DamagePerMinute;
+            //overView.KillDeath = heroInfoModel.KillDeath;
+            //overView.HeadShotRate = heroInfoModel.HeadShotRate;
+            //overView.WinPercent = heroInfoModel.WinPercent;
+            //if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
+            //{
+            //    overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
+            //}
+            //else
+            //{
+            //    error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
+            //}
+            //overView.Kills = heroInfoModel.Kills;
+            //overView.Deaths = heroInfoModel.Deaths;
+            //overView.KillAssists = heroInfoModel.KillAssists;
+            //overView.KillsPerMinute = heroInfoModel.KillsPerMinute;
+            //overView.KillsPerMatch = heroInfoModel.KillsPerMatch;
+            //overView.Wins = heroInfoModel.Wins;
+            //overView.Loses = heroInfoModel.Loses;
+            //overView.Damage = heroInfoModel.Damage;
+            //overView.DamagePerMatch = heroInfoModel.DamagePerMatch;
+            //overView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
 
-            overView.UserName = heroInfoModel.UserName;
-            overView.Avatar = heroInfoModel.Avatar;
-            overView.MatchesPlayed = heroInfoModel.MatchesPlayed;
-            overView.DamagePerMinute = heroInfoModel.DamagePerMinute;
-            overView.KillDeath = heroInfoModel.KillDeath;
-            overView.HeadShotRate = heroInfoModel.HeadShotRate;
-            overView.WinPercent = heroInfoModel.WinPercent;
-            if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
-            {
-                overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
-            }
-            else
-            {
-                error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
-            }
-            overView.Kills = heroInfoModel.Kills;
-            overView.Deaths = heroInfoModel.Deaths;
-            overView.KillAssists = heroInfoModel.KillAssists;
-            overView.KillsPerMinute = heroInfoModel.KillsPerMinute;
-            overView.KillsPerMatch = heroInfoModel.KillsPerMatch;
-            overView.Wins = heroInfoModel.Wins;
-            overView.Loses = heroInfoModel.Loses;
-            overView.Damage = heroInfoModel.Damage;
-            overView.DamagePerMatch = heroInfoModel.DamagePerMatch;
-            overView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
+            //overView.MultiKills = heroInfoModel.DividedKills.MultiKills;
+            //overView.HeadShotAmount = heroInfoModel.HeadShotAmount;
+            //overView.RoadKills = heroInfoModel.DividedKills.Roadkills;
+            //overView.MeleeKills = heroInfoModel.DividedKills.Melee;
+            //overView.VechileKills = heroInfoModel.DividedKills.Vehicle;
+            //overView.GrenadesKills = heroInfoModel.DividedKills.Grenades;
+            //overView.HipfireKills = heroInfoModel.DividedKills.Hipfire;
+            //overView.AIKills = heroInfoModel.DividedKills.Ai;
+            //overView.HumanKills = heroInfoModel.DividedKills.Human;
+            //overView.ScopedKills = heroInfoModel.DividedKills.Ads;
 
-            overView.MultiKills = heroInfoModel.DividedKills.MultiKills;
-            overView.HeadShotAmount = heroInfoModel.HeadShotAmount;
-            overView.RoadKills = heroInfoModel.DividedKills.Roadkills;
-            overView.MeleeKills = heroInfoModel.DividedKills.Melee;
-            overView.VechileKills = heroInfoModel.DividedKills.Vehicle;
-            overView.GrenadesKills = heroInfoModel.DividedKills.Grenades;
-            overView.HipfireKills = heroInfoModel.DividedKills.Hipfire;
-            overView.AIKills = heroInfoModel.DividedKills.Ai;
-            overView.HumanKills = heroInfoModel.DividedKills.Human;
-            overView.ScopedKills = heroInfoModel.DividedKills.Ads;
+            //overView.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
+            //overView.AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600;
+            //overView.DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600;
+            //overView.ArmedObject = heroInfoModel.Objective.Armed;
+            //overView.DefusedObject = heroInfoModel.Objective.Defused;
+            //overView.DestroyedObject = heroInfoModel.Objective.Destroyed;
+            //overView.CapturedObject = heroInfoModel.Objective.Captured;
+            //overView.NeutralizedObject = heroInfoModel.Objective.Neutralized;
+            //overView.AttackedSector = heroInfoModel.Sector.captured;
+            //overView.DefendedSector = heroInfoModel.Sector.defended;
 
-            overView.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
-            overView.AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600;
-            overView.DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600;
-            overView.ArmedObject = heroInfoModel.Objective.Armed;
-            overView.DefusedObject = heroInfoModel.Objective.Defused;
-            overView.DestroyedObject = heroInfoModel.Objective.Destroyed;
-            overView.CapturedObject = heroInfoModel.Objective.Captured;
-            overView.NeutralizedObject = heroInfoModel.Objective.Neutralized;
-            overView.AttackedSector = heroInfoModel.Sector.captured;
-            overView.DefendedSector = heroInfoModel.Sector.defended;
+            //var topThreeWeapons = heroInfoModel.Weapons
+            //    .OrderByDescending(w => w.Kills)
+            //    .Take(3)
+            //    .ToList();
+            //foreach (var weapon in topThreeWeapons)
+            //{
+            //    WeapoinOverView weapoinOverView = new WeapoinOverView();
+            //    weapoinOverView.Type = weapon.Type;
+            //    weapoinOverView.Name = weapon.WeaponName;
+            //    weapoinOverView.Kills = weapon.Kills;
+            //    weapoinOverView.HeadShotRate = weapon.Headshots;
+            //    overView.WeapoinOverViews.Add(weapoinOverView);
+            //}
 
-            var topThreeWeapons = heroInfoModel.Weapons
-                .OrderByDescending(w => w.Kills)
-                .Take(3)
-                .ToList();
-            foreach (var weapon in topThreeWeapons)
-            {
-                WeapoinOverView weapoinOverView = new WeapoinOverView();
-                weapoinOverView.Type = weapon.Type;
-                weapoinOverView.Name = weapon.WeaponName;
-                weapoinOverView.Kills = weapon.Kills;
-                weapoinOverView.HeadShotRate = weapon.Headshots;
-                overView.WeapoinOverViews.Add(weapoinOverView);
-            }
+            //var topThreeVehciles = heroInfoModel.Vehicles
+            //    .OrderByDescending(w => w.Kills)
+            //    .Take(3)
+            //    .ToList();
+            //foreach (var vehcile in topThreeVehciles)
+            //{
+            //    VehiclesOverView vehiclesOverView = new VehiclesOverView();
+            //    vehiclesOverView.Type = vehcile.Type;
+            //    vehiclesOverView.Name = vehcile.VehicleName;
+            //    vehiclesOverView.Kills = vehcile.Kills;
+            //    vehiclesOverView.DPM = Math.Round(vehcile.Damage / ((decimal)vehcile.TimeIn / 60), 2);
+            //    overView.VehiclesOverViews.Add(vehiclesOverView);
+            //}
 
-            var topThreeVehciles = heroInfoModel.Vehicles
-                .OrderByDescending(w => w.Kills)
-                .Take(3)
-                .ToList();
-            foreach (var vehcile in topThreeVehciles)
-            {
-                VehiclesOverView vehiclesOverView = new VehiclesOverView();
-                vehiclesOverView.Type = vehcile.Type;
-                vehiclesOverView.Name = vehcile.VehicleName;
-                vehiclesOverView.Kills = vehcile.Kills;
-                vehiclesOverView.DPM = Math.Round(vehcile.Damage / ((decimal)vehcile.TimeIn / 60), 2);
-                overView.VehiclesOverViews.Add(vehiclesOverView);
-            }
+            //var topThreeSpecialists = heroInfoModel.Classes
+            //    .OrderByDescending(w => w.Kills)
+            //    .Take(3)
+            //    .ToList();
 
-            var topThreeSpecialists = heroInfoModel.Classes
-                .OrderByDescending(w => w.Kills)
-                .Take(3)
-                .ToList();
+            //foreach (var specialist in topThreeSpecialists)
+            //{
+            //    SpecialistsOverView specialistsOverView = new SpecialistsOverView();
+            //    specialistsOverView.Name = specialist.CharacterName;
+            //    specialistsOverView.AvatarImage = specialist.AvatarImages.Us;
+            //    specialistsOverView.Playtime = specialist.SecondsPlayed / 3600;
+            //    specialistsOverView.Kills = specialist.Kills;
+            //    specialistsOverView.KD = specialist.KillDeath;
+            //    specialistsOverView.KPM = specialist.KPM;
+            //    overView.SpecialistsOverViews.Add(specialistsOverView);
+            //}
 
-            foreach (var specialist in topThreeSpecialists)
-            {
-                SpecialistsOverView specialistsOverView = new SpecialistsOverView();
-                specialistsOverView.Name = specialist.CharacterName;
-                specialistsOverView.AvatarImage = specialist.AvatarImages.Us;
-                specialistsOverView.Playtime = specialist.SecondsPlayed / 3600;
-                specialistsOverView.Kills = specialist.Kills;
-                specialistsOverView.KD = specialist.KillDeath;
-                specialistsOverView.KPM = specialist.KPM;
-                overView.SpecialistsOverViews.Add(specialistsOverView);
-            }
-
-            #endregion show OverView Date First
+            //#endregion show OverView Date First
 
             #region Database Operaion
 
@@ -280,6 +280,120 @@ namespace GAMEDATAHUB.Repository
             {
                 Console.WriteLine("Successful");
             }
+        }
+
+        public OverviewModel OverviewInfoGet(string name, string platform) {
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            heroInfoModel.PlatForm = platform;
+            OverviewModel overView = new OverviewModel();
+            overView.PlatForm = platform;
+            if (cache.Contains(name))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(name);
+            }
+            overView = OverviewDataGenerate(heroInfoModel, overView);
+            return overView;
+        }
+
+        public OverviewModel OverviewDataGenerate(HeroInfoModel heroInfoModel, OverviewModel overView) {
+            ErrorModel error = new ErrorModel();
+
+            #region show OverView Date First
+
+            overView.UserName = heroInfoModel.UserName;
+            overView.Avatar = heroInfoModel.Avatar;
+            overView.MatchesPlayed = heroInfoModel.MatchesPlayed;
+            overView.DamagePerMinute = heroInfoModel.DamagePerMinute;
+            overView.KillDeath = heroInfoModel.KillDeath;
+            overView.HeadShotRate = heroInfoModel.HeadShotRate;
+            overView.WinPercent = heroInfoModel.WinPercent;
+            if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
+            {
+                overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
+            }
+            else
+            {
+                error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
+            }
+            overView.Kills = heroInfoModel.Kills;
+            overView.Deaths = heroInfoModel.Deaths;
+            overView.KillAssists = heroInfoModel.KillAssists;
+            overView.KillsPerMinute = heroInfoModel.KillsPerMinute;
+            overView.KillsPerMatch = heroInfoModel.KillsPerMatch;
+            overView.Wins = heroInfoModel.Wins;
+            overView.Loses = heroInfoModel.Loses;
+            overView.Damage = heroInfoModel.Damage;
+            overView.DamagePerMatch = heroInfoModel.DamagePerMatch;
+            overView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
+
+            overView.MultiKills = heroInfoModel.DividedKills.MultiKills;
+            overView.HeadShotAmount = heroInfoModel.HeadShotAmount;
+            overView.RoadKills = heroInfoModel.DividedKills.Roadkills;
+            overView.MeleeKills = heroInfoModel.DividedKills.Melee;
+            overView.VechileKills = heroInfoModel.DividedKills.Vehicle;
+            overView.GrenadesKills = heroInfoModel.DividedKills.Grenades;
+            overView.HipfireKills = heroInfoModel.DividedKills.Hipfire;
+            overView.AIKills = heroInfoModel.DividedKills.Ai;
+            overView.HumanKills = heroInfoModel.DividedKills.Human;
+            overView.ScopedKills = heroInfoModel.DividedKills.Ads;
+
+            overView.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
+            overView.AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600;
+            overView.DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600;
+            overView.ArmedObject = heroInfoModel.Objective.Armed;
+            overView.DefusedObject = heroInfoModel.Objective.Defused;
+            overView.DestroyedObject = heroInfoModel.Objective.Destroyed;
+            overView.CapturedObject = heroInfoModel.Objective.Captured;
+            overView.NeutralizedObject = heroInfoModel.Objective.Neutralized;
+            overView.AttackedSector = heroInfoModel.Sector.captured;
+            overView.DefendedSector = heroInfoModel.Sector.defended;
+
+            var topThreeWeapons = heroInfoModel.Weapons
+                .OrderByDescending(w => w.Kills)
+                .Take(3)
+                .ToList();
+            foreach (var weapon in topThreeWeapons)
+            {
+                WeapoinOverView weapoinOverView = new WeapoinOverView();
+                weapoinOverView.Type = weapon.Type;
+                weapoinOverView.Name = weapon.WeaponName;
+                weapoinOverView.Kills = weapon.Kills;
+                weapoinOverView.HeadShotRate = weapon.Headshots;
+                overView.WeapoinOverViews.Add(weapoinOverView);
+            }
+
+            var topThreeVehciles = heroInfoModel.Vehicles
+                .OrderByDescending(w => w.Kills)
+                .Take(3)
+                .ToList();
+            foreach (var vehcile in topThreeVehciles)
+            {
+                VehiclesOverView vehiclesOverView = new VehiclesOverView();
+                vehiclesOverView.Type = vehcile.Type;
+                vehiclesOverView.Name = vehcile.VehicleName;
+                vehiclesOverView.Kills = vehcile.Kills;
+                vehiclesOverView.DPM = Math.Round(vehcile.Damage / ((decimal)vehcile.TimeIn / 60), 2);
+                overView.VehiclesOverViews.Add(vehiclesOverView);
+            }
+
+            var topThreeSpecialists = heroInfoModel.Classes
+                .OrderByDescending(w => w.Kills)
+                .Take(3)
+                .ToList();
+
+            foreach (var specialist in topThreeSpecialists)
+            {
+                SpecialistsOverView specialistsOverView = new SpecialistsOverView();
+                specialistsOverView.Name = specialist.CharacterName;
+                specialistsOverView.AvatarImage = specialist.AvatarImages.Us;
+                specialistsOverView.Playtime = specialist.SecondsPlayed / 3600;
+                specialistsOverView.Kills = specialist.Kills;
+                specialistsOverView.KD = specialist.KillDeath;
+                specialistsOverView.KPM = specialist.KPM;
+                overView.SpecialistsOverViews.Add(specialistsOverView);
+            }
+            #endregion
+            return overView;
         }
 
         public HeroInfoModel MapsInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
