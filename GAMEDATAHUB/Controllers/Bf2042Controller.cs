@@ -172,6 +172,14 @@ namespace GAMEDATAHUB.Controllers
             return View(weaponModelView);
         }
 
+        [HttpPost]
+        public JsonResult WeaponsUpdate(ModeJson modeJson)
+        {
+            WeaponModelView weaponModelView = Resp.WeaponInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(weaponModelView);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Gadgets(string HeroName, string PlatForm)
         {

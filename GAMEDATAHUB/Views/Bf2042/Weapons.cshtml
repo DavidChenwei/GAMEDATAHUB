@@ -185,7 +185,7 @@
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">HS%</div>
-                                                                    <div class="value">@weapon.ShotsHit</div>
+                                                                    <div class="value">@weapon.Headshots</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Kills</div>
@@ -204,8 +204,8 @@
                                                                     <div class="value">@weapon.ShotsFired.ToString("N0")</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
-                                                                    <div class="label">@weapon.ShotsHit.ToString("N0")</div>
-                                                                    <div class="value">9,005</div>
+                                                                    <div class="label">Shots Hit</div>
+                                                                    <div class="value">@weapon.ShotsHit.ToString("N0")</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -300,8 +300,8 @@
                     var heroName = document.getElementById('HeroName').value;
                     var platForm = document.getElementById('PlatForm').value;
                     var headerName = header.querySelector('.label').textContent;
-                    @*$.ajax({
-                        url: '@Url.Action("SpecialistsUpdate", "Bf2042")',
+                    $.ajax({
+                        url: '@Url.Action("WeaponsUpdate", "Bf2042")',
                         type: 'POST',
                         data: {
                             HeaderName: headerName,
@@ -311,8 +311,7 @@
                         },
                         success: function (response){
                             var parsedData = JSON.parse(response);
-                            console.log(parsedData);
-                            let specialistsModeViews = parsedData.Specialists;
+                            let weaponsModeViews = parsedData.Weapons;
                             //Update the content item infomation
                             var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
                             var JsonIndex = 0;
@@ -321,40 +320,46 @@
                                 var st__items = item.querySelectorAll('.st__item');
                                 st__items.forEach(function (st__item) {
                                     var child = st__item.querySelector('.info .value');
-                                    var image = st__item.querySelector('.image img');
                                     var label = st__item.querySelector('.info .label');
                                     if (HeaderIndex == 0) {
-                                        child.innerText = specialistsModeViews[JsonIndex]['CharacterName'];
-                                        image.setAttribute('src', specialistsModeViews[JsonIndex]['AvatarImages'].Us)
-                                        label.innerText = specialistsModeViews[JsonIndex]['ClassName'];
+                                        child.innerText = weaponsModeViews[JsonIndex]['WeaponName'];
+                                        label.innerText = weaponsModeViews[JsonIndex]['Type'];
                                     }
                                     if (HeaderIndex == 1) {
-                                        child.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
-                                        if (parsedData['MaxKills'] == specialistsModeViews[JsonIndex]['Kills']) {
+                                        child.innerText = weaponsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        if (parsedData['MaxKills'] == weaponsModeViews[JsonIndex]['Kills']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 2) {
-                                        child.innerText = specialistsModeViews[JsonIndex]['KillDeath'].toLocaleString('en-US');
-                                        if (parsedData['MaxKD'] == specialistsModeViews[JsonIndex]['KillDeath']) {
+                                        child.innerText = weaponsModeViews[JsonIndex]['DamagePerMinute'].toLocaleString('en-US');
+                                        if (parsedData['MaxDPM'] == weaponsModeViews[JsonIndex]['DamagePerMinute']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 3) {
-                                        child.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
-                                        if (parsedData['MaxKPM'] == specialistsModeViews[JsonIndex]['KPM']) {
+                                        child.innerText = weaponsModeViews[JsonIndex]['Accuracy'].toLocaleString('en-US');
+                                        if (parsedData['MaxAccuracy'] == weaponsModeViews[JsonIndex]['AccuracyD']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 4) {
-                                        child.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
-                                        if (parsedData['MaxTime'] == specialistsModeViews[JsonIndex]['HoursPlayed']) {
+                                        child.innerText = weaponsModeViews[JsonIndex]['KillsPerMinute'].toLocaleString('en-US');
+                                        if (parsedData['MaxKPM'] == weaponsModeViews[JsonIndex]['KillsPerMinute']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 5) {
+                                        child.innerText = weaponsModeViews[JsonIndex]['Headshots'].toLocaleString('en-US');
+                                        if (parsedData['MaxHS'] == weaponsModeViews[JsonIndex]['HeadshotsD']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
@@ -365,7 +370,6 @@
                                 JsonIndex += 1;
                             });
                             JsonIndex = 0;
-
                             //Update the content drawer
                             var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
                             drawertItems.forEach(function (drawer) {
@@ -376,25 +380,22 @@
                                     if (categoryIndex == 0) {
                                         var stats = category.querySelectorAll('.category__stats-stat .value');
                                         var statIndex = 0;
-                                        var id = category.querySelector('.category__header').innerText;
+                                        
                                         stats.forEach(function (state) {
                                             if (statIndex == 0) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
+                                                state.innerText = weaponsModeViews[JsonIndex]['BodyKills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 1) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['Deaths'].toLocaleString('en-US');
+                                                state.innerText = weaponsModeViews[JsonIndex]['HeadshotKills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 2) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['KillDeath'].toLocaleString('en-US');
+                                                state.innerText = weaponsModeViews[JsonIndex]['HipfireKills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 3) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                                state.innerText = weaponsModeViews[JsonIndex]['MultiKills'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 4) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
-                                            }
-                                            if (statIndex == 5) {
-                                                state.innerText = specialistsModeViews[JsonIndex]['Revives'].toLocaleString('en-US');
+                                                state.innerText = weaponsModeViews[JsonIndex]['HitVKills'].toLocaleString('en-US');
                                             }
                                             statIndex += 1;
                                         });
@@ -404,13 +405,45 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = specialistsModeViews[JsonIndex]['HazardZoneStreaks'].toLocaleString('en-US');
+                                                    state.innerText = weaponsModeViews[JsonIndex]['Damage'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                                    state.innerText = weaponsModeViews[JsonIndex]['DamagePerMinute'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 2) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['Headshots'];
+                                                }
+                                                if (statIndex == 3) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 4) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['KillsPerMinute'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 5) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['Accuracy'] + "%";
+                                                }
+                                                if (statIndex == 6) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['ShotsFired'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 7) {
+                                                    state.innerText = weaponsModeViews[JsonIndex]['ShotsHit'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });
+                                    }
+                                    if (categoryIndex == 2) {
+                                        var stats = category.querySelectorAll('.category__stats-stat .value');
+                                        var statIndex = 0;
+                                        var id = category.querySelector('.category__header').innerText;
+                                        stats.forEach(function (state) {
+                                            if (statIndex == 0) {
+                                                state.innerText = weaponsModeViews[JsonIndex]['Spawns'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 1) {
+                                                state.innerText = weaponsModeViews[JsonIndex]['TimeEquipped'].toLocaleString('en-US')+"S";
+                                            }
+                                            statIndex += 1;
+                                        });
                                     }
                                     categoryIndex += 1;
                                 });
@@ -421,7 +454,7 @@
                             console.log(textStatus, errorThrown);
                         }
                     }
-                    );*@
+                    );
                 });
             });
 
