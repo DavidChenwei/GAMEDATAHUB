@@ -1066,5 +1066,82 @@ namespace GAMEDATAHUB.Repository
 
             return vehicleModelView;
         }
+
+        public VehicleModelView VehiclesInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            VehicleModelView vehicleModelView = new VehicleModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            vehicleModelView.MaxDPM = heroInfoModel.Vehicles.Max(m => m.DPM);
+            vehicleModelView.MaxKills = heroInfoModel.Vehicles.Max(m => m.Kills);
+            vehicleModelView.MaxKPM = heroInfoModel.Vehicles.Max(m => m.KillsPerMinute);
+            vehicleModelView.MaxTime = heroInfoModel.Vehicles.Max(m => m.HoursPlayed);
+            vehicleModelView.UserName = heroInfoModel.UserName;
+            vehicleModelView.Avatar = heroInfoModel.Avatar;
+            vehicleModelView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderDPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.DPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.DPM).ToList();
+                }
+            }
+
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.KillsPerMinute).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.KillsPerMinute).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.HoursPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.HoursPlayed).ToList();
+                }
+            }
+
+            vehicleModelView.Vehicles = heroInfoModel.Vehicles;
+
+
+            return vehicleModelView;
+        }
     }
 }

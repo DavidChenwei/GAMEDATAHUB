@@ -148,14 +148,20 @@ namespace GAMEDATAHUB.Controllers
         public ActionResult Vehicles(string HeroName, string PlatForm)
         {
 
-            string SortMethod = "DESC";
-            string HeaderIndex = "header1";
             VehicleModelView vehicleModelView = Resp.VehiclesInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = vehicleModelView.Avatar;
             ViewData["Page"] = "Vehicles";
             return View(vehicleModelView);
+        }
+
+        [HttpPost]
+        public JsonResult VehiclesUpdate(ModeJson modeJson)
+        {
+            VehicleModelView vehicleModelView = Resp.VehiclesInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(vehicleModelView);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
