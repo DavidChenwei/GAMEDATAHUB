@@ -1000,5 +1000,121 @@ namespace GAMEDATAHUB.Repository
 
             return weaponModelView;
         }
+
+        public GadgetModelView GadgetInfoGet(string HeroName, string PlatForm)
+        {
+            GadgetModelView gadgetModelView = new GadgetModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Gadgets.Count; i++)
+            {
+                heroInfoModel.Gadgets[i].HoursPlayed = heroInfoModel.Gadgets[i].SecondsPlayed / 3600;
+            }
+
+            gadgetModelView.MaxDPM = heroInfoModel.Gadgets.Max(m => m.DPM);
+            gadgetModelView.MaxKills = heroInfoModel.Gadgets.Max(m => m.Kills);
+            gadgetModelView.MaxKPM = heroInfoModel.Gadgets.Max(m => m.KPM);
+            gadgetModelView.MaxUses = heroInfoModel.Gadgets.Max(m => m.Uses);
+            gadgetModelView.UserName = heroInfoModel.UserName;
+            gadgetModelView.Avatar = heroInfoModel.Avatar;
+            gadgetModelView.PlatForm = heroInfoModel.PlatForm;
+
+            heroInfoModel.Weapons = heroInfoModel.Weapons.OrderByDescending(w => w.Kills).ToList();
+
+            gadgetModelView.Gadgets = heroInfoModel.Gadgets;
+
+
+            return gadgetModelView;
+        }
+
+        public GadgetModelView GadgetInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            GadgetModelView gadgetModelView = new GadgetModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Gadgets.Count; i++)
+            {
+                heroInfoModel.Gadgets[i].HoursPlayed = heroInfoModel.Gadgets[i].SecondsPlayed / 3600;
+            }
+
+            gadgetModelView.MaxDPM = heroInfoModel.Gadgets.Max(m => m.DPM);
+            gadgetModelView.MaxKills = heroInfoModel.Gadgets.Max(m => m.Kills);
+            gadgetModelView.MaxKPM = heroInfoModel.Gadgets.Max(m => m.KPM);
+            gadgetModelView.MaxUses = heroInfoModel.Gadgets.Max(m => m.Uses);
+            gadgetModelView.UserName = heroInfoModel.UserName;
+            gadgetModelView.Avatar = heroInfoModel.Avatar;
+            gadgetModelView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderDPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.DPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.DPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderUse)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.DPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.DPM).ToList();
+                }
+            }
+
+            gadgetModelView.Gadgets = heroInfoModel.Gadgets;
+
+
+            return gadgetModelView;
+        }
     }
 }

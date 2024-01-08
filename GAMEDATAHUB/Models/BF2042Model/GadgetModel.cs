@@ -20,5 +20,22 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public decimal KPM { get; set; }
         public decimal DPM { get; set; }
         public int SecondsPlayed { get; set; }
+        public int HoursPlayed { get; set; }
+    }
+
+    public class GadgetModelView
+    {
+        public GadgetModelView()
+        {
+            Gadgets = new List<GadgetModel>();
+        }
+        public List<GadgetModel> Gadgets { get; set; }
+        public int MaxUses { get; set; }
+        public int MaxKills { get; set; }
+        public decimal MaxKPM { get; set; }
+        public decimal MaxDPM { get; set; }
+        public string UserName { get; set; }
+        public string Avatar { get; set; }
+        public string PlatForm { get; set; }
     }
 }

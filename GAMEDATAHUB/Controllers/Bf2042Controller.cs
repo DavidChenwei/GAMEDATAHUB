@@ -184,14 +184,20 @@ namespace GAMEDATAHUB.Controllers
         public ActionResult Gadgets(string HeroName, string PlatForm)
         {
 
-            string SortMethod = "DESC";
-            string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            GadgetModelView gadgetModelView = Resp.GadgetInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Avatar"] = gadgetModelView.Avatar;
             ViewData["Page"] = "Gadgets";
-            return View(heroInfoModel);
+            return View(gadgetModelView);
+        }
+
+        [HttpPost]
+        public JsonResult GadgetsUpdate(ModeJson modeJson)
+        {
+            WeaponModelView weaponModelView = Resp.WeaponInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(weaponModelView);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
     }
 }

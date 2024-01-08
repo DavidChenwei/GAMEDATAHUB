@@ -1,7 +1,196 @@
-﻿
+﻿@model GAMEDATAHUB.Models.BF2042Model.GadgetModelView
 @{
     ViewBag.Title = "Gadgets";
 }
 
-<h2>Gadgets</h2>
+<body>
+    <div class="gdh-wrapper">
+        <div class="gdh-container">
+            <div class="gdh-content">
+                <div class="container">
+                    <div class="content">
+                        @Html.Partial("_Bf2042LayOut")
+                        <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
+                            <div class="trn-grid trn-grid--small specialists" revision="70">
+                                <div class="st st--expand-hide-mobile">
+                                    <div class="st-header">
+                                        <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide"
+                                             style="--st-base-width: 16rem;">
+                                            <span class="label">Gadget</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--active st-header__item--sortable"
+                                             style="--st-base-width: 5.5rem;">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 24 24" class="icon">
+                                                <path d="m7 10 5 5 5-5z"></path>
+                                            </svg>
+                                            <span class="label">Kills</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 8.5rem;">
+                                            <span class="label">Uses</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 7.5rem;">
+                                            <span class="label">Damage/min</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 7.5rem;">
+                                            <span class="label">Kills/min</span>
+                                        </div>
+                                        <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
+                                    </div>
+                                    <div class="st-content">
+                                        <div class="st-content__category">
+                                            @foreach (var gadget in Model.Gadgets)
+                                            {
+                                            <div class="st-content__item">
+                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 16rem;">
+                                                    <div class="image">
+                                                        <img class="" src=@gadget.Image width="40" height="40" loading="lazy">
+                                                    </div>
+                                                    <div class="info">
+                                                        <div class="value">@gadget.GadgetName</div>
+                                                        <div class="label">@gadget.Type</div>
+                                                    </div>
+                                                </div>
+                                                @if (Model.MaxKills == gadget.Kills)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
+                                                         style="--st-base-width: 5.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active "
+                                                         style="--st-base-width: 5.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (Model.MaxUses == gadget.Uses)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.Uses.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 8.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.Uses.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxDPM == gadget.DPM)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.DPM.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.DPM.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxKPM == gadget.KPM)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.KPM.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@gadget.KPM.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                        <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                                <div class="st-content__drawer" style="">
+                                                    <div data-v-8c9aee4f="" class="stat-dump">
+                                                        <div class="category">
+                                                            <div class="category__header">Combat</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Damage Dealt</div>
+                                                                    <div class="value">@gadget.Damage.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Dmg/Min</div>
+                                                                    <div class="value">@gadget.DPM.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills</div>
+                                                                    <div class="value">@gadget.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills/Min</div>
+                                                                    <div class="value">@gadget.KPM.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">@gadget.VehiclesDestroyedWith.ToString("N0")</div>
+                                                                    <div class="value">4</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="category">
+                                                            <div class="category__header">Game</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Deployments</div>
+                                                                    <div class="value">@gadget.Spawns.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Multi Kills</div>
+                                                                    <div class="value">@gadget.MultiKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Time Played</div>
+                                                                    <div class="value">@gadget.HoursPlayed.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Uses</div>
+                                                                    <div class="value">@gadget.Uses.ToString("N0")</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 

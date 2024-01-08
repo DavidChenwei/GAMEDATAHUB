@@ -20,5 +20,6 @@ namespace GAMEDATAHUB.Repository
         public const string HeaderAccuracy = "Accuracy";
         public const string HeaderDPM = "Damage/min";
         public const string HeaderHeadShot = "HS%";
+        public const string HeaderUse = "Uses";
     }
 }
