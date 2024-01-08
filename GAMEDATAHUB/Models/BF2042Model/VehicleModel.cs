@@ -33,17 +33,6 @@ namespace GAMEDATAHUB.Models.BF2042Model
                 return TimeIn / 3600;
             } 
         }
-
-        public int DPM
-        {
-            get
-            {
-                if (TimeIn == 0) return 0; 
-                return Damage / TimeIn/ 360;
-            }
-        }
-
-
     }
 
     public class VehicleModelView
@@ -56,7 +45,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int MaxTime { get; set; }
         public int MaxKills { get; set; }
         public decimal MaxKPM { get; set; }
-        public decimal MaxDPM { get; set; }
+        public decimal MaxDamage { get; set; }
         public string UserName { get; set; }
         public string Avatar { get; set; }
         public string PlatForm { get; set; }

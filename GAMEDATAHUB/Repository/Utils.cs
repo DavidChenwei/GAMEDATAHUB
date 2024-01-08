@@ -21,5 +21,6 @@ namespace GAMEDATAHUB.Repository
         public const string HeaderDPM = "Damage/min";
         public const string HeaderHeadShot = "HS%";
         public const string HeaderUse = "Uses";
+        public const string HeaderDamage = "Damage";
     }
 }

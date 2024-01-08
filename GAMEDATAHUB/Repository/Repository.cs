@@ -1051,7 +1051,7 @@ namespace GAMEDATAHUB.Repository
                 //To do: Read from Database
             }
 
-            vehicleModelView.MaxDPM = heroInfoModel.Vehicles.Max(m => m.DPM);
+            vehicleModelView.MaxDamage = heroInfoModel.Vehicles.Max(m => m.Damage);
             vehicleModelView.MaxKills = heroInfoModel.Vehicles.Max(m => m.Kills);
             vehicleModelView.MaxKPM = heroInfoModel.Vehicles.Max(m => m.KillsPerMinute);
             vehicleModelView.MaxTime = heroInfoModel.Vehicles.Max(m => m.HoursPlayed);
@@ -1081,7 +1081,7 @@ namespace GAMEDATAHUB.Repository
                 //To do: Read from Database
             }
 
-            vehicleModelView.MaxDPM = heroInfoModel.Vehicles.Max(m => m.DPM);
+            vehicleModelView.MaxDamage = heroInfoModel.Vehicles.Max(m => m.Damage);
             vehicleModelView.MaxKills = heroInfoModel.Vehicles.Max(m => m.Kills);
             vehicleModelView.MaxKPM = heroInfoModel.Vehicles.Max(m => m.KillsPerMinute);
             vehicleModelView.MaxTime = heroInfoModel.Vehicles.Max(m => m.HoursPlayed);
@@ -1101,15 +1101,15 @@ namespace GAMEDATAHUB.Repository
                 }
             }
 
-            if (HeaderName == Utils.HeaderDPM)
+            if (HeaderName == Utils.HeaderDamage)
             {
                 if (SortMethod == Utils.AsceMethod)
                 {
-                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.DPM).ToList();
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderBy(w => w.Damage).ToList();
                 }
                 else
                 {
-                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.DPM).ToList();
+                    heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.Damage).ToList();
                 }
             }
 

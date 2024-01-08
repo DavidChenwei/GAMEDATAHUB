@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="st__item st-header__item st-header__item--sortable"
                                              style="--st-base-width: 8rem;">
-                                            <span class="label">Damage/min</span>
+                                            <span class="label">Damage</span>
                                         </div>
                                         <div class="st__item st-header__item st-header__item--sortable"
                                              style="--st-base-width: 7.5rem;">
@@ -41,9 +41,9 @@
                                         <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                     </div>
                                     <div class="st-content">
-                                        @foreach (var vehicle in Model.Vehicles)
-                                        {
-                                            <div class="st-content__category">
+                                        <div class="st-content__category">
+                                            @foreach (var vehicle in Model.Vehicles)
+                                            {
                                                 <div class="st-content__item">
                                                     <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 16rem;">
                                                         <div class="info">
@@ -59,7 +59,7 @@
                                                     <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
                                                          style="--st-base-width: 8rem;">
                                                         <div class="info">
-                                                            <div class="value">@vehicle.DPM.ToString()</div>
+                                                            <div class="value">@vehicle.Damage.ToString("N0")</div>
                                                         </div>
                                                     </div>
                                                     <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
@@ -79,87 +79,84 @@
                                                         </svg>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="st-content__drawer" style="display: none;">
-                                                <div data-v-a8153416="" class="stat-dump">
-                                                    <div class="category">
-                                                        <div class="category__header">Combat</div>
-                                                        <div class="category__stats">
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Assists</div>
-                                                                <div class="value">@vehicle.Assists.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Damage Dealt</div>
-                                                                <div class="value">@vehicle.Damage.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Damage Dealt To</div>
-                                                                <div class="value">@vehicle.DamageTo.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Destroyed</div>
-                                                                <div class="value">@vehicle.Destroyed.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label"Destroyed With></div>
-                                                                <div class="value">@vehicle.VehiclesDestroyedWith.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Dmg/Min</div>
-                                                                <div class="value">@vehicle.DPM.ToString()</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Driver Assists</div>
-                                                                <div class="value">@vehicle.DriverAssists.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Kills</div>
-                                                                <div class="value">@vehicle.Kills.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Kills/Min</div>
-                                                                <div class="value">@vehicle.KillsPerMinute.ToString()</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Passenger Assists</div>
-                                                                <div class="value">@vehicle.PassengerAssists.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Road Kills</div>
-                                                                <div class="value">@vehicle.RoadKills.ToString("N0")</div>
+                                                <div class="st-content__drawer" style="display: none;">
+                                                    <div data-v-a8153416="" class="stat-dump">
+                                                        <div class="category">
+                                                            <div class="category__header">Combat</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Assists</div>
+                                                                    <div class="value">@vehicle.Assists.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Damage Dealt</div>
+                                                                    <div class="value">@vehicle.Damage.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Damage Dealt To</div>
+                                                                    <div class="value">@vehicle.DamageTo.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Destroyed</div>
+                                                                    <div class="value">@vehicle.Destroyed.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label" Destroyed With>Destroyed With</div>
+                                                                    <div class="value">@vehicle.VehiclesDestroyedWith.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Driver Assists</div>
+                                                                    <div class="value">@vehicle.DriverAssists.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills</div>
+                                                                    <div class="value">@vehicle.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills/Min</div>
+                                                                    <div class="value">@vehicle.KillsPerMinute.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Passenger Assists</div>
+                                                                    <div class="value">@vehicle.PassengerAssists.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Road Kills</div>
+                                                                    <div class="value">@vehicle.RoadKills.ToString("N0")</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="category">
-                                                        <div class="category__header">Game</div>
-                                                        <div class="category__stats">
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Call-ins</div>
-                                                                <div class="value">@vehicle.CallIns.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Deployments</div>
-                                                                <div class="value">@vehicle.Spawns.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Distance Traveled</div>
-                                                                <div class="value">@vehicle.DistanceTraveled.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Multi Kills</div>
-                                                                <div class="value">@vehicle.MultiKills.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Time Played</div>
-                                                                <div class="value">@vehicle.HoursPlayed.ToString("N0")</div>
+                                                        <div class="category">
+                                                            <div class="category__header">Game</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Call-ins</div>
+                                                                    <div class="value">@vehicle.CallIns.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Deployments</div>
+                                                                    <div class="value">@vehicle.Spawns.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Distance Traveled</div>
+                                                                    <div class="value">@vehicle.DistanceTraveled.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Multi Kills</div>
+                                                                    <div class="value">@vehicle.MultiKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Time Played</div>
+                                                                    <div class="value">@vehicle.HoursPlayed.ToString("N0")</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
 
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +241,7 @@
                         },
                         success: function (response){
                             var parsedData = JSON.parse(response);
-                            let gadgetsModeViews = parsedData.Gadgets;
+                            let vehiclesModeViews = parsedData.Vehicles;
                             //console.log(parsedData);
                             //Update the content item infomation
                             var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
@@ -255,39 +252,37 @@
                                 st__items.forEach(function (st__item) {
                                     var child = st__item.querySelector('.info .value');
                                     var label = st__item.querySelector('.info .label');
-                                    var imgage = st__item.querySelector('.image img');
                                     if (HeaderIndex == 0) {
-                                        child.innerText = gadgetsModeViews[JsonIndex]['GadgetName'];
-                                        label.innerText = gadgetsModeViews[JsonIndex]['Type'];
-                                        imgage.setAttribute('src', gadgetsModeViews[JsonIndex]['Image']);
+                                        child.innerText = vehiclesModeViews[JsonIndex]['VehicleName'];
+                                        label.innerText = vehiclesModeViews[JsonIndex]['Type'];
                                     }
                                     if (HeaderIndex == 1) {
-                                        child.innerText = gadgetsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
-                                        if (parsedData['MaxKills'] == gadgetsModeViews[JsonIndex]['Kills']) {
+                                        child.innerText = vehiclesModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        if (parsedData['MaxKills'] == vehiclesModeViews[JsonIndex]['Kills']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 2) {
-                                        child.innerText = gadgetsModeViews[JsonIndex]['Uses'].toLocaleString('en-US');
-                                        if (parsedData['MaxUses'] == gadgetsModeViews[JsonIndex]['Uses']) {
+                                        child.innerText = vehiclesModeViews[JsonIndex]['Damage'].toLocaleString('en-US');
+                                        if (parsedData['MaxDamage'] == vehiclesModeViews[JsonIndex]['Damage']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 3) {
-                                        child.innerText = gadgetsModeViews[JsonIndex]['DPM'].toLocaleString('en-US');
-                                        if (parsedData['MaxDPM'] == gadgetsModeViews[JsonIndex]['DPM']) {
+                                        child.innerText = vehiclesModeViews[JsonIndex]['KillsPerMinute'].toLocaleString('en-US');
+                                        if (parsedData['MaxKPM'] == vehiclesModeViews[JsonIndex]['KillsPerMinute']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
                                     if (HeaderIndex == 4) {
-                                        child.innerText = gadgetsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
-                                        if (parsedData['MaxKPM'] == gadgetsModeViews[JsonIndex]['KPM']) {
+                                        child.innerText = vehiclesModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                        if (parsedData['MaxTime'] == vehiclesModeViews[JsonIndex]['HoursPlayed']) {
                                             st__item.classList.add('st-content__item-value--highlight');
                                         } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
@@ -312,19 +307,34 @@
 
                                         stats.forEach(function (state) {
                                             if (statIndex == 0) {
-                                                state.innerText = gadgetsModeViews[JsonIndex]['Damage'].toLocaleString('en-US');
+                                                state.innerText = vehiclesModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 1) {
-                                                state.innerText = gadgetsModeViews[JsonIndex]['DPM'].toLocaleString('en-US');
+                                                state.innerText = vehiclesModeViews[JsonIndex]['Damage'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 2) {
-                                                state.innerText = gadgetsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                                state.innerText = vehiclesModeViews[JsonIndex]['DamageTo'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 3) {
-                                                state.innerText = gadgetsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                                state.innerText = vehiclesModeViews[JsonIndex]['Destroyed'].toLocaleString('en-US');
                                             }
                                             if (statIndex == 4) {
-                                                state.innerText = gadgetsModeViews[JsonIndex]['VehiclesDestroyedWith'].toLocaleString('en-US');
+                                                state.innerText = vehiclesModeViews[JsonIndex]['DriverAssists'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 5) {
+                                                state.innerText = vehiclesModeViews[JsonIndex]['VehiclesDestroyedWith'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 5) {
+                                                state.innerText = vehiclesModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 6) {
+                                                state.innerText = vehiclesModeViews[JsonIndex]['KillsPerMinute'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 7) {
+                                                state.innerText = vehiclesModeViews[JsonIndex]['PassengerAssists'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 8) {
+                                                state.innerText = vehiclesModeViews[JsonIndex]['RoadKills'].toLocaleString('en-US');
                                             }
                                             statIndex += 1;
                                         });
@@ -334,16 +344,19 @@
                                             var statIndex = 0;
                                             stats.forEach(function (state) {
                                                 if (statIndex == 0) {
-                                                    state.innerText = gadgetsModeViews[JsonIndex]['Spawns'].toLocaleString('en-US');
+                                                    state.innerText = vehiclesModeViews[JsonIndex]['CallIns'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 1) {
-                                                    state.innerText = gadgetsModeViews[JsonIndex]['MultiKills'].toLocaleString('en-US');
+                                                    state.innerText = vehiclesModeViews[JsonIndex]['Spawns'].toLocaleString('en-US');
                                                 }
                                                 if (statIndex == 2) {
-                                                    state.innerText = gadgetsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
+                                                    state.innerText = vehiclesModeViews[JsonIndex]['DistanceTraveled'].toLocaleString('en-US') + "H";
                                                 }
                                                 if (statIndex == 3) {
-                                                    state.innerText = gadgetsModeViews[JsonIndex]['Uses'].toLocaleString('en-US');
+                                                    state.innerText = vehiclesModeViews[JsonIndex]['MultiKills'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 4) {
+                                                    state.innerText = vehiclesModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US');
                                                 }
                                                 statIndex += 1;
                                             });
