@@ -28,4 +28,20 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int TimeEquipped { get; set; }
     }
 
+    public class WeaponModelView
+    {
+        public WeaponModelView()
+        {
+            Weapons = new List<WeaponModel>();
+        }
+        public List<WeaponModel> Weapons { get; set; }
+        public decimal MaxKD { get; set; }
+        public int MaxKills { get; set; }
+        public decimal MaxKPM { get; set; }
+        public decimal MaxAccuracy { get; set; }
+        public int MaxTime { get; set; }
+        public string UserName { get; set; }
+        public string Avatar { get; set; }
+        public string PlatForm { get; set; }
+    }
 }

@@ -236,30 +236,29 @@
     </div>
     <script>
 
-        var tabs = document.querySelectorAll('.trn-tabs__item');
-
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                console.log(tab);
-                if (!tab.classList.contains('.active')) {
-                    tab.classList.add('.active')
-                } else {
-                    tab.classList.remove('.active')
-                }
-            });
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
             var headers = document.querySelectorAll('.st-header .st-header__item');
             var sortMethod = "Desc";
 
-            headers.forEach(function (header) {
+            headers.forEach(function (header, index) {
                 header.addEventListener('click', function () {
                     //To control when header is active the color change to green
                     headers.forEach(function (innerItem) {
                         innerItem.classList.remove('st-header__item--active');
                     });
                     header.classList.add('st-header__item--active');
+
+                    //To control highligh when header is active
+                    var st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value");
+                    st_content__items.forEach(function (st_item) {
+                        st_item.classList.remove('st-content__item-value--active');
+                    });
+                    var selected_st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value:nth-child(" + (index + 1) + ")");
+                    selected_st_content__items.forEach(function (st_item) {
+                        if (!st_item.classList.contains('st-content__item-value--active')) {
+                            st_item.classList.add('st-content__item-value--active');
+                        }
+                    });
 
                     //To control the svg when header is active
                     headers.forEach(function (header) {
@@ -301,6 +300,9 @@
                     var heroName = document.getElementById('HeroName').value;
                     var platForm = document.getElementById('PlatForm').value;
                     var headerName = header.querySelector('.label').textContent;
+                    console.log(heroName);
+                    console.log(platForm);
+                    console.log(headerName);
                     $.ajax({
                         url: '@Url.Action("ModesUpdate", "Bf2042")',
                         type: 'POST',

@@ -703,5 +703,134 @@ namespace GAMEDATAHUB.Repository
             gameModeView.GameModeViews = heroInfoModel.Gamemodes;
             return gameModeView;
         }
+
+        public SpecialistModelView specialistInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName) {
+            SpecialistModelView specialistModelView = new SpecialistModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
+            {
+                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
+            }
+
+            specialistModelView.MaxKD = heroInfoModel.Classes.Max(m => m.KillDeath);
+            specialistModelView.MaxKills = heroInfoModel.Classes.Max(m => m.Kills);
+            specialistModelView.MaxKPM = heroInfoModel.Classes.Max(m => m.KPM);
+            specialistModelView.MaxTime = heroInfoModel.Classes.Max(m => m.HoursPlayed);
+            specialistModelView.UserName = heroInfoModel.UserName;
+            specialistModelView.Avatar = heroInfoModel.Avatar;
+            specialistModelView.PlatForm = heroInfoModel.PlatForm;
+
+            heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.Kills).ToList();
+
+            specialistModelView.Specialists = heroInfoModel.Classes;
+
+
+            return specialistModelView;
+        }
+
+        public SpecialistModelView SpecialistInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            SpecialistModelView specialistModelView = new SpecialistModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
+            {
+                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
+            }
+
+            specialistModelView.MaxKD = heroInfoModel.Classes.Max(m => m.KillDeath);
+            specialistModelView.MaxKills = heroInfoModel.Classes.Max(m => m.Kills);
+            specialistModelView.MaxKPM = heroInfoModel.Classes.Max(m => m.KPM);
+            specialistModelView.MaxTime = heroInfoModel.Classes.Max(m => m.HoursPlayed);
+            specialistModelView.UserName = heroInfoModel.UserName;
+            specialistModelView.Avatar = heroInfoModel.Avatar;
+            specialistModelView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKD)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.KillDeath).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.KillDeath).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderSpecialist)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.CharacterName).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.CharacterName).ToList();
+                }
+            }
+
+
+
+            specialistModelView.Specialists = heroInfoModel.Classes;
+
+
+            return specialistModelView;
+        }
     }
 }

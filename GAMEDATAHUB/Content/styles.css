@@ -2246,3 +2246,8 @@ st-content__item-value.st__item--sticky {
 .gamemodes {
     overflow-x: auto;
 }
+/*Specialists mode part*/
+.specialists[data-v-c9712b04] {
+    overflow-x: auto;
+}
+

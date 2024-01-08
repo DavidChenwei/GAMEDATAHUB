@@ -3,5 +3,54 @@
     ViewBag.Title = "Weapons";
 }
 
-<h2>Weapons</h2>
+<body>
+    <div class="gdh-wrapper">
+        <div class="gdh-container">
+            <div class="gdh-content">
+                <div class="container">
+                    <div class="content">
+                        @Html.Partial("_Bf2042LayOut")
+                        <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
+                            <div class="trn-grid trn-grid--small specialists" revision="70">
+                                <div class="st st--expand-hide-mobile">
+                                    <div class="st-header">
+                                        <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide"
+                                             style="--st-base-width: 10rem;">
+                                            <span class="label">Specialist</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--active st-header__item--sortable"
+                                             style="--st-base-width: 7.5rem;">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 24 24" class="icon">
+                                                <path d="m7 10 5 5 5-5z"></path>
+                                            </svg>
+                                            <span class="label">Kills</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 7rem;">
+                                            <span class="label">K/D</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 7.5rem;">
+                                            <span class="label">Kills/min</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable"
+                                             style="--st-base-width: 9rem;">
+                                            <span class="label">Playtime</span>
+                                        </div>
+                                        <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
+                                    </div>
+                                    <div class="st-content">
+                                        <div class="st-content__category">
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

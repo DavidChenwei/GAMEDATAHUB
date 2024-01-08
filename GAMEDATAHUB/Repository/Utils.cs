@@ -13,7 +13,9 @@ namespace GAMEDATAHUB.Repository
         public const string HeaderWinPercent = "Win %";
         public const string HeaderKill = "Kills";
         public const string HeaderKPM = "Kills/min";
+        public const string HeaderKD = "K/D";
         public const string HeaderPlayTime = "Playtime";
         public const string HeaderGameMode = "Gamemode";
+        public const string HeaderSpecialist = "Specialist";
     }
 }

@@ -128,15 +128,20 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Specialists(string HeroName, string PlatForm)
         {
-
-            string SortMethod = "DESC";
-            string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            SpecialistModelView specialistModelView = Resp.specialistInfoGet(HeroName, PlatForm, Utils.DescMethods, Utils.HeaderKill);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Avatar"] = specialistModelView.Avatar;
             ViewData["Page"] = "Specialists";
-            return View(heroInfoModel);
+            return View(specialistModelView);
+        }
+
+        [HttpPost]
+        public JsonResult SpecialistsUpdate(ModeJson modeJson)
+        {
+            SpecialistModelView specialistModelView = Resp.SpecialistInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(specialistModelView);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
