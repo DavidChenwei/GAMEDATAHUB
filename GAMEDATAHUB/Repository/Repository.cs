@@ -39,6 +39,24 @@ namespace GAMEDATAHUB.Repository
                             string responseBody = await response.Content.ReadAsStringAsync();
                             heroInfoModel = JsonConvert.DeserializeObject<HeroInfoModel>(responseBody);
                             cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(360));
+                            heroInfoModel.Vehicles.RemoveAll(vehicle =>
+                                vehicle.VehicleName == "RHIB - BF3" ||
+                                vehicle.VehicleName == "Quadbike - BC2" ||
+                                vehicle.VehicleName == "KORD HMG"||
+                                vehicle.VehicleName == "4x4 Utility" ||
+                                vehicle.VehicleName == "9M133 Kornet"||
+                                vehicle.VehicleName == "Tuk-Tuk" ||
+                                vehicle.VehicleName == "M220 TOW Launcher" ||
+                                vehicle.VehicleName == "Polaris RZR" ||
+                                vehicle.VehicleName == "Polaris Sportsman"||
+                                vehicle.VehicleName == "UAV-1" ||
+                                vehicle.VehicleName == "Flak 38" ||
+                                vehicle.VehicleName == "HMG" ||
+                                vehicle.VehicleName == "Centurion C-RAM" ||
+                                vehicle.VehicleName == "Polaris RZR" ||
+                                vehicle.VehicleName == "Polaris RZR" ||
+                                vehicle.VehicleName == "Polaris RZR");
+
                         }
                         else
                         {
@@ -52,104 +70,6 @@ namespace GAMEDATAHUB.Repository
                 }
             }
             overView = OverviewDataGenerate(heroInfoModel, overView);
-            //ErrorModel error = new ErrorModel();
-
-            //#region show OverView Date First
-
-            //overView.UserName = heroInfoModel.UserName;
-            //overView.Avatar = heroInfoModel.Avatar;
-            //overView.MatchesPlayed = heroInfoModel.MatchesPlayed;
-            //overView.DamagePerMinute = heroInfoModel.DamagePerMinute;
-            //overView.KillDeath = heroInfoModel.KillDeath;
-            //overView.HeadShotRate = heroInfoModel.HeadShotRate;
-            //overView.WinPercent = heroInfoModel.WinPercent;
-            //if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
-            //{
-            //    overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
-            //}
-            //else
-            //{
-            //    error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
-            //}
-            //overView.Kills = heroInfoModel.Kills;
-            //overView.Deaths = heroInfoModel.Deaths;
-            //overView.KillAssists = heroInfoModel.KillAssists;
-            //overView.KillsPerMinute = heroInfoModel.KillsPerMinute;
-            //overView.KillsPerMatch = heroInfoModel.KillsPerMatch;
-            //overView.Wins = heroInfoModel.Wins;
-            //overView.Loses = heroInfoModel.Loses;
-            //overView.Damage = heroInfoModel.Damage;
-            //overView.DamagePerMatch = heroInfoModel.DamagePerMatch;
-            //overView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
-
-            //overView.MultiKills = heroInfoModel.DividedKills.MultiKills;
-            //overView.HeadShotAmount = heroInfoModel.HeadShotAmount;
-            //overView.RoadKills = heroInfoModel.DividedKills.Roadkills;
-            //overView.MeleeKills = heroInfoModel.DividedKills.Melee;
-            //overView.VechileKills = heroInfoModel.DividedKills.Vehicle;
-            //overView.GrenadesKills = heroInfoModel.DividedKills.Grenades;
-            //overView.HipfireKills = heroInfoModel.DividedKills.Hipfire;
-            //overView.AIKills = heroInfoModel.DividedKills.Ai;
-            //overView.HumanKills = heroInfoModel.DividedKills.Human;
-            //overView.ScopedKills = heroInfoModel.DividedKills.Ads;
-
-            //overView.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
-            //overView.AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600;
-            //overView.DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600;
-            //overView.ArmedObject = heroInfoModel.Objective.Armed;
-            //overView.DefusedObject = heroInfoModel.Objective.Defused;
-            //overView.DestroyedObject = heroInfoModel.Objective.Destroyed;
-            //overView.CapturedObject = heroInfoModel.Objective.Captured;
-            //overView.NeutralizedObject = heroInfoModel.Objective.Neutralized;
-            //overView.AttackedSector = heroInfoModel.Sector.captured;
-            //overView.DefendedSector = heroInfoModel.Sector.defended;
-
-            //var topThreeWeapons = heroInfoModel.Weapons
-            //    .OrderByDescending(w => w.Kills)
-            //    .Take(3)
-            //    .ToList();
-            //foreach (var weapon in topThreeWeapons)
-            //{
-            //    WeapoinOverView weapoinOverView = new WeapoinOverView();
-            //    weapoinOverView.Type = weapon.Type;
-            //    weapoinOverView.Name = weapon.WeaponName;
-            //    weapoinOverView.Kills = weapon.Kills;
-            //    weapoinOverView.HeadShotRate = weapon.Headshots;
-            //    overView.WeapoinOverViews.Add(weapoinOverView);
-            //}
-
-            //var topThreeVehciles = heroInfoModel.Vehicles
-            //    .OrderByDescending(w => w.Kills)
-            //    .Take(3)
-            //    .ToList();
-            //foreach (var vehcile in topThreeVehciles)
-            //{
-            //    VehiclesOverView vehiclesOverView = new VehiclesOverView();
-            //    vehiclesOverView.Type = vehcile.Type;
-            //    vehiclesOverView.Name = vehcile.VehicleName;
-            //    vehiclesOverView.Kills = vehcile.Kills;
-            //    vehiclesOverView.DPM = Math.Round(vehcile.Damage / ((decimal)vehcile.TimeIn / 60), 2);
-            //    overView.VehiclesOverViews.Add(vehiclesOverView);
-            //}
-
-            //var topThreeSpecialists = heroInfoModel.Classes
-            //    .OrderByDescending(w => w.Kills)
-            //    .Take(3)
-            //    .ToList();
-
-            //foreach (var specialist in topThreeSpecialists)
-            //{
-            //    SpecialistsOverView specialistsOverView = new SpecialistsOverView();
-            //    specialistsOverView.Name = specialist.CharacterName;
-            //    specialistsOverView.AvatarImage = specialist.AvatarImages.Us;
-            //    specialistsOverView.Playtime = specialist.SecondsPlayed / 3600;
-            //    specialistsOverView.Kills = specialist.Kills;
-            //    specialistsOverView.KD = specialist.KillDeath;
-            //    specialistsOverView.KPM = specialist.KPM;
-            //    overView.SpecialistsOverViews.Add(specialistsOverView);
-            //}
-
-            //#endregion show OverView Date First
 
             #region Database Operaion
 
@@ -1103,11 +1023,11 @@ namespace GAMEDATAHUB.Repository
             {
                 if (SortMethod == Utils.AsceMethod)
                 {
-                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.DPM).ToList();
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderBy(w => w.Uses).ToList();
                 }
                 else
                 {
-                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.DPM).ToList();
+                    heroInfoModel.Gadgets = heroInfoModel.Gadgets.OrderByDescending(w => w.Uses).ToList();
                 }
             }
 
@@ -1115,6 +1035,36 @@ namespace GAMEDATAHUB.Repository
 
 
             return gadgetModelView;
+        }
+
+        public VehicleModelView VehiclesInfoGet(string HeroName, string PlatForm)
+        {
+            VehicleModelView vehicleModelView = new VehicleModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            vehicleModelView.MaxDPM = heroInfoModel.Vehicles.Max(m => m.DPM);
+            vehicleModelView.MaxKills = heroInfoModel.Vehicles.Max(m => m.Kills);
+            vehicleModelView.MaxKPM = heroInfoModel.Vehicles.Max(m => m.KillsPerMinute);
+            vehicleModelView.MaxTime = heroInfoModel.Vehicles.Max(m => m.HoursPlayed);
+            vehicleModelView.UserName = heroInfoModel.UserName;
+            vehicleModelView.Avatar = heroInfoModel.Avatar;
+            vehicleModelView.PlatForm = heroInfoModel.PlatForm;
+
+            heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.Kills).ToList();
+
+            vehicleModelView.Vehicles = heroInfoModel.Vehicles;
+
+
+            return vehicleModelView;
         }
     }
 }

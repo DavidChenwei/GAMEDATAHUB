@@ -130,7 +130,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                                <div class="st-content__drawer" style="">
+                                                <div class="st-content__drawer" style="display:none">
                                                     <div data-v-8c9aee4f="" class="stat-dump">
                                                         <div class="category">
                                                             <div class="category__header">Combat</div>
@@ -149,11 +149,11 @@
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Kills/Min</div>
-                                                                    <div class="value">@gadget.KPM.ToString("N0")</div>
+                                                                    <div class="value">@gadget.KPM.ToString()</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
-                                                                    <div class="label">@gadget.VehiclesDestroyedWith.ToString("N0")</div>
-                                                                    <div class="value">4</div>
+                                                                    <div class="label">Vehicles Destroyed</div>
+                                                                    <div class="value">@gadget.VehiclesDestroyedWith.ToString("N0")</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -192,5 +192,199 @@
             </div>
         </div>
     </div>
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+            var headers = document.querySelectorAll('.st-header .st-header__item');
+            var sortMethod = "Desc";
+            headers.forEach(function (header, index) {
+                header.addEventListener('click', function () {
+                    //To control when header is active the color change to green
+                    headers.forEach(function (innerItem) {
+                        innerItem.classList.remove('st-header__item--active');
+                    });
+                    header.classList.add('st-header__item--active');
+
+                    //To control highligh when header is active
+                    var st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value");
+                    st_content__items.forEach(function (st_item) {
+                        st_item.classList.remove('st-content__item-value--active');
+                    });
+                    var selected_st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value:nth-child(" + (index + 1) + ")");
+                    selected_st_content__items.forEach(function (st_item) {
+                        if (!st_item.classList.contains('st-content__item-value--active')) {
+                            st_item.classList.add('st-content__item-value--active');
+                        }
+                    });
+
+                    //To control the svg when header is active
+                    headers.forEach(function (header) {
+                        if (header.classList.contains('st-header__item--active')) {
+                            //Add the svg if the header is active
+                            if (!header.querySelector('.st__item svg')) {
+                                var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                svg.setAttribute('class', 'icon');
+                                svg.setAttribute('viewBox', '0 0 24 24');
+
+                                var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                path.setAttribute('d', 'm7 10 5 5 5-5z');
+                                svg.appendChild(path);
+                                var span = header.querySelector('.st__item span');
+                                header.insertBefore(svg, span);
+                            } else {
+                                //Switch between Desc and Asce
+                                var pathValue = header.querySelector('.st__item .icon path').getAttribute('d');
+                                var d2 = "m7 10 5 5 5-5z";
+                                var d1 = "m7 14 5-5 5 5z";
+                                if (pathValue === d1) {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d2);
+                                    sortMethod = "Desc";
+                                } else {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d1);
+                                    sortMethod = "Asce";
+                                }
+                            }
+                        }
+                        else {
+                            var svg = header.querySelector('.st__item svg');
+                            if (svg) {
+                                header.removeChild(svg);
+                            }
+                        }
+                    });
+
+                    //Send the Ajax Post
+                    var heroName = document.getElementById('HeroName').value;
+                    var platForm = document.getElementById('PlatForm').value;
+                    var headerName = header.querySelector('.label').textContent;
+                    $.ajax({
+                        url: '@Url.Action("GadgetsUpdate", "Bf2042")',
+                        type: 'POST',
+                        data: {
+                            HeaderName: headerName,
+                            SortMethod: sortMethod,
+                            HeroName: heroName,
+                            PlatForm: platForm
+                        },
+                        success: function (response){
+                            var parsedData = JSON.parse(response);
+                            let gadgetsModeViews = parsedData.Gadgets;
+                            //console.log(parsedData);
+                            //Update the content item infomation
+                            var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
+                            var JsonIndex = 0;
+                            contentItems.forEach(function (item) {
+                                var HeaderIndex = 0;
+                                var st__items = item.querySelectorAll('.st__item');
+                                st__items.forEach(function (st__item) {
+                                    var child = st__item.querySelector('.info .value');
+                                    var label = st__item.querySelector('.info .label');
+                                    var imgage = st__item.querySelector('.image img');
+                                    if (HeaderIndex == 0) {
+                                        child.innerText = gadgetsModeViews[JsonIndex]['GadgetName'];
+                                        label.innerText = gadgetsModeViews[JsonIndex]['Type'];
+                                        imgage.setAttribute('src', gadgetsModeViews[JsonIndex]['Image']);
+                                    }
+                                    if (HeaderIndex == 1) {
+                                        child.innerText = gadgetsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        if (parsedData['MaxKills'] == gadgetsModeViews[JsonIndex]['Kills']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 2) {
+                                        child.innerText = gadgetsModeViews[JsonIndex]['Uses'].toLocaleString('en-US');
+                                        if (parsedData['MaxUses'] == gadgetsModeViews[JsonIndex]['Uses']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 3) {
+                                        child.innerText = gadgetsModeViews[JsonIndex]['DPM'].toLocaleString('en-US');
+                                        if (parsedData['MaxDPM'] == gadgetsModeViews[JsonIndex]['DPM']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 4) {
+                                        child.innerText = gadgetsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                        if (parsedData['MaxKPM'] == gadgetsModeViews[JsonIndex]['KPM']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+
+                                    HeaderIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                            JsonIndex = 0;
+                            //Update the content drawer
+                            var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
+                            drawertItems.forEach(function (drawer) {
+                                var categoryItems = drawer.querySelectorAll('.category');
+                                var categoryIndex = 0;
+                                categoryItems.forEach(function (category) {
+
+                                    if (categoryIndex == 0) {
+                                        var stats = category.querySelectorAll('.category__stats-stat .value');
+                                        var statIndex = 0;
+
+                                        stats.forEach(function (state) {
+                                            if (statIndex == 0) {
+                                                state.innerText = gadgetsModeViews[JsonIndex]['Damage'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 1) {
+                                                state.innerText = gadgetsModeViews[JsonIndex]['DPM'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 2) {
+                                                state.innerText = gadgetsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 3) {
+                                                state.innerText = gadgetsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 4) {
+                                                state.innerText = gadgetsModeViews[JsonIndex]['VehiclesDestroyedWith'].toLocaleString('en-US');
+                                            }
+                                            statIndex += 1;
+                                        });
+                                    }
+                                    if (categoryIndex == 1) {
+                                            var stats = category.querySelectorAll('.category__stats-stat .value');
+                                            var statIndex = 0;
+                                            stats.forEach(function (state) {
+                                                if (statIndex == 0) {
+                                                    state.innerText = gadgetsModeViews[JsonIndex]['Spawns'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 1) {
+                                                    state.innerText = gadgetsModeViews[JsonIndex]['MultiKills'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 2) {
+                                                    state.innerText = gadgetsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
+                                                }
+                                                if (statIndex == 3) {
+                                                    state.innerText = gadgetsModeViews[JsonIndex]['Uses'].toLocaleString('en-US');
+                                                }
+                                                statIndex += 1;
+                                            });
+                                    }
+                                    categoryIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    }
+                    );
+                });
+            });
+
+        });
+    </script>
 </body>
 

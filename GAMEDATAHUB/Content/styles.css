@@ -2254,3 +2254,7 @@ st-content__item-value.st__item--sticky {
 .weapons {
     overflow-x: auto;
 }
+/*vehicles mode part*/
+.vehicles {
+    overflow-x: auto;
+}

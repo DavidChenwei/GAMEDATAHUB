@@ -26,5 +26,39 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int DamageTo { get; set; }
         public int Destroyed { get; set; }
         public int TimeIn { get; set; }
+        public int HoursPlayed
+        { 
+            get
+            {
+                return TimeIn / 3600;
+            } 
+        }
+
+        public int DPM
+        {
+            get
+            {
+                if (TimeIn == 0) return 0; 
+                return Damage / TimeIn/ 360;
+            }
+        }
+
+
+    }
+
+    public class VehicleModelView
+    {
+        public VehicleModelView()
+        {
+            Vehicles = new List<VehicleModel>();
+        }
+        public List<VehicleModel> Vehicles { get; set; }
+        public int MaxTime { get; set; }
+        public int MaxKills { get; set; }
+        public decimal MaxKPM { get; set; }
+        public decimal MaxDPM { get; set; }
+        public string UserName { get; set; }
+        public string Avatar { get; set; }
+        public string PlatForm { get; set; }
     }
 }

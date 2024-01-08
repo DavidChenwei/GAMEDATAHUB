@@ -150,12 +150,12 @@ namespace GAMEDATAHUB.Controllers
 
             string SortMethod = "DESC";
             string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            VehicleModelView vehicleModelView = Resp.VehiclesInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Avatar"] = vehicleModelView.Avatar;
             ViewData["Page"] = "Vehicles";
-            return View(heroInfoModel);
+            return View(vehicleModelView);
         }
 
         [HttpGet]
@@ -195,9 +195,11 @@ namespace GAMEDATAHUB.Controllers
         [HttpPost]
         public JsonResult GadgetsUpdate(ModeJson modeJson)
         {
-            WeaponModelView weaponModelView = Resp.WeaponInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
-            var JsonPayLoad = JsonConvert.SerializeObject(weaponModelView);
+            GadgetModelView gadgetModelView = Resp.GadgetInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(gadgetModelView);
             return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }

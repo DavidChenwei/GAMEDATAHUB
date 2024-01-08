@@ -1,4 +1,4 @@
-﻿
+﻿@model GAMEDATAHUB.Models.BF2042Model.VehicleModelView
 @{
     ViewBag.Title = "Vehicles";
 }
@@ -11,15 +11,15 @@
                     <div class="content">
                         @Html.Partial("_Bf2042LayOut")
                         <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
-                            <div class="trn-grid trn-grid--small specialists" revision="70">
+                            <div class="trn-grid trn-grid--small vehicles">
                                 <div class="st st--expand-hide-mobile">
                                     <div class="st-header">
                                         <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide"
-                                             style="--st-base-width: 10rem;">
+                                             style="--st-base-width: 16rem; gap:2.5rem">
                                             <span class="label">Specialist</span>
                                         </div>
                                         <div class="st__item st-header__item st-header__item--active st-header__item--sortable"
-                                             style="--st-base-width: 7.5rem;">
+                                             style="--st-base-width: 5.5rem;">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  viewBox="0 0 24 24" class="icon">
                                                 <path d="m7 10 5 5 5-5z"></path>
@@ -27,8 +27,8 @@
                                             <span class="label">Kills</span>
                                         </div>
                                         <div class="st__item st-header__item st-header__item--sortable"
-                                             style="--st-base-width: 7rem;">
-                                            <span class="label">K/D</span>
+                                             style="--st-base-width: 8rem;">
+                                            <span class="label">Damage/min</span>
                                         </div>
                                         <div class="st__item st-header__item st-header__item--sortable"
                                              style="--st-base-width: 7.5rem;">
@@ -41,9 +41,125 @@
                                         <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                     </div>
                                     <div class="st-content">
-                                        <div class="st-content__category">
+                                        @foreach (var vehicle in Model.Vehicles)
+                                        {
+                                            <div class="st-content__category">
+                                                <div class="st-content__item">
+                                                    <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 16rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.VehicleName</div>
+                                                            <div class="label">@vehicle.Type</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 5.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
+                                                         style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.DPM.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.KillsPerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
+                                                        <div class="info">
+                                                            <div class="value">@(vehicle.HoursPlayed.ToString("N0"))H</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                            <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="st-content__drawer" style="display: none;">
+                                                <div data-v-a8153416="" class="stat-dump">
+                                                    <div class="category">
+                                                        <div class="category__header">Combat</div>
+                                                        <div class="category__stats">
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Assists</div>
+                                                                <div class="value">@vehicle.Assists.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Damage Dealt</div>
+                                                                <div class="value">@vehicle.Damage.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Damage Dealt To</div>
+                                                                <div class="value">@vehicle.DamageTo.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Destroyed</div>
+                                                                <div class="value">@vehicle.Destroyed.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label"Destroyed With></div>
+                                                                <div class="value">@vehicle.VehiclesDestroyedWith.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Dmg/Min</div>
+                                                                <div class="value">@vehicle.DPM.ToString()</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Driver Assists</div>
+                                                                <div class="value">@vehicle.DriverAssists.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Kills</div>
+                                                                <div class="value">@vehicle.Kills.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Kills/Min</div>
+                                                                <div class="value">@vehicle.KillsPerMinute.ToString()</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Passenger Assists</div>
+                                                                <div class="value">@vehicle.PassengerAssists.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Road Kills</div>
+                                                                <div class="value">@vehicle.RoadKills.ToString("N0")</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="category">
+                                                        <div class="category__header">Game</div>
+                                                        <div class="category__stats">
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Call-ins</div>
+                                                                <div class="value">@vehicle.CallIns.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Deployments</div>
+                                                                <div class="value">@vehicle.Spawns.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Distance Traveled</div>
+                                                                <div class="value">@vehicle.DistanceTraveled.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Multi Kills</div>
+                                                                <div class="value">@vehicle.MultiKills.ToString("N0")</div>
+                                                            </div>
+                                                            <div class="category__stats-stat">
+                                                                <div class="label">Time Played</div>
+                                                                <div class="value">@vehicle.HoursPlayed.ToString("N0")</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -53,5 +169,8 @@
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </body>
 
