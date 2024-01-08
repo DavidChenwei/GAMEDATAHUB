@@ -18,9 +18,11 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int HipfireKills { get; set; }
         public int MultiKills { get; set; }
         public string Accuracy { get; set; }
+        public decimal AccuracyD { get; set; }
         public decimal KillsPerMinute { get; set; }
         public decimal DamagePerMinute { get; set; }
         public string Headshots { get; set; }
+        public decimal HeadshotsD { get; set; }
         public decimal HitVKills { get; set; }
         public int ShotsHit { get; set; }
         public int ShotsFired { get; set; }
@@ -35,11 +37,11 @@ namespace GAMEDATAHUB.Models.BF2042Model
             Weapons = new List<WeaponModel>();
         }
         public List<WeaponModel> Weapons { get; set; }
-        public decimal MaxKD { get; set; }
+        public decimal MaxDPM { get; set; }
         public int MaxKills { get; set; }
         public decimal MaxKPM { get; set; }
         public decimal MaxAccuracy { get; set; }
-        public int MaxTime { get; set; }
+        public decimal MaxHS { get; set; }
         public string UserName { get; set; }
         public string Avatar { get; set; }
         public string PlatForm { get; set; }

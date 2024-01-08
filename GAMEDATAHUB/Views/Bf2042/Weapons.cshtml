@@ -1,4 +1,4 @@
-﻿
+﻿@model GAMEDATAHUB.Models.BF2042Model.WeaponModelView
 @{
     ViewBag.Title = "Weapons";
 }
@@ -11,12 +11,12 @@
                     <div class="content">
                         @Html.Partial("_Bf2042LayOut")
                         <div class="site-container trn-grid trn-grid--vertical trn-grid--small" style="position: relative;">
-                            <div class="trn-grid trn-grid--small specialists" revision="70">
+                            <div class="trn-grid trn-grid--small weapons">
                                 <div class="st st--expand-hide-mobile">
                                     <div class="st-header">
                                         <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide"
-                                             style="--st-base-width: 10rem;">
-                                            <span class="label">Specialist</span>
+                                             style="--st-base-width: 14rem;">
+                                            <span class="label">Weapon</span>
                                         </div>
                                         <div class="st__item st-header__item st-header__item--active st-header__item--sortable"
                                              style="--st-base-width: 7.5rem;">
@@ -26,22 +26,205 @@
                                             </svg>
                                             <span class="label">Kills</span>
                                         </div>
-                                        <div class="st__item st-header__item st-header__item--sortable"
-                                             style="--st-base-width: 7rem;">
-                                            <span class="label">K/D</span>
+                                        <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 8rem;">
+                                            <span class="label">Damage/min</span>
                                         </div>
-                                        <div class="st__item st-header__item st-header__item--sortable"
-                                             style="--st-base-width: 7.5rem;">
+                                        <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 8rem;">
+                                            <span class="label">Accuracy</span>
+                                        </div>
+                                        <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7.5rem;">
                                             <span class="label">Kills/min</span>
                                         </div>
-                                        <div class="st__item st-header__item st-header__item--sortable"
-                                             style="--st-base-width: 9rem;">
-                                            <span class="label">Playtime</span>
+                                        <div class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7rem;">
+                                            <span class="label">HS%</span>
                                         </div>
                                         <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                     </div>
                                     <div class="st-content">
                                         <div class="st-content__category">
+                                            @foreach (var weapon in Model.Weapons)
+                                            {
+                                            <div class="st-content__item">
+                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 14rem;">
+                                                    <div class="info">
+                                                        <div class="value">@weapon.WeaponName</div>
+                                                        <div class="label">@weapon.Type</div>
+                                                    </div>
+                                                </div>
+                                                @if (Model.MaxKills == weapon.Kills)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
+                                                         style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active"
+                                                         style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxDPM == weapon.DamagePerMinute)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.DamagePerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.DamagePerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxAccuracy == weapon.AccuracyD)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Accuracy</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Accuracy</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxKPM == weapon.KillsPerMinute)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.KillsPerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.KillsPerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxHS == weapon.HeadshotsD)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Headshots</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
+                                                        <div class="info">
+                                                            <div class="value">@weapon.Headshots</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                        <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                                <div class="st-content__drawer" style="display:none">
+                                                    <div data-v-ba876c53="" class="stat-dump">
+                                                        <div class="category">
+                                                            <div class="category__header">Kills</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Body Kills</div>
+                                                                    <div class="value">@weapon.BodyKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Headshot Kills</div>
+                                                                    <div class="value">@weapon.HeadshotKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Hipfire Kills</div>
+                                                                    <div class="value">@weapon.HipfireKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Multi Kills</div>
+                                                                    <div class="value">@weapon.MultiKills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Hit/Kills</div>
+                                                                    <div class="value">@weapon.HitVKills.ToString()</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="category">
+                                                            <div class="category__header">Combat</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Damage Dealt</div>
+                                                                    <div class="value">@weapon.Damage.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Dmg/Min</div>
+                                                                    <div class="value">@weapon.DamagePerMinute.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">HS%</div>
+                                                                    <div class="value">@weapon.ShotsHit</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills</div>
+                                                                    <div class="value">@weapon.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills/Min</div>
+                                                                    <div class="value">@weapon.KillsPerMinute.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Shots Accuracy</div>
+                                                                    <div class="value">@weapon.Accuracy</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Shots Fired</div>
+                                                                    <div class="value">@weapon.ShotsFired.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">@weapon.ShotsHit.ToString("N0")</div>
+                                                                    <div class="value">9,005</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="category">
+                                                            <div class="category__header">Game</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Spawns</div>
+                                                                    <div class="value">@weapon.Spawns.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Time Played</div>
+                                                                    <div class="value">@weapon.TimeEquipped.ToString("N0")</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
 
                                         </div>
                                     </div>
@@ -53,4 +236,195 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var headers = document.querySelectorAll('.st-header .st-header__item');
+            var sortMethod = "Desc";
+            headers.forEach(function (header, index) {
+                header.addEventListener('click', function () {
+                    //To control when header is active the color change to green
+                    headers.forEach(function (innerItem) {
+                        innerItem.classList.remove('st-header__item--active');
+                    });
+                    header.classList.add('st-header__item--active');
+
+                    //To control highligh when header is active
+                    var st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value");
+                    st_content__items.forEach(function (st_item) {
+                        st_item.classList.remove('st-content__item-value--active');
+                    });
+                    var selected_st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value:nth-child(" + (index + 1) + ")");
+                    selected_st_content__items.forEach(function (st_item) {
+                        if (!st_item.classList.contains('st-content__item-value--active')) {
+                            st_item.classList.add('st-content__item-value--active');
+                        }
+                    });
+
+                    //To control the svg when header is active
+                    headers.forEach(function (header) {
+                        if (header.classList.contains('st-header__item--active')) {
+                            //Add the svg if the header is active
+                            if (!header.querySelector('.st__item svg')) {
+                                var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                svg.setAttribute('class', 'icon');
+                                svg.setAttribute('viewBox', '0 0 24 24');
+
+                                var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                path.setAttribute('d', 'm7 10 5 5 5-5z');
+                                svg.appendChild(path);
+                                var span = header.querySelector('.st__item span');
+                                header.insertBefore(svg, span);
+                            } else {
+                                //Switch between Desc and Asce
+                                var pathValue = header.querySelector('.st__item .icon path').getAttribute('d');
+                                var d2 = "m7 10 5 5 5-5z";
+                                var d1 = "m7 14 5-5 5 5z";
+                                if (pathValue === d1) {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d2);
+                                    sortMethod = "Desc";
+                                } else {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d1);
+                                    sortMethod = "Asce";
+                                }
+                            }
+                        }
+                        else {
+                            var svg = header.querySelector('.st__item svg');
+                            if (svg) {
+                                header.removeChild(svg);
+                            }
+                        }
+                    });
+
+                    //Send the Ajax Post
+                    var heroName = document.getElementById('HeroName').value;
+                    var platForm = document.getElementById('PlatForm').value;
+                    var headerName = header.querySelector('.label').textContent;
+                    @*$.ajax({
+                        url: '@Url.Action("SpecialistsUpdate", "Bf2042")',
+                        type: 'POST',
+                        data: {
+                            HeaderName: headerName,
+                            SortMethod: sortMethod,
+                            HeroName: heroName,
+                            PlatForm: platForm
+                        },
+                        success: function (response){
+                            var parsedData = JSON.parse(response);
+                            console.log(parsedData);
+                            let specialistsModeViews = parsedData.Specialists;
+                            //Update the content item infomation
+                            var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
+                            var JsonIndex = 0;
+                            contentItems.forEach(function (item) {
+                                var HeaderIndex = 0;
+                                var st__items = item.querySelectorAll('.st__item');
+                                st__items.forEach(function (st__item) {
+                                    var child = st__item.querySelector('.info .value');
+                                    var image = st__item.querySelector('.image img');
+                                    var label = st__item.querySelector('.info .label');
+                                    if (HeaderIndex == 0) {
+                                        child.innerText = specialistsModeViews[JsonIndex]['CharacterName'];
+                                        image.setAttribute('src', specialistsModeViews[JsonIndex]['AvatarImages'].Us)
+                                        label.innerText = specialistsModeViews[JsonIndex]['ClassName'];
+                                    }
+                                    if (HeaderIndex == 1) {
+                                        child.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                        if (parsedData['MaxKills'] == specialistsModeViews[JsonIndex]['Kills']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 2) {
+                                        child.innerText = specialistsModeViews[JsonIndex]['KillDeath'].toLocaleString('en-US');
+                                        if (parsedData['MaxKD'] == specialistsModeViews[JsonIndex]['KillDeath']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 3) {
+                                        child.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                        if (parsedData['MaxKPM'] == specialistsModeViews[JsonIndex]['KPM']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 4) {
+                                        child.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
+                                        if (parsedData['MaxTime'] == specialistsModeViews[JsonIndex]['HoursPlayed']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    HeaderIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                            JsonIndex = 0;
+
+                            //Update the content drawer
+                            var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
+                            drawertItems.forEach(function (drawer) {
+                                var categoryItems = drawer.querySelectorAll('.category');
+                                var categoryIndex = 0;
+                                categoryItems.forEach(function (category) {
+
+                                    if (categoryIndex == 0) {
+                                        var stats = category.querySelectorAll('.category__stats-stat .value');
+                                        var statIndex = 0;
+                                        var id = category.querySelector('.category__header').innerText;
+                                        stats.forEach(function (state) {
+                                            if (statIndex == 0) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 1) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Deaths'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 2) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['KillDeath'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 3) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 4) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 5) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Revives'].toLocaleString('en-US');
+                                            }
+                                            statIndex += 1;
+                                        });
+                                    }
+                                    if (categoryIndex == 1) {
+                                            var stats = category.querySelectorAll('.category__stats-stat .value');
+                                            var statIndex = 0;
+                                            stats.forEach(function (state) {
+                                                if (statIndex == 0) {
+                                                    state.innerText = specialistsModeViews[JsonIndex]['HazardZoneStreaks'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 1) {
+                                                    state.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                                }
+                                                statIndex += 1;
+                                            });
+                                    }
+                                    categoryIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    }
+                    );*@
+                });
+            });
+
+        });
+    </script>
 </body>

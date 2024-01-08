@@ -193,23 +193,6 @@
     </div>
 
     <script>
-        /*Control show more info*/
-        document.addEventListener("DOMContentLoaded", function () {
-            var expandElements = document.querySelectorAll(".st-content__category .st__item--expand");
-            expandElements.forEach(function (expandElement, index) {
-                expandElement.addEventListener("click", function () {
-                    var expand = expandElements[index];
-                    if (expand.classList.contains("st-content__item-expand--active")) {
-                        expand.classList.remove("st-content__item-expand--active");
-                    } else {
-                        expand.classList.add("st-content__item-expand--active");
-                    }
-                    var drawer = document.querySelector(".st-content__category>.st-content__drawer:nth-child(" + (2 * (index + 1)) + ")");
-                    drawer.style.display = (drawer.style.display === "none" || drawer.style.display === "") ? "block" : "none";
-                });
-            });
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
             var headers = document.querySelectorAll('.st-header .st-header__item');
             var sortMethod = "Desc";
@@ -343,92 +326,55 @@
                             JsonIndex = 0;
 
                             //Update the content drawer
-                            //var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
-                            //drawertItems.forEach(function (drawer) {
-                            //    var categoryItems = drawer.querySelectorAll('.category');
-                            //    var categoryIndex = 0;
-                            //    categoryItems.forEach(function (category) {
+                            var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
+                            drawertItems.forEach(function (drawer) {
+                                var categoryItems = drawer.querySelectorAll('.category');
+                                var categoryIndex = 0;
+                                categoryItems.forEach(function (category) {
 
-                            //        if (categoryIndex == 0) {
-                            //            var stats = category.querySelectorAll('.category__stats-stat .value');
-                            //            var statIndex = 0;
-                            //            var id = category.querySelector('.category__header').innerText;
-                            //            stats.forEach(function (state) {
-                            //                if (statIndex == 0) {
-                            //                    state.innerText = specialistsModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
-                            //                }
-                            //                if (statIndex == 1) {
-                            //                    state.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
-                            //                }
-                            //                if (statIndex == 2) {
-                            //                    state.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
-                            //                }
-                            //                if (statIndex == 3) {
-                            //                    state.innerText = specialistsModeViews[JsonIndex]['Revives'].toLocaleString('en-US');
-                            //                }
-                            //                statIndex += 1;
-                            //            });
-                            //        }
-                            //        if (categoryIndex == 1) {
-                            //                var stats = category.querySelectorAll('.category__stats-stat .value');
-                            //                var statIndex = 0;
-                            //                stats.forEach(function (state) {
-                            //                    if (statIndex == 0) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['BestSquad'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 1) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['Losses'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 2) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['Matches'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 3) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 4) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['Mvp'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 5) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
-                            //                    }
-                            //                    if (statIndex == 6) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['WinPercent'].toLocaleString('en-US');
-                            //                    }
-                            //                    statIndex += 1;
-                            //                });
-                            //        }
-                            //        if (categoryIndex == 2) {
-                            //                var stats = category.querySelectorAll('.category__stats-stat .value');
-                            //                var statIndex = 0;
-                            //                stats.forEach(function (state) {
-                            //                    if (statIndex == 0) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['ObjectivesDefended'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 1) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['SectorDefend'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 2) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['ObjetiveHours'].toLocaleString('en-US') + "H";
-                            //                    }
-                            //                    if (statIndex == 3) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['ObjectivesArmed'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 4) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['objectivesCaptured'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 5) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['ObjectivesDestroyed'].toLocaleString('en-US');
-                            //                    }
-                            //                    if (statIndex == 6) {
-                            //                        state.innerText = specialistsModeViews[JsonIndex]['ObjectivesDisarmed'].toLocaleString('en-US');
-                            //                    }
-                            //                    statIndex += 1;
-                            //                });
-                            //        }
-                            //        categoryIndex += 1;
-                            //    });
-                            //    JsonIndex += 1;
-                            //});
+                                    if (categoryIndex == 0) {
+                                        var stats = category.querySelectorAll('.category__stats-stat .value');
+                                        var statIndex = 0;
+                                        var id = category.querySelector('.category__header').innerText;
+                                        stats.forEach(function (state) {
+                                            if (statIndex == 0) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Assists'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 1) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Deaths'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 2) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['KillDeath'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 3) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Kills'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 4) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['KPM'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 5) {
+                                                state.innerText = specialistsModeViews[JsonIndex]['Revives'].toLocaleString('en-US');
+                                            }
+                                            statIndex += 1;
+                                        });
+                                    }
+                                    if (categoryIndex == 1) {
+                                            var stats = category.querySelectorAll('.category__stats-stat .value');
+                                            var statIndex = 0;
+                                            stats.forEach(function (state) {
+                                                if (statIndex == 0) {
+                                                    state.innerText = specialistsModeViews[JsonIndex]['HazardZoneStreaks'].toLocaleString('en-US');
+                                                }
+                                                if (statIndex == 1) {
+                                                    state.innerText = specialistsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                                }
+                                                statIndex += 1;
+                                            });
+                                    }
+                                    categoryIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log(textStatus, errorThrown);

@@ -2247,7 +2247,10 @@ st-content__item-value.st__item--sticky {
     overflow-x: auto;
 }
 /*Specialists mode part*/
-.specialists[data-v-c9712b04] {
+.specialists {
     overflow-x: auto;
 }
-
+/*Weapons mode part*/
+.weapons {
+    overflow-x: auto;
+}

@@ -125,16 +125,20 @@
         <input id="PlatForm" value=@ViewData["PlatForm"] hidden />
     </div>
     <script>
-        var tabs = document.querySelectorAll('.trn-tabs__item');
-
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                console.log(tab);
-                if (!tab.classList.contains('.active')) {
-                    tab.classList.add('.active')
-                } else {
-                    tab.classList.remove('.active')
-                }
+        /*Control show more info*/
+        document.addEventListener("DOMContentLoaded", function () {
+            var expandElements = document.querySelectorAll(".st-content__category .st__item--expand");
+            expandElements.forEach(function (expandElement, index) {
+                expandElement.addEventListener("click", function () {
+                    var expand = expandElements[index];
+                    if (expand.classList.contains("st-content__item-expand--active")) {
+                        expand.classList.remove("st-content__item-expand--active");
+                    } else {
+                        expand.classList.add("st-content__item-expand--active");
+                    }
+                    var drawer = document.querySelector(".st-content__category>.st-content__drawer:nth-child(" + (2 * (index + 1)) + ")");
+                    drawer.style.display = (drawer.style.display === "none" || drawer.style.display === "") ? "block" : "none";
+                });
             });
         });
     </script>

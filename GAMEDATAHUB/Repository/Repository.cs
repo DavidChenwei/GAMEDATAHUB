@@ -615,7 +615,7 @@ namespace GAMEDATAHUB.Repository
                 }
                 else
                 {
-                    error.AddError("Failed to convert string to decimal: HumanPercentage");
+                    error.AddError("Failed to convert string to decimal: WinPercent");
                 }
                 heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
             }
@@ -704,7 +704,7 @@ namespace GAMEDATAHUB.Repository
             return gameModeView;
         }
 
-        public SpecialistModelView specialistInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName) {
+        public SpecialistModelView SpecialistInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName) {
             SpecialistModelView specialistModelView = new SpecialistModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             ErrorModel error = new ErrorModel();
@@ -739,6 +739,155 @@ namespace GAMEDATAHUB.Repository
         }
 
         public SpecialistModelView SpecialistInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            SpecialistModelView specialistModelView = new SpecialistModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
+            {
+                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
+            }
+
+            specialistModelView.MaxKD = heroInfoModel.Classes.Max(m => m.KillDeath);
+            specialistModelView.MaxKills = heroInfoModel.Classes.Max(m => m.Kills);
+            specialistModelView.MaxKPM = heroInfoModel.Classes.Max(m => m.KPM);
+            specialistModelView.MaxTime = heroInfoModel.Classes.Max(m => m.HoursPlayed);
+            specialistModelView.UserName = heroInfoModel.UserName;
+            specialistModelView.Avatar = heroInfoModel.Avatar;
+            specialistModelView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderKill)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.Kills).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.Kills).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKD)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.KillDeath).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.KillDeath).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderKPM)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.KPM).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.KPM).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderSpecialist)
+            {
+                if (SortMethod == Utils.AsceMethod)
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderBy(w => w.CharacterName).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.CharacterName).ToList();
+                }
+            }
+
+
+
+            specialistModelView.Specialists = heroInfoModel.Classes;
+
+
+            return specialistModelView;
+        }
+
+        public WeaponModelView WeaponInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName)
+        {
+            WeaponModelView weaponModelView = new WeaponModelView();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            ErrorModel error = new ErrorModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: Read from Database
+            }
+
+            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
+            {
+                if (decimal.TryParse(heroInfoModel.Weapons[i].Headshots.Replace("%", ""), out decimal Headshots))
+                {
+                    heroInfoModel.Weapons[i].HeadshotsD = Headshots;
+                }
+                else
+                {
+                    error.AddError("Failed to convert string to decimal: Headshots");
+                }
+
+                if (decimal.TryParse(heroInfoModel.Weapons[i].Accuracy.Replace("%", ""), out decimal Accuracy))
+                {
+                    heroInfoModel.Weapons[i].AccuracyD = Accuracy;
+                }
+                else
+                {
+                    error.AddError("Failed to convert string to decimal: Accuracy");
+                }
+
+                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
+            }
+
+            weaponModelView.MaxDPM = heroInfoModel.Weapons.Max(m => m.DamagePerMinute);
+            weaponModelView.MaxKills = heroInfoModel.Weapons.Max(m => m.Kills);
+            weaponModelView.MaxKPM = heroInfoModel.Weapons.Max(m => m.KillsPerMinute);
+            weaponModelView.MaxHS = heroInfoModel.Weapons.Max(m => m.HeadshotsD);
+            weaponModelView.MaxAccuracy = heroInfoModel.Weapons.Max(m => m.AccuracyD);
+            weaponModelView.UserName = heroInfoModel.UserName;
+            weaponModelView.Avatar = heroInfoModel.Avatar;
+            weaponModelView.PlatForm = heroInfoModel.PlatForm;
+
+            heroInfoModel.Weapons = heroInfoModel.Weapons.OrderByDescending(w => w.Kills).ToList();
+
+            weaponModelView.Weapons = heroInfoModel.Weapons;
+
+
+            return weaponModelView;
+        }
+
+        public SpecialistModelView WeaponInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
             SpecialistModelView specialistModelView = new SpecialistModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();

@@ -128,7 +128,7 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Specialists(string HeroName, string PlatForm)
         {
-            SpecialistModelView specialistModelView = Resp.specialistInfoGet(HeroName, PlatForm, Utils.DescMethods, Utils.HeaderKill);
+            SpecialistModelView specialistModelView = Resp.SpecialistInfoGet(HeroName, PlatForm, Utils.DescMethods, Utils.HeaderKill);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = specialistModelView.Avatar;
@@ -164,12 +164,12 @@ namespace GAMEDATAHUB.Controllers
 
             string SortMethod = "DESC";
             string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            WeaponModelView weaponModelView = Resp.WeaponInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Avatar"] = weaponModelView.Avatar;
             ViewData["Page"] = "Weapons";
-            return View(heroInfoModel);
+            return View(weaponModelView);
         }
 
         [HttpGet]

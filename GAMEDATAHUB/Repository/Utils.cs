@@ -17,5 +17,8 @@ namespace GAMEDATAHUB.Repository
         public const string HeaderPlayTime = "Playtime";
         public const string HeaderGameMode = "Gamemode";
         public const string HeaderSpecialist = "Specialist";
+        public const string HeaderAccuracy = "Accuracy";
+        public const string HeaderDPM = "Damage/min";
+        public const string HeaderHeadShot = "HS%";
     }
 }
