@@ -45,141 +45,141 @@
                                         <div class="st-content__category">
                                             @foreach (var specialist in Model.Specialists)
                                             {
-                                            <div class="st-content__item">
-                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
-                                                    <div class="image">
-                                                        <img class=""
-                                                             src=@specialist.AvatarImages.Us
-                                                             width="40" height="40" loading="lazy">
-                                                    </div>
-                                                    <div class="info">
-                                                        <div class="value">@specialist.CharacterName</div>
-                                                        <div class="label">@specialist.ClassName</div>
-                                                    </div>
-                                                </div>
-                                                @if (Model.MaxKills == specialist.Kills)
-                                                {
-                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
-                                                         style="--st-base-width: 7.5rem;">
+                                                <div class="st-content__item">
+                                                    <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 10rem;">
+                                                        <div class="image">
+                                                            <img class=""
+                                                                 src=@specialist.AvatarImages.Us
+                                                                 width="40" height="40" loading="lazy">
+                                                        </div>
                                                         <div class="info">
-                                                            <div class="value">@specialist.Kills.ToString("N0")</div>
+                                                            <div class="value">@specialist.CharacterName</div>
+                                                            <div class="label">@specialist.ClassName</div>
                                                         </div>
                                                     </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="st__item st-content__item-value st-content__item-value--active"
-                                                         style="--st-base-width: 7.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.Kills.ToString("N0")</div>
-                                                        </div>
-                                                    </div>
-                                                }
-
-                                                @if (Model.MaxKD == specialist.KillDeath)
-                                                {
-                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.KillDeath.ToString()</div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.KillDeath.ToString()</div>
-                                                        </div>
-                                                    </div>
-                                                }
-
-                                                @if (Model.MaxKPM == specialist.KPM)
-                                                {
-                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.KPM.ToString()</div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.KPM.ToString()</div>
-                                                        </div>
-                                                    </div>
-                                                }
-
-                                                @if (Model.MaxTime == specialist.HoursPlayed)
-                                                {
-                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 9rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.HoursPlayed.ToString("N0")H</div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
-                                                        <div class="info">
-                                                            <div class="value">@specialist.HoursPlayed.ToString("N0")H</div>
-                                                        </div>
-                                                    </div>
-                                                }
-
-                                                <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
-                                                        <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
-                                                        </path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div class="st-content__drawer" style="display:none">
-                                                <div data-v-c9712b04="" class="stat-dump">
-                                                    <div class="category">
-                                                        <div class="category__header">Combat</div>
-                                                        <div class="category__stats">
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Assists</div>
-                                                                <div class="value">@specialist.Assists.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Deaths</div>
-                                                                <div class="value">@specialist.Deaths.ToString("N0")</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">K/D</div>
-                                                                <div class="value">@specialist.KillDeath.ToString()</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Kills</div>
+                                                    @if (Model.MaxKills == specialist.Kills)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
+                                                             style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
                                                                 <div class="value">@specialist.Kills.ToString("N0")</div>
                                                             </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Kills/Min</div>
-                                                                <div class="value">@specialist.KPM.ToString()</div>
-                                                            </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Revives</div>
-                                                                <div class="value">@specialist.Revives.ToString("N0")</div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--active"
+                                                             style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.Kills.ToString("N0")</div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="category">
-                                                        <div class="category__header">Game</div>
-                                                        <div class="category__stats">
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Hazard Zone Streaks</div>
-                                                                <div class="value">@specialist.HazardZoneStreaks.ToString("N0")</div>
+                                                    }
+
+                                                    @if (Model.MaxKD == specialist.KillDeath)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.KillDeath.ToString()</div>
                                                             </div>
-                                                            <div class="category__stats-stat">
-                                                                <div class="label">Time Played</div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.KillDeath.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    @if (Model.MaxKPM == specialist.KPM)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.KPM.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.KPM.ToString()</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    @if (Model.MaxTime == specialist.HoursPlayed)
+                                                    {
+                                                        <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 9rem;">
+                                                            <div class="info">
                                                                 <div class="value">@specialist.HoursPlayed.ToString("N0")H</div>
                                                             </div>
                                                         </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
+                                                            <div class="info">
+                                                                <div class="value">@specialist.HoursPlayed.ToString("N0")H</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                            <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
+                                                            </path>
+                                                        </svg>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="st-content__drawer" style="display:none">
+                                                    <div data-v-c9712b04="" class="stat-dump">
+                                                        <div class="category">
+                                                            <div class="category__header">Combat</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Assists</div>
+                                                                    <div class="value">@specialist.Assists.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Deaths</div>
+                                                                    <div class="value">@specialist.Deaths.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">K/D</div>
+                                                                    <div class="value">@specialist.KillDeath.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills</div>
+                                                                    <div class="value">@specialist.Kills.ToString("N0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Kills/Min</div>
+                                                                    <div class="value">@specialist.KPM.ToString()</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Revives</div>
+                                                                    <div class="value">@specialist.Revives.ToString("N0")</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="category">
+                                                            <div class="category__header">Game</div>
+                                                            <div class="category__stats">
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Hazard Zone Streaks</div>
+                                                                    <div class="value">@((specialist.HazardZoneStreaks !=null) ? specialist.HazardZoneStreaks.Value.ToString("N0"):"0")</div>
+                                                                </div>
+                                                                <div class="category__stats-stat">
+                                                                    <div class="label">Time Played</div>
+                                                                    <div class="value">@specialist.HoursPlayed.ToString("N0")H</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             }
                                         </div>
                                     </div>

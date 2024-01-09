@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -56,6 +57,19 @@ namespace GAMEDATAHUB.Repository
                                 vehicle.VehicleName == "Polaris RZR" ||
                                 vehicle.VehicleName == "Polaris RZR" ||
                                 vehicle.VehicleName == "Polaris RZR");
+
+                            heroInfoModel.Gadgets.RemoveAll(gadget =>
+                                gadget.GadgetName == "Crate"||
+                                gadget.GadgetName == "Pouch" ||
+                                gadget.GadgetName == "Panzerschreck"||
+                                gadget.GadgetName == "Insertion Beacon (Spawn)"||
+                                gadget.GadgetName == "BF1942 Grenade"||
+                                gadget.GadgetName == "BC2 Grenade"||
+                                gadget.GadgetName == "BF3 Grenade"||
+                                gadget.GadgetName == "Call In Tablet" ||
+                                gadget.GadgetName == "Intel Scanner" ||
+                                gadget.GadgetName == "AT-Mine"
+                                );
                         }
                         else
                         {
@@ -341,6 +355,11 @@ namespace GAMEDATAHUB.Repository
 
             #endregion show OverView Date First
 
+            LevelExperience levelExperience = new LevelExperience();
+            List<KeyValuePair<int, decimal>> levelInfo = levelExperience.GetLevel(overView.XP);
+            overView.Level = levelInfo[0].Key;
+            overView.progess = levelInfo[0].Value;
+
             return overView;
         }
 
@@ -464,9 +483,9 @@ namespace GAMEDATAHUB.Repository
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             GameModeView gameModeView = new GameModeView();
             ErrorModel error = new ErrorModel();
-            if (cache.Contains("MarineChen"))
+            if (cache.Contains(HeroName))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
             }
             else
             {
@@ -559,9 +578,9 @@ namespace GAMEDATAHUB.Repository
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             ErrorModel error = new ErrorModel();
             GameModeView gameModeView = new GameModeView();
-            if (cache.Contains("MarineChen"))
+            if (cache.Contains(HeroName))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
             }
             else
             {

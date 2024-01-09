@@ -21,7 +21,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int Spawns { get; set; }
         public int Revives { get; set; }
         public int Assists { get; set; }
-        public int HazardZoneStreaks { get; set; }
+        public int? HazardZoneStreaks { get; set; }
         public int SecondsPlayed { get; set; }
         public int HoursPlayed { get; set; }
 

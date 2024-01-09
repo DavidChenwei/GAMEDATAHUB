@@ -16,6 +16,9 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int XP { get; set; }
         public int PlayedTime { get; set; }
 
+        public int Level { get; set; }
+        public decimal progess { get; set; }
+
         #region Lifetime Overview
         public string UserName { get; set; }
         public string PlatForm { get; set; }
@@ -62,6 +65,9 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int NeutralizedObject { get; set; }
         public int AttackedSector { get; set; }
         public int DefendedSector { get; set; }
+        #endregion
+
+        #region Top Data
         #endregion
 
         #region Weapon/Vehcile/Specialists
