@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -276,6 +277,22 @@ namespace GAMEDATAHUB.Repository
             overView.NeutralizedObject = heroInfoModel.Objective.Neutralized;
             overView.AttackedSector = heroInfoModel.Sector.captured;
             overView.DefendedSector = heroInfoModel.Sector.defended;
+            overView.XP = heroInfoModel.XP[0].Total;
+
+            if (!string.IsNullOrEmpty(heroInfoModel.TimePlayed))
+            {
+                Regex regex = new Regex(@"\d+");
+                MatchCollection matches = regex.Matches(heroInfoModel.TimePlayed);
+                if (matches.Count > 0)
+                {
+                    int.TryParse(matches[0].Value, out int day);
+                    int.TryParse(matches[1].Value, out int hours);
+                    overView.PlayedTime = day * 24 + hours;
+                }
+            }
+            else {
+                overView.PlayedTime = 0;
+            }
 
             var topThreeWeapons = heroInfoModel.Weapons
                 .OrderByDescending(w => w.Kills)
@@ -327,92 +344,119 @@ namespace GAMEDATAHUB.Repository
             return overView;
         }
 
-        public HeroInfoModel MapsInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
+        public MapModeView MapsInfoGet(string HeroName, string PlatForm)
         {
-            MapModel mapModel = new MapModel();
+            MapModeView mapModeView = new MapModeView();
             ErrorModel error = new ErrorModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            if (cache.Contains("MarineChen"))
+            if (cache.Contains(HeroName))
             {
-                heroInfoModel = (HeroInfoModel)cache.Get("MarineChen");
-                heroInfoModel.SortMethod = SortMethod;
-                heroInfoModel.HeaderIndex = HeaderIndex;
-                for (int i = 0; i < heroInfoModel.Maps.Count; i++)
-                {
-                    if (decimal.TryParse(heroInfoModel.Maps[i].WinPercent.Replace("%", ""), out decimal WinPercent))
-                    {
-                        heroInfoModel.Maps[i].WinPercentD = WinPercent;
-                    }
-                    else
-                    {
-                        error.AddError("Failed to convert string to decimal: HumanPercentage");
-                    }
-                }
-                if (HeaderIndex == "header1")
-                {
-                    if (SortMethod == "Asce")
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Wins).ToList();
-                    }
-                    else
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Wins).ToList();
-                    }
-                }
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
 
-                if (HeaderIndex == "header2")
-                {
-                    if (SortMethod == "Asce")
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.WinPercentD).ToList();
-                    }
-                    else
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.WinPercentD).ToList();
-                    }
-                }
-
-                if (HeaderIndex == "header3")
-                {
-                    if (SortMethod == "Asce")
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Losses).ToList();
-                    }
-                    else
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Losses).ToList();
-                    }
-                }
-
-                if (HeaderIndex == "header4")
-                {
-                    if (SortMethod == "Asce")
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Matches).ToList();
-                    }
-                    else
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Matches).ToList();
-                    }
-                }
-
-                if (HeaderIndex == "header5")
-                {
-                    if (SortMethod == "Asce")
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.SecondsPlayed).ToList();
-                    }
-                    else
-                    {
-                        heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.SecondsPlayed).ToList();
-                    }
-                }
             }
             else
             {
                 //To do: read from database
             }
-            return heroInfoModel;
+            mapModeView.MaxWins = heroInfoModel.Maps.Max(m => m.Wins);
+            mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
+            mapModeView.MaxLosses = heroInfoModel.Maps.Max(m => m.Losses);
+            mapModeView.MaxTime = heroInfoModel.Maps.Max(m => m.HoursPlayed);
+            mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
+            mapModeView.UserName = heroInfoModel.UserName;
+            mapModeView.Avatar = heroInfoModel.Avatar;
+            mapModeView.PlatForm = heroInfoModel.PlatForm;
+            heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(m => m.Wins).ToList();
+            mapModeView.Maps = heroInfoModel.Maps;
+
+            return mapModeView;
+        }
+
+        public MapModeView MapsInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
+        {
+            MapModeView mapModeView = new MapModeView();
+            ErrorModel error = new ErrorModel();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+            }
+            else
+            {
+                //To do: read from database
+            }
+            mapModeView.MaxWins = heroInfoModel.Maps.Max(m => m.Wins);
+            mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
+            mapModeView.MaxLosses = heroInfoModel.Maps.Max(m => m.Losses);
+            mapModeView.MaxTime = heroInfoModel.Maps.Max(m => m.HoursPlayed);
+            mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
+            mapModeView.UserName = heroInfoModel.UserName;
+            mapModeView.Avatar = heroInfoModel.Avatar;
+            mapModeView.PlatForm = heroInfoModel.PlatForm;
+
+            if (HeaderName == Utils.HeaderWin)
+            {
+                if (SortMethod == "Asce")
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Wins).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Wins).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderWinPercent)
+            {
+                if (SortMethod == "Asce")
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.WinPercentD).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.WinPercentD).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderLosses)
+            {
+                if (SortMethod == "Asce")
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Losses).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Losses).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderMatches)
+            {
+                if (SortMethod == "Asce")
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.Matches).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.Matches).ToList();
+                }
+            }
+
+            if (HeaderName == Utils.HeaderPlayTime)
+            {
+                if (SortMethod == "Asce")
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderBy(w => w.SecondsPlayed).ToList();
+                }
+                else
+                {
+                    heroInfoModel.Maps = heroInfoModel.Maps.OrderByDescending(w => w.SecondsPlayed).ToList();
+                }
+            }
+
+            mapModeView.Maps = heroInfoModel.Maps;
+
+            return mapModeView;
         }
 
         public GameModeView GameModeInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)

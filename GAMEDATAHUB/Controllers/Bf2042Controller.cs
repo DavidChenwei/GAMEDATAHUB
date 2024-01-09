@@ -56,6 +56,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["Page"] = "Overview";
             return View(Overview);
         }
+
         [HttpGet]
         public ActionResult Bf2042()
         {
@@ -84,23 +85,20 @@ namespace GAMEDATAHUB.Controllers
         {
             string SortMethod = "DESC";
             string HeaderIndex = "header1";
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
+            MapModeView mapModeView = Resp.MapsInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
+            ViewData["Avatar"] = mapModeView.Avatar;
             ViewData["Page"] = "Maps";
-            return View(heroInfoModel);
+            return View(mapModeView);
         }
 
         [HttpPost]
-        public ActionResult Maps(string HeroName, string PlatForm, string SortMethod, string HeaderIndex)
+        public JsonResult MapsUpdate(ModeJson modeJson)
         {
-            HeroInfoModel heroInfoModel = Resp.MapsInfoGet(HeroName, PlatForm, SortMethod, HeaderIndex);
-            ViewData["HeroName"] = HeroName;
-            ViewData["PlatForm"] = PlatForm;
-            ViewData["Avatar"] = heroInfoModel.Avatar;
-            ViewData["Page"] = "Maps";
-            return View(heroInfoModel);
+            MapModeView mapModeView = Resp.MapsInfoUpdate(modeJson.SortMethod, modeJson.HeaderName, modeJson.HeroName, modeJson.PlatForm);
+            var JsonPayLoad = JsonConvert.SerializeObject(mapModeView);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet); 
         }
 
         [HttpGet]

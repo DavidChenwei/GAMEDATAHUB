@@ -13,6 +13,9 @@ namespace GAMEDATAHUB.Models.BF2042Model
             SpecialistsOverViews = new List<SpecialistsOverView>();
         }
 
+        public int XP { get; set; }
+        public int PlayedTime { get; set; }
+
         #region Lifetime Overview
         public string UserName { get; set; }
         public string PlatForm { get; set; }

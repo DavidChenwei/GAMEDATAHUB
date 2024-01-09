@@ -1,11 +1,4 @@
-﻿@model GAMEDATAHUB.Models.BF2042Model.HeroInfoModel
-@{
-    int maxWins = Model.Maps.Max(m => m.Wins);
-    int maxLosses = Model.Maps.Max(m => m.Losses);
-    int maxMatches = Model.Maps.Max(m => m.Matches);
-    int maxTime = Model.Maps.Max(m => m.SecondsPlayed) / 3600;
-    decimal maxWinpercent = Model.Maps.Max(m => m.WinPercentD);
-}
+﻿@model GAMEDATAHUB.Models.BF2042Model.MapModeView
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -20,121 +13,25 @@
                                         <div class="st__item st-header__item st-header__item--sortable st__item--sticky st__item--wide" style="--st-base-width: 12rem;">
                                             <span class="label">Map</span>
                                         </div>
-                                        @if (Model.HeaderIndex == "header1")
-                                        {
-                                            <div id="header1" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    @if (Model.SortMethod == "Desc")
-                                                    {
-                                                        <path d="m7 10 5 5 5-5z"></path>
-                                                    }
-                                                    else
-                                                    {
-                                                        <path d="m7 14 5-5 5 5z"></path>
-                                                    }
-                                                </svg>
-                                                <span id="header1" class="label">Wins</span>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div id="header1" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <span id="header1" class="label">Wins</span>
-                                            </div>
-                                        }
+                                        <div id="header1" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                                                <path d="m7 10 5 5 5-5z"></path>
+                                            </svg>
+                                            <span id="header1" class="label">Wins</span>
+                                        </div>
+                                        <div id="header2" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7rem;">
+                                            <span id="header2" class="label">Win %</span>
+                                        </div>
+                                        <div id="header3" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
+                                            <span id="header3" class="label">Losses</span>
+                                        </div>
 
-                                        @if (Model.HeaderIndex == "header2")
-                                        {
-                                            <div id="header2" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 7rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    @if (Model.SortMethod == "Desc")
-                                                    {
-                                                        <path d="m7 10 5 5 5-5z"></path>
-                                                    }
-                                                    else
-                                                    {
-                                                        <path d="m7 14 5-5 5 5z"></path>
-                                                    }
-                                                    <span id="header2" class="label">Win %</span>
-                                                </svg>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div id="header2" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 7rem;">
-                                                <span id="header2" class="label">Win %</span>
-                                            </div>
-                                        }
-
-                                        @if (Model.HeaderIndex == "header3")
-                                        {
-                                            <div id="header3" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    @if (Model.SortMethod == "Desc")
-                                                    {
-                                                        <path d="m7 10 5 5 5-5z"></path>
-                                                    }
-                                                    else
-                                                    {
-                                                        <path d="m7 14 5-5 5 5z"></path>
-                                                    }
-                                                    <span id="header3" class="label">Losses</span>
-                                                </svg>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div id="header3" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 5.5rem;">
-                                                <span id="header3" class="label">Losses</span>
-                                            </div>
-                                        }
-
-                                        @if (Model.HeaderIndex == "header4")
-                                        {
-                                            <div id="header4" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 6.5rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    @if (Model.SortMethod == "Desc")
-                                                    {
-                                                        <path d="m7 10 5 5 5-5z"></path>
-                                                    }
-                                                    else
-                                                    {
-                                                        <path d="m7 14 5-5 5 5z"></path>
-                                                    }
-                                                    <span id="header4" class="label">Matches</span>
-                                                </svg>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div id="header4" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 6.5rem;">
-                                                <span id="header4" class="label">Matches</span>
-                                            </div>
-                                        }
-
-                                        @if (Model.HeaderIndex == "header5")
-                                        {
-                                            <div id="header5" class="st__item st-header__item st-header__item--active st-header__item--sortable" style="--st-base-width: 9rem;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-                                                    @if (Model.SortMethod == "Desc")
-                                                    {
-                                                        <path d="m7 10 5 5 5-5z"></path>
-                                                    }
-                                                    else
-                                                    {
-                                                        <path d="m7 14 5-5 5 5z"></path>
-                                                    }
-                                                    <span id="header5" class="label">Playtime</span>
-                                                </svg>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div id="header5" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 9rem;">
-                                                <span id="header5" class="label">Playtime</span>
-                                            </div>
-                                        }
-
+                                        <div id="header4" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 6.5rem;">
+                                            <span id="header4" class="label">Matches</span>
+                                        </div>
+                                        <div id="header5" class="st__item st-header__item st-header__item--sortable" style="--st-base-width: 9rem;">
+                                            <span id="header5" class="label">Playtime</span>
+                                        </div>
                                         <div class="st__item st__item--expand st__item--expand-hide-mobile"></div>
                                     </div>
                                     <div class="st-content">
@@ -147,11 +44,11 @@
                                                             <div data-v-f7cfeda3="" class="value">@map.MapName</div>
                                                         </div>
                                                     </div>
-                                                    @if (maxWins == map.Wins)
+                                                    @if (Model.MaxWins == map.Wins)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Wins.ToString()</div>
+                                                                <div class="value">@map.Wins.ToString("N0")</div>
                                                             </div>
                                                         </div>
                                                     }
@@ -159,15 +56,15 @@
                                                     {
                                                         <div class="st__item st-content__item-value" style="--st-base-width: 5.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Wins.ToString()</div>
+                                                                <div class="value">@map.Wins.ToString("N0")</div>
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxWinpercent == map.WinPercentD)
+                                                    @if (Model.MaxWinPercent == map.WinPercentD)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.WinPercent</div>
+                                                                <div class="value">@map.WinPercent.ToString()</div>
                                                             </div>
                                                         </div>
                                                     }
@@ -175,15 +72,15 @@
                                                     {
                                                         <div class="st__item st-content__item-value" style="--st-base-width: 7rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.WinPercent</div>
+                                                                <div class="value">@map.WinPercent.ToString()</div>
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxLosses == map.Losses)
+                                                    @if (Model.MaxLosses == map.Losses)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Losses.ToString()</div>
+                                                                <div class="value">@map.Losses.ToString("N0")</div>
                                                             </div>
                                                         </div>
 
@@ -192,15 +89,15 @@
                                                     {
                                                         <div class="st__item st-content__item-value " style="--st-base-width: 5.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Losses.ToString()</div>
+                                                                <div class="value">@map.Losses.ToString("N0")</div>
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxMatches == map.Matches)
+                                                    @if (Model.MaxMatch == map.Matches)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 6.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Matches.ToString()</div>
+                                                                <div class="value">@map.Matches.ToString("N0")</div>
                                                             </div>
                                                         </div>
                                                     }
@@ -208,15 +105,15 @@
                                                     {
                                                         <div class="st__item st-content__item-value" style="--st-base-width: 6.5rem;">
                                                             <div class="info">
-                                                                <div class="value">@map.Matches.ToString()</div>
+                                                                <div class="value">@map.Matches.ToString("N0")</div>
                                                             </div>
                                                         </div>
                                                     }
-                                                    @if (maxTime == map.SecondsPlayed / 3600)
+                                                    @if (Model.MaxTime == map.HoursPlayed)
                                                     {
                                                         <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 9rem;">
                                                             <div class="info">
-                                                                <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                <div class="value">@(map.HoursPlayed.ToString("N0"))H</div>
                                                             </div>
                                                         </div>
                                                     }
@@ -224,7 +121,7 @@
                                                     {
                                                         <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
                                                             <div class="info">
-                                                                <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                <div class="value">@(map.HoursPlayed.ToString("N0"))H</div>
                                                             </div>
                                                         </div>
                                                     }
@@ -242,23 +139,23 @@
                                                             <div class="category__stats">
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Matches Lost</div>
-                                                                    <div class="value">@map.Losses.ToString()</div>
+                                                                    <div class="value">@map.Losses.ToString("N0")</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Matches Played</div>
-                                                                    <div class="value">@map.Matches.ToString()</div>
+                                                                    <div class="value">@map.Matches.ToString("N0")</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Matches Won</div>
-                                                                    <div class="value">@map.Wins.ToString()</div>
+                                                                    <div class="value">@map.Wins.ToString("N0")</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Time Played</div>
-                                                                    <div class="value">@((map.SecondsPlayed / 3600).ToString())H</div>
+                                                                    <div class="value">@(map.HoursPlayed.ToString("N0"))H</div>
                                                                 </div>
                                                                 <div class="category__stats-stat">
                                                                     <div class="label">Win %</div>
-                                                                    <div class="value">@map.WinPercent</div>
+                                                                    <div class="value">@map.WinPercent.ToString()</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -270,31 +167,40 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="post" action="@Url.Action("Maps", "Bf2042")" id="sortform">
-                            <input name="HeroName" value="@Model.UserName" hidden>
-                            <input name="Platform" value="@Model.PlatForm" hidden>
-                            <input name="Sortmethod" value="@Model.SortMethod" hidden>
-                            <input name="HeaderIndex" value="@Model.SortMethod" hidden>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        /*Control active attribute and the svg position*/
-        document.addEventListener('DOMContentLoaded', function () {
-            var stItems = document.querySelectorAll('.st-header .st-header__item');
-            stItems.forEach(function (item) {
-                item.addEventListener('click', function () {
-                    stItems.forEach(function (innerItem) {
+        document.addEventListener("DOMContentLoaded", function () {
+            var headers = document.querySelectorAll('.st-header .st-header__item');
+            var sortMethod = "Desc";
+            headers.forEach(function (header, index) {
+                header.addEventListener('click', function () {
+                    //To control when header is active the color change to green
+                    headers.forEach(function (innerItem) {
                         innerItem.classList.remove('st-header__item--active');
                     });
-                    item.classList.add('st-header__item--active');
+                    header.classList.add('st-header__item--active');
 
-                    stItems.forEach(function (innerItem) {
-                        if (innerItem.classList.contains('st-header__item--active')) {
-                            if (!innerItem.querySelector('.st__item svg')) {
+                    //To control highligh when header is active
+                    var st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value");
+                    st_content__items.forEach(function (st_item) {
+                        st_item.classList.remove('st-content__item-value--active');
+                    });
+                    var selected_st_content__items = document.querySelectorAll(".st-content__item>.st-content__item-value:nth-child(" + (index + 1) + ")");
+                    selected_st_content__items.forEach(function (st_item) {
+                        if (!st_item.classList.contains('st-content__item-value--active')) {
+                            st_item.classList.add('st-content__item-value--active');
+                        }
+                    });
+
+                    //To control the svg when header is active
+                    headers.forEach(function (header) {
+                        if (header.classList.contains('st-header__item--active')) {
+                            //Add the svg if the header is active
+                            if (!header.querySelector('.st__item svg')) {
                                 var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                                 svg.setAttribute('class', 'icon');
                                 svg.setAttribute('viewBox', '0 0 24 24');
@@ -302,70 +208,145 @@
                                 var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                                 path.setAttribute('d', 'm7 10 5 5 5-5z');
                                 svg.appendChild(path);
-                                var span = innerItem.querySelector('.st__item span');
-                                innerItem.insertBefore(svg, span);
+                                var span = header.querySelector('.st__item span');
+                                header.insertBefore(svg, span);
+                            } else {
+                                //Switch between Desc and Asce
+                                var pathValue = header.querySelector('.st__item .icon path').getAttribute('d');
+                                var d2 = "m7 10 5 5 5-5z";
+                                var d1 = "m7 14 5-5 5 5z";
+                                if (pathValue === d1) {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d2);
+                                    sortMethod = "Desc";
+                                } else {
+                                    header.querySelector('.st__item .icon path').setAttribute('d', d1);
+                                    sortMethod = "Asce";
+                                }
                             }
                         }
                         else {
-                            var svg = innerItem.querySelector('.st__item svg');
+                            var svg = header.querySelector('.st__item svg');
                             if (svg) {
-                                innerItem.removeChild(svg);
+                                header.removeChild(svg);
                             }
                         }
                     });
 
+                    //Send the Ajax Post
+                    var heroName = document.getElementById('HeroName').value;
+                    var platForm = document.getElementById('PlatForm').value;
+                    var headerName = header.querySelector('.label').textContent;
+                    $.ajax({
+                        url: '@Url.Action("MapsUpdate", "Bf2042")',
+                        type: 'POST',
+                        data: {
+                            HeaderName: headerName,
+                            SortMethod: sortMethod,
+                            HeroName: heroName,
+                            PlatForm: platForm
+                        },
+                        success: function (response){
+                            var parsedData = JSON.parse(response);
+                            let mapsModeViews = parsedData.Maps;
+                            //Update the content item infomation
+                            var contentItems = document.querySelectorAll('.st-content__category .st-content__item');
+                            var JsonIndex = 0;
+                            contentItems.forEach(function (item) {
+                                var HeaderIndex = 0;
+                                var st__items = item.querySelectorAll('.st__item');
+                                st__items.forEach(function (st__item) {
+                                    var child = st__item.querySelector('.info .value');
+                                    if (HeaderIndex == 0) {
+                                        child.innerText = mapsModeViews[JsonIndex]['MapName'];
+                                        st__item.style.setProperty("--background-image-url", mapsModeViews[JsonIndex]['Image']);
+                                    }
+                                    if (HeaderIndex == 1) {
+                                        child.innerText = mapsModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
+                                        if (parsedData['MaxWins'] == mapsModeViews[JsonIndex]['Wins']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 2) {
+                                        child.innerText = mapsModeViews[JsonIndex]['WinPercent'].toLocaleString('en-US');
+                                        if (parsedData['WinPercentD'] == mapsModeViews[JsonIndex]['WinPercentD']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 3) {
+                                        child.innerText = mapsModeViews[JsonIndex]['Losses'].toLocaleString('en-US');
+                                        if (parsedData['MaxLosses'] == mapsModeViews[JsonIndex]['Losses']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 4) {
+                                        child.innerText = mapsModeViews[JsonIndex]['Matches'].toLocaleString('en-US');
+                                        if (parsedData['MaxMatch'] == mapsModeViews[JsonIndex]['Matches']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+                                    if (HeaderIndex == 5) {
+                                        child.innerText = mapsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US') + "H";
+                                        if (parsedData['MaxTime'] == mapsModeViews[JsonIndex]['HoursPlayed']) {
+                                            st__item.classList.add('st-content__item-value--highlight');
+                                        } else {
+                                            st__item.classList.remove('st-content__item-value--highlight');
+                                        }
+                                    }
+
+                                    HeaderIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                            JsonIndex = 0;
+                            //Update the content drawer
+                            var drawertItems = document.querySelectorAll('.st-content__category .st-content__drawer');
+                            drawertItems.forEach(function (drawer) {
+                                var categoryItems = drawer.querySelectorAll('.category');
+                                var categoryIndex = 0;
+                                categoryItems.forEach(function (category) {
+                                    if (categoryIndex == 0) {
+                                        var stats = category.querySelectorAll('.category__stats-stat .value');
+                                        var statIndex = 0;
+
+                                        stats.forEach(function (state) {
+                                            if (statIndex == 0) {
+                                                state.innerText = mapsModeViews[JsonIndex]['Losses'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 1) {
+                                                state.innerText = mapsModeViews[JsonIndex]['Matches'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 2) {
+                                                state.innerText = mapsModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
+                                            }
+                                            if (statIndex == 3) {
+                                                state.innerText = mapsModeViews[JsonIndex]['HoursPlayed'].toLocaleString('en-US')+"H";
+                                            }
+                                            if (statIndex == 4) {
+                                                state.innerText = mapsModeViews[JsonIndex]['WinPercent'];
+                                            }
+                                            statIndex += 1;
+                                        });
+                                    }
+                                    categoryIndex += 1;
+                                });
+                                JsonIndex += 1;
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    }
+                    );
                 });
             });
-        });
-
-        /*Control svg image direction*/
-        document.addEventListener('DOMContentLoaded', function () {
-            var stHeader = document.querySelector('.st-header');
-            var d2 = "m7 10 5 5 5-5z";
-            var d1 = "m7 14 5-5 5 5z";
-            stHeader.addEventListener('click', function (event) {
-                var clickedDiv = event.target;
-                if (!clickedDiv.classList.contains('st__item--expand')) {
-                    var id = clickedDiv.id;
-                    console.log(id);
-                    var activeDiv = stHeader.querySelector('.st-header__item--active');
-                    var path = activeDiv.querySelector('path');
-                    var sortMethod = document.querySelector('input[name="Sortmethod"]');
-                    var headerIndex = document.querySelector('input[name="HeaderIndex"]');
-                    if (path.getAttribute('d') === d1) {
-                        path.setAttribute('d', d2);
-                        sortMethod.value = "Desc";
-                    } else {
-                        path.setAttribute('d', d1);
-                        sortMethod.value = "Asce";
-                    }
-                    headerIndex.value = id;
-                    console.log(headerIndex);
-                    var form = document.querySelector('#sortform');
-                    form.submit();
-                }
-            });
-        });
-
-        /*Control show more info*/
-        document.addEventListener("DOMContentLoaded", function () {
-            var expandElements = document.querySelectorAll(".st-content__category .st__item--expand");
-            expandElements.forEach(function (expandElement, index) {
-                expandElement.addEventListener("click", function () {
-                    var expand = expandElements[index];
-                    if (expand.classList.contains("st-content__item-expand--active")) {
-                        expand.classList.remove("st-content__item-expand--active");
-                    } else {
-                        expand.classList.add("st-content__item-expand--active");
-                    }
-                    var drawer = document.querySelector(".st-content__category>.st-content__drawer:nth-child(" + (2 * (index + 1)) + ")");
-                    drawer.style.display = (drawer.style.display === "none" || drawer.style.display === "") ? "block" : "none";
-                });
-            });
-        });
-
-        /*Control the first map highlight: If win active, Losses, Matches, playtime highlight*/
-        document.addEventListener("DOMContentLoaded", function () {
 
         });
     </script>
