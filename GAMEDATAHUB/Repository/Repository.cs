@@ -2,7 +2,6 @@
 using GAMEDATAHUB.Models.BF2042Model;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
@@ -42,13 +41,13 @@ namespace GAMEDATAHUB.Repository
                             heroInfoModel.Vehicles.RemoveAll(vehicle =>
                                 vehicle.VehicleName == "RHIB - BF3" ||
                                 vehicle.VehicleName == "Quadbike - BC2" ||
-                                vehicle.VehicleName == "KORD HMG"||
+                                vehicle.VehicleName == "KORD HMG" ||
                                 vehicle.VehicleName == "4x4 Utility" ||
-                                vehicle.VehicleName == "9M133 Kornet"||
+                                vehicle.VehicleName == "9M133 Kornet" ||
                                 vehicle.VehicleName == "Tuk-Tuk" ||
                                 vehicle.VehicleName == "M220 TOW Launcher" ||
                                 vehicle.VehicleName == "Polaris RZR" ||
-                                vehicle.VehicleName == "Polaris Sportsman"||
+                                vehicle.VehicleName == "Polaris Sportsman" ||
                                 vehicle.VehicleName == "UAV-1" ||
                                 vehicle.VehicleName == "Flak 38" ||
                                 vehicle.VehicleName == "HMG" ||
@@ -56,7 +55,6 @@ namespace GAMEDATAHUB.Repository
                                 vehicle.VehicleName == "Polaris RZR" ||
                                 vehicle.VehicleName == "Polaris RZR" ||
                                 vehicle.VehicleName == "Polaris RZR");
-
                         }
                         else
                         {
@@ -202,7 +200,8 @@ namespace GAMEDATAHUB.Repository
             }
         }
 
-        public OverviewModel OverviewInfoGet(string name, string platform) {
+        public OverviewModel OverviewInfoGet(string name, string platform)
+        {
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             heroInfoModel.PlatForm = platform;
             OverviewModel overView = new OverviewModel();
@@ -215,7 +214,8 @@ namespace GAMEDATAHUB.Repository
             return overView;
         }
 
-        public OverviewModel OverviewDataGenerate(HeroInfoModel heroInfoModel, OverviewModel overView) {
+        public OverviewModel OverviewDataGenerate(HeroInfoModel heroInfoModel, OverviewModel overView)
+        {
             ErrorModel error = new ErrorModel();
 
             #region show OverView Date First
@@ -227,14 +227,23 @@ namespace GAMEDATAHUB.Repository
             overView.KillDeath = heroInfoModel.KillDeath;
             overView.HeadShotRate = heroInfoModel.HeadShotRate;
             overView.WinPercent = heroInfoModel.WinPercent;
-            if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
+            if (!string.IsNullOrEmpty(heroInfoModel.HumanPrecentage))
             {
-                overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
+                if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
+                {
+                    overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
+                }
+                else
+                {
+                    overView.HumanKD = 0.0m;
+                    error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
+                }
             }
             else
             {
-                error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
+                overView.HumanKD = 0.0m;
             }
+
             overView.Kills = heroInfoModel.Kills;
             overView.Deaths = heroInfoModel.Deaths;
             overView.KillAssists = heroInfoModel.KillAssists;
@@ -312,7 +321,9 @@ namespace GAMEDATAHUB.Repository
                 specialistsOverView.KPM = specialist.KPM;
                 overView.SpecialistsOverViews.Add(specialistsOverView);
             }
-            #endregion
+
+            #endregion show OverView Date First
+
             return overView;
         }
 
@@ -418,20 +429,6 @@ namespace GAMEDATAHUB.Repository
                 //To do: Read from Database
             }
 
-            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
-            {
-                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
-                {
-                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: HumanPercentage");
-                }
-                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
-                heroInfoModel.Gamemodes[i].ObjetiveHours = heroInfoModel.Gamemodes[i].ObjetiveTime / 3600;
-            }
-
             gameModeView.MaxWins = heroInfoModel.Gamemodes.Max(m => m.Wins);
             gameModeView.MaxKills = heroInfoModel.Gamemodes.Max(m => m.Kills);
             gameModeView.MaxKPM = heroInfoModel.Gamemodes.Max(m => m.KPM);
@@ -515,7 +512,7 @@ namespace GAMEDATAHUB.Repository
 
         public GameModeView GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
-            HeroInfoModel heroInfoModel = new HeroInfoModel();            
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
             ErrorModel error = new ErrorModel();
             GameModeView gameModeView = new GameModeView();
             if (cache.Contains("MarineChen"))
@@ -525,19 +522,6 @@ namespace GAMEDATAHUB.Repository
             else
             {
                 //To do: Read from Database
-            }
-
-            for (int i = 0; i < heroInfoModel.Gamemodes.Count; i++)
-            {
-                if (decimal.TryParse(heroInfoModel.Gamemodes[i].WinPercent.Replace("%", ""), out decimal WinPercent))
-                {
-                    heroInfoModel.Gamemodes[i].WinPercentD = WinPercent;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: WinPercent");
-                }
-                heroInfoModel.Gamemodes[i].HoursPlayed = heroInfoModel.Gamemodes[i].SecondsPlayed / 3600;
             }
 
             gameModeView.MaxWins = heroInfoModel.Gamemodes.Max(m => m.Wins);
@@ -624,7 +608,8 @@ namespace GAMEDATAHUB.Repository
             return gameModeView;
         }
 
-        public SpecialistModelView SpecialistInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName) {
+        public SpecialistModelView SpecialistInfoGet(string HeroName, string PlatForm, string SortMethod, string HeaderName)
+        {
             SpecialistModelView specialistModelView = new SpecialistModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             ErrorModel error = new ErrorModel();
@@ -653,7 +638,6 @@ namespace GAMEDATAHUB.Repository
             heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.Kills).ToList();
 
             specialistModelView.Specialists = heroInfoModel.Classes;
-
 
             return specialistModelView;
         }
@@ -745,10 +729,7 @@ namespace GAMEDATAHUB.Repository
                 }
             }
 
-
-
             specialistModelView.Specialists = heroInfoModel.Classes;
-
 
             return specialistModelView;
         }
@@ -767,29 +748,6 @@ namespace GAMEDATAHUB.Repository
                 //To do: Read from Database
             }
 
-            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
-            {
-                if (decimal.TryParse(heroInfoModel.Weapons[i].Headshots.Replace("%", ""), out decimal Headshots))
-                {
-                    heroInfoModel.Weapons[i].HeadshotsD = Headshots;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: Headshots");
-                }
-
-                if (decimal.TryParse(heroInfoModel.Weapons[i].Accuracy.Replace("%", ""), out decimal Accuracy))
-                {
-                    heroInfoModel.Weapons[i].AccuracyD = Accuracy;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: Accuracy");
-                }
-
-                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
-            }
-
             weaponModelView.MaxDPM = heroInfoModel.Weapons.Max(m => m.DamagePerMinute);
             weaponModelView.MaxKills = heroInfoModel.Weapons.Max(m => m.Kills);
             weaponModelView.MaxKPM = heroInfoModel.Weapons.Max(m => m.KillsPerMinute);
@@ -802,7 +760,6 @@ namespace GAMEDATAHUB.Repository
             heroInfoModel.Weapons = heroInfoModel.Weapons.OrderByDescending(w => w.Kills).ToList();
 
             weaponModelView.Weapons = heroInfoModel.Weapons;
-
 
             return weaponModelView;
         }
@@ -819,29 +776,6 @@ namespace GAMEDATAHUB.Repository
             else
             {
                 //To do: Read from Database
-            }
-
-            for (int i = 0; i < heroInfoModel.Classes.Count; i++)
-            {
-                if (decimal.TryParse(heroInfoModel.Weapons[i].Headshots.Replace("%", ""), out decimal Headshots))
-                {
-                    heroInfoModel.Weapons[i].HeadshotsD = Headshots;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: Headshots");
-                }
-
-                if (decimal.TryParse(heroInfoModel.Weapons[i].Accuracy.Replace("%", ""), out decimal Accuracy))
-                {
-                    heroInfoModel.Weapons[i].AccuracyD = Accuracy;
-                }
-                else
-                {
-                    error.AddError("Failed to convert string to decimal: Accuracy");
-                }
-
-                heroInfoModel.Classes[i].HoursPlayed = heroInfoModel.Classes[i].SecondsPlayed / 3600;
             }
 
             weaponModelView.MaxDPM = heroInfoModel.Weapons.Max(m => m.DamagePerMinute);
@@ -913,10 +847,7 @@ namespace GAMEDATAHUB.Repository
                 }
             }
 
-
-
             weaponModelView.Weapons = heroInfoModel.Weapons;
-
 
             return weaponModelView;
         }
@@ -935,11 +866,6 @@ namespace GAMEDATAHUB.Repository
                 //To do: Read from Database
             }
 
-            for (int i = 0; i < heroInfoModel.Gadgets.Count; i++)
-            {
-                heroInfoModel.Gadgets[i].HoursPlayed = heroInfoModel.Gadgets[i].SecondsPlayed / 3600;
-            }
-
             gadgetModelView.MaxDPM = heroInfoModel.Gadgets.Max(m => m.DPM);
             gadgetModelView.MaxKills = heroInfoModel.Gadgets.Max(m => m.Kills);
             gadgetModelView.MaxKPM = heroInfoModel.Gadgets.Max(m => m.KPM);
@@ -951,7 +877,6 @@ namespace GAMEDATAHUB.Repository
             heroInfoModel.Weapons = heroInfoModel.Weapons.OrderByDescending(w => w.Kills).ToList();
 
             gadgetModelView.Gadgets = heroInfoModel.Gadgets;
-
 
             return gadgetModelView;
         }
@@ -968,11 +893,6 @@ namespace GAMEDATAHUB.Repository
             else
             {
                 //To do: Read from Database
-            }
-
-            for (int i = 0; i < heroInfoModel.Gadgets.Count; i++)
-            {
-                heroInfoModel.Gadgets[i].HoursPlayed = heroInfoModel.Gadgets[i].SecondsPlayed / 3600;
             }
 
             gadgetModelView.MaxDPM = heroInfoModel.Gadgets.Max(m => m.DPM);
@@ -1033,7 +953,6 @@ namespace GAMEDATAHUB.Repository
 
             gadgetModelView.Gadgets = heroInfoModel.Gadgets;
 
-
             return gadgetModelView;
         }
 
@@ -1062,7 +981,6 @@ namespace GAMEDATAHUB.Repository
             heroInfoModel.Vehicles = heroInfoModel.Vehicles.OrderByDescending(w => w.Kills).ToList();
 
             vehicleModelView.Vehicles = heroInfoModel.Vehicles;
-
 
             return vehicleModelView;
         }
@@ -1113,7 +1031,6 @@ namespace GAMEDATAHUB.Repository
                 }
             }
 
-
             if (HeaderName == Utils.HeaderKPM)
             {
                 if (SortMethod == Utils.AsceMethod)
@@ -1139,7 +1056,6 @@ namespace GAMEDATAHUB.Repository
             }
 
             vehicleModelView.Vehicles = heroInfoModel.Vehicles;
-
 
             return vehicleModelView;
         }

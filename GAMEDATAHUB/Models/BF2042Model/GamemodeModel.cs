@@ -22,12 +22,34 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int ObjectivesDestroyed { get; set; }
         public int objectivesCaptured { get; set; }
         public int ObjetiveTime { get; set; }
-        public int ObjetiveHours { get; set; }
+        public int ObjetiveHours { get
+            {
+                return ObjetiveTime / 3600;
+            } 
+        }
         public decimal KPM { get; set; }
         public string WinPercent { get; set; }
-        public decimal WinPercentD { get; set; }
+        public decimal WinPercentD { get 
+            {
+                if (string.IsNullOrEmpty(WinPercent))
+                {
+                    return 0.0m;
+                }
+                else
+                {
+                    decimal.TryParse(WinPercent.Replace("%", ""), out decimal WinRate);
+                    return WinRate;
+                }
+            }
+        }
         public int SecondsPlayed { get; set; }
-        public int HoursPlayed { get; set; }
+        public int HoursPlayed
+        {
+            get
+            {
+                return SecondsPlayed / 3600;
+            }
+        }
     }
 
     public class ModeJson {

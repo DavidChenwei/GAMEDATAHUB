@@ -20,7 +20,11 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public decimal KPM { get; set; }
         public decimal DPM { get; set; }
         public int SecondsPlayed { get; set; }
-        public int HoursPlayed { get; set; }
+        public int HoursPlayed { get 
+            {
+                return SecondsPlayed / 3600;
+            } 
+        }
     }
 
     public class GadgetModelView

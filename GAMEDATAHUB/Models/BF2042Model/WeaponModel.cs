@@ -18,11 +18,34 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int HipfireKills { get; set; }
         public int MultiKills { get; set; }
         public string Accuracy { get; set; }
-        public decimal AccuracyD { get; set; }
+        public decimal AccuracyD { get
+            {
+                if (string.IsNullOrEmpty(Accuracy))
+                {
+                    return 0.0m;
+                }
+                else
+                {
+                    decimal.TryParse(Accuracy.Replace("%", ""), out decimal AccuracyRate);
+                    return AccuracyRate;
+                }
+            } 
+        }
         public decimal KillsPerMinute { get; set; }
         public decimal DamagePerMinute { get; set; }
         public string Headshots { get; set; }
-        public decimal HeadshotsD { get; set; }
+        public decimal HeadshotsD { get 
+            {
+                if (string.IsNullOrEmpty(Headshots)) {
+                    return 0.0m;
+                }
+                else
+                {
+                    decimal.TryParse(Headshots.Replace("%", ""), out decimal HSRate);
+                    return HSRate;
+                }
+            } 
+        }
         public decimal HitVKills { get; set; }
         public int ShotsHit { get; set; }
         public int ShotsFired { get; set; }
