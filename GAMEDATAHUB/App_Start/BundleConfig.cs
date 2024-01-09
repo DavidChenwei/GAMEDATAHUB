@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace GAMEDATAHUB
 {
@@ -8,6 +7,7 @@ namespace GAMEDATAHUB
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            #region Import JS
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -22,9 +22,17 @@ namespace GAMEDATAHUB
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/anime-min").Include(
-          "~/Scripts/anime.min.js"));
-            bundles.Add(new StyleBundle("~/Content/css").Include(                   
+                     "~/Scripts/anime.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/PNFJs").Include(
+                     "~/Scripts/PageNotFound.js"));
+            #endregion
+
+            #region Import CSS
+            bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/styles.css"));
+            bundles.Add(new StyleBundle("~/Content/PNFcss").Include(
+                      "~/Content/PageNotFound.css"));
+            #endregion
         }
     }
 }

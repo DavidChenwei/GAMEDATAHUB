@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Bf2042Controller.cs" />
+    <Compile Include="Controllers\BfVController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Gadget.cs">
       <DependentUpon>GDHDataBase.tt</DependentUpon>
@@ -237,6 +238,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PageNotFound.css" />
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -273,6 +275,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PageNotFound.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -297,6 +300,8 @@
     <Content Include="Views\Bf2042\Vehicles.cshtml" />
     <Content Include="Views\Bf2042\Weapons.cshtml" />
     <Content Include="Views\Bf2042\Gadgets.cshtml" />
+    <Content Include="Views\Shared\_PageNotFound.cshtml" />
+    <Content Include="Views\BfV\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
