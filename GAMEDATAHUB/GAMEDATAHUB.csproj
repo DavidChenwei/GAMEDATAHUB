@@ -130,9 +130,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\APEXController.cs" />
+    <Compile Include="Controllers\Bf1Controller.cs" />
     <Compile Include="Controllers\Bf2042Controller.cs" />
     <Compile Include="Controllers\BfVController.cs" />
+    <Compile Include="Controllers\CODController.cs" />
+    <Compile Include="Controllers\CS2Controller.cs" />
+    <Compile Include="Controllers\CSGOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LOLController.cs" />
+    <Compile Include="Controllers\PUBGController.cs" />
+    <Compile Include="Controllers\RBS6Controller.cs" />
+    <Compile Include="Controllers\ValorantController.cs" />
     <Compile Include="Gadget.cs">
       <DependentUpon>GDHDataBase.tt</DependentUpon>
     </Compile>
@@ -302,6 +311,15 @@
     <Content Include="Views\Bf2042\Gadgets.cshtml" />
     <Content Include="Views\Shared\_PageNotFound.cshtml" />
     <Content Include="Views\BfV\Overview.cshtml" />
+    <Content Include="Views\Bf1\Overview.cshtml" />
+    <Content Include="Views\PUBG\Overview.cshtml" />
+    <Content Include="Views\LOL\Overview.cshtml" />
+    <Content Include="Views\CSGO\Overview.cshtml" />
+    <Content Include="Views\COD\Overview.cshtml" />
+    <Content Include="Views\APEX\Overview.cshtml" />
+    <Content Include="Views\RBS6\Overview.cshtml" />
+    <Content Include="Views\Valorant\Overview.cshtml" />
+    <Content Include="Views\CS2\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
