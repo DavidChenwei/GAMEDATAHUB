@@ -9,17 +9,17 @@
           <Key>
             <PropertyRef Name="GadgetID" />
           </Key>
-          <Property Name="GadgetID" Type="int" Nullable="false" />
+          <Property Name="GadgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GadgetName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
           <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="GadgetItem">
           <Key>
             <PropertyRef Name="GadgetItemId" />
           </Key>
-          <Property Name="GadgetItemId" Type="int" Nullable="false" />
+          <Property Name="GadgetItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GadgetId" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Kills" Type="int" />
@@ -36,16 +36,16 @@
           <Key>
             <PropertyRef Name="GameModeID" />
           </Key>
-          <Property Name="GameModeID" Type="int" Nullable="false" />
+          <Property Name="GameModeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GamemodeName" Type="varchar" MaxLength="50" />
-          <Property Name="Images" Type="varchar" MaxLength="100" />
+          <Property Name="Images" Type="varchar(max)" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="GameModeItem">
           <Key>
             <PropertyRef Name="GameModeItemId" />
           </Key>
-          <Property Name="GameModeItemId" Type="int" Nullable="false" />
+          <Property Name="GameModeItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GamemodeID" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Kills" Type="int" />
@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="GObjectID" />
           </Key>
-          <Property Name="GObjectID" Type="int" Nullable="false" />
+          <Property Name="GObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Herold" Type="int" />
           <Property Name="Armed" Type="int" />
           <Property Name="Captured" Type="int" />
@@ -81,7 +81,7 @@
           <Key>
             <PropertyRef Name="GObjectItemId" />
           </Key>
-          <Property Name="GObjectItemId" Type="int" Nullable="false" />
+          <Property Name="GObjectItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HeroId" Type="int" />
           <Property Name="GObjectID" Type="int" />
           <Property Name="Total" Type="int" />
@@ -94,7 +94,7 @@
           </Key>
           <Property Name="HeroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="varchar" MaxLength="50" />
-          <Property Name="Avatar" Type="varchar" MaxLength="100" />
+          <Property Name="Avatar" Type="varchar(max)" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
           <Property Name="PlatForm" Type="varchar" MaxLength="20" />
@@ -103,7 +103,7 @@
           <Key>
             <PropertyRef Name="HeroOverViewId" />
           </Key>
-          <Property Name="HeroOverViewId" Type="int" Nullable="false" />
+          <Property Name="HeroOverViewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HeroId" Type="int" />
           <Property Name="BestClass" Type="varchar" MaxLength="20" />
           <Property Name="HumanPercentage" Type="decimal" Precision="10" Scale="2" />
@@ -149,16 +149,16 @@
           <Key>
             <PropertyRef Name="MapID" />
           </Key>
-          <Property Name="MapID" Type="int" Nullable="false" />
+          <Property Name="MapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MapName" Type="varchar" MaxLength="50" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar(max)" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MapItem">
           <Key>
             <PropertyRef Name="MapItemId" />
           </Key>
-          <Property Name="MapItemId" Type="int" Nullable="false" />
+          <Property Name="MapItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MapId" Type="int" Nullable="false" />
           <Property Name="HeroId" Type="int" Nullable="false" />
           <Property Name="Wins" Type="int" />
@@ -171,14 +171,14 @@
           <Key>
             <PropertyRef Name="RibbonID" />
           </Key>
-          <Property Name="RibbonID" Type="int" Nullable="false" />
+          <Property Name="RibbonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="RibbonItem">
           <Key>
             <PropertyRef Name="RibbonItemID" />
           </Key>
-          <Property Name="RibbonItemID" Type="int" Nullable="false" />
+          <Property Name="RibbonItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RibbonID" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Amount" Type="int" />
@@ -187,19 +187,19 @@
           <Key>
             <PropertyRef Name="SpecialistID" />
           </Key>
-          <Property Name="SpecialistID" Type="int" Nullable="false" />
+          <Property Name="SpecialistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClassName" Type="varchar" MaxLength="50" />
           <Property Name="CharacterName" Type="varchar" MaxLength="50" />
           <Property Name="StatName" Type="varchar" MaxLength="50" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
-          <Property Name="AvatarImage1" Type="varchar" MaxLength="100" />
-          <Property Name="AvatarImage2" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="AvatarImage1" Type="varchar(max)" />
+          <Property Name="AvatarImage2" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="SpecialistItem">
           <Key>
             <PropertyRef Name="SpecialistItemID" />
           </Key>
-          <Property Name="SpecialistItemID" Type="int" Nullable="false" />
+          <Property Name="SpecialistItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SpecialistID" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Kills" Type="int" />
@@ -216,17 +216,17 @@
           <Key>
             <PropertyRef Name="VehicleID" />
           </Key>
-          <Property Name="VehicleID" Type="int" Nullable="false" />
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="VehicleName" Type="varchar" MaxLength="50" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
           <Property Name="ID" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VehicleGroup">
           <Key>
             <PropertyRef Name="VehicleGroupID" />
           </Key>
-          <Property Name="VehicleGroupID" Type="int" Nullable="false" />
+          <Property Name="VehicleGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="VehicleName" Type="varchar" MaxLength="50" />
@@ -252,7 +252,7 @@
           <Key>
             <PropertyRef Name="VehicleItemId" />
           </Key>
-          <Property Name="VehicleItemId" Type="int" Nullable="false" />
+          <Property Name="VehicleItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleID" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Kills" Type="int" />
@@ -275,17 +275,17 @@
           <Key>
             <PropertyRef Name="WeaponID" />
           </Key>
-          <Property Name="WeaponID" Type="int" Nullable="false" />
+          <Property Name="WeaponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="WeaponName" Type="varchar" MaxLength="50" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar(max)" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="WeaponGroup">
           <Key>
             <PropertyRef Name="WeaponGroupID" />
           </Key>
-          <Property Name="WeaponGroupID" Type="int" Nullable="false" />
+          <Property Name="WeaponGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="GroupName" Type="varchar" MaxLength="50" />
@@ -310,7 +310,7 @@
           <Key>
             <PropertyRef Name="WeaponItemId" />
           </Key>
-          <Property Name="WeaponItemId" Type="int" Nullable="false" />
+          <Property Name="WeaponItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WeaponID" Type="int" />
           <Property Name="HeroID" Type="int" />
           <Property Name="Kills" Type="int" />
@@ -333,7 +333,7 @@
           <Key>
             <PropertyRef Name="XPId" />
           </Key>
-          <Property Name="XPId" Type="int" Nullable="false" />
+          <Property Name="XPId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Total" Type="int" />
           <Property Name="Performance" Type="int" />
@@ -692,7 +692,7 @@
           <Property Name="GadgetID" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GadgetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="GadgetItem" Relationship="Self.fk_GadgetItem_GadgetId" FromRole="Gadget" ToRole="GadgetItem" />
         </EntityType>
@@ -721,7 +721,7 @@
           </Key>
           <Property Name="GameModeID" Type="Int32" Nullable="false" />
           <Property Name="GamemodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Images" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GameModeItem" Relationship="Self.fk_GameModeItem_GamemodeID" FromRole="GameMode" ToRole="GameModeItem" />
         </EntityType>
@@ -783,7 +783,7 @@
           </Key>
           <Property Name="HeroID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GadgetItem" Relationship="Self.fk_GadgetItem_HeroId" FromRole="Hero" ToRole="GadgetItem" />
@@ -806,7 +806,7 @@
           </Key>
           <Property Name="MapID" Type="Int32" Nullable="false" />
           <Property Name="MapName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MapItem" Relationship="Self.FK__MapItem__MapId__31EC6D26" FromRole="Map" ToRole="MapItem" />
         </EntityType>
@@ -852,9 +852,9 @@
           <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CharacterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StatName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AvatarImage1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AvatarImage2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AvatarImage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AvatarImage2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SpecialistItem" Relationship="Self.fk_SpecialistItem_GamemodeID" FromRole="Specialist" ToRole="SpecialistItem" />
         </EntityType>
         <EntityType Name="SpecialistItem">
@@ -883,7 +883,7 @@
           <Property Name="VehicleID" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VehicleItem" Relationship="Self.FK__VehicleIt__Vehic__37A5467C" FromRole="Vehicle" ToRole="VehicleItem" />
         </EntityType>
@@ -946,7 +946,7 @@
           <Property Name="WeaponID" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WeaponName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="WeaponItem" Relationship="Self.FK__WeaponIte__Weapo__2C3393D0" FromRole="Weapon" ToRole="WeaponItem" />
         </EntityType>
