@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GAMEDATAHUB.Repository;
 using GAMEDATAHUB.Models.BF2042Model;
+using GAMEDATAHUB.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -216,5 +217,12 @@ namespace GAMEDATAHUB.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult asyncSaveDate(ModeJson modeJson)
+        {
+            ResponseModel response = Resp.asyncSaving(modeJson.Target, modeJson.HeroName);
+            var JsonPayLoad = JsonConvert.SerializeObject(response);
+            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
+        }
     }
 }

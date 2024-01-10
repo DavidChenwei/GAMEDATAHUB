@@ -2,13 +2,13 @@
 using GAMEDATAHUB.Models.BF2042Model;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
+using System.Threading.Tasks;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -59,13 +59,13 @@ namespace GAMEDATAHUB.Repository
                                 vehicle.VehicleName == "Polaris RZR");
 
                             heroInfoModel.Gadgets.RemoveAll(gadget =>
-                                gadget.GadgetName == "Crate"||
+                                gadget.GadgetName == "Crate" ||
                                 gadget.GadgetName == "Pouch" ||
-                                gadget.GadgetName == "Panzerschreck"||
-                                gadget.GadgetName == "Insertion Beacon (Spawn)"||
-                                gadget.GadgetName == "BF1942 Grenade"||
-                                gadget.GadgetName == "BC2 Grenade"||
-                                gadget.GadgetName == "BF3 Grenade"||
+                                gadget.GadgetName == "Panzerschreck" ||
+                                gadget.GadgetName == "Insertion Beacon (Spawn)" ||
+                                gadget.GadgetName == "BF1942 Grenade" ||
+                                gadget.GadgetName == "BC2 Grenade" ||
+                                gadget.GadgetName == "BF3 Grenade" ||
                                 gadget.GadgetName == "Call In Tablet" ||
                                 gadget.GadgetName == "Intel Scanner" ||
                                 gadget.GadgetName == "AT-Mine"
@@ -80,20 +80,22 @@ namespace GAMEDATAHUB.Repository
                     }
                     catch (Exception ex)
                     {
-
                         Console.WriteLine($"Error Message: {ex.Message}");
                     }
                 }
             }
 
-            if (overView.isValid) {
+            if (overView.isValid)
+            {
                 overView = OverviewDataGenerate(heroInfoModel, overView);
 
                 #region Database Operaion
 
                 GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
                 Hero hero = new Hero();
+
                 #region Hero
+
                 hero = (from s in dbContext.Hero
                         where s.UserID == heroInfoModel.UserId
                         select s).FirstOrDefault();
@@ -120,7 +122,6 @@ namespace GAMEDATAHUB.Repository
                             }
                         }
                     }
-
                 }
                 else
                 {
@@ -148,79 +149,9 @@ namespace GAMEDATAHUB.Repository
                     dbContext.SaveChanges();
                 }
             }
-            #endregion
 
-            //#region HeroInfoOverview
-            ////HeroOverView heroOverView = (from s in dbContext.HeroOverView
-            ////                             where s.HeroId == hero.HeroID
-            ////                             select s).FirstOrDefault();
-            ////if (heroOverView == null) {
-            ////    heroOverView.BestClass = heroInfoModel.BestClass;
+            #endregion Hero
 
-            ////    if (decimal.TryParse(heroInfoModel.HumanPrecentage, out decimal HumanPrecentage))
-            ////    {
-            ////        heroOverView.HumanPercentage = HumanPrecentage;
-            ////    }
-            ////    else {
-            ////        error.AddError("Failed to convert string to decimal: HumanPercentage");
-            ////    }
-
-            ////    if (int.TryParse(heroInfoModel.Kills, out int Kills))
-            ////    {
-            ////        heroOverView.Kills = Kills;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to int: Kills");
-            ////    }
-
-            ////    if (int.TryParse(heroInfoModel.Deaths, out int Deaths))
-            ////    {
-            ////        heroOverView.Deaths = Deaths;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to int: Deaths");
-            ////    }
-
-            ////    if (int.TryParse(heroInfoModel.Wins, out int Wins))
-            ////    {
-            ////        heroOverView.Wins = Wins;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to int: Wins");
-            ////    }
-
-            ////    if (int.TryParse(heroInfoModel.Losses, out int Losses))
-            ////    {
-            ////        heroOverView.Losses = Losses;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to int: Losses");
-            ////    }
-
-            ////    if (decimal.TryParse(heroInfoModel.KillsPerMinute, out decimal KillsPerMinute))
-            ////    {
-            ////        heroOverView.KillsPerMinute = KillsPerMinute;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to decimal: KillsPerMinute");
-            ////    }
-
-            ////    if (decimal.TryParse(heroInfoModel.DamagePerMinute, out decimal DamagePerMinute))
-            ////    {
-            ////        heroOverView.DamagePerMinute = DamagePerMinute;
-            ////    }
-            ////    else
-            ////    {
-            ////        error.AddError("Failed to convert string to decimal: DamagePerMinute");
-            ////    }
-
-            ////}
-            //#endregion
             //foreach (var weapon in heroInfoModel.Weapons)
             //{
             //}
@@ -259,7 +190,7 @@ namespace GAMEDATAHUB.Repository
 
         public OverviewModel OverviewDataGenerate(HeroInfoModel heroInfoModel, OverviewModel overView)
         {
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
 
             #region show OverView Date First
 
@@ -270,23 +201,7 @@ namespace GAMEDATAHUB.Repository
             overView.KillDeath = heroInfoModel.KillDeath;
             overView.HeadShotRate = heroInfoModel.HeadShotRate;
             overView.WinPercent = heroInfoModel.WinPercent;
-            if (!string.IsNullOrEmpty(heroInfoModel.HumanPrecentage))
-            {
-                if (decimal.TryParse(heroInfoModel.HumanPrecentage.Replace("%", ""), out decimal HumanPrecentage))
-                {
-                    overView.HumanKD = Math.Round(overView.KillDeath * HumanPrecentage / 100, 2);
-                }
-                else
-                {
-                    overView.HumanKD = 0.0m;
-                    error.AddError("Failed to convert string to decimal: heroInfoModel.HumanPrecentage");
-                }
-            }
-            else
-            {
-                overView.HumanKD = 0.0m;
-            }
-
+            overView.HumanKD = Math.Round(heroInfoModel.KillDeath * heroInfoModel.HumanPrecentageD, 2);
             overView.Kills = heroInfoModel.Kills;
             overView.Deaths = heroInfoModel.Deaths;
             overView.KillAssists = heroInfoModel.KillAssists;
@@ -332,7 +247,8 @@ namespace GAMEDATAHUB.Repository
                     overView.PlayedTime = day * 24 + hours;
                 }
             }
-            else {
+            else
+            {
                 overView.PlayedTime = 0;
             }
 
@@ -394,12 +310,11 @@ namespace GAMEDATAHUB.Repository
         public MapModeView MapsInfoGet(string HeroName, string PlatForm)
         {
             MapModeView mapModeView = new MapModeView();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
-
             }
             else
             {
@@ -422,7 +337,7 @@ namespace GAMEDATAHUB.Repository
         public MapModeView MapsInfoUpdate(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
             MapModeView mapModeView = new MapModeView();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             if (cache.Contains(HeroName))
             {
@@ -510,7 +425,7 @@ namespace GAMEDATAHUB.Repository
         {
             HeroInfoModel heroInfoModel = new HeroInfoModel();
             GameModeView gameModeView = new GameModeView();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -604,7 +519,7 @@ namespace GAMEDATAHUB.Repository
         public GameModeView GameModeInfoGet(string SortMethod, string HeaderName, string HeroName, string PlatForm)
         {
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             GameModeView gameModeView = new GameModeView();
             if (cache.Contains(HeroName))
             {
@@ -703,7 +618,7 @@ namespace GAMEDATAHUB.Repository
         {
             SpecialistModelView specialistModelView = new SpecialistModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -737,7 +652,7 @@ namespace GAMEDATAHUB.Repository
         {
             SpecialistModelView specialistModelView = new SpecialistModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -829,7 +744,7 @@ namespace GAMEDATAHUB.Repository
         {
             WeaponModelView weaponModelView = new WeaponModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -859,7 +774,7 @@ namespace GAMEDATAHUB.Repository
         {
             WeaponModelView weaponModelView = new WeaponModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -947,7 +862,7 @@ namespace GAMEDATAHUB.Repository
         {
             GadgetModelView gadgetModelView = new GadgetModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -976,7 +891,7 @@ namespace GAMEDATAHUB.Repository
         {
             GadgetModelView gadgetModelView = new GadgetModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -1051,7 +966,7 @@ namespace GAMEDATAHUB.Repository
         {
             VehicleModelView vehicleModelView = new VehicleModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -1080,7 +995,7 @@ namespace GAMEDATAHUB.Repository
         {
             VehicleModelView vehicleModelView = new VehicleModelView();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            ErrorModel error = new ErrorModel();
+            ResponseModel error = new ResponseModel();
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -1149,6 +1064,262 @@ namespace GAMEDATAHUB.Repository
             vehicleModelView.Vehicles = heroInfoModel.Vehicles;
 
             return vehicleModelView;
+        }
+
+        public ResponseModel asyncSaving(string Target, string HeroName)
+        {
+            ResponseModel response = new ResponseModel();
+            HeroInfoModel heroInfoModel = new HeroInfoModel();
+            GameModeView gameModeView = new GameModeView();
+            if (cache.Contains(HeroName))
+            {
+                heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
+                GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
+                Hero hero = (from s in dbContext.Hero
+                             where s.UserName == HeroName
+                             select s).FirstOrDefault();
+
+                if (hero != null)
+                {
+                    HeroOverView heroOverView = (from s in dbContext.HeroOverView
+                                                 where s.HeroId == hero.HeroID
+                                                 select s).FirstOrDefault();
+
+                    #region heroOverView
+
+                    if (heroOverView == null)
+                    {
+                        heroOverView = new HeroOverView();
+                        heroOverView.HeroId = hero.HeroID;
+                        heroOverView.BestClass = heroInfoModel.BestClass;
+                        heroOverView.HumanPercentage = heroInfoModel.HumanPrecentageD;
+                        heroOverView.Kills = heroInfoModel.Kills;
+                        heroOverView.Deaths = heroInfoModel.Deaths;
+                        heroOverView.Wins = heroInfoModel.Wins;
+                        heroOverView.Losses = heroInfoModel.Loses;
+                        heroOverView.KillsPerMinute = heroInfoModel.KillsPerMinute;
+                        heroOverView.DamagePerMinute = heroInfoModel.DamagePerMinute;
+                        heroOverView.KillsPerMatch = heroInfoModel.KillsPerMatch;
+                        heroOverView.DamagePerMatch = heroInfoModel.DamagePerMatch;
+                        heroOverView.HeadShots = heroInfoModel.HeadShotAmount;
+                        heroOverView.WinPercent = heroInfoModel.WinPercentD;
+                        heroOverView.HeadShotrate = heroInfoModel.HeadShotRateD;
+                        heroOverView.KillDeath = heroInfoModel.KillDeath;
+                        heroOverView.InfantryKillDeath = heroInfoModel.InfantryKillDeath;
+                        heroOverView.Damage = heroInfoModel.Damage;
+                        heroOverView.TimePlayed = heroInfoModel.TimePlayed;
+                        heroOverView.Accuracy = heroInfoModel.AccuracyD;
+                        heroOverView.Revives = heroInfoModel.Revives;
+                        heroOverView.Heals = heroInfoModel.Heals;
+                        heroOverView.Resupplies = heroInfoModel.Resupplies;
+                        heroOverView.Repairs = heroInfoModel.Repairs;
+                        heroOverView.SquadmateRevive = heroInfoModel.SquadmateRevive;
+                        heroOverView.SquadmateRespawn = heroInfoModel.SquadmateRespawn;
+                        heroOverView.ThrownThrowables = heroInfoModel.ThrownThrowables;
+                        heroOverView.GadgetsDestoyed = heroInfoModel.GadgetsDestoyed;
+                        heroOverView.CallIns = heroInfoModel.CallIns;
+                        heroOverView.PlayerTakeDowns = heroInfoModel.PlayerTakeDowns;
+                        heroOverView.MatchesPlayed = heroInfoModel.MatchesPlayed;
+                        heroOverView.SecondsPlayed = heroInfoModel.SecondsPlayed;
+                        heroOverView.BestSquad = heroInfoModel.BestSquad;
+                        heroOverView.TeammatesSupported = heroInfoModel.TeammatesSupported;
+                        heroOverView.SaviorKills = heroInfoModel.SaviorKills;
+                        heroOverView.ShotsFired = heroInfoModel.ShotsFired;
+                        heroOverView.ShotsHit = heroInfoModel.ShotsHit;
+                        heroOverView.KillAssists = heroInfoModel.KillAssists;
+                        heroOverView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
+                        heroOverView.EnemiesSpotted = heroInfoModel.EnemiesSpotted;
+                        heroOverView.Mvp = heroInfoModel.Mvp;
+                    }
+                    else
+                    {
+                        if (heroOverView.BestClass != heroInfoModel.BestClass)
+                        {
+                            heroOverView.BestClass = heroInfoModel.BestClass;
+                        }
+                        if (heroOverView.HumanPercentage != heroInfoModel.HumanPrecentageD)
+                        {
+                            heroOverView.HumanPercentage = heroInfoModel.HumanPrecentageD;
+                        }
+                        if (heroOverView.Kills != heroInfoModel.Kills)
+                        {
+                            heroOverView.Kills = heroInfoModel.Kills;
+                        }
+                        if (heroOverView.Deaths != heroInfoModel.Deaths)
+                        {
+                            heroOverView.Deaths = heroInfoModel.Deaths;
+                        }
+                        if (heroOverView.Wins != heroInfoModel.Wins)
+                        {
+                            heroOverView.Wins = heroInfoModel.Wins;
+                        }
+                        if (heroOverView.Losses != heroInfoModel.Loses)
+                        {
+                            heroOverView.Losses = heroInfoModel.Loses;
+                        }
+                        if (heroOverView.KillsPerMinute != heroInfoModel.KillsPerMinute)
+                        {
+                            heroOverView.KillsPerMinute = heroInfoModel.KillsPerMinute;
+                        }
+                        if (heroOverView.DamagePerMinute != heroInfoModel.DamagePerMinute)
+                        {
+                            heroOverView.DamagePerMinute = heroInfoModel.DamagePerMinute;
+                        }
+                        if (heroOverView.KillsPerMatch != heroInfoModel.KillsPerMatch)
+                        {
+                            heroOverView.KillsPerMatch = heroInfoModel.KillsPerMatch;
+                        }
+                        if (heroOverView.DamagePerMatch != heroInfoModel.DamagePerMatch)
+                        {
+                            heroOverView.DamagePerMatch = heroInfoModel.DamagePerMatch;
+                        }
+                        if (heroOverView.HeadShots != heroInfoModel.HeadShotAmount)
+                        {
+                            heroOverView.HeadShots = heroInfoModel.HeadShotAmount;
+                        }
+                        if (heroOverView.WinPercent != heroInfoModel.WinPercentD)
+                        {
+                            heroOverView.WinPercent = heroInfoModel.WinPercentD;
+                        }
+                        if (heroOverView.HeadShotrate != heroInfoModel.HeadShotRateD)
+                        {
+                            heroOverView.HeadShotrate = heroInfoModel.HeadShotRateD;
+                        }
+                        if (heroOverView.KillDeath != heroInfoModel.KillDeath)
+                        {
+                            heroOverView.KillDeath = heroInfoModel.KillDeath;
+                        }
+                        if (heroOverView.InfantryKillDeath != heroInfoModel.InfantryKillDeath)
+                        {
+                            heroOverView.InfantryKillDeath = heroInfoModel.InfantryKillDeath;
+                        }
+                        if (heroOverView.Damage != heroInfoModel.Damage)
+                        {
+                            heroOverView.Damage = heroInfoModel.Damage;
+                        }
+                        if (heroOverView.TimePlayed != heroInfoModel.TimePlayed)
+                        {
+                            heroOverView.TimePlayed = heroInfoModel.TimePlayed;
+                        }
+                        if (heroOverView.Accuracy != heroInfoModel.AccuracyD)
+                        {
+                            heroOverView.Accuracy = heroInfoModel.AccuracyD;
+                        }
+                        if (heroOverView.Revives != heroInfoModel.Revives)
+                        {
+                            heroOverView.Revives = heroInfoModel.Revives;
+                        }
+                        if (heroOverView.Heals != heroInfoModel.Heals)
+                        {
+                            heroOverView.Heals = heroInfoModel.Heals;
+                        }
+                        if (heroOverView.Resupplies != heroInfoModel.Resupplies)
+                        {
+                            heroOverView.Resupplies = heroInfoModel.Resupplies;
+                        }
+                        if (heroOverView.Repairs != heroInfoModel.Repairs)
+                        {
+                            heroOverView.Repairs = heroInfoModel.Repairs;
+                        }
+                        if (heroOverView.SquadmateRevive != heroInfoModel.SquadmateRevive)
+                        {
+                            heroOverView.SquadmateRevive = heroInfoModel.SquadmateRevive;
+                        }
+                        if (heroOverView.SquadmateRespawn != heroInfoModel.SquadmateRespawn)
+                        {
+                            heroOverView.SquadmateRespawn = heroInfoModel.SquadmateRespawn;
+                        }
+                        if (heroOverView.ThrownThrowables != heroInfoModel.ThrownThrowables)
+                        {
+                            heroOverView.ThrownThrowables = heroInfoModel.ThrownThrowables;
+                        }
+                        if (heroOverView.GadgetsDestoyed != heroInfoModel.GadgetsDestoyed)
+                        {
+                            heroOverView.GadgetsDestoyed = heroInfoModel.GadgetsDestoyed;
+                        }
+                        if (heroOverView.CallIns != heroInfoModel.CallIns)
+                        {
+                            heroOverView.CallIns = heroInfoModel.CallIns;
+                        }
+                        if (heroOverView.PlayerTakeDowns != heroInfoModel.PlayerTakeDowns)
+                        {
+                            heroOverView.PlayerTakeDowns = heroInfoModel.PlayerTakeDowns;
+                        }
+                        if (heroOverView.MatchesPlayed != heroInfoModel.MatchesPlayed)
+                        {
+                            heroOverView.MatchesPlayed = heroInfoModel.MatchesPlayed;
+                        }
+                        if (heroOverView.SecondsPlayed != heroInfoModel.SecondsPlayed)
+                        {
+                            heroOverView.SecondsPlayed = heroInfoModel.SecondsPlayed;
+                        }
+                        if (heroOverView.BestSquad != heroInfoModel.BestSquad)
+                        {
+                            heroOverView.BestSquad = heroInfoModel.BestSquad;
+                        }
+                        if (heroOverView.TeammatesSupported != heroInfoModel.TeammatesSupported)
+                        {
+                            heroOverView.TeammatesSupported = heroInfoModel.TeammatesSupported;
+                        }
+                        if (heroOverView.SaviorKills != heroInfoModel.SaviorKills)
+                        {
+                            heroOverView.SaviorKills = heroInfoModel.SaviorKills;
+                        }
+                        if (heroOverView.ShotsFired != heroInfoModel.ShotsFired)
+                        {
+                            heroOverView.ShotsFired = heroInfoModel.ShotsFired;
+                        }
+                        if (heroOverView.ShotsHit != heroInfoModel.ShotsHit)
+                        {
+                            heroOverView.ShotsHit = heroInfoModel.ShotsHit;
+                        }
+                        if (heroOverView.KillAssists != heroInfoModel.KillAssists)
+                        {
+                            heroOverView.KillAssists = heroInfoModel.KillAssists;
+                        }
+                        if (heroOverView.VehiclesDestroyed != heroInfoModel.VehiclesDestroyed)
+                        {
+                            heroOverView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
+                        }
+                        if (heroOverView.EnemiesSpotted != heroInfoModel.EnemiesSpotted)
+                        {
+                            heroOverView.EnemiesSpotted = heroInfoModel.EnemiesSpotted;
+                        }
+                        if (heroOverView.Mvp != heroInfoModel.Mvp)
+                        {
+                            heroOverView.Mvp = heroInfoModel.Mvp;
+                        }
+                    }
+
+                    #endregion heroOverView
+
+                    dbContext.HeroOverView.Add(heroOverView);
+                    try
+                    {
+                        dbContext.SaveChanges();
+                        response.IsValid = true;
+                        response.ReturnText = "Database Update Success";
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                response.AddError("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                            }
+                        }
+                        response.IsValid = false;
+                        response.ReturnText = "Database Update Faild";
+                    }
+                }
+            }
+            else
+            {
+                response.IsValid = false;
+                response.ReturnText = "Cache is not exsited";
+            }
+            return response;
         }
     }
 }

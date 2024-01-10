@@ -57,6 +57,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string SortMethod { get; set; }
         public string HeroName { get; set; }
         public string PlatForm { get; set; }
+        public string Target { get; set; }
     }
 
     public class GameModeView {
