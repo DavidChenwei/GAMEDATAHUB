@@ -1,5 +1,5 @@
 CREATE TABLE WeaponGroup (
-WeaponGroupID INT PRIMARY KEY,
+WeaponGroupID INT IDENTITY(1,1) PRIMARY KEY,
 HeroId INT,
 Type VARCHAR(50),
 GroupName VARCHAR(50),

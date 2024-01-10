@@ -1,5 +1,5 @@
 CREATE TABLE Vehicle (
-  VehicleID INT PRIMARY KEY,
+  VehicleID INT IDENTITY(1,1) PRIMARY KEY,
   Type VARCHAR(50) ,
   VehicleName VARCHAR(50),
   Images VARCHAR(100),

@@ -1,4 +1,4 @@
 CREATE TABLE Ribbon (
-    RibbonID INT PRIMARY KEY,
+    RibbonID INT IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(20)
 );

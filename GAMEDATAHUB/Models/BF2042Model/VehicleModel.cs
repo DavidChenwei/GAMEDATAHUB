@@ -14,6 +14,20 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public int Kills { get; set; }
         public decimal KillsPerMinute { get; set; }
         public int Damage { get; set; }
+        public decimal DPM
+        {
+            get
+            {
+                if (TimeIn == 0)
+                {
+                    return 0.0m;
+                }
+                else {
+                    return Math.Round(Damage / ((decimal)TimeIn / 60), 2);
+                }
+                
+            }
+        }
         public int Spawns { get; set; }
         public int RoadKills { get; set; }
         public int PassengerAssists { get; set; }

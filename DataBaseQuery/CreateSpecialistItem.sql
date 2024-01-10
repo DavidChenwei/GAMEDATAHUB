@@ -1,5 +1,5 @@
 CREATE TABLE SpecialistItem (
-    SpecialistItemID INT PRIMARY KEY,
+    SpecialistItemID INT IDENTITY(1,1) PRIMARY KEY,
     SpecialistID INT,
     HeroId INT,
     Kills INT,

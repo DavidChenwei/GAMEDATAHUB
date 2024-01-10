@@ -1,5 +1,5 @@
 CREATE TABLE VehicleItem (
-  VehicleItemId INT PRIMARY KEY,
+  VehicleItemId INT IDENTITY(1,1) PRIMARY KEY,
   VehicleID INT,
   HeroId INT,
   Kills INT,

@@ -1,5 +1,5 @@
 CREATE TABLE MapItem (
-  MapItemId INT PRIMARY KEY,
+  MapItemId INT IDENTITY(1,1) PRIMARY KEY,
   MapId INT NOT NULL,
   HeroId INT NOT NULL,
   Wins INT,

@@ -1,5 +1,5 @@
 CREATE TABLE GameModeItem(
-	GameModeItemId INT PRIMARY KEY,
+	GameModeItemId INT IDENTITY(1,1) PRIMARY KEY,
 	GamemodeID INT,
 	HeroId INT,
 	Kills INT,

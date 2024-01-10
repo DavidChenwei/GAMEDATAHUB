@@ -1,5 +1,5 @@
 CREATE TABLE RibbonItem (
-    RibbonItemID INT PRIMARY KEY,
+    RibbonItemID INT IDENTITY(1,1) PRIMARY KEY,
     RibbonID INT,
     HeroId INT,
     Amount INT,

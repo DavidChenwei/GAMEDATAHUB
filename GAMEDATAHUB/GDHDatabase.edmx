@@ -92,11 +92,12 @@
           <Key>
             <PropertyRef Name="HeroID" />
           </Key>
-          <Property Name="HeroID" Type="int" Nullable="false" />
+          <Property Name="HeroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="varchar" MaxLength="50" />
           <Property Name="Avatar" Type="varchar" MaxLength="100" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="Id" Type="varchar" MaxLength="50" />
+          <Property Name="PlatForm" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="HeroOverView">
           <Key>
@@ -797,6 +798,7 @@
           <NavigationProperty Name="WeaponGroup" Relationship="Self.fk_WeaponGroup_HeroId" FromRole="Hero" ToRole="WeaponGroup" />
           <NavigationProperty Name="XP" Relationship="Self.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
           <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
+          <Property Name="PlatForm" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -1497,6 +1499,7 @@
           <EntitySetMapping Name="Hero">
             <EntityTypeMapping TypeName="GameDataHubModel.Hero">
               <MappingFragment StoreEntitySet="Hero">
+                <ScalarProperty Name="PlatForm" ColumnName="PlatForm" />
                 <ScalarProperty Name="HeroID" ColumnName="HeroID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />

@@ -1,5 +1,5 @@
 CREATE TABLE HeroOverView (
-    HeroOverViewId INT PRIMARY KEY,
+    HeroOverViewId INT IDENTITY(1,1) PRIMARY KEY,
     HeroId INT,
     BestClass VARCHAR(20),
     HumanPercentage DECIMAL(10,2),

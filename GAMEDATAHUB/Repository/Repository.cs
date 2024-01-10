@@ -86,41 +86,44 @@ namespace GAMEDATAHUB.Repository
 
             #region Database Operaion
 
-            //GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
-
-            //#region Hero
-            //Hero hero = (from s in dbContext.Hero
-            //             where s.UserID == heroInfoModel.UserId
-            //             select s).FirstOrDefault();
-            //if (hero == null)
-            //{
-            //    hero.UserID = heroInfoModel.UserId ?? "";
-            //    hero.Avatar = heroInfoModel.Avatar ?? "";
-            //    hero.UserName = heroInfoModel.UserName ?? "";
-            //    hero.Id = heroInfoModel.Id ?? "";
-            //    dbContext.Hero.Add(hero);
-            //    dbContext.SaveChanges();
-            //}
-            //else
-            //{
-            //    if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
-            //    {
-            //        hero.UserID = heroInfoModel.UserId;
-            //    }
-            //    if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
-            //    {
-            //        hero.Avatar = heroInfoModel.Avatar;
-            //    }
-            //    if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
-            //    {
-            //        hero.UserName = heroInfoModel.UserName;
-            //    }
-            //    if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
-            //    {
-            //        hero.Id = heroInfoModel.Id;
-            //    }
-            //}
-            //#endregion
+            GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
+            Hero hero = new Hero();
+            #region Hero
+            hero = (from s in dbContext.Hero
+                    where s.UserID == heroInfoModel.UserId
+                    select s).FirstOrDefault();
+            if (hero == null)
+            {
+                hero = new Hero();
+                hero.UserID = heroInfoModel.UserId ?? "";
+                hero.Avatar = heroInfoModel.Avatar ?? "";
+                hero.UserName = heroInfoModel.UserName ?? "";
+                hero.Id = heroInfoModel.Id ?? "";
+                dbContext.Hero.Add(hero);
+                dbContext.SaveChanges();
+            }
+            else
+            {
+                if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
+                {
+                    hero.UserID = heroInfoModel.UserId;
+                }
+                if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
+                {
+                    hero.Avatar = heroInfoModel.Avatar;
+                }
+                if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
+                {
+                    hero.UserName = heroInfoModel.UserName;
+                }
+                if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
+                {
+                    hero.Id = heroInfoModel.Id;
+                }
+                dbContext.Hero.Add(hero);
+                dbContext.SaveChanges();
+            }
+            #endregion
 
             //#region HeroInfoOverview
             ////HeroOverView heroOverView = (from s in dbContext.HeroOverView
@@ -332,7 +335,7 @@ namespace GAMEDATAHUB.Repository
                 vehiclesOverView.Type = vehcile.Type;
                 vehiclesOverView.Name = vehcile.VehicleName;
                 vehiclesOverView.Kills = vehcile.Kills;
-                vehiclesOverView.DPM = Math.Round(vehcile.Damage / ((decimal)vehcile.TimeIn / 60), 2);
+                vehiclesOverView.DPM = vehcile.DPM;
                 overView.VehiclesOverViews.Add(vehiclesOverView);
             }
 
@@ -408,7 +411,7 @@ namespace GAMEDATAHUB.Repository
             mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
             mapModeView.MaxLosses = heroInfoModel.Maps.Max(m => m.Losses);
             mapModeView.MaxTime = heroInfoModel.Maps.Max(m => m.HoursPlayed);
-            mapModeView.MaxWinPercent = heroInfoModel.Maps.Max(m => m.WinPercentD);
+            mapModeView.MaxMatch = heroInfoModel.Maps.Max(m => m.Matches);
             mapModeView.UserName = heroInfoModel.UserName;
             mapModeView.Avatar = heroInfoModel.Avatar;
             mapModeView.PlatForm = heroInfoModel.PlatForm;

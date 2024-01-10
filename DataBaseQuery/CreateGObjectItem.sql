@@ -1,5 +1,5 @@
 CREATE TABLE GObjectItem (
-    GObjectItemId INT PRIMARY KEY,
+    GObjectItemId INT IDENTITY(1,1) PRIMARY KEY,
     HeroId INT,
     GObjectID INT,
     Total INT,

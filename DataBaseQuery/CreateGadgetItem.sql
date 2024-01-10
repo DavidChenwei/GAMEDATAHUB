@@ -1,5 +1,5 @@
 CREATE TABLE GadgetItem (
-  GadgetItemId INT PRIMARY KEY,
+  GadgetItemId INT IDENTITY(1,1) PRIMARY KEY,
   GadgetId INT,
   HeroId INT,
   Kills INT,

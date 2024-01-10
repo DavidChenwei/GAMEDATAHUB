@@ -36,6 +36,7 @@ namespace GAMEDATAHUB
         public string Avatar { get; set; }
         public string UserName { get; set; }
         public string Id { get; set; }
+        public string PlatForm { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GadgetItem> GadgetItem { get; set; }

@@ -1,5 +1,5 @@
 CREATE TABLE VehicleGroup (
-VehicleGroupID INT PRIMARY KEY,
+VehicleGroupID INT IDENTITY(1,1) PRIMARY KEY,
 HeroId INT,
 Type VARCHAR(50),
 VehicleName VARCHAR(50),

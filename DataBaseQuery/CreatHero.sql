@@ -1,5 +1,5 @@
 CREATE TABLE Hero (
-    HeroID INT PRIMARY KEY,
+    HeroID INT IDENTITY(1,1) PRIMARY KEY,
     UserID VARCHAR(50),
     Avatar VARCHAR(100),
     UserName VARCHAR(50),
