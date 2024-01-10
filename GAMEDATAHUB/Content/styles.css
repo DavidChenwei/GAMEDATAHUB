@@ -88,7 +88,7 @@ html, body {
 
 .gdh-game-bar-company__logo {
     flex-shrink: 0;
-    height: 1.25rem;
+    height: 2.15rem;
     fill: #efefef;
 }
 
@@ -353,6 +353,13 @@ html, body {
             width: 320px;
             height: 30px;
         }
+
+    .landing__sidebar .partners-list img {
+        margin-left: 0.5rem;
+        border-style: none;
+        width: 42rem;
+    }
+
 
 #home-svg path {
     stroke-dasharray: 200;

@@ -27,9 +27,10 @@ namespace GAMEDATAHUB.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewData["GameName"] = "Mobile App";
 
             return View();
         }
