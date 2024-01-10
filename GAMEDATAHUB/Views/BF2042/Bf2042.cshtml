@@ -1,5 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
+@{
+    var sharedRouteValues = new System.Web.Routing.RouteValueDictionary {
+        { "IsValid", true }
+    };
+}
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +29,7 @@
                                             </svg>
                                         </div>
                                         <div class="intro__text">
-                                            <h1 >Battlefield 2042 Stats</h1>
+                                            <h1>Battlefield 2042 Stats</h1>
                                             <span class="lead">
                                                 Check Detailed Battlefield
                                                 2042 Stats and Leaderboards
@@ -110,10 +116,10 @@
                                                 </div>
                                             </div>
 
-                                            <form method="post" action="@Url.Action("AnimationPage", "Bf2042")" id="searchForm">
+                                            <form method="post" action="@Url.Action("AnimationPage", "Bf2042", sharedRouteValues)" id="searchForm">
                                                 <input name="HeroName" placeholder="Enter Origin Username" type="search">
                                                 <input name="Platform" hidden>
-                                                <input name="Target" value="Overview" hidden >
+                                                <input name="Target" value="Overview" hidden>
                                             </form>
                                         </div>
                                     </div>

@@ -75,6 +75,8 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public List<VehiclesOverView> VehiclesOverViews;
         public List<SpecialistsOverView> SpecialistsOverViews;
         #endregion
+
+        public bool isValid { get; set; } = true;
     }
 
     public class WeapoinOverView {
@@ -106,5 +108,6 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string HeroName { get; set; } ="";
         public string Platform { get; set; } = ""; 
         public string TargetPage { get; set; } = "";
+        public bool isValid { get; set; } = true;
     }
 }

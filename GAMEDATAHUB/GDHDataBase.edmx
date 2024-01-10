@@ -1,0 +1,1787 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GameDataHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gadget">
+          <Key>
+            <PropertyRef Name="GadgetID" />
+          </Key>
+          <Property Name="GadgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GadgetName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GadgetItem">
+          <Key>
+            <PropertyRef Name="GadgetItemId" />
+          </Key>
+          <Property Name="GadgetItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GadgetId" Type="int" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="Uses" Type="int" />
+          <Property Name="Multikills" Type="int" />
+          <Property Name="VehiclesDestroyedWith" Type="int" />
+          <Property Name="KPM" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DPM" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SecondsPlayed" Type="int" />
+        </EntityType>
+        <EntityType Name="GameMode">
+          <Key>
+            <PropertyRef Name="GameModeID" />
+          </Key>
+          <Property Name="GameModeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GamemodeName" Type="varchar" MaxLength="50" />
+          <Property Name="Images" Type="varchar(max)" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GameModeItem">
+          <Key>
+            <PropertyRef Name="GameModeItemId" />
+          </Key>
+          <Property Name="GameModeItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GamemodeID" Type="int" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Assists" Type="int" />
+          <Property Name="Revives" Type="int" />
+          <Property Name="BestSquad" Type="int" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Losses" Type="int" />
+          <Property Name="Mvp" Type="int" />
+          <Property Name="Matches" Type="int" />
+          <Property Name="SectorDefend" Type="int" />
+          <Property Name="ObjectivesArmed" Type="int" />
+          <Property Name="ObjectivesDisarmed" Type="int" />
+          <Property Name="ObjectivesDefended" Type="int" />
+          <Property Name="ObjectivesDestroyed" Type="int" />
+          <Property Name="ObjetiveTime" Type="int" />
+          <Property Name="KPM" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="WinPercent" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SecondsPlayed" Type="int" />
+        </EntityType>
+        <EntityType Name="GObject">
+          <Key>
+            <PropertyRef Name="GObjectID" />
+          </Key>
+          <Property Name="GObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Herold" Type="int" />
+          <Property Name="Armed" Type="int" />
+          <Property Name="Captured" Type="int" />
+          <Property Name="Neutralized" Type="int" />
+          <Property Name="Destroyed" Type="int" />
+        </EntityType>
+        <EntityType Name="GObjectItem">
+          <Key>
+            <PropertyRef Name="GObjectItemId" />
+          </Key>
+          <Property Name="GObjectItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="GObjectID" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="Attacked" Type="int" />
+          <Property Name="Defended" Type="int" />
+        </EntityType>
+        <EntityType Name="Hero">
+          <Key>
+            <PropertyRef Name="HeroID" />
+          </Key>
+          <Property Name="HeroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="Avatar" Type="varchar(max)" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+          <Property Name="PlatForm" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="HeroOverView">
+          <Key>
+            <PropertyRef Name="HeroOverViewId" />
+          </Key>
+          <Property Name="HeroOverViewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="BestClass" Type="varchar" MaxLength="20" />
+          <Property Name="HumanPercentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Deaths" Type="int" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Losses" Type="int" />
+          <Property Name="KillsPerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMatch" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMatch" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShots" Type="int" />
+          <Property Name="WinPercent" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShotrate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KillDeath" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="InfantryKillDeath" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="TimePlayed" Type="varchar" MaxLength="30" />
+          <Property Name="Accuracy" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Revives" Type="int" />
+          <Property Name="Heals" Type="int" />
+          <Property Name="Resupplies" Type="int" />
+          <Property Name="Repairs" Type="int" />
+          <Property Name="SquadmateRevive" Type="int" />
+          <Property Name="SquadmateRespawn" Type="int" />
+          <Property Name="ThrownThrowables" Type="int" />
+          <Property Name="GadgetsDestoyed" Type="int" />
+          <Property Name="CallIns" Type="int" />
+          <Property Name="PlayerTakeDowns" Type="int" />
+          <Property Name="MatchesPlayed" Type="int" />
+          <Property Name="SecondsPlayed" Type="int" />
+          <Property Name="BestSquad" Type="int" />
+          <Property Name="TeammatesSupported" Type="int" />
+          <Property Name="SaviorKills" Type="int" />
+          <Property Name="ShotsFired" Type="int" />
+          <Property Name="ShotsHit" Type="int" />
+          <Property Name="KillAssists" Type="int" />
+          <Property Name="VehiclesDestroyed" Type="int" />
+          <Property Name="EnemiesSpotted" Type="int" />
+          <Property Name="Mvp" Type="int" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MapName" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MapItem">
+          <Key>
+            <PropertyRef Name="MapItemId" />
+          </Key>
+          <Property Name="MapItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MapId" Type="int" Nullable="false" />
+          <Property Name="HeroId" Type="int" Nullable="false" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Losses" Type="int" />
+          <Property Name="Matches" Type="int" />
+          <Property Name="WinPercent" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SecondsPlayed" Type="int" />
+        </EntityType>
+        <EntityType Name="Ribbon">
+          <Key>
+            <PropertyRef Name="RibbonID" />
+          </Key>
+          <Property Name="RibbonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RibbonItem">
+          <Key>
+            <PropertyRef Name="RibbonItemID" />
+          </Key>
+          <Property Name="RibbonItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RibbonID" Type="int" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Specialist">
+          <Key>
+            <PropertyRef Name="SpecialistID" />
+          </Key>
+          <Property Name="SpecialistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" />
+          <Property Name="CharacterName" Type="varchar" MaxLength="50" />
+          <Property Name="StatName" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="AvatarImage1" Type="varchar(max)" />
+          <Property Name="AvatarImage2" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SpecialistItem">
+          <Key>
+            <PropertyRef Name="SpecialistItemID" />
+          </Key>
+          <Property Name="SpecialistItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialistID" Type="int" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Deaths" Type="int" />
+          <Property Name="KMP" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="KillDeath" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Revives" Type="int" />
+          <Property Name="Assists" Type="int" />
+          <Property Name="HazardZoneStreaks" Type="int" />
+          <Property Name="SecondsPlayed" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleName" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleGroup">
+          <Key>
+            <PropertyRef Name="VehicleGroupID" />
+          </Key>
+          <Property Name="VehicleGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleName" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="Roadkills" Type="int" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="DriverAssists" Type="int" />
+          <Property Name="PassengerAssists" Type="int" />
+          <Property Name="MultiKills" Type="int" />
+          <Property Name="DistanceTraveled" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KillsPerMinute" Type="int" />
+          <Property Name="VehiclesDestroyedWith" Type="int" />
+          <Property Name="Assists" Type="int" />
+          <Property Name="CallIns" Type="int" />
+          <Property Name="DamageTo" Type="int" />
+          <Property Name="Destroyed" Type="int" />
+          <Property Name="Timeln" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleItem">
+          <Key>
+            <PropertyRef Name="VehicleItemId" />
+          </Key>
+          <Property Name="VehicleItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleID" Type="int" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="Roadkills" Type="int" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="DriverAssists" Type="int" />
+          <Property Name="PassengerAssists" Type="int" />
+          <Property Name="Multikills" Type="int" />
+          <Property Name="DistanceTraveled" Type="int" />
+          <Property Name="KillsPerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="VehiclesDestroyedWith" Type="int" />
+          <Property Name="Assists" Type="int" />
+          <Property Name="Callins" Type="int" />
+          <Property Name="DamageTo" Type="int" />
+          <Property Name="Destroyed" Type="int" />
+          <Property Name="Timeln" Type="int" />
+        </EntityType>
+        <EntityType Name="Weapon">
+          <Key>
+            <PropertyRef Name="WeaponID" />
+          </Key>
+          <Property Name="WeaponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="WeaponName" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WeaponGroup">
+          <Key>
+            <PropertyRef Name="WeaponGroupID" />
+          </Key>
+          <Property Name="WeaponGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="BodyKills" Type="int" />
+          <Property Name="HeadshotKills" Type="int" />
+          <Property Name="HipfireKills" Type="int" />
+          <Property Name="MultiKills" Type="int" />
+          <Property Name="Accuracy" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Headshots" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HitVKills" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ShotsHit" Type="int" />
+          <Property Name="ShotsFired" Type="int" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="TimeEquipped" Type="int" />
+        </EntityType>
+        <EntityType Name="WeaponItem">
+          <Key>
+            <PropertyRef Name="WeaponItemId" />
+          </Key>
+          <Property Name="WeaponItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WeaponID" Type="int" />
+          <Property Name="HeroID" Type="int" />
+          <Property Name="Kills" Type="int" />
+          <Property Name="Damage" Type="int" />
+          <Property Name="BodyKills" Type="int" />
+          <Property Name="HeadshotKills" Type="int" />
+          <Property Name="HipfireKills" Type="int" />
+          <Property Name="MultiKills" Type="int" />
+          <Property Name="Accuracy" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="KillsPerMinute" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DamagePerMinute" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Headshots" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Hitvalls" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="ShotsHit" Type="int" />
+          <Property Name="ShotsFired" Type="int" />
+          <Property Name="Spawns" Type="int" />
+          <Property Name="TimeEquipped" Type="int" />
+        </EntityType>
+        <EntityType Name="XP">
+          <Key>
+            <PropertyRef Name="XPId" />
+          </Key>
+          <Property Name="XPId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeroId" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="Performance" Type="int" />
+        </EntityType>
+        <Association Name="FK__MapItem__HeroId__32E0915F">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="1" />
+          <End Role="MapItem" Type="Self.MapItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="MapItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MapItem__MapId__31EC6D26">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="MapItem" Type="Self.MapItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="MapID" />
+            </Principal>
+            <Dependent Role="MapItem">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehicleIt__HeroI__38996AB5">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="VehicleItem" Type="Self.VehicleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="VehicleItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehicleIt__Vehic__37A5467C">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="VehicleItem" Type="Self.VehicleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleID" />
+            </Principal>
+            <Dependent Role="VehicleItem">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeaponIte__HeroI__2D27B809">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="WeaponItem" Type="Self.WeaponItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="WeaponItem">
+              <PropertyRef Name="HeroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeaponIte__Weapo__2C3393D0">
+          <End Role="Weapon" Type="Self.Weapon" Multiplicity="0..1" />
+          <End Role="WeaponItem" Type="Self.WeaponItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weapon">
+              <PropertyRef Name="WeaponID" />
+            </Principal>
+            <Dependent Role="WeaponItem">
+              <PropertyRef Name="WeaponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GadgetItem_GadgetId">
+          <End Role="Gadget" Type="Self.Gadget" Multiplicity="0..1" />
+          <End Role="GadgetItem" Type="Self.GadgetItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gadget">
+              <PropertyRef Name="GadgetID" />
+            </Principal>
+            <Dependent Role="GadgetItem">
+              <PropertyRef Name="GadgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GadgetItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GadgetItem" Type="Self.GadgetItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GadgetItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GameModeItem_GamemodeID">
+          <End Role="GameMode" Type="Self.GameMode" Multiplicity="0..1" />
+          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameMode">
+              <PropertyRef Name="GameModeID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="GamemodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GameModeItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GObjectItem_GObjectID">
+          <End Role="GObject" Type="Self.GObject" Multiplicity="0..1" />
+          <End Role="GObjectItem" Type="Self.GObjectItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GObject">
+              <PropertyRef Name="GObjectID" />
+            </Principal>
+            <Dependent Role="GObjectItem">
+              <PropertyRef Name="GObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GObjectItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GObjectItem" Type="Self.GObjectItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GObjectItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HeroOverView_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="HeroOverView" Type="Self.HeroOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="HeroOverView">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RibbonItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="RibbonItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RibbonItem_RibbonID">
+          <End Role="Ribbon" Type="Self.Ribbon" Multiplicity="0..1" />
+          <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ribbon">
+              <PropertyRef Name="RibbonID" />
+            </Principal>
+            <Dependent Role="RibbonItem">
+              <PropertyRef Name="RibbonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpecialistItem_GamemodeID">
+          <End Role="Specialist" Type="Self.Specialist" Multiplicity="0..1" />
+          <End Role="SpecialistItem" Type="Self.SpecialistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialist">
+              <PropertyRef Name="SpecialistID" />
+            </Principal>
+            <Dependent Role="SpecialistItem">
+              <PropertyRef Name="SpecialistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpecialistItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="SpecialistItem" Type="Self.SpecialistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="SpecialistItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleGroup_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="VehicleGroup" Type="Self.VehicleGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="VehicleGroup">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_WeaponGroup_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="WeaponGroup" Type="Self.WeaponGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="WeaponGroup">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XP_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="XP" Type="Self.XP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="XP">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDataHubModelStoreContainer">
+          <EntitySet Name="Gadget" EntityType="Self.Gadget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GadgetItem" EntityType="Self.GadgetItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameMode" EntityType="Self.GameMode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameModeItem" EntityType="Self.GameModeItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GObject" EntityType="Self.GObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GObjectItem" EntityType="Self.GObjectItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeroOverView" EntityType="Self.HeroOverView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Map" EntityType="Self.Map" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MapItem" EntityType="Self.MapItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ribbon" EntityType="Self.Ribbon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RibbonItem" EntityType="Self.RibbonItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialist" EntityType="Self.Specialist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialistItem" EntityType="Self.SpecialistItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleGroup" EntityType="Self.VehicleGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleItem" EntityType="Self.VehicleItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weapon" EntityType="Self.Weapon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeaponGroup" EntityType="Self.WeaponGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeaponItem" EntityType="Self.WeaponItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XP" EntityType="Self.XP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MapItem__HeroId__32E0915F" Association="Self.FK__MapItem__HeroId__32E0915F">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="MapItem" EntitySet="MapItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MapItem__MapId__31EC6D26" Association="Self.FK__MapItem__MapId__31EC6D26">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="MapItem" EntitySet="MapItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehicleIt__HeroI__38996AB5" Association="Self.FK__VehicleIt__HeroI__38996AB5">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="VehicleItem" EntitySet="VehicleItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehicleIt__Vehic__37A5467C" Association="Self.FK__VehicleIt__Vehic__37A5467C">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleItem" EntitySet="VehicleItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeaponIte__HeroI__2D27B809" Association="Self.FK__WeaponIte__HeroI__2D27B809">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="WeaponItem" EntitySet="WeaponItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeaponIte__Weapo__2C3393D0" Association="Self.FK__WeaponIte__Weapo__2C3393D0">
+            <End Role="Weapon" EntitySet="Weapon" />
+            <End Role="WeaponItem" EntitySet="WeaponItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GadgetItem_GadgetId" Association="Self.fk_GadgetItem_GadgetId">
+            <End Role="Gadget" EntitySet="Gadget" />
+            <End Role="GadgetItem" EntitySet="GadgetItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GadgetItem_HeroId" Association="Self.fk_GadgetItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GadgetItem" EntitySet="GadgetItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GameModeItem_GamemodeID" Association="Self.fk_GameModeItem_GamemodeID">
+            <End Role="GameMode" EntitySet="GameMode" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GameModeItem_HeroId" Association="Self.fk_GameModeItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GObjectItem_GObjectID" Association="Self.fk_GObjectItem_GObjectID">
+            <End Role="GObject" EntitySet="GObject" />
+            <End Role="GObjectItem" EntitySet="GObjectItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GObjectItem_HeroId" Association="Self.fk_GObjectItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GObjectItem" EntitySet="GObjectItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HeroOverView_HeroId" Association="Self.fk_HeroOverView_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="HeroOverView" EntitySet="HeroOverView" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RibbonItem_HeroId" Association="Self.fk_RibbonItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="RibbonItem" EntitySet="RibbonItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RibbonItem_RibbonID" Association="Self.fk_RibbonItem_RibbonID">
+            <End Role="Ribbon" EntitySet="Ribbon" />
+            <End Role="RibbonItem" EntitySet="RibbonItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpecialistItem_GamemodeID" Association="Self.fk_SpecialistItem_GamemodeID">
+            <End Role="Specialist" EntitySet="Specialist" />
+            <End Role="SpecialistItem" EntitySet="SpecialistItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpecialistItem_HeroId" Association="Self.fk_SpecialistItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="SpecialistItem" EntitySet="SpecialistItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleGroup_HeroId" Association="Self.FK_VehicleGroup_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="VehicleGroup" EntitySet="VehicleGroup" />
+          </AssociationSet>
+          <AssociationSet Name="fk_WeaponGroup_HeroId" Association="Self.fk_WeaponGroup_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="WeaponGroup" EntitySet="WeaponGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XP_HeroId" Association="Self.FK_XP_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="XP" EntitySet="XP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GameDataHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gadget">
+          <Key>
+            <PropertyRef Name="GadgetID" />
+          </Key>
+          <Property Name="GadgetID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GadgetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GadgetItem" Relationship="Self.fk_GadgetItem_GadgetId" FromRole="Gadget" ToRole="GadgetItem" />
+        </EntityType>
+        <EntityType Name="GadgetItem">
+          <Key>
+            <PropertyRef Name="GadgetItemId" />
+          </Key>
+          <Property Name="GadgetItemId" Type="Int32" Nullable="false" />
+          <Property Name="GadgetId" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="Uses" Type="Int32" />
+          <Property Name="Multikills" Type="Int32" />
+          <Property Name="VehiclesDestroyedWith" Type="Int32" />
+          <Property Name="KPM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DPM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <NavigationProperty Name="Gadget" Relationship="Self.fk_GadgetItem_GadgetId" FromRole="GadgetItem" ToRole="Gadget" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_GadgetItem_HeroId" FromRole="GadgetItem" ToRole="Hero" />
+        </EntityType>
+        <EntityType Name="GameMode">
+          <Key>
+            <PropertyRef Name="GameModeID" />
+          </Key>
+          <Property Name="GameModeID" Type="Int32" Nullable="false" />
+          <Property Name="GamemodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameModeItem" Relationship="Self.fk_GameModeItem_GamemodeID" FromRole="GameMode" ToRole="GameModeItem" />
+        </EntityType>
+        <EntityType Name="GameModeItem">
+          <Key>
+            <PropertyRef Name="GameModeItemId" />
+          </Key>
+          <Property Name="GameModeItemId" Type="Int32" Nullable="false" />
+          <Property Name="GamemodeID" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="Revives" Type="Int32" />
+          <Property Name="BestSquad" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="Mvp" Type="Int32" />
+          <Property Name="Matches" Type="Int32" />
+          <Property Name="SectorDefend" Type="Int32" />
+          <Property Name="ObjectivesArmed" Type="Int32" />
+          <Property Name="ObjectivesDisarmed" Type="Int32" />
+          <Property Name="ObjectivesDefended" Type="Int32" />
+          <Property Name="ObjectivesDestroyed" Type="Int32" />
+          <Property Name="ObjetiveTime" Type="Int32" />
+          <Property Name="KPM" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="WinPercent" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <NavigationProperty Name="GameMode" Relationship="Self.fk_GameModeItem_GamemodeID" FromRole="GameModeItem" ToRole="GameMode" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_GameModeItem_HeroId" FromRole="GameModeItem" ToRole="Hero" />
+        </EntityType>
+        <EntityType Name="GObject">
+          <Key>
+            <PropertyRef Name="GObjectID" />
+          </Key>
+          <Property Name="GObjectID" Type="Int32" Nullable="false" />
+          <Property Name="Herold" Type="Int32" />
+          <Property Name="Armed" Type="Int32" />
+          <Property Name="Captured" Type="Int32" />
+          <Property Name="Neutralized" Type="Int32" />
+          <Property Name="Destroyed" Type="Int32" />
+          <NavigationProperty Name="GObjectItem" Relationship="Self.fk_GObjectItem_GObjectID" FromRole="GObject" ToRole="GObjectItem" />
+        </EntityType>
+        <EntityType Name="GObjectItem">
+          <Key>
+            <PropertyRef Name="GObjectItemId" />
+          </Key>
+          <Property Name="GObjectItemId" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="GObjectID" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="Attacked" Type="Int32" />
+          <Property Name="Defended" Type="Int32" />
+          <NavigationProperty Name="GObject" Relationship="Self.fk_GObjectItem_GObjectID" FromRole="GObjectItem" ToRole="GObject" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_GObjectItem_HeroId" FromRole="GObjectItem" ToRole="Hero" />
+        </EntityType>
+        <EntityType Name="Hero">
+          <Key>
+            <PropertyRef Name="HeroID" />
+          </Key>
+          <Property Name="HeroID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GadgetItem" Relationship="Self.fk_GadgetItem_HeroId" FromRole="Hero" ToRole="GadgetItem" />
+          <NavigationProperty Name="GameModeItem" Relationship="Self.fk_GameModeItem_HeroId" FromRole="Hero" ToRole="GameModeItem" />
+          <NavigationProperty Name="GObjectItem" Relationship="Self.fk_GObjectItem_HeroId" FromRole="Hero" ToRole="GObjectItem" />
+          <NavigationProperty Name="MapItem" Relationship="Self.FK__MapItem__HeroId__32E0915F" FromRole="Hero" ToRole="MapItem" />
+          <NavigationProperty Name="VehicleItem" Relationship="Self.FK__VehicleIt__HeroI__38996AB5" FromRole="Hero" ToRole="VehicleItem" />
+          <NavigationProperty Name="WeaponItem" Relationship="Self.FK__WeaponIte__HeroI__2D27B809" FromRole="Hero" ToRole="WeaponItem" />
+          <NavigationProperty Name="RibbonItem" Relationship="Self.fk_RibbonItem_HeroId" FromRole="Hero" ToRole="RibbonItem" />
+          <NavigationProperty Name="SpecialistItem" Relationship="Self.fk_SpecialistItem_HeroId" FromRole="Hero" ToRole="SpecialistItem" />
+          <NavigationProperty Name="VehicleGroup" Relationship="Self.FK_VehicleGroup_HeroId" FromRole="Hero" ToRole="VehicleGroup" />
+          <NavigationProperty Name="WeaponGroup" Relationship="Self.fk_WeaponGroup_HeroId" FromRole="Hero" ToRole="WeaponGroup" />
+          <NavigationProperty Name="XP" Relationship="Self.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
+          <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
+          <Property Name="PlatForm" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="Int32" Nullable="false" />
+          <Property Name="MapName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MapItem" Relationship="Self.FK__MapItem__MapId__31EC6D26" FromRole="Map" ToRole="MapItem" />
+        </EntityType>
+        <EntityType Name="MapItem">
+          <Key>
+            <PropertyRef Name="MapItemId" />
+          </Key>
+          <Property Name="MapItemId" Type="Int32" Nullable="false" />
+          <Property Name="MapId" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" Nullable="false" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="Matches" Type="Int32" />
+          <Property Name="WinPercent" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK__MapItem__HeroId__32E0915F" FromRole="MapItem" ToRole="Hero" />
+          <NavigationProperty Name="Map" Relationship="Self.FK__MapItem__MapId__31EC6D26" FromRole="MapItem" ToRole="Map" />
+        </EntityType>
+        <EntityType Name="Ribbon">
+          <Key>
+            <PropertyRef Name="RibbonID" />
+          </Key>
+          <Property Name="RibbonID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RibbonItem" Relationship="Self.fk_RibbonItem_RibbonID" FromRole="Ribbon" ToRole="RibbonItem" />
+        </EntityType>
+        <EntityType Name="RibbonItem">
+          <Key>
+            <PropertyRef Name="RibbonItemID" />
+          </Key>
+          <Property Name="RibbonItemID" Type="Int32" Nullable="false" />
+          <Property Name="RibbonID" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_RibbonItem_HeroId" FromRole="RibbonItem" ToRole="Hero" />
+          <NavigationProperty Name="Ribbon" Relationship="Self.fk_RibbonItem_RibbonID" FromRole="RibbonItem" ToRole="Ribbon" />
+        </EntityType>
+        <EntityType Name="Specialist">
+          <Key>
+            <PropertyRef Name="SpecialistID" />
+          </Key>
+          <Property Name="SpecialistID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CharacterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StatName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AvatarImage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AvatarImage2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SpecialistItem" Relationship="Self.fk_SpecialistItem_GamemodeID" FromRole="Specialist" ToRole="SpecialistItem" />
+        </EntityType>
+        <EntityType Name="SpecialistItem">
+          <Key>
+            <PropertyRef Name="SpecialistItemID" />
+          </Key>
+          <Property Name="SpecialistItemID" Type="Int32" Nullable="false" />
+          <Property Name="SpecialistID" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Deaths" Type="Int32" />
+          <Property Name="KMP" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="KillDeath" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Revives" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="HazardZoneStreaks" Type="Int32" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_SpecialistItem_HeroId" FromRole="SpecialistItem" ToRole="Hero" />
+          <NavigationProperty Name="Specialist" Relationship="Self.fk_SpecialistItem_GamemodeID" FromRole="SpecialistItem" ToRole="Specialist" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VehicleItem" Relationship="Self.FK__VehicleIt__Vehic__37A5467C" FromRole="Vehicle" ToRole="VehicleItem" />
+        </EntityType>
+        <EntityType Name="VehicleGroup">
+          <Key>
+            <PropertyRef Name="VehicleGroupID" />
+          </Key>
+          <Property Name="VehicleGroupID" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="Roadkills" Type="Int32" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="DriverAssists" Type="Int32" />
+          <Property Name="PassengerAssists" Type="Int32" />
+          <Property Name="MultiKills" Type="Int32" />
+          <Property Name="DistanceTraveled" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KillsPerMinute" Type="Int32" />
+          <Property Name="VehiclesDestroyedWith" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="CallIns" Type="Int32" />
+          <Property Name="DamageTo" Type="Int32" />
+          <Property Name="Destroyed" Type="Int32" />
+          <Property Name="Timeln" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK_VehicleGroup_HeroId" FromRole="VehicleGroup" ToRole="Hero" />
+        </EntityType>
+        <EntityType Name="VehicleItem">
+          <Key>
+            <PropertyRef Name="VehicleItemId" />
+          </Key>
+          <Property Name="VehicleItemId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleID" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="Roadkills" Type="Int32" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="DriverAssists" Type="Int32" />
+          <Property Name="PassengerAssists" Type="Int32" />
+          <Property Name="Multikills" Type="Int32" />
+          <Property Name="DistanceTraveled" Type="Int32" />
+          <Property Name="KillsPerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="VehiclesDestroyedWith" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="Callins" Type="Int32" />
+          <Property Name="DamageTo" Type="Int32" />
+          <Property Name="Destroyed" Type="Int32" />
+          <Property Name="Timeln" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK__VehicleIt__HeroI__38996AB5" FromRole="VehicleItem" ToRole="Hero" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK__VehicleIt__Vehic__37A5467C" FromRole="VehicleItem" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Weapon">
+          <Key>
+            <PropertyRef Name="WeaponID" />
+          </Key>
+          <Property Name="WeaponID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WeaponName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="WeaponItem" Relationship="Self.FK__WeaponIte__Weapo__2C3393D0" FromRole="Weapon" ToRole="WeaponItem" />
+        </EntityType>
+        <EntityType Name="WeaponGroup">
+          <Key>
+            <PropertyRef Name="WeaponGroupID" />
+          </Key>
+          <Property Name="WeaponGroupID" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="BodyKills" Type="Int32" />
+          <Property Name="HeadshotKills" Type="Int32" />
+          <Property Name="HipfireKills" Type="Int32" />
+          <Property Name="MultiKills" Type="Int32" />
+          <Property Name="Accuracy" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Headshots" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HitVKills" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ShotsHit" Type="Int32" />
+          <Property Name="ShotsFired" Type="Int32" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="TimeEquipped" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.fk_WeaponGroup_HeroId" FromRole="WeaponGroup" ToRole="Hero" />
+        </EntityType>
+        <EntityType Name="WeaponItem">
+          <Key>
+            <PropertyRef Name="WeaponItemId" />
+          </Key>
+          <Property Name="WeaponItemId" Type="Int32" Nullable="false" />
+          <Property Name="WeaponID" Type="Int32" />
+          <Property Name="HeroID" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="BodyKills" Type="Int32" />
+          <Property Name="HeadshotKills" Type="Int32" />
+          <Property Name="HipfireKills" Type="Int32" />
+          <Property Name="MultiKills" Type="Int32" />
+          <Property Name="Accuracy" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="KillsPerMinute" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DamagePerMinute" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Headshots" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Hitvalls" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ShotsHit" Type="Int32" />
+          <Property Name="ShotsFired" Type="Int32" />
+          <Property Name="Spawns" Type="Int32" />
+          <Property Name="TimeEquipped" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK__WeaponIte__HeroI__2D27B809" FromRole="WeaponItem" ToRole="Hero" />
+          <NavigationProperty Name="Weapon" Relationship="Self.FK__WeaponIte__Weapo__2C3393D0" FromRole="WeaponItem" ToRole="Weapon" />
+        </EntityType>
+        <EntityType Name="XP">
+          <Key>
+            <PropertyRef Name="XPId" />
+          </Key>
+          <Property Name="XPId" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="Performance" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="Self.FK_XP_HeroId" FromRole="XP" ToRole="Hero" />
+        </EntityType>
+        <Association Name="fk_GadgetItem_GadgetId">
+          <End Role="Gadget" Type="Self.Gadget" Multiplicity="0..1" />
+          <End Role="GadgetItem" Type="Self.GadgetItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gadget">
+              <PropertyRef Name="GadgetID" />
+            </Principal>
+            <Dependent Role="GadgetItem">
+              <PropertyRef Name="GadgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GadgetItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GadgetItem" Type="Self.GadgetItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GadgetItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GameModeItem_GamemodeID">
+          <End Role="GameMode" Type="Self.GameMode" Multiplicity="0..1" />
+          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameMode">
+              <PropertyRef Name="GameModeID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="GamemodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GameModeItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GObjectItem_GObjectID">
+          <End Role="GObject" Type="Self.GObject" Multiplicity="0..1" />
+          <End Role="GObjectItem" Type="Self.GObjectItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GObject">
+              <PropertyRef Name="GObjectID" />
+            </Principal>
+            <Dependent Role="GObjectItem">
+              <PropertyRef Name="GObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GObjectItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="GObjectItem" Type="Self.GObjectItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GObjectItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MapItem__HeroId__32E0915F">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="1" />
+          <End Role="MapItem" Type="Self.MapItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="MapItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehicleIt__HeroI__38996AB5">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="VehicleItem" Type="Self.VehicleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="VehicleItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeaponIte__HeroI__2D27B809">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="WeaponItem" Type="Self.WeaponItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="WeaponItem">
+              <PropertyRef Name="HeroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RibbonItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="RibbonItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpecialistItem_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="SpecialistItem" Type="Self.SpecialistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="SpecialistItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleGroup_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="VehicleGroup" Type="Self.VehicleGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="VehicleGroup">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_WeaponGroup_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="WeaponGroup" Type="Self.WeaponGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="WeaponGroup">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XP_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="XP" Type="Self.XP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="XP">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MapItem__MapId__31EC6D26">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="MapItem" Type="Self.MapItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="MapID" />
+            </Principal>
+            <Dependent Role="MapItem">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RibbonItem_RibbonID">
+          <End Role="Ribbon" Type="Self.Ribbon" Multiplicity="0..1" />
+          <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ribbon">
+              <PropertyRef Name="RibbonID" />
+            </Principal>
+            <Dependent Role="RibbonItem">
+              <PropertyRef Name="RibbonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpecialistItem_GamemodeID">
+          <End Role="Specialist" Type="Self.Specialist" Multiplicity="0..1" />
+          <End Role="SpecialistItem" Type="Self.SpecialistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialist">
+              <PropertyRef Name="SpecialistID" />
+            </Principal>
+            <Dependent Role="SpecialistItem">
+              <PropertyRef Name="SpecialistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehicleIt__Vehic__37A5467C">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="VehicleItem" Type="Self.VehicleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleID" />
+            </Principal>
+            <Dependent Role="VehicleItem">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeaponIte__Weapo__2C3393D0">
+          <End Role="Weapon" Type="Self.Weapon" Multiplicity="0..1" />
+          <End Role="WeaponItem" Type="Self.WeaponItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weapon">
+              <PropertyRef Name="WeaponID" />
+            </Principal>
+            <Dependent Role="WeaponItem">
+              <PropertyRef Name="WeaponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDataHubEntitiy" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gadget" EntityType="Self.Gadget" />
+          <EntitySet Name="GadgetItem" EntityType="Self.GadgetItem" />
+          <EntitySet Name="GameMode" EntityType="Self.GameMode" />
+          <EntitySet Name="GameModeItem" EntityType="Self.GameModeItem" />
+          <EntitySet Name="GObject" EntityType="Self.GObject" />
+          <EntitySet Name="GObjectItem" EntityType="Self.GObjectItem" />
+          <EntitySet Name="Hero" EntityType="Self.Hero" />
+          <EntitySet Name="Map" EntityType="Self.Map" />
+          <EntitySet Name="MapItem" EntityType="Self.MapItem" />
+          <EntitySet Name="Ribbon" EntityType="Self.Ribbon" />
+          <EntitySet Name="RibbonItem" EntityType="Self.RibbonItem" />
+          <EntitySet Name="Specialist" EntityType="Self.Specialist" />
+          <EntitySet Name="SpecialistItem" EntityType="Self.SpecialistItem" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
+          <EntitySet Name="VehicleGroup" EntityType="Self.VehicleGroup" />
+          <EntitySet Name="VehicleItem" EntityType="Self.VehicleItem" />
+          <EntitySet Name="Weapon" EntityType="Self.Weapon" />
+          <EntitySet Name="WeaponGroup" EntityType="Self.WeaponGroup" />
+          <EntitySet Name="WeaponItem" EntityType="Self.WeaponItem" />
+          <EntitySet Name="XP" EntityType="Self.XP" />
+          <AssociationSet Name="fk_GadgetItem_GadgetId" Association="Self.fk_GadgetItem_GadgetId">
+            <End Role="Gadget" EntitySet="Gadget" />
+            <End Role="GadgetItem" EntitySet="GadgetItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GadgetItem_HeroId" Association="Self.fk_GadgetItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GadgetItem" EntitySet="GadgetItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GameModeItem_GamemodeID" Association="Self.fk_GameModeItem_GamemodeID">
+            <End Role="GameMode" EntitySet="GameMode" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GameModeItem_HeroId" Association="Self.fk_GameModeItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GObjectItem_GObjectID" Association="Self.fk_GObjectItem_GObjectID">
+            <End Role="GObject" EntitySet="GObject" />
+            <End Role="GObjectItem" EntitySet="GObjectItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GObjectItem_HeroId" Association="Self.fk_GObjectItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GObjectItem" EntitySet="GObjectItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MapItem__HeroId__32E0915F" Association="Self.FK__MapItem__HeroId__32E0915F">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="MapItem" EntitySet="MapItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehicleIt__HeroI__38996AB5" Association="Self.FK__VehicleIt__HeroI__38996AB5">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="VehicleItem" EntitySet="VehicleItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeaponIte__HeroI__2D27B809" Association="Self.FK__WeaponIte__HeroI__2D27B809">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="WeaponItem" EntitySet="WeaponItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RibbonItem_HeroId" Association="Self.fk_RibbonItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="RibbonItem" EntitySet="RibbonItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpecialistItem_HeroId" Association="Self.fk_SpecialistItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="SpecialistItem" EntitySet="SpecialistItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleGroup_HeroId" Association="Self.FK_VehicleGroup_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="VehicleGroup" EntitySet="VehicleGroup" />
+          </AssociationSet>
+          <AssociationSet Name="fk_WeaponGroup_HeroId" Association="Self.fk_WeaponGroup_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="WeaponGroup" EntitySet="WeaponGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XP_HeroId" Association="Self.FK_XP_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="XP" EntitySet="XP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MapItem__MapId__31EC6D26" Association="Self.FK__MapItem__MapId__31EC6D26">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="MapItem" EntitySet="MapItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RibbonItem_RibbonID" Association="Self.fk_RibbonItem_RibbonID">
+            <End Role="Ribbon" EntitySet="Ribbon" />
+            <End Role="RibbonItem" EntitySet="RibbonItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpecialistItem_GamemodeID" Association="Self.fk_SpecialistItem_GamemodeID">
+            <End Role="Specialist" EntitySet="Specialist" />
+            <End Role="SpecialistItem" EntitySet="SpecialistItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehicleIt__Vehic__37A5467C" Association="Self.FK__VehicleIt__Vehic__37A5467C">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleItem" EntitySet="VehicleItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeaponIte__Weapo__2C3393D0" Association="Self.FK__WeaponIte__Weapo__2C3393D0">
+            <End Role="Weapon" EntitySet="Weapon" />
+            <End Role="WeaponItem" EntitySet="WeaponItem" />
+          </AssociationSet>
+          <EntitySet Name="HeroOverView" EntityType="GameDataHubModel.HeroOverView" />
+          <AssociationSet Name="fk_HeroOverView_HeroId" Association="GameDataHubModel.fk_HeroOverView_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="HeroOverView" EntitySet="HeroOverView" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HeroOverView">
+          <Key>
+            <PropertyRef Name="HeroOverViewId" />
+          </Key>
+          <Property Name="HeroOverViewId" Type="Int32" Nullable="false" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="BestClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HumanPercentage" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Deaths" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="KillsPerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMinute" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KillsPerMatch" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DamagePerMatch" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShots" Type="Int32" />
+          <Property Name="WinPercent" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeadShotrate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KillDeath" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="InfantryKillDeath" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Damage" Type="Int32" />
+          <Property Name="TimePlayed" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Accuracy" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Revives" Type="Int32" />
+          <Property Name="Heals" Type="Int32" />
+          <Property Name="Resupplies" Type="Int32" />
+          <Property Name="Repairs" Type="Int32" />
+          <Property Name="SquadmateRevive" Type="Int32" />
+          <Property Name="SquadmateRespawn" Type="Int32" />
+          <Property Name="ThrownThrowables" Type="Int32" />
+          <Property Name="GadgetsDestoyed" Type="Int32" />
+          <Property Name="CallIns" Type="Int32" />
+          <Property Name="PlayerTakeDowns" Type="Int32" />
+          <Property Name="MatchesPlayed" Type="Int32" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <Property Name="BestSquad" Type="Int32" />
+          <Property Name="TeammatesSupported" Type="Int32" />
+          <Property Name="SaviorKills" Type="Int32" />
+          <Property Name="ShotsFired" Type="Int32" />
+          <Property Name="ShotsHit" Type="Int32" />
+          <Property Name="KillAssists" Type="Int32" />
+          <Property Name="VehiclesDestroyed" Type="Int32" />
+          <Property Name="EnemiesSpotted" Type="Int32" />
+          <Property Name="Mvp" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="HeroOverView" ToRole="Hero" />
+        </EntityType>
+        <Association Name="fk_HeroOverView_HeroId">
+          <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.HeroOverView" Role="HeroOverView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="HeroOverView">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GameDataHubModelStoreContainer" CdmEntityContainer="GameDataHubEntitiy">
+          <EntitySetMapping Name="Gadget">
+            <EntityTypeMapping TypeName="GameDataHubModel.Gadget">
+              <MappingFragment StoreEntitySet="Gadget">
+                <ScalarProperty Name="GadgetID" ColumnName="GadgetID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="GadgetName" ColumnName="GadgetName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GadgetItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.GadgetItem">
+              <MappingFragment StoreEntitySet="GadgetItem">
+                <ScalarProperty Name="GadgetItemId" ColumnName="GadgetItemId" />
+                <ScalarProperty Name="GadgetId" ColumnName="GadgetId" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="Uses" ColumnName="Uses" />
+                <ScalarProperty Name="Multikills" ColumnName="Multikills" />
+                <ScalarProperty Name="VehiclesDestroyedWith" ColumnName="VehiclesDestroyedWith" />
+                <ScalarProperty Name="KPM" ColumnName="KPM" />
+                <ScalarProperty Name="DPM" ColumnName="DPM" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameMode">
+            <EntityTypeMapping TypeName="GameDataHubModel.GameMode">
+              <MappingFragment StoreEntitySet="GameMode">
+                <ScalarProperty Name="GameModeID" ColumnName="GameModeID" />
+                <ScalarProperty Name="GamemodeName" ColumnName="GamemodeName" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameModeItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.GameModeItem">
+              <MappingFragment StoreEntitySet="GameModeItem">
+                <ScalarProperty Name="GameModeItemId" ColumnName="GameModeItemId" />
+                <ScalarProperty Name="GamemodeID" ColumnName="GamemodeID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="Revives" ColumnName="Revives" />
+                <ScalarProperty Name="BestSquad" ColumnName="BestSquad" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Mvp" ColumnName="Mvp" />
+                <ScalarProperty Name="Matches" ColumnName="Matches" />
+                <ScalarProperty Name="SectorDefend" ColumnName="SectorDefend" />
+                <ScalarProperty Name="ObjectivesArmed" ColumnName="ObjectivesArmed" />
+                <ScalarProperty Name="ObjectivesDisarmed" ColumnName="ObjectivesDisarmed" />
+                <ScalarProperty Name="ObjectivesDefended" ColumnName="ObjectivesDefended" />
+                <ScalarProperty Name="ObjectivesDestroyed" ColumnName="ObjectivesDestroyed" />
+                <ScalarProperty Name="ObjetiveTime" ColumnName="ObjetiveTime" />
+                <ScalarProperty Name="KPM" ColumnName="KPM" />
+                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GObject">
+            <EntityTypeMapping TypeName="GameDataHubModel.GObject">
+              <MappingFragment StoreEntitySet="GObject">
+                <ScalarProperty Name="GObjectID" ColumnName="GObjectID" />
+                <ScalarProperty Name="Herold" ColumnName="Herold" />
+                <ScalarProperty Name="Armed" ColumnName="Armed" />
+                <ScalarProperty Name="Captured" ColumnName="Captured" />
+                <ScalarProperty Name="Neutralized" ColumnName="Neutralized" />
+                <ScalarProperty Name="Destroyed" ColumnName="Destroyed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GObjectItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.GObjectItem">
+              <MappingFragment StoreEntitySet="GObjectItem">
+                <ScalarProperty Name="GObjectItemId" ColumnName="GObjectItemId" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="GObjectID" ColumnName="GObjectID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Attacked" ColumnName="Attacked" />
+                <ScalarProperty Name="Defended" ColumnName="Defended" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hero">
+            <EntityTypeMapping TypeName="GameDataHubModel.Hero">
+              <MappingFragment StoreEntitySet="Hero">
+                <ScalarProperty Name="PlatForm" ColumnName="PlatForm" />
+                <ScalarProperty Name="HeroID" ColumnName="HeroID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Map">
+            <EntityTypeMapping TypeName="GameDataHubModel.Map">
+              <MappingFragment StoreEntitySet="Map">
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
+                <ScalarProperty Name="MapName" ColumnName="MapName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.MapItem">
+              <MappingFragment StoreEntitySet="MapItem">
+                <ScalarProperty Name="MapItemId" ColumnName="MapItemId" />
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Matches" ColumnName="Matches" />
+                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ribbon">
+            <EntityTypeMapping TypeName="GameDataHubModel.Ribbon">
+              <MappingFragment StoreEntitySet="Ribbon">
+                <ScalarProperty Name="RibbonID" ColumnName="RibbonID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RibbonItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.RibbonItem">
+              <MappingFragment StoreEntitySet="RibbonItem">
+                <ScalarProperty Name="RibbonItemID" ColumnName="RibbonItemID" />
+                <ScalarProperty Name="RibbonID" ColumnName="RibbonID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialist">
+            <EntityTypeMapping TypeName="GameDataHubModel.Specialist">
+              <MappingFragment StoreEntitySet="Specialist">
+                <ScalarProperty Name="SpecialistID" ColumnName="SpecialistID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="StatName" ColumnName="StatName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AvatarImage1" ColumnName="AvatarImage1" />
+                <ScalarProperty Name="AvatarImage2" ColumnName="AvatarImage2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialistItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.SpecialistItem">
+              <MappingFragment StoreEntitySet="SpecialistItem">
+                <ScalarProperty Name="SpecialistItemID" ColumnName="SpecialistItemID" />
+                <ScalarProperty Name="SpecialistID" ColumnName="SpecialistID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Deaths" ColumnName="Deaths" />
+                <ScalarProperty Name="KMP" ColumnName="KMP" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="KillDeath" ColumnName="KillDeath" />
+                <ScalarProperty Name="Revives" ColumnName="Revives" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="HazardZoneStreaks" ColumnName="HazardZoneStreaks" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="GameDataHubModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleGroup">
+            <EntityTypeMapping TypeName="GameDataHubModel.VehicleGroup">
+              <MappingFragment StoreEntitySet="VehicleGroup">
+                <ScalarProperty Name="VehicleGroupID" ColumnName="VehicleGroupID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="Roadkills" ColumnName="Roadkills" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="DriverAssists" ColumnName="DriverAssists" />
+                <ScalarProperty Name="PassengerAssists" ColumnName="PassengerAssists" />
+                <ScalarProperty Name="MultiKills" ColumnName="MultiKills" />
+                <ScalarProperty Name="DistanceTraveled" ColumnName="DistanceTraveled" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="VehiclesDestroyedWith" ColumnName="VehiclesDestroyedWith" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="CallIns" ColumnName="CallIns" />
+                <ScalarProperty Name="DamageTo" ColumnName="DamageTo" />
+                <ScalarProperty Name="Destroyed" ColumnName="Destroyed" />
+                <ScalarProperty Name="Timeln" ColumnName="Timeln" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.VehicleItem">
+              <MappingFragment StoreEntitySet="VehicleItem">
+                <ScalarProperty Name="VehicleItemId" ColumnName="VehicleItemId" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="Roadkills" ColumnName="Roadkills" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="DriverAssists" ColumnName="DriverAssists" />
+                <ScalarProperty Name="PassengerAssists" ColumnName="PassengerAssists" />
+                <ScalarProperty Name="Multikills" ColumnName="Multikills" />
+                <ScalarProperty Name="DistanceTraveled" ColumnName="DistanceTraveled" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="VehiclesDestroyedWith" ColumnName="VehiclesDestroyedWith" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="Callins" ColumnName="Callins" />
+                <ScalarProperty Name="DamageTo" ColumnName="DamageTo" />
+                <ScalarProperty Name="Destroyed" ColumnName="Destroyed" />
+                <ScalarProperty Name="Timeln" ColumnName="Timeln" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weapon">
+            <EntityTypeMapping TypeName="GameDataHubModel.Weapon">
+              <MappingFragment StoreEntitySet="Weapon">
+                <ScalarProperty Name="WeaponID" ColumnName="WeaponID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="WeaponName" ColumnName="WeaponName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeaponGroup">
+            <EntityTypeMapping TypeName="GameDataHubModel.WeaponGroup">
+              <MappingFragment StoreEntitySet="WeaponGroup">
+                <ScalarProperty Name="WeaponGroupID" ColumnName="WeaponGroupID" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="BodyKills" ColumnName="BodyKills" />
+                <ScalarProperty Name="HeadshotKills" ColumnName="HeadshotKills" />
+                <ScalarProperty Name="HipfireKills" ColumnName="HipfireKills" />
+                <ScalarProperty Name="MultiKills" ColumnName="MultiKills" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="DamagePerMinute" ColumnName="DamagePerMinute" />
+                <ScalarProperty Name="Headshots" ColumnName="Headshots" />
+                <ScalarProperty Name="HitVKills" ColumnName="HitVKills" />
+                <ScalarProperty Name="ShotsHit" ColumnName="ShotsHit" />
+                <ScalarProperty Name="ShotsFired" ColumnName="ShotsFired" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="TimeEquipped" ColumnName="TimeEquipped" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeaponItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.WeaponItem">
+              <MappingFragment StoreEntitySet="WeaponItem">
+                <ScalarProperty Name="WeaponItemId" ColumnName="WeaponItemId" />
+                <ScalarProperty Name="WeaponID" ColumnName="WeaponID" />
+                <ScalarProperty Name="HeroID" ColumnName="HeroID" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="BodyKills" ColumnName="BodyKills" />
+                <ScalarProperty Name="HeadshotKills" ColumnName="HeadshotKills" />
+                <ScalarProperty Name="HipfireKills" ColumnName="HipfireKills" />
+                <ScalarProperty Name="MultiKills" ColumnName="MultiKills" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="DamagePerMinute" ColumnName="DamagePerMinute" />
+                <ScalarProperty Name="Headshots" ColumnName="Headshots" />
+                <ScalarProperty Name="Hitvalls" ColumnName="Hitvalls" />
+                <ScalarProperty Name="ShotsHit" ColumnName="ShotsHit" />
+                <ScalarProperty Name="ShotsFired" ColumnName="ShotsFired" />
+                <ScalarProperty Name="Spawns" ColumnName="Spawns" />
+                <ScalarProperty Name="TimeEquipped" ColumnName="TimeEquipped" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XP">
+            <EntityTypeMapping TypeName="GameDataHubModel.XP">
+              <MappingFragment StoreEntitySet="XP">
+                <ScalarProperty Name="XPId" ColumnName="XPId" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeroOverView">
+            <EntityTypeMapping TypeName="GameDataHubModel.HeroOverView">
+              <MappingFragment StoreEntitySet="HeroOverView">
+                <ScalarProperty Name="Mvp" ColumnName="Mvp" />
+                <ScalarProperty Name="EnemiesSpotted" ColumnName="EnemiesSpotted" />
+                <ScalarProperty Name="VehiclesDestroyed" ColumnName="VehiclesDestroyed" />
+                <ScalarProperty Name="KillAssists" ColumnName="KillAssists" />
+                <ScalarProperty Name="ShotsHit" ColumnName="ShotsHit" />
+                <ScalarProperty Name="ShotsFired" ColumnName="ShotsFired" />
+                <ScalarProperty Name="SaviorKills" ColumnName="SaviorKills" />
+                <ScalarProperty Name="TeammatesSupported" ColumnName="TeammatesSupported" />
+                <ScalarProperty Name="BestSquad" ColumnName="BestSquad" />
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+                <ScalarProperty Name="MatchesPlayed" ColumnName="MatchesPlayed" />
+                <ScalarProperty Name="PlayerTakeDowns" ColumnName="PlayerTakeDowns" />
+                <ScalarProperty Name="CallIns" ColumnName="CallIns" />
+                <ScalarProperty Name="GadgetsDestoyed" ColumnName="GadgetsDestoyed" />
+                <ScalarProperty Name="ThrownThrowables" ColumnName="ThrownThrowables" />
+                <ScalarProperty Name="SquadmateRespawn" ColumnName="SquadmateRespawn" />
+                <ScalarProperty Name="SquadmateRevive" ColumnName="SquadmateRevive" />
+                <ScalarProperty Name="Repairs" ColumnName="Repairs" />
+                <ScalarProperty Name="Resupplies" ColumnName="Resupplies" />
+                <ScalarProperty Name="Heals" ColumnName="Heals" />
+                <ScalarProperty Name="Revives" ColumnName="Revives" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="TimePlayed" ColumnName="TimePlayed" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="InfantryKillDeath" ColumnName="InfantryKillDeath" />
+                <ScalarProperty Name="KillDeath" ColumnName="KillDeath" />
+                <ScalarProperty Name="HeadShotrate" ColumnName="HeadShotrate" />
+                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
+                <ScalarProperty Name="HeadShots" ColumnName="HeadShots" />
+                <ScalarProperty Name="DamagePerMatch" ColumnName="DamagePerMatch" />
+                <ScalarProperty Name="KillsPerMatch" ColumnName="KillsPerMatch" />
+                <ScalarProperty Name="DamagePerMinute" ColumnName="DamagePerMinute" />
+                <ScalarProperty Name="KillsPerMinute" ColumnName="KillsPerMinute" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Deaths" ColumnName="Deaths" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="HumanPercentage" ColumnName="HumanPercentage" />
+                <ScalarProperty Name="BestClass" ColumnName="BestClass" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="HeroOverViewId" ColumnName="HeroOverViewId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

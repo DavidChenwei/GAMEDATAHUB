@@ -36,7 +36,7 @@ namespace GAMEDATAHUB.Controllers
                 {
                     Platform = "ps4";
                 }
-                else if (Platform.Contains("Xboxone"))
+                else if (Platform.Contains("Xbox"))
                 {
                     Platform = "xboxone";
                 }
@@ -54,7 +54,14 @@ namespace GAMEDATAHUB.Controllers
             ViewData["Avatar"] = Overview.Avatar;
             ViewBag.ShowLoading = false;
             ViewData["Page"] = "Overview";
-            return View(Overview);
+            if (Overview.isValid)
+            {
+                return View(Overview);
+            }
+            else {
+                return RedirectToAction("AnimationPage", new { isValid = Overview.isValid, name = HeroName, plat = Platform });;
+            }
+
         }
 
         [HttpGet]
@@ -65,9 +72,13 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult AnimationPage()
+        public ActionResult AnimationPage(bool isValid, string name, string plat)
         {
-            return View();
+            Animation animation = new Animation();
+            animation.isValid = isValid;
+            animation.HeroName = name;
+            animation.Platform = plat;
+            return View(animation);
         }
 
         [HttpPost]

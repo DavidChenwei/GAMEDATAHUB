@@ -8,6 +8,7 @@ using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -18,7 +19,6 @@ namespace GAMEDATAHUB.Repository
         public async Task<OverviewModel> HeroInfoGet(string name, string platform)
         {
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            heroInfoModel.PlatForm = platform;
             OverviewModel overView = new OverviewModel();
             overView.PlatForm = platform;
             if (cache.Contains(name))
@@ -70,58 +70,83 @@ namespace GAMEDATAHUB.Repository
                                 gadget.GadgetName == "Intel Scanner" ||
                                 gadget.GadgetName == "AT-Mine"
                                 );
+                            heroInfoModel.PlatForm = platform;
                         }
                         else
                         {
+                            overView.isValid = false;
                             Console.WriteLine($"HTTP Request Failed，Code: {response.StatusCode}");
                         }
                     }
                     catch (Exception ex)
                     {
+
                         Console.WriteLine($"Error Message: {ex.Message}");
                     }
                 }
             }
-            overView = OverviewDataGenerate(heroInfoModel, overView);
 
-            #region Database Operaion
+            if (overView.isValid) {
+                overView = OverviewDataGenerate(heroInfoModel, overView);
 
-            GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
-            Hero hero = new Hero();
-            #region Hero
-            hero = (from s in dbContext.Hero
-                    where s.UserID == heroInfoModel.UserId
-                    select s).FirstOrDefault();
-            if (hero == null)
-            {
-                hero = new Hero();
-                hero.UserID = heroInfoModel.UserId ?? "";
-                hero.Avatar = heroInfoModel.Avatar ?? "";
-                hero.UserName = heroInfoModel.UserName ?? "";
-                hero.Id = heroInfoModel.Id ?? "";
-                dbContext.Hero.Add(hero);
-                dbContext.SaveChanges();
-            }
-            else
-            {
-                if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
+                #region Database Operaion
+
+                GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
+                Hero hero = new Hero();
+                #region Hero
+                hero = (from s in dbContext.Hero
+                        where s.UserID == heroInfoModel.UserId
+                        select s).FirstOrDefault();
+                if (hero == null)
                 {
-                    hero.UserID = heroInfoModel.UserId;
+                    hero = new Hero();
+                    hero.UserID = heroInfoModel.UserId ?? "";
+                    hero.Avatar = heroInfoModel.Avatar ?? "";
+                    hero.UserName = heroInfoModel.UserName ?? "";
+                    hero.Id = heroInfoModel.Id ?? "";
+                    hero.PlatForm = heroInfoModel.PlatForm ?? "";
+                    dbContext.Hero.Add(hero);
+                    try
+                    {
+                        dbContext.SaveChanges();
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                            }
+                        }
+                    }
+
                 }
-                if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
+                else
                 {
-                    hero.Avatar = heroInfoModel.Avatar;
+                    if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
+                    {
+                        hero.UserID = heroInfoModel.UserId;
+                    }
+                    if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
+                    {
+                        hero.Avatar = heroInfoModel.Avatar;
+                    }
+                    if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
+                    {
+                        hero.UserName = heroInfoModel.UserName;
+                    }
+                    if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
+                    {
+                        hero.Id = heroInfoModel.Id;
+                    }
+                    if (hero.PlatForm != heroInfoModel.PlatForm && heroInfoModel.PlatForm != "")
+                    {
+                        hero.PlatForm = heroInfoModel.PlatForm;
+                    }
+                    dbContext.Hero.Add(hero);
+                    dbContext.SaveChanges();
                 }
-                if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
-                {
-                    hero.UserName = heroInfoModel.UserName;
-                }
-                if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
-                {
-                    hero.Id = heroInfoModel.Id;
-                }
-                dbContext.Hero.Add(hero);
-                dbContext.SaveChanges();
             }
             #endregion
 
