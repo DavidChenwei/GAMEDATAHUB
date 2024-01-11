@@ -23,6 +23,44 @@ namespace GAMEDATAHUB.Repository
         public const string HeaderDamage = "Damage";
         public const string HeaderLosses = "Losses";
         public const string HeaderMatches = "Matches";
+
+        public static readonly Dictionary<string, int> MapNamesToIds = new Dictionary<string, int>
+        {
+            {"Renewal", 1},
+            {"Orbital", 2},
+            {"Manifest", 3},
+            {"Discarded", 4},
+            {"Kaleidescope", 5},
+            {"Breakaway", 6},
+            {"Hourglass", 7},
+            {"Spearhead", 8},
+            {"Exposure", 9},
+            {"Stranded", 10},
+            {"Noshahr Canals", 11},
+            {"Caspian Border", 12},
+            {"Valparaiso", 13},
+            {"Arica Harbor", 14},
+            {"Battle of the Bulge", 15},
+            {"El Alamein", 16},
+            {"Flashpoint", 17},
+            {"Reclaimed", 18},
+            {"Redacted", 19}
+
+        };
+
+        public static readonly Dictionary<string, int> ModeNamesToIds = new Dictionary<string, int>
+        {
+            {"Breakthrough Large", 1},
+            {"Breakthrough", 2},
+            {"Conquest Large", 3},
+            {"Conquest", 4},
+            {"Custom", 5},
+            {"Rush", 6},
+            {"Hazard Zone Large", 7},
+            {"Hazard Zone", 8}
+
+        };
+
     }
 
     public class LevelExperience
@@ -169,7 +207,8 @@ namespace GAMEDATAHUB.Repository
                     xPleft = sortedLevels[left + 1].Value - experience;
                     percent = Math.Round((decimal)experience / (sortedLevels[left + 1].Value), 2);
                 }
-                else {
+                else
+                {
                     xPleft = experience - sortedLevels[left].Value;
                     percent = Math.Round((decimal)xPleft / (sortedLevels[left].Value - sortedLevels[left - 1].Value) * 100.0m, 2);
                 }
@@ -177,22 +216,15 @@ namespace GAMEDATAHUB.Repository
                 res.Add(new KeyValuePair<int, decimal>(level, percent));
                 return res;
             }
-            else {
+            else
+            {
                 int level = experience / 165000;
                 int xPleft = 175000 - (experience - level * 165000);
                 decimal percent = Math.Round((decimal)xPleft / 165000 * 100.0m, 2);
                 res.Add(new KeyValuePair<int, decimal>(level, percent));
                 return res;
             }
-
         }
     }
 
-    public class KDLevel
-    {
-        private List<KeyValuePair<decimal, decimal>> KDLevels = new List<KeyValuePair<decimal, decimal>>()
-        {
-             new KeyValuePair<decimal, decimal>(1.0m, 6.0m),
-        };
-    }
 }

@@ -46,7 +46,7 @@
             <PropertyRef Name="GameModeItemId" />
           </Key>
           <Property Name="GameModeItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GamemodeID" Type="int" />
+          <Property Name="GameModeID" Type="int" />
           <Property Name="HeroId" Type="int" />
           <Property Name="Kills" Type="int" />
           <Property Name="Assists" Type="int" />
@@ -164,7 +164,7 @@
           <Property Name="Wins" Type="int" />
           <Property Name="Losses" Type="int" />
           <Property Name="Matches" Type="int" />
-          <Property Name="WinPercent" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WinPercent" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SecondsPlayed" Type="int" />
         </EntityType>
         <EntityType Name="Ribbon">
@@ -442,7 +442,7 @@
               <PropertyRef Name="GameModeID" />
             </Principal>
             <Dependent Role="GameModeItem">
-              <PropertyRef Name="GamemodeID" />
+              <PropertyRef Name="GameModeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -723,35 +723,8 @@
           <Property Name="GamemodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GameModeItem" Relationship="Self.fk_GameModeItem_GamemodeID" FromRole="GameMode" ToRole="GameModeItem" />
-        </EntityType>
-        <EntityType Name="GameModeItem">
-          <Key>
-            <PropertyRef Name="GameModeItemId" />
-          </Key>
-          <Property Name="GameModeItemId" Type="Int32" Nullable="false" />
-          <Property Name="GamemodeID" Type="Int32" />
-          <Property Name="HeroId" Type="Int32" />
-          <Property Name="Kills" Type="Int32" />
-          <Property Name="Assists" Type="Int32" />
-          <Property Name="Revives" Type="Int32" />
-          <Property Name="BestSquad" Type="Int32" />
-          <Property Name="Wins" Type="Int32" />
-          <Property Name="Losses" Type="Int32" />
-          <Property Name="Mvp" Type="Int32" />
-          <Property Name="Matches" Type="Int32" />
-          <Property Name="SectorDefend" Type="Int32" />
-          <Property Name="ObjectivesArmed" Type="Int32" />
-          <Property Name="ObjectivesDisarmed" Type="Int32" />
-          <Property Name="ObjectivesDefended" Type="Int32" />
-          <Property Name="ObjectivesDestroyed" Type="Int32" />
-          <Property Name="ObjetiveTime" Type="Int32" />
-          <Property Name="KPM" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="WinPercent" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SecondsPlayed" Type="Int32" />
-          <NavigationProperty Name="GameMode" Relationship="Self.fk_GameModeItem_GamemodeID" FromRole="GameModeItem" ToRole="GameMode" />
-          <NavigationProperty Name="Hero" Relationship="Self.fk_GameModeItem_HeroId" FromRole="GameModeItem" ToRole="Hero" />
-        </EntityType>
+          <NavigationProperty Name="GameModeItem" Relationship="GameDataHubModel.fk_GameModeItem_GamemodeID" FromRole="GameMode" ToRole="GameModeItem" />
+          </EntityType>
         <EntityType Name="GObject">
           <Key>
             <PropertyRef Name="GObjectID" />
@@ -787,7 +760,6 @@
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GadgetItem" Relationship="Self.fk_GadgetItem_HeroId" FromRole="Hero" ToRole="GadgetItem" />
-          <NavigationProperty Name="GameModeItem" Relationship="Self.fk_GameModeItem_HeroId" FromRole="Hero" ToRole="GameModeItem" />
           <NavigationProperty Name="GObjectItem" Relationship="Self.fk_GObjectItem_HeroId" FromRole="Hero" ToRole="GObjectItem" />
           <NavigationProperty Name="MapItem" Relationship="Self.FK__MapItem__HeroId__32E0915F" FromRole="Hero" ToRole="MapItem" />
           <NavigationProperty Name="VehicleItem" Relationship="Self.FK__VehicleIt__HeroI__38996AB5" FromRole="Hero" ToRole="VehicleItem" />
@@ -799,6 +771,7 @@
           <NavigationProperty Name="XP" Relationship="Self.FK_XP_HeroId" FromRole="Hero" ToRole="XP" />
           <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
           <Property Name="PlatForm" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameModeItem" Relationship="GameDataHubModel.fk_GameModeItem_HeroId" FromRole="Hero" ToRole="GameModeItem" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -820,7 +793,7 @@
           <Property Name="Wins" Type="Int32" />
           <Property Name="Losses" Type="Int32" />
           <Property Name="Matches" Type="Int32" />
-          <Property Name="WinPercent" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WinPercent" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="SecondsPlayed" Type="Int32" />
           <NavigationProperty Name="Hero" Relationship="Self.FK__MapItem__HeroId__32E0915F" FromRole="MapItem" ToRole="Hero" />
           <NavigationProperty Name="Map" Relationship="Self.FK__MapItem__MapId__31EC6D26" FromRole="MapItem" ToRole="Map" />
@@ -1035,30 +1008,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_GameModeItem_GamemodeID">
-          <End Role="GameMode" Type="Self.GameMode" Multiplicity="0..1" />
-          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GameMode">
-              <PropertyRef Name="GameModeID" />
-            </Principal>
-            <Dependent Role="GameModeItem">
-              <PropertyRef Name="GamemodeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_GameModeItem_HeroId">
-          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
-          <End Role="GameModeItem" Type="Self.GameModeItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hero">
-              <PropertyRef Name="HeroID" />
-            </Principal>
-            <Dependent Role="GameModeItem">
-              <PropertyRef Name="HeroId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_GObjectItem_GObjectID">
           <End Role="GObject" Type="Self.GObject" Multiplicity="0..1" />
           <End Role="GObjectItem" Type="Self.GObjectItem" Multiplicity="*" />
@@ -1243,7 +1192,6 @@
           <EntitySet Name="Gadget" EntityType="Self.Gadget" />
           <EntitySet Name="GadgetItem" EntityType="Self.GadgetItem" />
           <EntitySet Name="GameMode" EntityType="Self.GameMode" />
-          <EntitySet Name="GameModeItem" EntityType="Self.GameModeItem" />
           <EntitySet Name="GObject" EntityType="Self.GObject" />
           <EntitySet Name="GObjectItem" EntityType="Self.GObjectItem" />
           <EntitySet Name="Hero" EntityType="Self.Hero" />
@@ -1267,14 +1215,6 @@
           <AssociationSet Name="fk_GadgetItem_HeroId" Association="Self.fk_GadgetItem_HeroId">
             <End Role="Hero" EntitySet="Hero" />
             <End Role="GadgetItem" EntitySet="GadgetItem" />
-          </AssociationSet>
-          <AssociationSet Name="fk_GameModeItem_GamemodeID" Association="Self.fk_GameModeItem_GamemodeID">
-            <End Role="GameMode" EntitySet="GameMode" />
-            <End Role="GameModeItem" EntitySet="GameModeItem" />
-          </AssociationSet>
-          <AssociationSet Name="fk_GameModeItem_HeroId" Association="Self.fk_GameModeItem_HeroId">
-            <End Role="Hero" EntitySet="Hero" />
-            <End Role="GameModeItem" EntitySet="GameModeItem" />
           </AssociationSet>
           <AssociationSet Name="fk_GObjectItem_GObjectID" Association="Self.fk_GObjectItem_GObjectID">
             <End Role="GObject" EntitySet="GObject" />
@@ -1341,6 +1281,15 @@
             <End Role="Hero" EntitySet="Hero" />
             <End Role="HeroOverView" EntitySet="HeroOverView" />
           </AssociationSet>
+          <EntitySet Name="GameModeItem" EntityType="GameDataHubModel.GameModeItem" />
+          <AssociationSet Name="fk_GameModeItem_GamemodeID" Association="GameDataHubModel.fk_GameModeItem_GamemodeID">
+            <End Role="GameMode" EntitySet="GameMode" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GameModeItem_HeroId" Association="GameDataHubModel.fk_GameModeItem_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HeroOverView">
           <Key>
@@ -1401,6 +1350,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GameModeItem">
+          <Key>
+            <PropertyRef Name="GameModeItemId" />
+          </Key>
+          <Property Name="GameModeItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameModeID" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <Property Name="Kills" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="Revives" Type="Int32" />
+          <Property Name="BestSquad" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Losses" Type="Int32" />
+          <Property Name="Mvp" Type="Int32" />
+          <Property Name="Matches" Type="Int32" />
+          <Property Name="SectorDefend" Type="Int32" />
+          <Property Name="ObjectivesArmed" Type="Int32" />
+          <Property Name="ObjectivesDisarmed" Type="Int32" />
+          <Property Name="ObjectivesDefended" Type="Int32" />
+          <Property Name="ObjectivesDestroyed" Type="Int32" />
+          <Property Name="ObjetiveTime" Type="Int32" />
+          <Property Name="KPM" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="WinPercent" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SecondsPlayed" Type="Int32" />
+          <NavigationProperty Name="GameMode" Relationship="GameDataHubModel.fk_GameModeItem_GamemodeID" FromRole="GameModeItem" ToRole="GameMode" />
+          <NavigationProperty Name="Hero" Relationship="GameDataHubModel.fk_GameModeItem_HeroId" FromRole="GameModeItem" ToRole="Hero" />
+        </EntityType>
+        <Association Name="fk_GameModeItem_GamemodeID">
+          <End Type="GameDataHubModel.GameMode" Role="GameMode" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.GameModeItem" Role="GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameMode">
+              <PropertyRef Name="GameModeID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="GameModeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GameModeItem_HeroId">
+          <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.GameModeItem" Role="GameModeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="GameModeItem">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1443,32 +1443,6 @@
                 <ScalarProperty Name="GamemodeName" ColumnName="GamemodeName" />
                 <ScalarProperty Name="Images" ColumnName="Images" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GameModeItem">
-            <EntityTypeMapping TypeName="GameDataHubModel.GameModeItem">
-              <MappingFragment StoreEntitySet="GameModeItem">
-                <ScalarProperty Name="GameModeItemId" ColumnName="GameModeItemId" />
-                <ScalarProperty Name="GamemodeID" ColumnName="GamemodeID" />
-                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
-                <ScalarProperty Name="Kills" ColumnName="Kills" />
-                <ScalarProperty Name="Assists" ColumnName="Assists" />
-                <ScalarProperty Name="Revives" ColumnName="Revives" />
-                <ScalarProperty Name="BestSquad" ColumnName="BestSquad" />
-                <ScalarProperty Name="Wins" ColumnName="Wins" />
-                <ScalarProperty Name="Losses" ColumnName="Losses" />
-                <ScalarProperty Name="Mvp" ColumnName="Mvp" />
-                <ScalarProperty Name="Matches" ColumnName="Matches" />
-                <ScalarProperty Name="SectorDefend" ColumnName="SectorDefend" />
-                <ScalarProperty Name="ObjectivesArmed" ColumnName="ObjectivesArmed" />
-                <ScalarProperty Name="ObjectivesDisarmed" ColumnName="ObjectivesDisarmed" />
-                <ScalarProperty Name="ObjectivesDefended" ColumnName="ObjectivesDefended" />
-                <ScalarProperty Name="ObjectivesDestroyed" ColumnName="ObjectivesDestroyed" />
-                <ScalarProperty Name="ObjetiveTime" ColumnName="ObjetiveTime" />
-                <ScalarProperty Name="KPM" ColumnName="KPM" />
-                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
-                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1758,6 +1732,32 @@
                 <ScalarProperty Name="BestClass" ColumnName="BestClass" />
                 <ScalarProperty Name="HeroId" ColumnName="HeroId" />
                 <ScalarProperty Name="HeroOverViewId" ColumnName="HeroOverViewId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameModeItem">
+            <EntityTypeMapping TypeName="GameDataHubModel.GameModeItem">
+              <MappingFragment StoreEntitySet="GameModeItem">
+                <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
+                <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
+                <ScalarProperty Name="KPM" ColumnName="KPM" />
+                <ScalarProperty Name="ObjetiveTime" ColumnName="ObjetiveTime" />
+                <ScalarProperty Name="ObjectivesDestroyed" ColumnName="ObjectivesDestroyed" />
+                <ScalarProperty Name="ObjectivesDefended" ColumnName="ObjectivesDefended" />
+                <ScalarProperty Name="ObjectivesDisarmed" ColumnName="ObjectivesDisarmed" />
+                <ScalarProperty Name="ObjectivesArmed" ColumnName="ObjectivesArmed" />
+                <ScalarProperty Name="SectorDefend" ColumnName="SectorDefend" />
+                <ScalarProperty Name="Matches" ColumnName="Matches" />
+                <ScalarProperty Name="Mvp" ColumnName="Mvp" />
+                <ScalarProperty Name="Losses" ColumnName="Losses" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="BestSquad" ColumnName="BestSquad" />
+                <ScalarProperty Name="Revives" ColumnName="Revives" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="Kills" ColumnName="Kills" />
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="GameModeID" ColumnName="GameModeID" />
+                <ScalarProperty Name="GameModeItemId" ColumnName="GameModeItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

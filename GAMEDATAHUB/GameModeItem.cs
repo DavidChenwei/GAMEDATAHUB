@@ -15,7 +15,7 @@ namespace GAMEDATAHUB
     public partial class GameModeItem
     {
         public int GameModeItemId { get; set; }
-        public Nullable<int> GamemodeID { get; set; }
+        public Nullable<int> GameModeID { get; set; }
         public Nullable<int> HeroId { get; set; }
         public Nullable<int> Kills { get; set; }
         public Nullable<int> Assists { get; set; }

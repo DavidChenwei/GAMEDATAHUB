@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9c3a8313e86c4579b7bd4401c83a0894" Name="Diagram1">
+      <Diagram DiagramId="9c3a8313e86c4579b7bd4401c83a0894" Name="Diagram1" ZoomLevel="111">
         <EntityTypeShape EntityType="GameDataHubModel.Gadget" Width="1.5" PointX="0.75" PointY="35.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GameDataHubModel.GadgetItem" Width="1.5" PointX="3" PointY="29.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GameDataHubModel.GameMode" Width="1.5" PointX="3.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GameDataHubModel.GameModeItem" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GameDataHubModel.GObject" Width="1.5" PointX="0.75" PointY="26.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GameDataHubModel.GObjectItem" Width="1.5" PointX="3" PointY="26.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GameDataHubModel.Hero" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
@@ -27,8 +26,6 @@
         <EntityTypeShape EntityType="GameDataHubModel.XP" Width="1.5" PointX="3" PointY="77.25" IsExpanded="true" />
         <AssociationConnector Association="GameDataHubModel.fk_GadgetItem_GadgetId" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.fk_GadgetItem_HeroId" ManuallyRouted="false" />
-        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_GamemodeID" ManuallyRouted="false" />
-        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_HeroId" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.fk_GObjectItem_GObjectID" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.fk_GObjectItem_HeroId" ManuallyRouted="false" />
         <AssociationConnector Association="GameDataHubModel.FK__MapItem__HeroId__32E0915F" ManuallyRouted="false" />
@@ -46,6 +43,9 @@
         <AssociationConnector Association="GameDataHubModel.FK__WeaponIte__Weapo__2C3393D0" ManuallyRouted="false" />
         <EntityTypeShape EntityType="GameDataHubModel.HeroOverView" Width="1.5" PointX="3" PointY="34.375" />
         <AssociationConnector Association="GameDataHubModel.fk_HeroOverView_HeroId" />
+        <EntityTypeShape EntityType="GameDataHubModel.GameModeItem" Width="1.5" PointX="6" PointY="30.375" />
+        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_GamemodeID" />
+        <AssociationConnector Association="GameDataHubModel.fk_GameModeItem_HeroId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

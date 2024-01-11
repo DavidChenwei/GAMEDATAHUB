@@ -18,7 +18,6 @@ namespace GAMEDATAHUB
         public Hero()
         {
             this.GadgetItem = new HashSet<GadgetItem>();
-            this.GameModeItem = new HashSet<GameModeItem>();
             this.GObjectItem = new HashSet<GObjectItem>();
             this.MapItem = new HashSet<MapItem>();
             this.VehicleItem = new HashSet<VehicleItem>();
@@ -29,6 +28,7 @@ namespace GAMEDATAHUB
             this.WeaponGroup = new HashSet<WeaponGroup>();
             this.XP = new HashSet<XP>();
             this.HeroOverView = new HashSet<HeroOverView>();
+            this.GameModeItem = new HashSet<GameModeItem>();
         }
     
         public int HeroID { get; set; }
@@ -40,8 +40,6 @@ namespace GAMEDATAHUB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GadgetItem> GadgetItem { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GameModeItem> GameModeItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GObjectItem> GObjectItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -62,5 +60,7 @@ namespace GAMEDATAHUB
         public virtual ICollection<XP> XP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HeroOverView> HeroOverView { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GameModeItem> GameModeItem { get; set; }
     }
 }
