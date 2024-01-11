@@ -172,7 +172,13 @@
             <PropertyRef Name="RibbonID" />
           </Key>
           <Property Name="RibbonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Total" Type="int" />
+          <Property Name="Squad" Type="int" />
+          <Property Name="Combat" Type="int" />
+          <Property Name="Intel" Type="int" />
+          <Property Name="Objective" Type="int" />
+          <Property Name="Support" Type="int" />
+          <Property Name="HeroId" Type="int" />
         </EntityType>
         <EntityType Name="RibbonItem">
           <Key>
@@ -494,6 +500,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ribbon_HeroId">
+          <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+          <End Role="Ribbon" Type="Self.Ribbon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="Ribbon">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_RibbonItem_HeroId">
           <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
           <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
@@ -652,6 +670,10 @@
             <End Role="Hero" EntitySet="Hero" />
             <End Role="HeroOverView" EntitySet="HeroOverView" />
           </AssociationSet>
+          <AssociationSet Name="FK_Ribbon_HeroId" Association="Self.FK_Ribbon_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="Ribbon" EntitySet="Ribbon" />
+          </AssociationSet>
           <AssociationSet Name="fk_RibbonItem_HeroId" Association="Self.fk_RibbonItem_HeroId">
             <End Role="Hero" EntitySet="Hero" />
             <End Role="RibbonItem" EntitySet="RibbonItem" />
@@ -772,6 +794,7 @@
           <NavigationProperty Name="HeroOverView" Relationship="GameDataHubModel.fk_HeroOverView_HeroId" FromRole="Hero" ToRole="HeroOverView" />
           <Property Name="PlatForm" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GameModeItem" Relationship="GameDataHubModel.fk_GameModeItem_HeroId" FromRole="Hero" ToRole="GameModeItem" />
+          <NavigationProperty Name="Ribbon" Relationship="GameDataHubModel.FK_Ribbon_HeroId" FromRole="Hero" ToRole="Ribbon" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -798,14 +821,6 @@
           <NavigationProperty Name="Hero" Relationship="Self.FK__MapItem__HeroId__32E0915F" FromRole="MapItem" ToRole="Hero" />
           <NavigationProperty Name="Map" Relationship="Self.FK__MapItem__MapId__31EC6D26" FromRole="MapItem" ToRole="Map" />
         </EntityType>
-        <EntityType Name="Ribbon">
-          <Key>
-            <PropertyRef Name="RibbonID" />
-          </Key>
-          <Property Name="RibbonID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RibbonItem" Relationship="Self.fk_RibbonItem_RibbonID" FromRole="Ribbon" ToRole="RibbonItem" />
-        </EntityType>
         <EntityType Name="RibbonItem">
           <Key>
             <PropertyRef Name="RibbonItemID" />
@@ -815,7 +830,7 @@
           <Property Name="HeroId" Type="Int32" />
           <Property Name="Amount" Type="Int32" />
           <NavigationProperty Name="Hero" Relationship="Self.fk_RibbonItem_HeroId" FromRole="RibbonItem" ToRole="Hero" />
-          <NavigationProperty Name="Ribbon" Relationship="Self.fk_RibbonItem_RibbonID" FromRole="RibbonItem" ToRole="Ribbon" />
+          <NavigationProperty Name="Ribbon" Relationship="GameDataHubModel.fk_RibbonItem_RibbonID" FromRole="RibbonItem" ToRole="Ribbon" />
         </EntityType>
         <EntityType Name="Specialist">
           <Key>
@@ -1140,18 +1155,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_RibbonItem_RibbonID">
-          <End Role="Ribbon" Type="Self.Ribbon" Multiplicity="0..1" />
-          <End Role="RibbonItem" Type="Self.RibbonItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ribbon">
-              <PropertyRef Name="RibbonID" />
-            </Principal>
-            <Dependent Role="RibbonItem">
-              <PropertyRef Name="RibbonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_SpecialistItem_GamemodeID">
           <End Role="Specialist" Type="Self.Specialist" Multiplicity="0..1" />
           <End Role="SpecialistItem" Type="Self.SpecialistItem" Multiplicity="*" />
@@ -1197,7 +1200,6 @@
           <EntitySet Name="Hero" EntityType="Self.Hero" />
           <EntitySet Name="Map" EntityType="Self.Map" />
           <EntitySet Name="MapItem" EntityType="Self.MapItem" />
-          <EntitySet Name="Ribbon" EntityType="Self.Ribbon" />
           <EntitySet Name="RibbonItem" EntityType="Self.RibbonItem" />
           <EntitySet Name="Specialist" EntityType="Self.Specialist" />
           <EntitySet Name="SpecialistItem" EntityType="Self.SpecialistItem" />
@@ -1260,10 +1262,6 @@
             <End Role="Map" EntitySet="Map" />
             <End Role="MapItem" EntitySet="MapItem" />
           </AssociationSet>
-          <AssociationSet Name="fk_RibbonItem_RibbonID" Association="Self.fk_RibbonItem_RibbonID">
-            <End Role="Ribbon" EntitySet="Ribbon" />
-            <End Role="RibbonItem" EntitySet="RibbonItem" />
-          </AssociationSet>
           <AssociationSet Name="fk_SpecialistItem_GamemodeID" Association="Self.fk_SpecialistItem_GamemodeID">
             <End Role="Specialist" EntitySet="Specialist" />
             <End Role="SpecialistItem" EntitySet="SpecialistItem" />
@@ -1289,6 +1287,15 @@
           <AssociationSet Name="fk_GameModeItem_HeroId" Association="GameDataHubModel.fk_GameModeItem_HeroId">
             <End Role="Hero" EntitySet="Hero" />
             <End Role="GameModeItem" EntitySet="GameModeItem" />
+          </AssociationSet>
+          <EntitySet Name="Ribbon" EntityType="GameDataHubModel.Ribbon" />
+          <AssociationSet Name="FK_Ribbon_HeroId" Association="GameDataHubModel.FK_Ribbon_HeroId">
+            <End Role="Hero" EntitySet="Hero" />
+            <End Role="Ribbon" EntitySet="Ribbon" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RibbonItem_RibbonID" Association="GameDataHubModel.fk_RibbonItem_RibbonID">
+            <End Role="Ribbon" EntitySet="Ribbon" />
+            <End Role="RibbonItem" EntitySet="RibbonItem" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="HeroOverView">
@@ -1401,6 +1408,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Ribbon">
+          <Key>
+            <PropertyRef Name="RibbonID" />
+          </Key>
+          <Property Name="RibbonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="Squad" Type="Int32" />
+          <Property Name="Combat" Type="Int32" />
+          <Property Name="Intel" Type="Int32" />
+          <Property Name="Objective" Type="Int32" />
+          <Property Name="Support" Type="Int32" />
+          <Property Name="HeroId" Type="Int32" />
+          <NavigationProperty Name="Hero" Relationship="GameDataHubModel.FK_Ribbon_HeroId" FromRole="Ribbon" ToRole="Hero" />
+          <NavigationProperty Name="RibbonItem" Relationship="GameDataHubModel.fk_RibbonItem_RibbonID" FromRole="Ribbon" ToRole="RibbonItem" />
+        </EntityType>
+        <Association Name="FK_Ribbon_HeroId">
+          <End Type="GameDataHubModel.Hero" Role="Hero" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.Ribbon" Role="Ribbon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hero">
+              <PropertyRef Name="HeroID" />
+            </Principal>
+            <Dependent Role="Ribbon">
+              <PropertyRef Name="HeroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RibbonItem_RibbonID">
+          <End Type="GameDataHubModel.Ribbon" Role="Ribbon" Multiplicity="0..1" />
+          <End Type="GameDataHubModel.RibbonItem" Role="RibbonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ribbon">
+              <PropertyRef Name="RibbonID" />
+            </Principal>
+            <Dependent Role="RibbonItem">
+              <PropertyRef Name="RibbonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1503,14 +1549,6 @@
                 <ScalarProperty Name="Matches" ColumnName="Matches" />
                 <ScalarProperty Name="WinPercent" ColumnName="WinPercent" />
                 <ScalarProperty Name="SecondsPlayed" ColumnName="SecondsPlayed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ribbon">
-            <EntityTypeMapping TypeName="GameDataHubModel.Ribbon">
-              <MappingFragment StoreEntitySet="Ribbon">
-                <ScalarProperty Name="RibbonID" ColumnName="RibbonID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1758,6 +1796,20 @@
                 <ScalarProperty Name="HeroId" ColumnName="HeroId" />
                 <ScalarProperty Name="GameModeID" ColumnName="GameModeID" />
                 <ScalarProperty Name="GameModeItemId" ColumnName="GameModeItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ribbon">
+            <EntityTypeMapping TypeName="GameDataHubModel.Ribbon">
+              <MappingFragment StoreEntitySet="Ribbon">
+                <ScalarProperty Name="HeroId" ColumnName="HeroId" />
+                <ScalarProperty Name="Support" ColumnName="Support" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="Intel" ColumnName="Intel" />
+                <ScalarProperty Name="Combat" ColumnName="Combat" />
+                <ScalarProperty Name="Squad" ColumnName="Squad" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="RibbonID" ColumnName="RibbonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

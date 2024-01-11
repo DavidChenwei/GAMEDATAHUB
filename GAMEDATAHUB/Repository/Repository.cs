@@ -1954,6 +1954,7 @@ namespace GAMEDATAHUB.Repository
                     {
                         ribbon = new Ribbon
                         {
+                            HeroId = hero.HeroID,
                             Total = heroInfoModel.XP[0].Ribbons.Total,
                             Squad = heroInfoModel.XP[0].Ribbons.Squad,
                             Combat = heroInfoModel.XP[0].Ribbons.Combat,
