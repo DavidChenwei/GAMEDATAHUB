@@ -45,7 +45,6 @@ namespace GAMEDATAHUB.Repository
             {"Flashpoint", 17},
             {"Reclaimed", 18},
             {"Redacted", 19}
-
         };
 
         public static readonly Dictionary<string, int> ModeNamesToIds = new Dictionary<string, int>
@@ -58,7 +57,6 @@ namespace GAMEDATAHUB.Repository
             {"Rush", 6},
             {"Hazard Zone Large", 7},
             {"Hazard Zone", 8}
-
         };
 
         public static readonly Dictionary<string, int> SpecialistNamesToIds = new Dictionary<string, int>
@@ -192,6 +190,140 @@ namespace GAMEDATAHUB.Repository
             {"L9CZ", 96}
         };
 
+        public static readonly Dictionary<string, int> VehicleNamesToIds = new Dictionary<string, int>
+        {
+            {"MD540 Nightbird", 1},
+            {"F-35E Panther", 2},
+            {"M5C Bolte", 3},
+            {"AH-64GX Apache Warchief", 4},
+            {"MV-38 Condor", 5},
+            {"EBAA Wildcat", 6},
+            {"M1A5", 7},
+            {"RAH-68 Huron", 8},
+            {"LATV4 Recon", 9},
+            {"AH-6J Little Bird", 10},
+            {"LCAA Hovercraft", 11},
+            {"EBLC-Ram", 12},
+            {"MAV", 13},
+            {"EMKV90-TOR", 14},
+            {"UH-60", 15},
+            {"LAV-AD", 16},
+            {"M1A2", 17},
+            {"M1114", 18},
+            {"M1161 ITV", 19},
+            {"LAV-25", 20},
+            {"AH-64 Apache", 21},
+            {"AAV-7A1 AMTRAC", 22},
+            {"M3A3 Bradley", 23},
+            {"M4 Sherman", 24},
+            {"Willys MB", 25},
+            {"M10 Wolverine", 26},
+            {"Spitfire", 27},
+            {"B-17 Bomber", 28},
+            {"M3 Halftrack", 29},
+            {"F/A-18", 30},
+            {"A-10 Warthog", 31},
+            {"SU-57 FELON", 32},
+            {"Mi-240 Super Hind", 33},
+            {"YG-99 Hannibal", 34},
+            {"Ju-87 Stuka", 35},
+            {"Bf 109", 36},
+            {"BMP-2", 37},
+            {"Su-35BM", 38},
+            {"Tiger I", 39},
+            {"VDV Buggy", 40},
+            {"Sd. Kfz 251 Halftrack", 41},
+            {"Kubelwagen", 42},
+            {"9K22 Tunguska-M", 43},
+            {"T-90", 44},
+            {"3937 Vodnik", 45},
+            {"Z-11W", 46},
+            {"Mi-28 Havoc", 47},
+            {"Panzer IV", 48},
+            {"KA-520 Super Hokum", 49},
+            {"T28", 50},
+            {"CAV-BRAWLER", 51},
+            {"Su-25TM Frogfoot", 52},
+            {"Mi-24 Hind", 53},
+            {"BMD-3", 54},
+            {"YUV-2 Pondhawk", 55}
+        };
+
+        public static readonly Dictionary<string, int> GadgetNamesToIds = new Dictionary<string, int>
+        {
+            {"C5 Explosive [Kingston]", 1},
+            {"SOB-8 Ballistic Shield", 2},
+            {"Carl Gustaf M5", 3},
+            {"Frag Grenade", 4},
+            {"Anti Armor", 5},
+            {"Scatter Grenade", 6},
+            {"Repair Tool", 7},
+            {"SG-36 Sentry Gun", 8},
+            {"EMP Grenade", 9},
+            {"Anti-Tank Grenade", 10},
+            {"Mini Grenade", 11},
+            {"Ammo Box BF3 (Portal)", 12},
+            {"Ammo Box BC2 (Portal)", 13},
+            {"Grappling Hook", 14},
+            {"Cyber Warfare Suite (Signal Hacker)", 15},
+            {"Medkit BF3 (Portal)", 16},
+            {"Medkit BF1942 (Portal)", 17},
+            {"Medkit BF2 (Portal)", 18},
+            {"Motion Sensor (Portal)", 19},
+            {"OV-P Recon Drone", 20},
+            {"Repair Tool BF3 (Portal)", 21},
+            {"Repair Tool BF1942 (Portal)", 22},
+            {"Repair Tool BC2 (Portal)", 23},
+            {"S21 Syrette Pistol", 24},
+            {"T-UGS (Portal)", 25},
+            {"Ammo Crate", 26},
+            {"IBA Armor Plate", 27},
+            {"C4 [Portal]", 28},
+            {"M18 Claymore", 29},
+            {"MAV", 30},
+            {"Defibrillator", 31},
+            {"Defibrillator (BC2)", 32},
+            {"Defibrillator (BF3)", 33},
+            {"FGM-148 Javelin", 34},
+            {"Medical Crate", 35},
+            {"Med-Pen (Self-heal)", 36},
+            {"AT Mine [Kingston]", 37},
+            {"Mortar Strike", 38},
+            {"Insertion Beacon (Spawn) (Portal)", 39},
+            {"RPG-7", 40},
+            {"SMAW", 41},
+            {"ExpPack", 42},
+            {"Concussion Grenade", 43},
+            {"Incendiary Grenade", 44},
+            {"Smoke Grenade", 45},
+            {"Prox Sensor (Motion)", 46},
+            {"Throwing Knife", 47},
+            {"Smoke Grenade Launcher", 48},
+            {"Lindmine", 49},
+            {"XM370A", 50},
+            {"FXM-33 AA Missile", 51},
+            {"Smoke Grenade Launchers", 52},
+            {"M136 AT4", 53},
+            {"G-84 TGM", 54},
+            {"Bazooka", 55},
+            {"SA-18 Igla", 56},
+            {"Binoculars BF1942", 57},
+            {"Mounted Vulcan", 58},
+            {"RPG-7v2", 59},
+            {"SPH Explosive Launcher", 60},
+            {"Spring Grenade", 61},
+            {"EOD Bot - BF3", 62},
+            {"Stick Grenade", 63}
+        };
+
+        public static readonly Dictionary<string, int> RibbonToIds = new Dictionary<string, int> {
+            {"Total", 1},
+            {"Squad", 2},
+            {"Combat", 3},
+            {"Intel", 4},
+            {"Objective", 5},
+            {"Support", 6},
+        };
     }
 
     public class LevelExperience
@@ -357,5 +489,4 @@ namespace GAMEDATAHUB.Repository
             }
         }
     }
-
 }

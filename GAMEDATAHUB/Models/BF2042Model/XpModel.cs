@@ -12,7 +12,7 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public Ribbon Ribbons;
     }
 
-    public class Ribbon {
+    public class Ribbonss {
         public int Total { get; set; }
         public int Squad { get; set; }
         public int Combat { get; set; }

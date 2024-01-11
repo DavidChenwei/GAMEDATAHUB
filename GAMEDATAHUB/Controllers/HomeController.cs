@@ -11,12 +11,8 @@ namespace GAMEDATAHUB.Controllers
     public class HomeController : Controller
     {
         Repository.Repository Resp = new Repository.Repository();
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            //string name = "MarineChen";
-            //string platform = "PC";
-            //Resp.dbtest();
-            //await Resp.HeroInfoGet(name, platform);
             return View();
         }
 

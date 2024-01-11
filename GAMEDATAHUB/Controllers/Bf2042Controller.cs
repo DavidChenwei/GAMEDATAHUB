@@ -96,8 +96,6 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Maps(string HeroName, string PlatForm)
         {
-            string SortMethod = "DESC";
-            string HeaderIndex = "header1";
             MapModeView mapModeView = Resp.MapsInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;

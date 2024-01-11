@@ -21,8 +21,15 @@ namespace GAMEDATAHUB
         }
     
         public int RibbonID { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> Total { get; set; }
+        public Nullable<int> Squad { get; set; }
+        public Nullable<int> Combat { get; set; }
+        public Nullable<int> Intel { get; set; }
+        public Nullable<int> Objective { get; set; }
+        public Nullable<int> Support { get; set; }
+        public Nullable<int> HeroId { get; set; }
     
+        public virtual Hero Hero { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RibbonItem> RibbonItem { get; set; }
     }

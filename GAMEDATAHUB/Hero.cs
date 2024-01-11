@@ -29,6 +29,7 @@ namespace GAMEDATAHUB
             this.XP = new HashSet<XP>();
             this.HeroOverView = new HashSet<HeroOverView>();
             this.GameModeItem = new HashSet<GameModeItem>();
+            this.Ribbon = new HashSet<Ribbon>();
         }
     
         public int HeroID { get; set; }
@@ -62,5 +63,7 @@ namespace GAMEDATAHUB
         public virtual ICollection<HeroOverView> HeroOverView { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GameModeItem> GameModeItem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ribbon> Ribbon { get; set; }
     }
 }

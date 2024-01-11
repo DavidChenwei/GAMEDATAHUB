@@ -33,7 +33,6 @@ namespace GAMEDATAHUB
         public virtual DbSet<Hero> Hero { get; set; }
         public virtual DbSet<Map> Map { get; set; }
         public virtual DbSet<MapItem> MapItem { get; set; }
-        public virtual DbSet<Ribbon> Ribbon { get; set; }
         public virtual DbSet<RibbonItem> RibbonItem { get; set; }
         public virtual DbSet<Specialist> Specialist { get; set; }
         public virtual DbSet<SpecialistItem> SpecialistItem { get; set; }
@@ -46,5 +45,6 @@ namespace GAMEDATAHUB
         public virtual DbSet<XP> XP { get; set; }
         public virtual DbSet<HeroOverView> HeroOverView { get; set; }
         public virtual DbSet<GameModeItem> GameModeItem { get; set; }
+        public virtual DbSet<Ribbon> Ribbon { get; set; }
     }
 }
