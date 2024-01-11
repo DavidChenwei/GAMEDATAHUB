@@ -75,6 +75,7 @@ namespace GAMEDATAHUB.Repository
                         else
                         {
                             overView.isValid = false;
+                            System.Diagnostics.Trace.TraceError(response.StatusCode.ToString());
                             Console.WriteLine($"HTTP Request Failed，Code: {response.StatusCode}");
                         }
                     }
@@ -88,75 +89,64 @@ namespace GAMEDATAHUB.Repository
             if (overView.isValid)
             {
                 overView = OverviewDataGenerate(heroInfoModel, overView);
+                //#region Hero
 
-                #region Database Operaion
-
-                GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
-                Hero hero = new Hero();
-
-                #region Hero
-
-                hero = (from s in dbContext.Hero
-                        where s.UserID == heroInfoModel.UserId
-                        select s).FirstOrDefault();
-                if (hero == null)
-                {
-                    hero = new Hero();
-                    hero.UserID = heroInfoModel.UserId ?? "";
-                    hero.Avatar = heroInfoModel.Avatar ?? "";
-                    hero.UserName = heroInfoModel.UserName ?? "";
-                    hero.Id = heroInfoModel.Id ?? "";
-                    hero.PlatForm = heroInfoModel.PlatForm ?? "";
-                    dbContext.Hero.Add(hero);
-                    try
-                    {
-                        dbContext.SaveChanges();
-                    }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                        {
-                            foreach (var validationError in entityValidationErrors.ValidationErrors)
-                            {
-                                Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
-                    {
-                        hero.UserID = heroInfoModel.UserId;
-                    }
-                    if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
-                    {
-                        hero.Avatar = heroInfoModel.Avatar;
-                    }
-                    if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
-                    {
-                        hero.UserName = heroInfoModel.UserName;
-                    }
-                    if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
-                    {
-                        hero.Id = heroInfoModel.Id;
-                    }
-                    if (hero.PlatForm != heroInfoModel.PlatForm && heroInfoModel.PlatForm != "")
-                    {
-                        hero.PlatForm = heroInfoModel.PlatForm;
-                    }
-                    dbContext.Hero.Add(hero);
-                    dbContext.SaveChanges();
-                }
+                //GameDataHubEntitiy dbContext = new GameDataHubEntitiy();
+                //Hero hero = new Hero();
+                //hero = (from s in dbContext.Hero
+                //        where s.UserID == heroInfoModel.UserId
+                //        select s).FirstOrDefault();
+                //if (hero == null)
+                //{
+                //    hero = new Hero();
+                //    hero.UserID = heroInfoModel.UserId ?? "";
+                //    hero.Avatar = heroInfoModel.Avatar ?? "";
+                //    hero.UserName = heroInfoModel.UserName ?? "";
+                //    hero.Id = heroInfoModel.Id ?? "";
+                //    hero.PlatForm = heroInfoModel.PlatForm ?? "";
+                //    dbContext.Hero.Add(hero);
+                //    try
+                //    {
+                //        dbContext.SaveChanges();
+                //    }
+                //    catch (DbEntityValidationException ex)
+                //    {
+                //        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                //        {
+                //            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                //            {
+                //                Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                //            }
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    if (hero.UserID != heroInfoModel.UserId && heroInfoModel.UserId != "")
+                //    {
+                //        hero.UserID = heroInfoModel.UserId;
+                //    }
+                //    if (hero.Avatar != heroInfoModel.Avatar && heroInfoModel.Avatar != "")
+                //    {
+                //        hero.Avatar = heroInfoModel.Avatar;
+                //    }
+                //    if (hero.UserName != heroInfoModel.UserName && heroInfoModel.UserName != "")
+                //    {
+                //        hero.UserName = heroInfoModel.UserName;
+                //    }
+                //    if (hero.Id != heroInfoModel.Id && heroInfoModel.Id != "")
+                //    {
+                //        hero.Id = heroInfoModel.Id;
+                //    }
+                //    if (hero.PlatForm != heroInfoModel.PlatForm && heroInfoModel.PlatForm != "")
+                //    {
+                //        hero.PlatForm = heroInfoModel.PlatForm;
+                //    }
+                //    dbContext.Hero.Add(hero);
+                //    dbContext.SaveChanges();
+                //}
+                //#endregion Hero
             }
-
-            #endregion Hero
-
-            //foreach (var weapon in heroInfoModel.Weapons)
-            //{
-            //}
-
-            #endregion Database Operaion
 
             return overView;
         }

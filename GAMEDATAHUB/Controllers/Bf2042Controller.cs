@@ -50,6 +50,7 @@ namespace GAMEDATAHUB.Controllers
                 Platform = "pc";
             }
             OverviewModel Overview = await Resp.HeroInfoGet(HeroName, Platform);
+            Overview.isValid = true;
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = Platform;
             ViewData["Avatar"] = Overview.Avatar;
@@ -57,7 +58,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["Page"] = "Overview";
             if (Overview.isValid)
             {
-                Resp.StoreDataAsync(HeroName);
+                //Resp.StoreDataAsync(HeroName);
                 return View(Overview);
             }
             else {

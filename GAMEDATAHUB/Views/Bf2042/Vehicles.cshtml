@@ -44,41 +44,88 @@
                                         <div class="st-content__category">
                                             @foreach (var vehicle in Model.Vehicles)
                                             {
-                                                <div class="st-content__item">
-                                                    <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 16rem;">
-                                                        <div class="info">
-                                                            <div class="value">@vehicle.VehicleName</div>
-                                                            <div class="label">@vehicle.Type</div>
-                                                        </div>
+                                            <div class="st-content__item">
+                                                <div class="st__item st-content__item-value st__item--sticky st__item--wide" style="--st-base-width: 16rem;">
+                                                    <div class="info">
+                                                        <div class="value">@vehicle.VehicleName</div>
+                                                        <div class="label">@vehicle.Type</div>
                                                     </div>
-                                                    <div class="st__item st-content__item-value" style="--st-base-width: 5.5rem;">
+                                                </div>
+                                                @if (Model.MaxKills == vehicle.Kills)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight" style="--st-base-width: 5.5rem;">
                                                         <div class="info">
                                                             <div class="value">@vehicle.Kills.ToString("N0")</div>
                                                         </div>
                                                     </div>
-                                                    <div class="st__item st-content__item-value st-content__item-value--active st-content__item-value--highlight"
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--active" style="--st-base-width: 5.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.Kills.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (Model.MaxDamage == vehicle.Damage)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight"
                                                          style="--st-base-width: 8rem;">
                                                         <div class="info">
                                                             <div class="value">@vehicle.Damage.ToString("N0")</div>
                                                         </div>
                                                     </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value"
+                                                         style="--st-base-width: 8rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.Damage.ToString("N0")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (Model.MaxKPM == vehicle.KillsPerMinute)
+                                                {
                                                     <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 7.5rem;">
                                                         <div class="info">
                                                             <div class="value">@vehicle.KillsPerMinute.ToString()</div>
                                                         </div>
                                                     </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="st__item st-content__item-value" style="--st-base-width: 7.5rem;">
+                                                        <div class="info">
+                                                            <div class="value">@vehicle.KillsPerMinute.ToString()</div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (Model.MaxKPM == vehicle.KillsPerMinute)
+                                                {
+                                                    <div class="st__item st-content__item-value st-content__item-value--highlight" style="--st-base-width: 9rem;">
+                                                        <div class="info">
+                                                            <div class="value">@(vehicle.HoursPlayed.ToString("N0"))H</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
                                                     <div class="st__item st-content__item-value" style="--st-base-width: 9rem;">
                                                         <div class="info">
                                                             <div class="value">@(vehicle.HoursPlayed.ToString("N0"))H</div>
                                                         </div>
                                                     </div>
-                                                    <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
-                                                            <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
-                                                            </path>
-                                                        </svg>
-                                                    </div>
+                                                }
+
+                                                <div class="st__item st__item--expand st-content__item-expand st__item--expand-hide-mobile">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 16" class="icon">
+                                                        <path d="M2 12a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z">
+                                                        </path>
+                                                    </svg>
                                                 </div>
+                                            </div>
                                                 <div class="st-content__drawer" style="display: none;">
                                                     <div data-v-a8153416="" class="stat-dump">
                                                         <div class="category">
@@ -154,9 +201,7 @@
                                                     </div>
                                                 </div>
                                             }
-
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -377,4 +422,3 @@
         });
     </script>
 </body>
-
