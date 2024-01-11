@@ -771,23 +771,5 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var heroName = document.getElementById('HeroName').value;
-            $.ajax({
-                url: '@Url.Action("asyncSaveDate", "Bf2042")',
-                type: 'POST',
-                data: {
-                    Target: "OverView",
-                    HeroName: heroName
-                },
-                success: function (response) {
-                    var parsedData = JSON.parse(response);
-                    console.log(parsedData);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus, errorThrown);
-                }
-            });
-        });
     </script>
 </body>

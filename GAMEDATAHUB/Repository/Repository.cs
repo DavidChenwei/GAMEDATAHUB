@@ -1066,11 +1066,11 @@ namespace GAMEDATAHUB.Repository
             return vehicleModelView;
         }
 
-        public ResponseModel asyncSaving(string Target, string HeroName)
+        public ResponseModel StoreDataAsync(string HeroName)
         {
             ResponseModel response = new ResponseModel();
             HeroInfoModel heroInfoModel = new HeroInfoModel();
-            GameModeView gameModeView = new GameModeView();
+
             if (cache.Contains(HeroName))
             {
                 heroInfoModel = (HeroInfoModel)cache.Get(HeroName);
@@ -1130,6 +1130,7 @@ namespace GAMEDATAHUB.Repository
                         heroOverView.VehiclesDestroyed = heroInfoModel.VehiclesDestroyed;
                         heroOverView.EnemiesSpotted = heroInfoModel.EnemiesSpotted;
                         heroOverView.Mvp = heroInfoModel.Mvp;
+                        dbContext.HeroOverView.Add(heroOverView);
                     }
                     else
                     {
@@ -1289,11 +1290,38 @@ namespace GAMEDATAHUB.Repository
                         {
                             heroOverView.Mvp = heroInfoModel.Mvp;
                         }
-                    }
-
+                    }                 
                     #endregion heroOverView
 
-                    dbContext.HeroOverView.Add(heroOverView);
+                    #region Map
+
+                    List<Map> maps = (from s in dbContext.Map
+                                      select s).ToList();
+                    if (!maps.Any())
+                    {
+                        foreach (var map in heroInfoModel.Maps)
+                        {
+                            Map mapDB = new Map();
+                            mapDB.MapName = map.MapName;
+                            mapDB.Image = map.Image;
+                            mapDB.Id = map.Id;
+                            dbContext.Map.Add(mapDB);
+                        }
+                    }
+                    #endregion Map
+
+                    #region
+                    //MapItem mapItem = new MapItem();
+                    //mapItem = (from s in dbContext.MapItem
+                    //                   where s.HeroId == hero.HeroID
+                    //                   select s).FirstOrDefault();
+
+                    //if (mapItem == null) {
+                    //    mapItem = new MapItem();
+
+                    //}
+                    #endregion
+
                     try
                     {
                         dbContext.SaveChanges();

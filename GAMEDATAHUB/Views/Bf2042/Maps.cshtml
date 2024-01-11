@@ -258,7 +258,7 @@
                                     var child = st__item.querySelector('.info .value');
                                     if (HeaderIndex == 0) {
                                         child.innerText = mapsModeViews[JsonIndex]['MapName'];
-                                        st__item.style.setProperty("--background-image-url", mapsModeViews[JsonIndex]['Image']);
+                                        st__item.style.setProperty("--background-image-url", "url(" + mapsModeViews[JsonIndex]['Image'] +")");
                                     }
                                     if (HeaderIndex == 1) {
                                         child.innerText = mapsModeViews[JsonIndex]['Wins'].toLocaleString('en-US');

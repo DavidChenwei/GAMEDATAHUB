@@ -57,6 +57,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["Page"] = "Overview";
             if (Overview.isValid)
             {
+                Resp.StoreDataAsync(HeroName);
                 return View(Overview);
             }
             else {
@@ -216,13 +217,5 @@ namespace GAMEDATAHUB.Controllers
             return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
         }
 
-
-        [HttpPost]
-        public JsonResult asyncSaveDate(ModeJson modeJson)
-        {
-            ResponseModel response = Resp.asyncSaving(modeJson.Target, modeJson.HeroName);
-            var JsonPayLoad = JsonConvert.SerializeObject(response);
-            return Json(JsonPayLoad, JsonRequestBehavior.AllowGet);
-        }
     }
 }
