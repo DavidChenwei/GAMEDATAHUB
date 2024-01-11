@@ -1292,7 +1292,7 @@ namespace GAMEDATAHUB.Repository
                         {
                             heroOverView.Mvp = heroInfoModel.Mvp;
                         }
-                    }                 
+                    }
                     #endregion heroOverView
 
                     #region Map
@@ -1319,18 +1319,21 @@ namespace GAMEDATAHUB.Repository
                     {
                         foreach (var item in heroInfoModel.Maps)
                         {
-                            MapItem mapItem = new MapItem();
-                            mapItem.MapId = MapIdGet(item.MapName);
-                            mapItem.HeroId = hero.HeroID;
-                            mapItem.Wins = item.Wins;
-                            mapItem.Losses = item.Losses;
-                            mapItem.Matches = item.Matches;
-                            mapItem.WinPercent = item.WinPercentD;
-                            mapItem.SecondsPlayed = item.SecondsPlayed;
+                            MapItem mapItem = new MapItem
+                            {
+                                MapId = MapIdGet(item.MapName),
+                                HeroId = hero.HeroID,
+                                Wins = item.Wins,
+                                Losses = item.Losses,
+                                Matches = item.Matches,
+                                WinPercent = item.WinPercentD,
+                                SecondsPlayed = item.SecondsPlayed
+                            };
                             dbContext.MapItem.Add(mapItem);
                         }
                     }
-                    else {
+                    else
+                    {
                         for (int i = 0; i < mapItems.Count; i++)
                         {
                             if (mapItems[i].Wins != heroInfoModel.Maps[i].Wins)
@@ -1356,15 +1359,16 @@ namespace GAMEDATAHUB.Repository
                         }
                     }
 
-
                     #endregion Map
 
                     #region Mode
                     List<GameMode> gameModes = (from s in dbContext.GameMode
                                                 select s).ToList();
 
-                    if (!gameModes.Any()) {
-                        foreach (var item in heroInfoModel.Gamemodes) {
+                    if (!gameModes.Any())
+                    {
+                        foreach (var item in heroInfoModel.Gamemodes)
+                        {
                             GameMode gameMode = new GameMode();
                             gameMode.GamemodeName = item.GamemodeName;
                             gameMode.Images = item.Image;
@@ -1407,9 +1411,12 @@ namespace GAMEDATAHUB.Repository
                             dbContext.GameModeItem.Add(gameModeItem);
                         }
                     }
-                    else {
-                        for (int i = 0; i < gameModeItems.Count; i++) {
-                            if (gameModeItems[i].Kills != heroInfoModel.Gamemodes[i].Kills) {
+                    else
+                    {
+                        for (int i = 0; i < gameModeItems.Count; i++)
+                        {
+                            if (gameModeItems[i].Kills != heroInfoModel.Gamemodes[i].Kills)
+                            {
                                 gameModeItems[i].Kills = heroInfoModel.Gamemodes[i].Kills;
                             }
                             if (gameModeItems[i].Assists != heroInfoModel.Gamemodes[i].Assists)
@@ -1478,46 +1485,258 @@ namespace GAMEDATAHUB.Repository
                             }
                         }
                     }
-                    #endregion
+                    #endregion Mode
 
                     #region Specialists
-                        
+                    List<Specialist> specialists = new List<Specialist>();
+                    specialists = (from s in dbContext.Specialist
+                                   select s).ToList();
+                    if (!specialists.Any())
+                    {
+                        foreach (var item in heroInfoModel.Classes)
+                        {
+                            Specialist specialist = new Specialist
+                            {
+                                ClassName = item.ClassName,
+                                CharacterName = item.CharacterName,
+                                StatName = item.StatName,
+                                Image = item.Image,
+                                AvatarImage1 = item.AvatarImages.Rus,
+                                AvatarImage2 = item.AvatarImages.Us
+                            };
+                            dbContext.Specialist.Add(specialist);
+                        }
+                    }
+
+                    List<SpecialistItem> specialistItems = new List<SpecialistItem>();
+                    specialistItems = (from s in dbContext.SpecialistItem
+                                       where s.HeroId == hero.HeroID
+                                       orderby s.SpecialistID
+                                       select s).ToList();
+
+                    if (!specialistItems.Any())
+                    {
+                        foreach (var item in heroInfoModel.Classes)
+                        {
+                            SpecialistItem specialistItem = new SpecialistItem()
+                            {
+                                SpecialistID = SpecialistIdGet(item.CharacterName),
+                                HeroId = hero.HeroID,
+                                Kills = item.Kills,
+                                Deaths = item.Deaths,
+                                KMP = item.KPM,
+                                Spawns = item.Spawns,
+                                KillDeath = item.KillDeath,
+                                Revives = item.Revives,
+                                Assists = item.Assists,
+                                HazardZoneStreaks = item.HazardZoneStreaks,
+                                SecondsPlayed = item.SecondsPlayed
+                            };
+                            dbContext.SpecialistItem.Add(specialistItem);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < specialistItems.Count; i++)
+                        {
+                            if (specialistItems[i].Kills != heroInfoModel.Classes[i].Kills)
+                            {
+                                specialistItems[i].Kills = heroInfoModel.Classes[i].Kills;
+                            }
+                            if (specialistItems[i].Deaths != heroInfoModel.Classes[i].Deaths)
+                            {
+                                specialistItems[i].Deaths = heroInfoModel.Classes[i].Deaths;
+                            }
+                            if (specialistItems[i].KMP != heroInfoModel.Classes[i].KPM)
+                            {
+                                specialistItems[i].KMP = heroInfoModel.Classes[i].KPM;
+                            }
+                            if (specialistItems[i].Spawns != heroInfoModel.Classes[i].Spawns)
+                            {
+                                specialistItems[i].Spawns = heroInfoModel.Classes[i].Spawns;
+                            }
+                            if (specialistItems[i].KillDeath != heroInfoModel.Classes[i].KillDeath)
+                            {
+                                specialistItems[i].KillDeath = heroInfoModel.Classes[i].KillDeath;
+                            }
+                            if (specialistItems[i].Revives != heroInfoModel.Classes[i].Revives)
+                            {
+                                specialistItems[i].Revives = heroInfoModel.Classes[i].Revives;
+                            }
+                            if (specialistItems[i].Assists != heroInfoModel.Classes[i].Assists)
+                            {
+                                specialistItems[i].Assists = heroInfoModel.Classes[i].Assists;
+                            }
+                            if (specialistItems[i].HazardZoneStreaks != heroInfoModel.Classes[i].HazardZoneStreaks)
+                            {
+                                specialistItems[i].HazardZoneStreaks = heroInfoModel.Classes[i].HazardZoneStreaks;
+                            }
+                            if (specialistItems[i].SecondsPlayed != heroInfoModel.Classes[i].SecondsPlayed)
+                            {
+                                specialistItems[i].SecondsPlayed = heroInfoModel.Classes[i].SecondsPlayed;
+                            }
+                        }
+                    }
+                    #endregion Specialists
+
+                    #region Weapon
+                    List<Weapon> weapons = new List<Weapon>();
+                    weapons = (from s in dbContext.Weapon
+                               select s).ToList();
+                    if (!weapons.Any())
+                    {
+                        foreach (var item in heroInfoModel.Weapons)
+                        {
+                            Weapon weapon = new Weapon
+                            {
+                                Type = item.Type,
+                                WeaponName = item.WeaponName,
+                                Image = item.Image,
+                                Id = item.Id
+                            };
+                            dbContext.Weapon.Add(weapon);
+                        }
+                    }
+
+                    List<WeaponItem> weaponItems = new List<WeaponItem>();
+                    weaponItems = (from s in dbContext.WeaponItem
+                                   where s.HeroID == hero.HeroID
+                                   orderby s.WeaponID
+                                   select s).ToList();
+                    if (!weaponItems.Any())
+                    {
+                        foreach (var item in heroInfoModel.Weapons)
+                        {
+                            WeaponItem weaponItem = new WeaponItem
+                            {
+                                WeaponID = WeaponIdGet(item.WeaponName),
+                                Kills = item.Kills,
+                                Damage = item.Damage,
+                                BodyKills = item.BodyKills,
+                                HeadshotKills = item.HeadshotKills,
+                                HipfireKills = item.HipfireKills,
+                                MultiKills = item.MultiKills,
+                                Accuracy = item.AccuracyD,
+                                KillsPerMinute = item.KillsPerMinute,
+                                DamagePerMinute = item.DamagePerMinute,
+                                Headshots = item.HeadshotsD,
+                                Hitvalls = item.HitVKills,
+                                ShotsHit = item.ShotsHit,
+                                ShotsFired = item.ShotsFired,
+                                Spawns = item.Spawns,
+                                TimeEquipped = item.TimeEquipped
+                            };
+                            dbContext.WeaponItem.Add(weaponItem);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < weaponItems.Count; i++)
+                        {
+                            if (weaponItems[i].Kills != heroInfoModel.Weapons[i].Kills)
+                            {
+                                weaponItems[i].Kills = heroInfoModel.Weapons[i].Kills;
+                            }
+                            if (weaponItems[i].Damage != heroInfoModel.Weapons[i].Damage)
+                            {
+                                weaponItems[i].Damage = heroInfoModel.Weapons[i].Damage;
+                            }
+                            if (weaponItems[i].BodyKills != heroInfoModel.Weapons[i].BodyKills)
+                            {
+                                weaponItems[i].BodyKills = heroInfoModel.Weapons[i].BodyKills;
+                            }
+                            if (weaponItems[i].HeadshotKills != heroInfoModel.Weapons[i].HeadshotKills)
+                            {
+                                weaponItems[i].HeadshotKills = heroInfoModel.Weapons[i].HeadshotKills;
+                            }
+                            if (weaponItems[i].HipfireKills != heroInfoModel.Weapons[i].HipfireKills)
+                            {
+                                weaponItems[i].HipfireKills = heroInfoModel.Weapons[i].HipfireKills;
+                            }
+                            if (weaponItems[i].MultiKills != heroInfoModel.Weapons[i].MultiKills)
+                            {
+                                weaponItems[i].MultiKills = heroInfoModel.Weapons[i].MultiKills;
+                            }
+                            if (weaponItems[i].Accuracy != heroInfoModel.Weapons[i].AccuracyD)
+                            {
+                                weaponItems[i].Accuracy = heroInfoModel.Weapons[i].AccuracyD;
+                            }
+                            if (weaponItems[i].KillsPerMinute != heroInfoModel.Weapons[i].KillsPerMinute)
+                            {
+                                weaponItems[i].KillsPerMinute = heroInfoModel.Weapons[i].KillsPerMinute;
+                            }
+                            if (weaponItems[i].DamagePerMinute != heroInfoModel.Weapons[i].DamagePerMinute)
+                            {
+                                weaponItems[i].DamagePerMinute = heroInfoModel.Weapons[i].DamagePerMinute;
+                            }
+                            if (weaponItems[i].Headshots != heroInfoModel.Weapons[i].HeadshotsD)
+                            {
+                                weaponItems[i].Headshots = heroInfoModel.Weapons[i].HeadshotsD;
+                            }
+                            if (weaponItems[i].Hitvalls != heroInfoModel.Weapons[i].HitVKills)
+                            {
+                                weaponItems[i].Hitvalls = heroInfoModel.Weapons[i].HitVKills;
+                            }
+                            if (weaponItems[i].ShotsHit != heroInfoModel.Weapons[i].ShotsHit)
+                            {
+                                weaponItems[i].ShotsHit = heroInfoModel.Weapons[i].ShotsHit;
+                            }
+                            if (weaponItems[i].ShotsFired != heroInfoModel.Weapons[i].ShotsFired)
+                            {
+                                weaponItems[i].ShotsFired = heroInfoModel.Weapons[i].ShotsFired;
+                            }
+                            if (weaponItems[i].Spawns != heroInfoModel.Weapons[i].Spawns)
+                            {
+                                weaponItems[i].Spawns = heroInfoModel.Weapons[i].Spawns;
+                            }
+                            if (weaponItems[i].TimeEquipped != heroInfoModel.Weapons[i].TimeEquipped)
+                            {
+                                weaponItems[i].TimeEquipped = heroInfoModel.Weapons[i].TimeEquipped;
+                            }
+                        }
+                    }
+                    #endregion Weapon
+
+                    #region
+
                     #endregion
 
                     try
                     {
-                        dbContext.SaveChanges();
-                        response.IsValid = true;
-                        response.ReturnText = "Database Update Success";
-                    }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                        {
-                            foreach (var validationError in entityValidationErrors.ValidationErrors)
-                            {
-                                response.AddError("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                            }
+                            dbContext.SaveChanges();
+                            response.IsValid = true;
+                            response.ReturnText = "Database Update Success";
                         }
-                        response.IsValid = false;
-                        response.ReturnText = "Database Update Faild";
+                        catch (DbEntityValidationException ex)
+                        {
+                            foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                            {
+                                foreach (var validationError in entityValidationErrors.ValidationErrors)
+                                {
+                                    response.AddError("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                                }
+                            }
+                            response.IsValid = false;
+                            response.ReturnText = "Database Update Faild";
+                        }
                     }
                 }
-            }
-            else
-            {
-                response.IsValid = false;
-                response.ReturnText = "Cache is not exsited";
-            }
+                else
+                {
+                    response.IsValid = false;
+                    response.ReturnText = "Cache is not exsited";
+                }
             return response;
         }
 
-        public int MapIdGet(string mapName) {
+        public int MapIdGet(string mapName)
+        {
             if (Utils.MapNamesToIds.TryGetValue(mapName, out int mapId))
             {
                 return mapId;
             }
-            else {
+            else
+            {
                 return 0;
             }
         }
@@ -1527,6 +1746,30 @@ namespace GAMEDATAHUB.Repository
             if (Utils.ModeNamesToIds.TryGetValue(modeName, out int modeId))
             {
                 return modeId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int SpecialistIdGet(string specialistName)
+        {
+            if (Utils.SpecialistNamesToIds.TryGetValue(specialistName, out int specialistId))
+            {
+                return specialistId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int WeaponIdGet(string WeapontName)
+        {
+            if (Utils.SpecialistNamesToIds.TryGetValue(WeapontName, out int WeaponId))
+            {
+                return WeaponId;
             }
             else
             {
