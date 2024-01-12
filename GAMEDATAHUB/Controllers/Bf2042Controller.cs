@@ -58,7 +58,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["Page"] = "Overview";
             if (Overview.isValid)
             {
-                //Resp.StoreDataAsync(HeroName);
+                Resp.StoreDataAsync(HeroName);
                 return View(Overview);
             }
             else {

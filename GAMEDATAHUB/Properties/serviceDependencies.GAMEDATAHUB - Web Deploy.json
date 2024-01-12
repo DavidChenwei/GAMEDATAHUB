@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/gamedatahubdbserver/databases/GAMEDATAHUB",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/gamedatahubdbserver/databases/GAMEDATAHUB",
       "type": "mssql.azure",
-      "connectionId": "GameDataHubEntitiy",
+      "connectionId": "GameDataHubEntitiy_db",
       "secretStore": "AzureAppSettings"
     }
   }

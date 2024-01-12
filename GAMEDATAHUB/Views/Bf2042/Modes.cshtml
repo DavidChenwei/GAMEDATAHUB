@@ -1,5 +1,9 @@
 ﻿@model GAMEDATAHUB.Models.BF2042Model.GameModeView
 
+@{
+    ViewBag.Title = "Game Modes";
+}
+
 <body>
     <div class="gdh-wrapper">
         <div class="gdh-container">
@@ -331,7 +335,7 @@
                                         child.innerText = gameModeViews[JsonIndex]['Wins'].toLocaleString('en-US');
                                         if (parsedData['MaxWins'] == gameModeViews[JsonIndex]['Wins']) {
                                             st__item.classList.add('st-content__item-value--highlight');
-                                        } else {                                           
+                                        } else {
                                             st__item.classList.remove('st-content__item-value--highlight');
                                         }
                                     }
