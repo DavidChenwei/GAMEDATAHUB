@@ -194,6 +194,10 @@ html, body {
     fill: #efefef;
 }
 
+.landing__content .checkpoint .checkpoint__logo {
+    width: 15rem;
+}
+
 .gdh-wrapper {
     display: flex;
     flex: 1;
