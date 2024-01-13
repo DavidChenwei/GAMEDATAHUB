@@ -2112,8 +2112,18 @@ namespace GAMEDATAHUB.Repository
                 response.ReturnText = "Email has been registered!";
             }
             else {
-                user = new User();
-                
+                user = new User {
+                    UserName = UserName,
+                    UserEmail = UserEmail,
+                    UserHashedPassword = hashedPassword,
+                    UserSalt = salt,
+                    HeroID = 0,
+                    IsPremium = false,
+                    CreateTime = DateTime.Now,
+                };
+                dbContext.User.Add(user);
+                response.IsValid = true;
+                response.ReturnText = "Register Successful";
             }
 
             return response;

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GAMEDATAHUB.Repository;
+using GAMEDATAHUB.Models;
 
 namespace GAMEDATAHUB.Controllers
 {
@@ -19,6 +20,7 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            ModelState.AddModelError("", "error");
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -29,8 +31,8 @@ namespace GAMEDATAHUB.Controllers
         {
             string salt;
             string hashedPassword = EncryptionService.Encrypt(Password, out salt);
-            bool isPasswordValid = EncryptionService.Decrypt(Password,salt,hashedPassword);
-            Resp.Register(UserName, Email, hashedPassword, salt);
+            //bool isPasswordValid = EncryptionService.Decrypt(Password,salt,hashedPassword);
+            ResponseModel response = Resp.Register(UserName, Email, hashedPassword, salt);
             return View();
         }
 
