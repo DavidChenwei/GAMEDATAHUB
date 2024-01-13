@@ -32,6 +32,8 @@ namespace GAMEDATAHUB
                       "~/Content/styles.css"));
             bundles.Add(new StyleBundle("~/Content/PNFcss").Include(
                       "~/Content/PageNotFound.css"));
+            bundles.Add(new StyleBundle("~/Content/login").Include(
+          "~/Content/Login.css"));
             #endregion
         }
     }

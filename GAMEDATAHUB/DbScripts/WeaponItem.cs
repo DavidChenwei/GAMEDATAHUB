@@ -9,6 +9,7 @@ namespace GAMEDATAHUB.DbScripts
     [Table("WeaponItem")]
     public partial class WeaponItem
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WeaponItemId { get; set; }
 

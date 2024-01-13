@@ -29,6 +29,7 @@ namespace GAMEDATAHUB.DbScripts
         public virtual DbSet<WeaponGroup> WeaponGroup { get; set; }
         public virtual DbSet<WeaponItem> WeaponItem { get; set; }
         public virtual DbSet<XP> XP { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -16,10 +16,21 @@ namespace GAMEDATAHUB.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Login()
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string UserName, string Password, string Email)
+        {
+            string salt;
+            string hashedPassword = EncryptionService.Encrypt(Password, out salt);
+            bool isPasswordValid = EncryptionService.Decrypt(Password,salt,hashedPassword);
+            Resp.Register(UserName, Email, hashedPassword, salt);
             return View();
         }
 

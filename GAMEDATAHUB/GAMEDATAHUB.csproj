@@ -156,6 +156,7 @@
     <Compile Include="DbScripts\Ribbon.cs" />
     <Compile Include="DbScripts\Specialist.cs" />
     <Compile Include="DbScripts\SpecialistItem.cs" />
+    <Compile Include="DbScripts\User.cs" />
     <Compile Include="DbScripts\Vehicle.cs" />
     <Compile Include="DbScripts\VehicleGroup.cs" />
     <Compile Include="DbScripts\VehicleItem.cs" />
@@ -169,6 +170,10 @@
     <Compile Include="Migrations\202401120931409_InitialCreate.cs" />
     <Compile Include="Migrations\202401120931409_InitialCreate.designer.cs">
       <DependentUpon>202401120931409_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401131140463_AddTable.cs" />
+    <Compile Include="Migrations\202401131140463_AddTable.designer.cs">
+      <DependentUpon>202401131140463_AddTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
@@ -187,6 +192,7 @@
     <Compile Include="Models\BF2042Model\XpModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\EncryptionService.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\Utils.cs" />
   </ItemGroup>
@@ -195,6 +201,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\PageNotFound.css" />
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
@@ -252,6 +259,7 @@
     <Content Include="Views\RBS6\Overview.cshtml" />
     <Content Include="Views\Valorant\Overview.cshtml" />
     <Content Include="Views\CS2\Overview.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +283,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202401120931409_InitialCreate.resx">
       <DependentUpon>202401120931409_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401131140463_AddTable.resx">
+      <DependentUpon>202401131140463_AddTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

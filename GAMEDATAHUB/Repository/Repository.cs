@@ -2098,5 +2098,25 @@ namespace GAMEDATAHUB.Repository
                 return 0;
             }
         }
+
+        public ResponseModel Register(string UserName, string UserEmail, string hashedPassword, string salt) {
+            ResponseModel response = new ResponseModel();
+            GameDataHubEntity dbContext = new GameDataHubEntity();
+            User user = new User();
+            user = (from s in dbContext.User
+                         where s.UserEmail == UserEmail && s.DeleteTime.HasValue == false
+                         select s).FirstOrDefault();
+            if (user != null)
+            {
+                response.IsValid = false;
+                response.ReturnText = "Email has been registered!";
+            }
+            else {
+                user = new User();
+                
+            }
+
+            return response;
+        }
     }
 }

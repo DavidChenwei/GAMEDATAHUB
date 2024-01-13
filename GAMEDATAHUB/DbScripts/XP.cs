@@ -9,6 +9,7 @@ namespace GAMEDATAHUB.DbScripts
     [Table("XP")]
     public partial class XP
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int XPId { get; set; }
 

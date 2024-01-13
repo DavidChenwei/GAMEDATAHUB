@@ -24,6 +24,7 @@ namespace GAMEDATAHUB.DbScripts
             VehicleGroup = new HashSet<VehicleGroup>();
             WeaponGroup = new HashSet<WeaponGroup>();
             XP = new HashSet<XP>();
+            User = new HashSet<User>();
         }
 
         [Key]
@@ -85,6 +86,9 @@ namespace GAMEDATAHUB.DbScripts
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<XP> XP { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
 
     }
 }
