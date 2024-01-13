@@ -13,8 +13,7 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
 
-        [Required]
-        public int HeroID { get; set; }
+        public int? HeroID { get; set; }
 
         [Required]
         [MaxLength(255)]

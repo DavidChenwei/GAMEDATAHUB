@@ -153,6 +153,7 @@
     <Compile Include="DbScripts\HeroOverView.cs" />
     <Compile Include="DbScripts\Map.cs" />
     <Compile Include="DbScripts\MapItem.cs" />
+    <Compile Include="DbScripts\Rank.cs" />
     <Compile Include="DbScripts\Ribbon.cs" />
     <Compile Include="DbScripts\Specialist.cs" />
     <Compile Include="DbScripts\SpecialistItem.cs" />
@@ -175,6 +176,14 @@
     <Compile Include="Migrations\202401131140463_AddTable.designer.cs">
       <DependentUpon>202401131140463_AddTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401131429244_AddRankTable.cs" />
+    <Compile Include="Migrations\202401131429244_AddRankTable.designer.cs">
+      <DependentUpon>202401131429244_AddRankTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401131430424_Updateproperty.cs" />
+    <Compile Include="Migrations\202401131430424_Updateproperty.designer.cs">
+      <DependentUpon>202401131430424_Updateproperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
     <Compile Include="Models\BF2042Model\DividedKillsModel.cs" />
@@ -191,6 +200,7 @@
     <Compile Include="Models\BF2042Model\WeaponModel.cs" />
     <Compile Include="Models\BF2042Model\XpModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EncryptionService.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -286,6 +296,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401131140463_AddTable.resx">
       <DependentUpon>202401131140463_AddTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401131429244_AddRankTable.resx">
+      <DependentUpon>202401131429244_AddRankTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401131430424_Updateproperty.resx">
+      <DependentUpon>202401131430424_Updateproperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

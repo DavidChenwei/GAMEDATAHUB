@@ -62,7 +62,7 @@ namespace GAMEDATAHUB.Controllers
                 return View(Overview);
             }
             else {
-                return RedirectToAction("AnimationPage", new { isValid = Overview.isValid, name = HeroName, plat = Platform });;
+                return RedirectToAction("AnimationPage", new { isValid = Overview.isValid, name = HeroName, plat = Platform });
             }
 
         }

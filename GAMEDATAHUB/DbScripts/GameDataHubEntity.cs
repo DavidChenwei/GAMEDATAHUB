@@ -257,6 +257,142 @@ namespace GAMEDATAHUB.DbScripts
                 .Property(e => e.HitVKills)
                 .HasColumnType("decimal")
                 .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.KDRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.HSRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.WinPercentRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.HumanKDRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.DeathRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.KPMRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.KPMatchRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.WinRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.LostRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.DamageRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.DPMRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.VehiclesDestroyedRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.HSAmountRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.RoadKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.MeleeKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.VehicleKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.ScopedKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.HipfireKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.HumanKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.AIKillRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.ObjectiveTimeRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.DisarmedObjectRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.CapturedObjectiRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.ObjectivesDeutralizeRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.SectorsDefendeRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.SectorsCapturedRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Rank>()
+                .Property(e => e.AttackedObjectRank)
+                .HasColumnType("decimal")
+                .HasPrecision(10, 2);
+
         }
     }
 }
