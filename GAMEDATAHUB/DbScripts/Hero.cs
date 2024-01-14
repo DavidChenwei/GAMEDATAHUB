@@ -14,7 +14,6 @@ namespace GAMEDATAHUB.DbScripts
         {
             GadgetItem = new HashSet<GadgetItem>();
             GameModeItem = new HashSet<GameModeItem>();
-            GObjectItem = new HashSet<GObjectItem>();
             MapItem = new HashSet<MapItem>();
             VehicleItem = new HashSet<VehicleItem>();
             WeaponItem = new HashSet<WeaponItem>();
@@ -58,9 +57,6 @@ namespace GAMEDATAHUB.DbScripts
         public virtual ICollection<GameModeItem> GameModeItem { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GObjectItem> GObjectItem { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MapItem> MapItem { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -89,6 +85,9 @@ namespace GAMEDATAHUB.DbScripts
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DividedKill> DividedKill { get; set; }
 
     }
 }

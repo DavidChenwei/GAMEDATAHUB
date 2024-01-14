@@ -9,18 +9,22 @@ namespace GAMEDATAHUB.DbScripts
     [Table("GObject")]
     public partial class GObject
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GObject()
-        {
-            GObjectItem = new HashSet<GObjectItem>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GObjectID { get; set; }
 
         [Required]
-        public int HerolD { get; set; }
+        public int HeroID { get; set; }
+
+        public int? ObjectTotal { get; set; }
+
+        public int? AttackedTotal { get; set; }
+
+        public int? DefendedTotal { get; set; }
+
+        public int? Defused { get; set; }
+
+        public int? Destroyed { get; set; }
 
         public int? Armed { get; set; }
 
@@ -28,9 +32,12 @@ namespace GAMEDATAHUB.DbScripts
 
         public int? Neutralized { get; set; }
 
-        public int? Destroyed { get; set; }
+        public int? AttackedSector { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GObjectItem> GObjectItem { get; set; }
+        public int? DefendedSector { get; set; }
+
+        [ForeignKey("HeroID")]
+        public virtual Hero Hero { get; set; }
+
     }
 }

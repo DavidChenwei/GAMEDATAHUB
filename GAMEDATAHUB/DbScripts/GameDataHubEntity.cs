@@ -14,7 +14,6 @@ namespace GAMEDATAHUB.DbScripts
         public virtual DbSet<GameMode> GameMode { get; set; }
         public virtual DbSet<GameModeItem> GameModeItem { get; set; }
         public virtual DbSet<GObject> GObject { get; set; }
-        public virtual DbSet<GObjectItem> GObjectItem { get; set; }
         public virtual DbSet<Hero> Hero { get; set; }
         public virtual DbSet<HeroOverView> HeroOverView { get; set; }
         public virtual DbSet<Map> Map { get; set; }
@@ -30,6 +29,7 @@ namespace GAMEDATAHUB.DbScripts
         public virtual DbSet<WeaponItem> WeaponItem { get; set; }
         public virtual DbSet<XP> XP { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<DividedKill> DividedKill { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,11 +45,6 @@ namespace GAMEDATAHUB.DbScripts
 
             modelBuilder.Entity<Hero>()
                 .HasMany(e => e.GameModeItem)
-                .WithRequired(e => e.Hero)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Hero>()
-                .HasMany(e => e.GObjectItem)
                 .WithRequired(e => e.Hero)
                 .WillCascadeOnDelete(false);
 

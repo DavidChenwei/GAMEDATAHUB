@@ -142,13 +142,13 @@
     <Compile Include="Controllers\PUBGController.cs" />
     <Compile Include="Controllers\RBS6Controller.cs" />
     <Compile Include="Controllers\ValorantController.cs" />
+    <Compile Include="DbScripts\DividedKill.cs" />
     <Compile Include="DbScripts\Gadget.cs" />
     <Compile Include="DbScripts\GadgetItem.cs" />
     <Compile Include="DbScripts\GameDataHubEntity.cs" />
     <Compile Include="DbScripts\GameMode.cs" />
     <Compile Include="DbScripts\GameModeItem.cs" />
     <Compile Include="DbScripts\GObject.cs" />
-    <Compile Include="DbScripts\GObjectItem.cs" />
     <Compile Include="DbScripts\Hero.cs" />
     <Compile Include="DbScripts\HeroOverView.cs" />
     <Compile Include="DbScripts\Map.cs" />
@@ -183,6 +183,10 @@
     <Compile Include="Migrations\202401131430424_Updateproperty.cs" />
     <Compile Include="Migrations\202401131430424_Updateproperty.designer.cs">
       <DependentUpon>202401131430424_Updateproperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401141521231_AddNewTable.cs" />
+    <Compile Include="Migrations\202401141521231_AddNewTable.designer.cs">
+      <DependentUpon>202401141521231_AddNewTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
@@ -302,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401131430424_Updateproperty.resx">
       <DependentUpon>202401131430424_Updateproperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401141521231_AddNewTable.resx">
+      <DependentUpon>202401141521231_AddNewTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
