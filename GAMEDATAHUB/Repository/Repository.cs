@@ -1987,6 +1987,138 @@ namespace GAMEDATAHUB.Repository
 
                     #endregion Ribbons
 
+                    #region Ganme Object
+                    GObject gObject = new GObject();
+                    gObject = (from s in dbContext.GObject
+                               where s.HeroID == hero.HeroID
+                               select s).FirstOrDefault();
+                    if (gObject == null)
+                    {
+                        gObject = new GObject
+                        {
+                            HeroID = hero.HeroID,
+                            ObjectTotal = heroInfoModel.Objective.Time.Total / 3600,
+                            AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600,
+                            DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600,
+                            Armed = heroInfoModel.Objective.Armed,
+                            Defused = heroInfoModel.Objective.Defused,
+                            Destroyed = heroInfoModel.Objective.Destroyed,
+                            Captured = heroInfoModel.Objective.Captured,
+                            Neutralized = heroInfoModel.Objective.Neutralized,
+                            AttackedSector = heroInfoModel.Sector.captured,
+                            DefendedSector = heroInfoModel.Sector.defended
+                        };
+                        dbContext.GObject.Add(gObject);
+                    }
+                    else {
+                        if (gObject.ObjectTotal != heroInfoModel.Objective.Time.Total / 3600)
+                        {
+                            gObject.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
+                        }
+                        if (gObject.AttackedTotal != heroInfoModel.Objective.Time.Attacked / 3600)
+                        {
+                            gObject.AttackedTotal = heroInfoModel.Objective.Time.Attacked / 3600;
+                        }
+                        if (gObject.DefendedTotal != heroInfoModel.Objective.Time.Defended / 3600)
+                        {
+                            gObject.DefendedTotal = heroInfoModel.Objective.Time.Defended / 3600;
+                        }
+                        if (gObject.Armed != heroInfoModel.Objective.Armed)
+                        {
+                            gObject.Armed = heroInfoModel.Objective.Armed;
+                        }
+                        if (gObject.Defused != heroInfoModel.Objective.Defused)
+                        {
+                            gObject.Defused = heroInfoModel.Objective.Defused;
+                        }
+                        if (gObject.Destroyed != heroInfoModel.Objective.Destroyed)
+                        {
+                            gObject.Destroyed = heroInfoModel.Objective.Destroyed;
+                        }
+                        if (gObject.Captured != heroInfoModel.Objective.Captured)
+                        {
+                            gObject.Captured = heroInfoModel.Objective.Captured;
+                        }
+                        if (gObject.Neutralized != heroInfoModel.Objective.Neutralized)
+                        {
+                            gObject.Neutralized = heroInfoModel.Objective.Neutralized;
+                        }
+                        if (gObject.AttackedSector != heroInfoModel.Sector.captured)
+                        {
+                            gObject.AttackedSector = heroInfoModel.Sector.captured;
+                        }
+                        if (gObject.DefendedSector != heroInfoModel.Sector.defended)
+                        {
+                            gObject.DefendedSector = heroInfoModel.Sector.defended;
+                        }
+                    }
+                    #endregion
+
+                    #region Divided Kills
+                    DividedKill dividedKill = new DividedKill();
+                    dividedKill = (from s in dbContext.DividedKill
+                                   where s.HeroID == hero.HeroID
+                                   select s).FirstOrDefault();
+                    if (dividedKill == null)
+                    {
+                        dividedKill = new DividedKill {
+                            HeroID = hero.HeroID,
+                            MultiKills = heroInfoModel.DividedKills.MultiKills,
+                            HeadShotAmount = heroInfoModel.HeadShotAmount,
+                            RoadKills = heroInfoModel.DividedKills.Roadkills,
+                            MeleeKills = heroInfoModel.DividedKills.Melee,
+                            VechileKills = heroInfoModel.DividedKills.Vehicle,
+                            GrenadesKills = heroInfoModel.DividedKills.Grenades,
+                            HipfireKills = heroInfoModel.DividedKills.Hipfire,
+                            AIKills = heroInfoModel.DividedKills.Ai,
+                            HumanKills = heroInfoModel.DividedKills.Human,
+                            ScopedKills = heroInfoModel.DividedKills.Ads
+                        };
+                        dbContext.DividedKill.Add(dividedKill);
+                    }
+                    else {
+                        if (dividedKill.MultiKills != heroInfoModel.DividedKills.MultiKills)
+                        {
+                            dividedKill.MultiKills = heroInfoModel.DividedKills.MultiKills;
+                        }
+                        if (dividedKill.HeadShotAmount != heroInfoModel.HeadShotAmount)
+                        {
+                            dividedKill.HeadShotAmount = heroInfoModel.HeadShotAmount;
+                        }
+                        if (dividedKill.RoadKills != heroInfoModel.DividedKills.Roadkills)
+                        {
+                            dividedKill.RoadKills = heroInfoModel.DividedKills.Roadkills;
+                        }
+                        if (dividedKill.MeleeKills != heroInfoModel.DividedKills.Melee)
+                        {
+                            dividedKill.MeleeKills = heroInfoModel.DividedKills.Melee;
+                        }
+                        if (dividedKill.VechileKills != heroInfoModel.DividedKills.Vehicle)
+                        {
+                            dividedKill.VechileKills = heroInfoModel.DividedKills.Vehicle;
+                        }
+                        if (dividedKill.GrenadesKills != heroInfoModel.DividedKills.Grenades)
+                        {
+                            dividedKill.GrenadesKills = heroInfoModel.DividedKills.Grenades;
+                        }
+                        if (dividedKill.HipfireKills != heroInfoModel.DividedKills.Hipfire)
+                        {
+                            dividedKill.HipfireKills = heroInfoModel.DividedKills.Hipfire;
+                        }
+                        if (dividedKill.AIKills != heroInfoModel.DividedKills.Ai)
+                        {
+                            dividedKill.AIKills = heroInfoModel.DividedKills.Ai;
+                        }
+                        if (dividedKill.HumanKills != heroInfoModel.DividedKills.Human)
+                        {
+                            dividedKill.HumanKills = heroInfoModel.DividedKills.Human;
+                        }
+                        if (dividedKill.ScopedKills != heroInfoModel.DividedKills.Ads)
+                        {
+                            dividedKill.ScopedKills = heroInfoModel.DividedKills.Ads;
+                        }
+                    }
+                    #endregion
                     try
                     {
                         dbContext.SaveChanges();
