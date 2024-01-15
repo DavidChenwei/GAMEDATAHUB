@@ -332,7 +332,7 @@ namespace GAMEDATAHUB.Repository
             List<KeyValuePair<int, decimal>> levelInfo = levelExperience.GetLevel(overView.XP);
             overView.Level = levelInfo[0].Key;
             overView.progess = levelInfo[0].Value;
-
+            overView.HeroRank = heroInfoModel.HeroRank;
             return overView;
         }
 

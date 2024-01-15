@@ -327,13 +327,28 @@
                                                 <div class="stat align-left expandable">
                                                     <div class="wrapper">
                                                         <div class="progress vertical small progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="fill" style="transform: translateY(15%);"></div>
+                                                            <div class="fill" style="transform: translateY(@Model.HeroRank.DeathRank%);"></div>
                                                         </div>
                                                         <div class="numbers">
                                                             <span class="name" title="Deaths">Deaths</span>
                                                             <span class="value">@Model.Deaths.ToString("N0")</span>
                                                             <div class="bottom">
-                                                                <span class="rank">Top 15%</span>
+                                                                @if (Model.HeroRank.DeathRank > 0.5m)
+                                                                {
+                                                                    <span class="rank">Bottom @Model.HeroRank.DeathRank %</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (Model.HeroRank.DeathRank <= 0.10m)
+                                                                    {
+                                                                        <span class="rank rank--leader">Top @Model.HeroRank.DeathRank%</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="rank">Top @Model.HeroRank.DeathRank%</span>
+                                                                    }
+
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -341,13 +356,28 @@
                                                 <div class="stat align-left expandable">
                                                     <div class="wrapper">
                                                         <div class="progress vertical small progress" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="fill" style="transform: translateY(81%);"></div>
+                                                            <div class="fill" style="transform: translateY(@Model.HeroRank.KPMRank%);"></div>
                                                         </div>
                                                         <div class="numbers">
                                                             <span class="name" title="Kills/Min">Kills/Min</span>
                                                             <span class="value">@Model.KillsPerMinute.ToString()</span>
                                                             <div class="bottom">
-                                                                <span class="rank">Bottom 19%</span>
+                                                                @if (Model.HeroRank.KPMRank > 0.5m)
+                                                                {
+                                                                    <span class="rank">Bottom @Model.HeroRank.KPMRank %</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (Model.HeroRank.KPMRank <= 0.10m)
+                                                                    {
+                                                                        <span class="rank rank--leader">Top @Model.HeroRank.KPMRank%</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="rank">Top @Model.HeroRank.KPMRank%</span>
+                                                                    }
+
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
