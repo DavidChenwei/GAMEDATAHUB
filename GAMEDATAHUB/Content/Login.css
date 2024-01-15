@@ -83,6 +83,10 @@
         transition: 0.15s;
         cursor: pointer;
     }
+.field-validation-error {
+    color: red;
+    align-items: flex-start;
+}
 
 .form_input {
     width: 350px;

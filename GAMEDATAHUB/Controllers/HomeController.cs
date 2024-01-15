@@ -27,7 +27,6 @@ namespace GAMEDATAHUB.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            ModelState.AddModelError("", "error");
             ViewBag.Message = "Your application description page.";
             UserModel userModel = new UserModel();
             if (cache.Contains("Login"))
@@ -38,22 +37,29 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string UserName, string Password, string Email)
+        public ActionResult Login(UserModel userModel)
         {
-            string salt;
-            string hashedPassword = EncryptionService.Encrypt(Password, out salt);
-            //bool isPasswordValid = EncryptionService.Decrypt(Password,salt,hashedPassword);
-            ResponseModel response = Resp.Register(UserName, Email, hashedPassword, salt);
-
-            if (response.IsValid) {
-                UserModel userModel = new UserModel
+            if (ModelState.IsValid) {
+                ModelState.Clear();
+                if (!userModel.IsLogin)
                 {
-                    UserEmail = Email,
-                    UserName = UserName
-                };
-                cache.Add("Login", userModel, DateTimeOffset.UtcNow.AddMinutes(360));
-                return RedirectToAction("Index", new { UserModel = userModel });
+                    string salt;
+                    string hashedPassword = EncryptionService.Encrypt(userModel.UserPassword, out salt);
+                    //bool isPasswordValid = EncryptionService.Decrypt(Password,salt,hashedPassword);
+                    ResponseModel response = Resp.Register(userModel.UserName, userModel.UserEmail, hashedPassword, salt);
+
+                    if (response.IsValid)
+                    {
+                        cache.Add("Login", userModel, DateTimeOffset.UtcNow.AddMinutes(360));
+                        return RedirectToAction("Index", new { UserModel = userModel });
+                    }
+                }
+                else { 
+                    
+                }
+
             }
+
             return View();
         }
 

@@ -1,32 +1,43 @@
-﻿
+﻿@model GAMEDATAHUB.Models.UserModel
 @{
     ViewBag.Title = "Login";
 }
 
 @Styles.Render("~/Content/login")
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
 <body>
     <div class="Login-area">
         <div class="shell">
             <div class="container a-container" id="a-container">
-                <form method="post" class="form" id="a-form">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "a-form", @class = "form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("IsLogin", false)
                     <h2 class="form_title title">Create Account</h2>
-                    <input type="text" name="UserName" class="form_input" placeholder="Name">
-                    <input type="text" name="Email" class="form_input" placeholder="Email">
-                    <input type="password" name="Password" class="form_input" placeholder="Password">
-                    <button type="submit" class="button">SIGN UP</button>
-                </form>
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @placeholder = "Name" })
+                    @Html.ValidationMessageFor(x => x.UserName)
+                    @Html.TextBoxFor(x => x.UserEmail, new { @class = "form_input", @placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.UserEmail)
+                    @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(x => x.UserPassword)
+                    <button type="submit" class="switch_button button">SIGN UP</button>
+                }
             </div>
 
-            <div class="container b-container" id="b-container">
-                <form action="" method="post" class="form" id="b-form">
-                    <h2 class="form_title title">Login</h2>
-                    <input type="text" class="form_input" placeholder="Email">
-                    <input type="password" class="form_input" placeholder="Password">
-                    <a class="form_link">Forgot Password?</a>
-                    <button class="form_button button submit">SIGN IN</button>
-                </form>
-            </div>
+             <div class="container b-container" id="b-container">
+                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "b-form", @class = "form", role = "form" }))
+                 {
+                     @Html.AntiForgeryToken()
+                     @Html.Hidden("IsLogin", true)
+                     <h2 class="form_title title">Login</h2>
+                     @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @placeholder = "Name" })
+                     @Html.ValidationMessageFor(x => x.UserName)
+                     @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Password" })
+                     @Html.ValidationMessageFor(x => x.UserPassword)
+                     <button type="submit" class="switch_button button">SIGN IN</button>
+                 }
+             </div>
 
             <div class="switch" id="switch-cnt">
                 <div class="switch_circle"></div>

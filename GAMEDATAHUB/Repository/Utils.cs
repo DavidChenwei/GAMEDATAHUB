@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace GAMEDATAHUB.Repository
 {
@@ -487,6 +489,73 @@ namespace GAMEDATAHUB.Repository
                 res.Add(new KeyValuePair<int, decimal>(level, percent));
                 return res;
             }
+        }
+    }
+
+    public class UsernameValidation : ValidationAttribute {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value != null)
+            {
+                string message = value.ToString();
+                if (Regex.IsMatch(message, @"[!@#$%^&*(),.?""':{}|<>]"))
+                {
+                    return new ValidationResult("Invalid user name! Only letters and numbers are allowed.");
+                }
+            }
+            else {
+                return new ValidationResult("UserName Required");
+            }
+
+            return ValidationResult.Success;
+        }
+    }
+
+    public class PasswordValidation : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value != null)
+            {
+                string message = value.ToString();
+                if (message.Length < 6)
+                {
+                    return new ValidationResult("The Length of Password must over six");
+                }
+            }
+            else
+            {
+                return new ValidationResult("Password Required");
+            }
+
+            return ValidationResult.Success;
+        }
+    }
+
+    public class EmailValidation : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value != null)
+            {
+                string email = value.ToString();
+
+                if (!IsValidEmail(email))
+                {
+                    return new ValidationResult(ErrorMessage ?? "Invalid email address format", new[] { validationContext.MemberName });
+                }
+            }
+            else {
+                new ValidationResult("Email Address Required");
+            }
+
+            return ValidationResult.Success;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            const string emailRegexPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, emailRegexPattern);
         }
     }
 }
