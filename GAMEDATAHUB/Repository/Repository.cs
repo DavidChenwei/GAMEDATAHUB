@@ -1,4 +1,5 @@
-﻿using GAMEDATAHUB.Models;
+﻿using GAMEDATAHUB.DbScripts;
+using GAMEDATAHUB.Models;
 using GAMEDATAHUB.Models.BF2042Model;
 using Newtonsoft.Json;
 using System;
@@ -9,7 +10,7 @@ using System.Net.Http;
 using System.Runtime.Caching;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using GAMEDATAHUB.DbScripts;
+
 namespace GAMEDATAHUB.Repository
 {
     public class Repository
@@ -38,7 +39,7 @@ namespace GAMEDATAHUB.Repository
                         if (response.IsSuccessStatusCode)
                         {
                             string responseBody = await response.Content.ReadAsStringAsync();
-                            heroInfoModel = JsonConvert.DeserializeObject<HeroInfoModel>(responseBody);                           
+                            heroInfoModel = JsonConvert.DeserializeObject<HeroInfoModel>(responseBody);
                             heroInfoModel.Vehicles.RemoveAll(vehicle =>
                                 vehicle.VehicleName == "RHIB - BF3" ||
                                 vehicle.VehicleName == "Quadbike - BC2" ||
@@ -70,7 +71,6 @@ namespace GAMEDATAHUB.Repository
                                 gadget.GadgetName == "AT-Mine"
                                 );
                             heroInfoModel.PlatForm = platform;
-                            cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(360));
                         }
                         else
                         {
@@ -89,9 +89,11 @@ namespace GAMEDATAHUB.Repository
             if (overView.isValid)
             {
                 overView = OverviewDataGenerate(heroInfoModel, overView);
+                System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
+                GameDataHubEntity dbContext = new GameDataHubEntity();
+
                 #region Hero
 
-                GameDataHubEntity dbContext = new GameDataHubEntity();
                 Hero hero = new Hero();
                 hero = (from s in dbContext.Hero
                         where s.UserID == heroInfoModel.UserId
@@ -144,7 +146,54 @@ namespace GAMEDATAHUB.Repository
                     }
                     dbContext.SaveChanges();
                 }
+
                 #endregion Hero
+
+                #region Rank Info
+
+                Rank rank = new Rank();
+                rank = (from s in dbContext.Rank
+                        where s.HeroID == hero.HeroID
+                        select s).FirstOrDefault();
+                if (rank != null)
+                {
+                    RankInfo rankInfo = new RankInfo
+                    {
+                        KDRank = rank.KDRank,
+                        HSRank = rank.HSRank,
+                        WinPercentRank = rank.WinPercentRank,
+                        HumanKDRank = rank.HumanKDRank,
+                        DeathRank = rank.DeathRank,
+                        KPMRank = rank.KPMRank,
+                        KPMatchRank = rank.KPMatchRank,
+                        WinRank = rank.WinRank,
+                        LostRank = rank.LostRank,
+                        DamageRank = rank.DamageRank,
+                        DPMRank = rank.DPMRank,
+                        VehiclesDestroyedRank = rank.VehiclesDestroyedRank,
+                        HSAmountRank = rank.HSAmountRank,
+                        RoadKillRank = rank.RoadKillRank,
+                        MeleeKillRank = rank.MeleeKillRank,
+                        VehicleKillRank = rank.VehicleKillRank,
+                        ScopedKillRank = rank.ScopedKillRank,
+                        HipfireKillRank = rank.HipfireKillRank,
+                        HumanKillRank = rank.HumanKillRank,
+                        AIKillRank = rank.AIKillRank,
+                        ObjectiveTimeRank = rank.ObjectiveTimeRank,
+                        DisarmedObjectRank = rank.DisarmedObjectRank,
+                        CapturedObjectiRank = rank.CapturedObjectiRank,
+                        ObjectivesDeutralizeRank = rank.ObjectivesDeutralizeRank,
+                        SectorsDefendeRank = rank.SectorsDefendeRank,
+                        SectorsCapturedRank = rank.SectorsCapturedRank,
+                        AttackedObjectRank = rank.AttackedObjectRank
+                    };
+                    overView.HeroRank = rankInfo;
+                    heroInfoModel.HeroRank = rankInfo;
+                }
+
+                #endregion Rank Info
+
+                cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(360));
             }
 
             return overView;
@@ -152,8 +201,8 @@ namespace GAMEDATAHUB.Repository
 
         public void dbtest()
         {
-
         }
+
         public OverviewModel OverviewInfoGet(string name, string platform)
         {
             HeroInfoModel heroInfoModel = new HeroInfoModel();
@@ -1583,7 +1632,7 @@ namespace GAMEDATAHUB.Repository
                                 Image = !string.IsNullOrEmpty(item.Image) ? item.Image : "none",
                                 Id = !string.IsNullOrEmpty(item.Id) ? item.Id : "none"
                             };
-                                dbContext.Weapon.Add(weapon);
+                            dbContext.Weapon.Add(weapon);
                         }
                     }
 
@@ -1987,6 +2036,7 @@ namespace GAMEDATAHUB.Repository
                     #endregion Ribbons
 
                     #region Ganme Object
+
                     GObject gObject = new GObject();
                     gObject = (from s in dbContext.GObject
                                where s.HeroID == hero.HeroID
@@ -2009,7 +2059,8 @@ namespace GAMEDATAHUB.Repository
                         };
                         dbContext.GObject.Add(gObject);
                     }
-                    else {
+                    else
+                    {
                         if (gObject.ObjectTotal != heroInfoModel.Objective.Time.Total / 3600)
                         {
                             gObject.ObjectTotal = heroInfoModel.Objective.Time.Total / 3600;
@@ -2051,16 +2102,19 @@ namespace GAMEDATAHUB.Repository
                             gObject.DefendedSector = heroInfoModel.Sector.defended;
                         }
                     }
-                    #endregion
+
+                    #endregion Ganme Object
 
                     #region Divided Kills
+
                     DividedKill dividedKill = new DividedKill();
                     dividedKill = (from s in dbContext.DividedKill
                                    where s.HeroID == hero.HeroID
                                    select s).FirstOrDefault();
                     if (dividedKill == null)
                     {
-                        dividedKill = new DividedKill {
+                        dividedKill = new DividedKill
+                        {
                             HeroID = hero.HeroID,
                             MultiKills = heroInfoModel.DividedKills.MultiKills,
                             HeadShotAmount = heroInfoModel.HeadShotAmount,
@@ -2075,7 +2129,8 @@ namespace GAMEDATAHUB.Repository
                         };
                         dbContext.DividedKill.Add(dividedKill);
                     }
-                    else {
+                    else
+                    {
                         if (dividedKill.MultiKills != heroInfoModel.DividedKills.MultiKills)
                         {
                             dividedKill.MultiKills = heroInfoModel.DividedKills.MultiKills;
@@ -2117,7 +2172,9 @@ namespace GAMEDATAHUB.Repository
                             dividedKill.ScopedKills = heroInfoModel.DividedKills.Ads;
                         }
                     }
-                    #endregion
+
+                    #endregion Divided Kills
+
                     try
                     {
                         dbContext.SaveChanges();
@@ -2230,20 +2287,23 @@ namespace GAMEDATAHUB.Repository
             }
         }
 
-        public ResponseModel Register(string UserName, string UserEmail, string hashedPassword, string salt) {
+        public ResponseModel Register(string UserName, string UserEmail, string hashedPassword, string salt)
+        {
             ResponseModel response = new ResponseModel();
             GameDataHubEntity dbContext = new GameDataHubEntity();
             User user = new User();
             user = (from s in dbContext.User
-                         where s.UserEmail == UserEmail && s.DeleteTime.HasValue == false
-                         select s).FirstOrDefault();
+                    where s.UserEmail == UserEmail && s.DeleteTime.HasValue == false
+                    select s).FirstOrDefault();
             if (user != null)
             {
                 response.IsValid = false;
                 response.ReturnText = "Email has been registered!";
             }
-            else {
-                user = new User {
+            else
+            {
+                user = new User
+                {
                     UserName = UserName,
                     UserEmail = UserEmail,
                     UserHashedPassword = hashedPassword,
@@ -2276,19 +2336,21 @@ namespace GAMEDATAHUB.Repository
             return response;
         }
 
-        public UserModel Login(string UserEmail, string UserPassword) {
+        public UserModel Login(string UserEmail, string UserPassword)
+        {
             UserModel userModel = new UserModel();
             GameDataHubEntity dbContext = new GameDataHubEntity();
 
             User user = (from s in dbContext.User
                          where s.UserEmail == UserEmail
-                         && s.DeleteTime.HasValue==false
+                         && s.DeleteTime.HasValue == false
                          select s).FirstOrDefault();
             if (user == null)
             {
                 userModel.ErrorMessage = "Email is Not Registered";
             }
-            else {
+            else
+            {
                 userModel.UserSalt = user.UserSalt;
                 userModel.HashedPassword = user.UserHashedPassword;
                 userModel.UserEmail = user.UserEmail;
@@ -2298,10 +2360,11 @@ namespace GAMEDATAHUB.Repository
             return userModel;
         }
 
-        public string UrlParse(string urlAddress, out string game, out string section, out string heroName, out string platform) {
+        public string UrlParse(string urlAddress, out string game, out string section, out string heroName, out string platform)
+        {
             Uri uri = new Uri("http://localhost" + urlAddress);
             string path = uri.AbsolutePath;
-            string query = uri.Query; 
+            string query = uri.Query;
 
             string[] pathParts = path.Split('/');
             game = pathParts[1];
@@ -2310,7 +2373,6 @@ namespace GAMEDATAHUB.Repository
             var queryParts = System.Web.HttpUtility.ParseQueryString(query);
             heroName = queryParts["HeroName"];
             platform = queryParts["PlatForm"];
-
 
             return "";
         }

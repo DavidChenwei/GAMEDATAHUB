@@ -188,6 +188,10 @@
     <Compile Include="Migrations\202401141521231_AddNewTable.designer.cs">
       <DependentUpon>202401141521231_AddNewTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401151545396_UpdateRank.cs" />
+    <Compile Include="Migrations\202401151545396_UpdateRank.designer.cs">
+      <DependentUpon>202401151545396_UpdateRank.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BF2042Model\ClassModel.cs" />
     <Compile Include="Models\BF2042Model\DividedKillsModel.cs" />
@@ -309,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401141521231_AddNewTable.resx">
       <DependentUpon>202401141521231_AddNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401151545396_UpdateRank.resx">
+      <DependentUpon>202401151545396_UpdateRank.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

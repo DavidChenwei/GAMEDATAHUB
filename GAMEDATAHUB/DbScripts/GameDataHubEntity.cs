@@ -30,6 +30,7 @@ namespace GAMEDATAHUB.DbScripts
         public virtual DbSet<XP> XP { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<DividedKill> DividedKill { get; set; }
+        public virtual DbSet<Rank> Rank { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

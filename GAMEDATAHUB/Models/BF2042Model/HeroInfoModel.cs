@@ -129,6 +129,8 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string SortMethod { get; set; } = "DESC";
         public string HeaderIndex { get; set; } = "header1";
 
+        public RankInfo HeroRank { get; set; }
+
         public DividedKillsModel DividedKills;
 
         public ObjectivetModel Objective;

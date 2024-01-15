@@ -77,6 +77,8 @@ namespace GAMEDATAHUB.Models.BF2042Model
         #endregion
 
         public bool isValid { get; set; } = true;
+
+        public RankInfo HeroRank { get; set; }
     }
 
     public class WeapoinOverView {
@@ -109,5 +111,36 @@ namespace GAMEDATAHUB.Models.BF2042Model
         public string Platform { get; set; } = ""; 
         public string TargetPage { get; set; } = "";
         public bool isValid { get; set; } = true;
+    }
+
+    public class RankInfo {
+        public decimal KDRank { get; set; }
+        public decimal HSRank { get; set; }
+        public decimal WinPercentRank { get; set; }
+        public decimal HumanKDRank { get; set; }
+        public decimal DeathRank { get; set; }
+        public decimal KPMRank { get; set; }
+        public decimal KPMatchRank { get; set; }
+        public decimal WinRank { get; set; }
+        public decimal LostRank { get; set; }
+        public decimal DamageRank { get; set; }
+        public decimal DPMRank { get; set; }
+        public decimal VehiclesDestroyedRank { get; set; }
+        public decimal HSAmountRank { get; set; }
+        public decimal RoadKillRank { get; set; }
+        public decimal MeleeKillRank { get; set; }
+        public decimal VehicleKillRank { get; set; }
+        public decimal ScopedKillRank { get; set; }
+        public decimal HipfireKillRank { get; set; }
+        public decimal HumanKillRank { get; set; }
+        public decimal AIKillRank { get; set; }
+        public decimal ObjectiveTimeRank { get; set; }
+        public decimal DisarmedObjectRank { get; set; }
+        public decimal CapturedObjectiRank { get; set; }
+        public decimal ObjectivesDeutralizeRank { get; set; }
+        public decimal SectorsDefendeRank { get; set; }
+        public decimal SectorsCapturedRank { get; set; }
+        public decimal AttackedObjectRank { get; set; }
+        public decimal HeroID { get; set; }
     }
 }

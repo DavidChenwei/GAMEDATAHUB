@@ -1842,6 +1842,10 @@ a[href] {
     white-space: nowrap;
 }
 
+.stat .numbers .custom-bottom--leader, .stat .numbers .rank--leader {
+    color: #cbb765;
+}
+
 segment-stats .featured.empty {
     display: none;
 }
