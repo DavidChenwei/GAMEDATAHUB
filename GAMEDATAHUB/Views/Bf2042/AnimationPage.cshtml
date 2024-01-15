@@ -73,10 +73,11 @@
         </div>
         @if (Model.isValid)
         {
-            <form method="post" action="@Url.Action(Model.TargetPage, "Bf2042")" id="animationForm" hidden>
-                <input name="HeroName" value="@Model.HeroName" hidden>
-                <input name="Platform" value="@Model.Platform" hidden>
-            </form>
+    <form method="post" action="@Url.Action(Model.TargetPage, "Bf2042")" id="animationForm" hidden>
+        <input name="HeroName" value="@Model.HeroName" hidden>
+        <input name="Platform" value="@Model.Platform" hidden>
+        <input name="AccountName" value="@ViewBag.AccountName" hidden>
+    </form>
         }
 
     </div>

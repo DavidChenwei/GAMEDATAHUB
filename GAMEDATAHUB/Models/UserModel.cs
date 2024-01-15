@@ -27,5 +27,9 @@ namespace GAMEDATAHUB.Models
         public bool IsPremium { get; set; }
 
         public bool IsLogin { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public string Redirection { get; set; }
     }
 }

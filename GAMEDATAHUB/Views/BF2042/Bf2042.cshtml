@@ -2,12 +2,10 @@
 <html>
 @{
     var sharedRouteValues = new System.Web.Routing.RouteValueDictionary {
-        { "IsValid", true }
+        { "IsValid", true },
+        { "AccountName", ViewBag.AccountName}
     };
-}
-
-@{
-    ViewBag.Title = "Game Date Hub";
+    ViewBag.Title = "Battle Filed 2042";
 }
 
 

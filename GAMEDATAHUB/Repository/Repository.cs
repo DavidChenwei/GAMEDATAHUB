@@ -620,7 +620,6 @@ namespace GAMEDATAHUB.Repository
             specialistModelView.UserName = heroInfoModel.UserName;
             specialistModelView.Avatar = heroInfoModel.Avatar;
             specialistModelView.PlatForm = heroInfoModel.PlatForm;
-
             heroInfoModel.Classes = heroInfoModel.Classes.OrderByDescending(w => w.Kills).ToList();
 
             specialistModelView.Specialists = heroInfoModel.Classes;
@@ -2275,6 +2274,45 @@ namespace GAMEDATAHUB.Repository
             }
 
             return response;
+        }
+
+        public UserModel Login(string UserEmail, string UserPassword) {
+            UserModel userModel = new UserModel();
+            GameDataHubEntity dbContext = new GameDataHubEntity();
+
+            User user = (from s in dbContext.User
+                         where s.UserEmail == UserEmail
+                         && s.DeleteTime.HasValue==false
+                         select s).FirstOrDefault();
+            if (user == null)
+            {
+                userModel.ErrorMessage = "Email is Not Registered";
+            }
+            else {
+                userModel.UserSalt = user.UserSalt;
+                userModel.HashedPassword = user.UserHashedPassword;
+                userModel.UserEmail = user.UserEmail;
+                userModel.UserName = user.UserName;
+                userModel.UserPassword = UserPassword;
+            }
+            return userModel;
+        }
+
+        public string UrlParse(string urlAddress, out string game, out string section, out string heroName, out string platform) {
+            Uri uri = new Uri("http://localhost" + urlAddress);
+            string path = uri.AbsolutePath;
+            string query = uri.Query; 
+
+            string[] pathParts = path.Split('/');
+            game = pathParts[1];
+            section = pathParts[2];
+
+            var queryParts = System.Web.HttpUtility.ParseQueryString(query);
+            heroName = queryParts["HeroName"];
+            platform = queryParts["PlatForm"];
+
+
+            return "";
         }
     }
 }

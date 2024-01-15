@@ -16,7 +16,7 @@ namespace GAMEDATAHUB.Controllers
         Repository.Repository Resp = new Repository.Repository();
 
         [HttpGet]
-        public ActionResult Overview(string HeroName, string Platform)
+        public ActionResult Overview(string HeroName, string Platform, string AccountName)
         {
 
             OverviewModel overviewModel = Resp.OverviewInfoGet(HeroName, Platform);
@@ -24,11 +24,12 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = Platform;
             ViewData["Avatar"] = overviewModel.Avatar;
             ViewData["Page"] = "Overview";
+            ViewBag.AccountName = AccountName;
             return View(overviewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Overview(string HeroName, string Platform, string login)
+        public async Task<ActionResult> Overview(string HeroName, string Platform, string AccountName, string re4)
         {
 
             if (!string.IsNullOrEmpty(Platform))
@@ -55,6 +56,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = Platform;
             ViewData["Avatar"] = Overview.Avatar;
             ViewBag.ShowLoading = false;
+            ViewBag.AccountName = AccountName;
             ViewData["Page"] = "Overview";
             if (Overview.isValid)
             {
@@ -62,46 +64,50 @@ namespace GAMEDATAHUB.Controllers
                 return View(Overview);
             }
             else {
-                return RedirectToAction("AnimationPage", new { isValid = Overview.isValid, name = HeroName, plat = Platform });
+                return RedirectToAction("AnimationPage", new { isValid = Overview.isValid, name = HeroName, plat = Platform, accountName = AccountName });
             }
 
         }
 
         [HttpGet]
-        public ActionResult Bf2042()
+        public ActionResult Bf2042(string AccountName)
         {
             ViewBag.ShowLoading = false;
+            ViewBag.AccountName = AccountName;
             return View();
         }
 
         [HttpGet]
-        public ActionResult AnimationPage(bool isValid, string name, string plat)
+        public ActionResult AnimationPage(bool isValid, string name, string plat, string accountName)
         {
             Animation animation = new Animation();
             animation.isValid = isValid;
             animation.HeroName = name;
             animation.Platform = plat;
+            ViewBag.AccountName = accountName;
             return View(animation);
         }
 
         [HttpPost]
-        public ActionResult AnimationPage(string HeroName, string Platform, string Target)
+        public ActionResult AnimationPage(string HeroName, string Platform, string Target, string AccountName)
         {
             Animation animation = new Animation();
             animation.HeroName = HeroName;
             animation.Platform = Platform;
             animation.TargetPage = Target;
+            ViewBag.AccountName = AccountName;
             return View(animation);
         }
 
         [HttpGet]
-        public ActionResult Maps(string HeroName, string PlatForm)
+        public ActionResult Maps(string HeroName, string PlatForm, string AccountName)
         {
             MapModeView mapModeView = Resp.MapsInfoGet(HeroName, PlatForm);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = mapModeView.Avatar;
             ViewData["Page"] = "Maps";
+            ViewBag.AccountName = AccountName;
             return View(mapModeView);
         }
 
@@ -114,7 +120,7 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Modes(string HeroName, string PlatForm)
+        public ActionResult Modes(string HeroName, string PlatForm, string AccountName)
         {
 
             GameModeView GameModes = Resp.GameModeInfoGet(Utils.DescMethods, Utils.HeaderWin, HeroName, PlatForm);
@@ -122,6 +128,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = GameModes.Avatar;
             ViewData["Page"] = "Modes";
+            ViewBag.AccountName = AccountName;
             return View(GameModes);
         }
 
@@ -136,13 +143,14 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Specialists(string HeroName, string PlatForm)
+        public ActionResult Specialists(string HeroName, string PlatForm, string AccountName)
         {
             SpecialistModelView specialistModelView = Resp.SpecialistInfoGet(HeroName, PlatForm, Utils.DescMethods, Utils.HeaderKill);
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = specialistModelView.Avatar;
             ViewData["Page"] = "Specialists";
+            ViewBag.AccountName = AccountName;
             return View(specialistModelView);
         }
 
@@ -155,7 +163,7 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Vehicles(string HeroName, string PlatForm)
+        public ActionResult Vehicles(string HeroName, string PlatForm, string AccountName)
         {
 
             VehicleModelView vehicleModelView = Resp.VehiclesInfoGet(HeroName, PlatForm);
@@ -163,6 +171,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = vehicleModelView.Avatar;
             ViewData["Page"] = "Vehicles";
+            ViewBag.AccountName = AccountName;
             return View(vehicleModelView);
         }
 
@@ -175,7 +184,7 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Weapons(string HeroName, string PlatForm)
+        public ActionResult Weapons(string HeroName, string PlatForm, string AccountName)
         {
 
             string SortMethod = "DESC";
@@ -185,6 +194,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = weaponModelView.Avatar;
             ViewData["Page"] = "Weapons";
+            ViewBag.AccountName = AccountName;
             return View(weaponModelView);
         }
 
@@ -197,7 +207,7 @@ namespace GAMEDATAHUB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Gadgets(string HeroName, string PlatForm)
+        public ActionResult Gadgets(string HeroName, string PlatForm, string AccountName)
         {
 
             GadgetModelView gadgetModelView = Resp.GadgetInfoGet(HeroName, PlatForm);
@@ -205,6 +215,7 @@ namespace GAMEDATAHUB.Controllers
             ViewData["PlatForm"] = PlatForm;
             ViewData["Avatar"] = gadgetModelView.Avatar;
             ViewData["Page"] = "Gadgets";
+            ViewBag.AccountName = AccountName;
             return View(gadgetModelView);
         }
 

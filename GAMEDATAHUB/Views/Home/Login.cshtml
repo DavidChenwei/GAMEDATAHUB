@@ -1,6 +1,7 @@
 ﻿@model GAMEDATAHUB.Models.UserModel
 @{
     ViewBag.Title = "Login";
+    var Redirection = ViewBag.ReturnUrl;
 }
 
 @Styles.Render("~/Content/login")
@@ -15,29 +16,34 @@
                     @Html.AntiForgeryToken()
                     @Html.Hidden("IsLogin", false)
                     <h2 class="form_title title">Create Account</h2>
-                    @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @placeholder = "Name" })
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @placeholder = "Enter your User Name" })
                     @Html.ValidationMessageFor(x => x.UserName)
-                    @Html.TextBoxFor(x => x.UserEmail, new { @class = "form_input", @placeholder = "Email" })
+                    @Html.TextBoxFor(x => x.UserEmail, new { @class = "form_input", @placeholder = "Enter your Email" })
                     @Html.ValidationMessageFor(x => x.UserEmail)
-                    @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Password" })
+                    @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Enter your Password" })
                     @Html.ValidationMessageFor(x => x.UserPassword)
                     <button type="submit" class="switch_button button">SIGN UP</button>
+                    @Html.ValidationMessageFor(x => x.ErrorMessage)
+                    @Html.TextBoxFor(x => x.Redirection, new { @class = "form_input", @hidden = true, @Value = Redirection })
                 }
             </div>
 
-             <div class="container b-container" id="b-container">
-                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "b-form", @class = "form", role = "form" }))
-                 {
-                     @Html.AntiForgeryToken()
-                     @Html.Hidden("IsLogin", true)
-                     <h2 class="form_title title">Login</h2>
-                     @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @placeholder = "Name" })
-                     @Html.ValidationMessageFor(x => x.UserName)
-                     @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Password" })
-                     @Html.ValidationMessageFor(x => x.UserPassword)
-                     <button type="submit" class="switch_button button">SIGN IN</button>
-                 }
-             </div>
+            <div class="container b-container" id="b-container">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "b-form", @class = "form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("IsLogin", true)
+                    <h2 class="form_title title">Login</h2>
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form_input", @hidden = true, @Value = "UserName" })
+                    @Html.TextBoxFor(x => x.UserEmail, new { @class = "form_input", @placeholder = "Enter your Email" })
+                    @Html.ValidationMessageFor(x => x.UserEmail)
+                    @Html.TextBoxFor(x => x.UserPassword, new { @class = "form_input", @type = "password", @placeholder = "Enter your Password" })
+                    @Html.ValidationMessageFor(x => x.UserPassword)
+                    <button type="submit" class="switch_button button">SIGN IN</button>
+                    @Html.ValidationMessageFor(x => x.ErrorMessage)
+                    @Html.TextBoxFor(x => x.Redirection, new { @class = "form_input", @hidden = true, @Value = Redirection })
+                }
+            </div>
 
             <div class="switch" id="switch-cnt">
                 <div class="switch_circle"></div>
@@ -58,6 +64,7 @@
     </div>
 
 </body>
+
 <script>
     let switchCtn = document.querySelector("#switch-cnt");
     let switchC1 = document.querySelector("#switch-c1");
@@ -92,6 +99,5 @@
             switchBtn[i].addEventListener("click", changeForm)
     }
     window.addEventListener("load", shell);
-
 </script>
 
