@@ -55,8 +55,7 @@ namespace GAMEDATAHUB.Repository
                                 vehicle.VehicleName == "HMG" ||
                                 vehicle.VehicleName == "Centurion C-RAM" ||
                                 vehicle.VehicleName == "Polaris RZR" ||
-                                vehicle.VehicleName == "Polaris RZR" ||
-                                vehicle.VehicleName == "Polaris RZR");
+                                vehicle.VehicleName == "40mm AA");
 
                             heroInfoModel.Gadgets.RemoveAll(gadget =>
                                 gadget.GadgetName == "Crate" ||
@@ -150,47 +149,47 @@ namespace GAMEDATAHUB.Repository
                 #endregion Hero
 
                 #region Rank Info
-
+                RankInfo rankInfo = new RankInfo();
                 Rank rank = new Rank();
                 rank = (from s in dbContext.Rank
                         where s.HeroID == hero.HeroID
                         select s).FirstOrDefault();
                 if (rank != null)
                 {
-                    RankInfo rankInfo = new RankInfo
+                    rankInfo = new RankInfo
                     {
-                        KDRank = rank.KDRank,
-                        HSRank = rank.HSRank,
-                        WinPercentRank = rank.WinPercentRank,
-                        HumanKDRank = rank.HumanKDRank,
-                        DeathRank = rank.DeathRank,
-                        KPMRank = rank.KPMRank,
-                        KPMatchRank = rank.KPMatchRank,
-                        WinRank = rank.WinRank,
-                        LostRank = rank.LostRank,
-                        DamageRank = rank.DamageRank,
-                        DPMRank = rank.DPMRank,
-                        VehiclesDestroyedRank = rank.VehiclesDestroyedRank,
-                        HSAmountRank = rank.HSAmountRank,
-                        RoadKillRank = rank.RoadKillRank,
-                        MeleeKillRank = rank.MeleeKillRank,
-                        VehicleKillRank = rank.VehicleKillRank,
-                        ScopedKillRank = rank.ScopedKillRank,
-                        HipfireKillRank = rank.HipfireKillRank,
-                        HumanKillRank = rank.HumanKillRank,
-                        AIKillRank = rank.AIKillRank,
-                        ObjectiveTimeRank = rank.ObjectiveTimeRank,
-                        DisarmedObjectRank = rank.DisarmedObjectRank,
-                        CapturedObjectiRank = rank.CapturedObjectiRank,
-                        ObjectivesDeutralizeRank = rank.ObjectivesDeutralizeRank,
-                        SectorsDefendeRank = rank.SectorsDefendeRank,
-                        SectorsCapturedRank = rank.SectorsCapturedRank,
-                        AttackedObjectRank = rank.AttackedObjectRank
+                        KDRank = rank.KDRank * 100,
+                        HSRank = rank.HSRank * 100,
+                        WinPercentRank = rank.WinPercentRank * 100,
+                        HumanKDRank = rank.HumanKDRank * 100,
+                        DeathRank = rank.DeathRank * 100,
+                        KPMRank = rank.KPMRank * 100,
+                        KPMatchRank = rank.KPMatchRank * 100,
+                        WinRank = rank.WinRank * 100,
+                        LostRank = rank.LostRank * 100,
+                        DamageRank = rank.DamageRank * 100,
+                        DPMRank = rank.DPMRank * 100,
+                        VehiclesDestroyedRank = rank.VehiclesDestroyedRank * 100,
+                        HSAmountRank = rank.HSAmountRank * 100,
+                        RoadKillRank = rank.RoadKillRank * 100,
+                        MeleeKillRank = rank.MeleeKillRank * 100,
+                        VehicleKillRank = rank.VehicleKillRank * 100,
+                        ScopedKillRank = rank.ScopedKillRank * 100,
+                        HipfireKillRank = rank.HipfireKillRank * 100,
+                        HumanKillRank = rank.HumanKillRank * 100,
+                        AIKillRank = rank.AIKillRank * 100,
+                        ObjectiveTimeRank = rank.ObjectiveTimeRank * 100,
+                        DisarmedObjectRank = rank.DisarmedObjectRank * 100,
+                        CapturedObjectiRank = rank.CapturedObjectiRank * 100,
+                        ObjectivesDeutralizeRank = rank.ObjectivesDeutralizeRank * 100,
+                        SectorsDefendeRank = rank.SectorsDefendeRank * 100,
+                        SectorsCapturedRank = rank.SectorsCapturedRank * 100,
+                        AttackedObjectRank = rank.AttackedObjectRank * 100
                     };
-                    overView.HeroRank = rankInfo;
-                    heroInfoModel.HeroRank = rankInfo;
-                }
 
+                }
+                overView.HeroRank = rankInfo;
+                heroInfoModel.HeroRank = rankInfo;
                 #endregion Rank Info
 
                 cache.Add(name, heroInfoModel, DateTimeOffset.UtcNow.AddMinutes(360));
@@ -1121,7 +1120,7 @@ namespace GAMEDATAHUB.Repository
                         {
                             HeroID = hero.HeroID,
                             BestClass = heroInfoModel.BestClass,
-                            HumanPercentage = heroInfoModel.HumanPrecentageD,
+                            HumanPercentage = heroInfoModel.HumanPrecentageD * heroInfoModel.KillDeath,
                             Kills = heroInfoModel.Kills,
                             Deaths = heroInfoModel.Deaths,
                             Wins = heroInfoModel.Wins,
@@ -1168,9 +1167,9 @@ namespace GAMEDATAHUB.Repository
                         {
                             heroOverView.BestClass = heroInfoModel.BestClass;
                         }
-                        if (heroOverView.HumanPercentage != heroInfoModel.HumanPrecentageD)
+                        if (heroOverView.HumanPercentage != heroInfoModel.HumanPrecentageD * heroInfoModel.KillDeath )
                         {
-                            heroOverView.HumanPercentage = heroInfoModel.HumanPrecentageD;
+                            heroOverView.HumanPercentage = heroInfoModel.HumanPrecentageD * heroInfoModel.KillDeath;
                         }
                         if (heroOverView.Kills != heroInfoModel.Kills)
                         {
