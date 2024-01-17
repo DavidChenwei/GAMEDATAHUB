@@ -88,7 +88,6 @@ namespace GAMEDATAHUB.Repository
             if (overView.isValid)
             {
                 overView = OverviewDataGenerate(heroInfoModel, overView);
-                System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
                 GameDataHubEntity dbContext = new GameDataHubEntity();
 
                 #region Hero
@@ -117,6 +116,7 @@ namespace GAMEDATAHUB.Repository
                             foreach (var validationError in entityValidationErrors.ValidationErrors)
                             {
                                 Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                                System.Diagnostics.Trace.TraceError("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                             }
                         }
                     }
@@ -2180,17 +2180,8 @@ namespace GAMEDATAHUB.Repository
                         response.IsValid = true;
                         response.ReturnText = "Database Update Success";
                     }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                        {
-                            foreach (var validationError in entityValidationErrors.ValidationErrors)
-                            {
-                                response.AddError("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                            }
-                        }
-                        response.IsValid = false;
-                        response.ReturnText = "Database Update Faild";
+                    catch (Exception ex) {
+                        System.Diagnostics.Trace.TraceError(ex.InnerException.Message.ToString());
                     }
                 }
             }
