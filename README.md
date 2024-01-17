@@ -15,8 +15,9 @@ If players wish to access additional data, they can click the three circles loca
 
 # System requirements
 .Net Framwork 4.7.2  
-EntityFramework 6.4.4  
-SQL Server
+EntityFramework 6.4.4, with code first approach
+SQL Server, need support SQL Server Agent
+Anime JS
 
 # Installation
 1. Clone or download the project code.
