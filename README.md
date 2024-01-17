@@ -32,3 +32,14 @@ A: First, make sure the player's name and platform are correct. Secondly, if the
 
 Q:When I query player data, why is it sometimes fast and sometimes slow?  
 A:As the project has only completed development for one game and there is no plan to officially launch the project, it is deployed on a free Azure server with limited resources. This may affect the speed of the project due to the limited server resources.
+
+# Collaboration
+I plan to develop a mobile app using .NET MAUI. If you are familiar with .NET MAUI and interested in the project, please contact me.
+
+# Contact
+[Send me Email](mailto:Davdi.Feng1005@gmail.com)  
+
+[Linkedin](https://www.linkedin.com/in/chenwei-feng)
+
+# Notice
+This project is intended solely for communication and learning purposes. It should not be used for any commercial activities, and any consequences arising from such use will be the responsibility of the user.
