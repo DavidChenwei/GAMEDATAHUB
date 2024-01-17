@@ -12,3 +12,23 @@ Of course players also can choose win % to review a descending order:
 ![Maps Win% descending Data](./Image/Maps2.png)
 If players wish to access additional data, they can click the three circles located at the end of each item to explore more details. For instance, when players navigate to the "Modes" page and click the three circles, additional data will be displayed on the screen. Clicking the three circles again will hide the additional data.  
 ![Modes explore more data](./Image/mode.png)
+
+# System requirements
+.Net Framwork 4.7.2  
+EntityFramework 6.4.4  
+SQL Server
+
+# Installation
+1. Clone or download the project code.
+2. Open the solution file: [GAMEDATAHUB.sln].
+3. Compile and run the project using Visual Studio.
+
+# Frequently Asked Questions
+Q: Why do some players' data in the Overview show as all top 0%?  
+A: The API used in the project does not include the ranking of each data among all players. Therefore, when a player is searched for the first time, these ranking data display as 0. Subsequently, the database will automatically update the ranking data through SQL SERVER Agent.  
+
+Q:Why can't I find the player's data in my query?  
+A: First, make sure the player's name and platform are correct. Secondly, if the player chooses not to share game data in the game, the API query will not be able to retrieve data for that player. Finally, the project uses an API from https://api.gametools.network/docs, which is not the official API. Therefore, if there are issues with gametools' servers, it may not be possible to query the player's data.  
+
+Q:When I query player data, why is it sometimes fast and sometimes slow?  
+A:As the project has only completed development for one game and there is no plan to officially launch the project, it is deployed on a free Azure server with limited resources. This may affect the speed of the project due to the limited server resources.
