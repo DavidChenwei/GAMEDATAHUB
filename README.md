@@ -13,6 +13,28 @@ Of course players also can choose win % to review a descending order:
 If players wish to access additional data, they can click the three circles located at the end of each item to explore more details. For instance, when players navigate to the "Modes" page and click the three circles, additional data will be displayed on the screen. Clicking the three circles again will hide the additional data.  
 ![Modes explore more data](./Image/mode.png)
 
+# How to use
+Click on the "BattleField2042" navigation bar on the homepage, and you will enter the player data visualization section for BattleField2042. Enter the name of the player you want to search for in the input field, choose the platform on which the player is located, and finally, press the Enter key. If you don't know the player's name and corresponding platform, you can try the following information:  
+| HeroName | PlatForm|
+|-----|-----|
+| MarineChen | pc |
+| Wukuma | pc |
+| s1dess | pc |
+| 1230jp | pc |
+| TS_VENA | pc |
+| Aki_Velvet | ps |
+| k6371 | ps |
+| Kebagon | ps |
+| timco38 | ps |
+| Kyojin01 | xbox |
+| Puraw0423 | xbox |
+| Vomi Noir | xbox |
+| NOD Infantry | xbox |
+| I Agent 10 I | xbox |
+
+
+
+
 # System requirements
 .Net Framwork 4.7.2  
 EntityFramework 6.4.4, with code first approach  
