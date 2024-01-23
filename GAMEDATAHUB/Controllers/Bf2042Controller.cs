@@ -51,7 +51,7 @@ namespace GAMEDATAHUB.Controllers
                 Platform = "pc";
             }
             OverviewModel Overview = await Resp.HeroInfoGet(HeroName, Platform);
-            Overview.isValid = true;
+            //Overview.isValid = true;
             ViewData["HeroName"] = HeroName;
             ViewData["PlatForm"] = Platform;
             ViewData["Avatar"] = Overview.Avatar;
