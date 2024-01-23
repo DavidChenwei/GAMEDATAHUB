@@ -1669,7 +1669,7 @@ namespace GAMEDATAHUB.Repository
                     }
                     else
                     {
-                        for (int i = 0; i < weaponItems.Count; i++)
+                        for (int i = 0; i < heroInfoModel.Weapons.Count; i++)
                         {
                             if (weaponItems[i].HeroID != hero.HeroID)
                             {
@@ -2034,7 +2034,7 @@ namespace GAMEDATAHUB.Repository
 
                     #endregion Ribbons
 
-                    #region Ganme Object
+                    #region Game Object
 
                     GObject gObject = new GObject();
                     gObject = (from s in dbContext.GObject
