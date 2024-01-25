@@ -50,11 +50,14 @@ Anime JS
 Q: Why do some players' data in the Overview show as all top 0%?  
 A: The API used in the project does not include the ranking of each data among all players. Therefore, when a player is searched for the first time, these ranking data display as 0. Subsequently, the database will automatically update the ranking data through SQL SERVER Agent.  
 
-Q:Why can't I find the player's data in my query?  
+Q: Why can't I find the player's data in my query?  
 A: First, make sure the player's name and platform are correct. Secondly, if the player chooses not to share game data in the game, the API query will not be able to retrieve data for that player. Finally, the project uses an API from https://api.gametools.network/docs, which is not the official API. Therefore, if there are issues with gametools' servers, it may not be possible to query the player's data.  
 
-Q:When I query player data, why is it sometimes fast and sometimes slow?  
-A:As the project has only completed development for one game and there is no plan to officially launch the project, it is deployed on a free Azure server with limited resources. This may affect the speed of the project due to the limited server resources.
+Q: When I query player data, why is it sometimes fast and sometimes slow?  
+A: As the project has only completed development for one game and there is no plan to officially launch the project, it is deployed on a free Azure server with limited resources. This may affect the speed of the project due to the limited server resources.
+
+Q: Why there is no responsive design for different screen sizes?
+A: In this project, I did not use frameworks such as Bootstrap for front-end development, the target is to have more practice for CSS. However, I have not yet had enought time to complete the responsive design for different screen sizes. However, if your screen width exceeds 1660 pixels, you will have a better website experience. I am working hard to improve the responsive design of the website to provide the best experience for all users.
 
 # Collaboration
 I plan to develop a mobile app using .NET MAUI. If you are familiar with .NET MAUI and interested in the project, please contact me.
