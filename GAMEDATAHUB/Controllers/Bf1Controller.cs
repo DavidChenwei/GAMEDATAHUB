@@ -14,5 +14,11 @@ namespace GAMEDATAHUB.Controllers
             ViewData["GameName"] = "BattleField 1";
             return View();
         }
+
+        [HttpGet]
+        public ActionResult BF1Search() {
+
+            return View();
+        }
     }
 }

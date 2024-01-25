@@ -278,6 +278,7 @@
     <Content Include="Views\Valorant\Overview.cshtml" />
     <Content Include="Views\CS2\Overview.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Bf1\BF1Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
